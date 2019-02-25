@@ -12,9 +12,9 @@ const app = express();
 // res.sendFile(path.join(__dirname+'/dist/index.html'));
 // });
 
-app.use(express.static(__dirname + '/dist/swim-touch'));
+app.use(express.static(__dirname + '/dist/SwimTouch'));
 app.get('/*', function(req,res) {
-res.sendFile(path.join(__dirname + '/dist/swim-touch/index.html'));
+res.sendFile(path.join(__dirname + '/dist/SwimTouch/index.html'));
 
 });
 
