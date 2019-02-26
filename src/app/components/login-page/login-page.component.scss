@@ -1,0 +1,93 @@
+.envelop{
+    display: flex;
+    justify-content: space-around;
+    font-family: Assistant;
+    padding: 2rem;  
+    .div-1{
+        width: 50%;
+        background: white;
+        .logo-div{
+            padding: 1rem;
+            text-align: center;
+            .logo{
+                width: 50%;
+            }
+        }
+        .form{
+            direction: rtl;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            .form-1{
+                
+            }
+            .form-2{
+                .input-1{
+
+                }
+            }
+            .form-3{
+
+            }
+            .form-4{
+
+            }
+            .form-5{
+                .input-2{
+
+                }
+            }
+            .form-6{
+
+            }
+            .form-7{
+
+            }
+            .form-8{
+                .button{
+
+                }
+            }
+
+        }
+
+    }
+    .div-2{
+        width: 50%;
+        background: lightgray;
+        display: flex;
+        flex-direction: column;
+        font-size: 5rem;
+        .line-1{
+            font-weight: bold;
+            text-align: center;
+            padding: 1rem;
+        }
+        .line-2{
+            color: lightslategray;
+            text-align: center;
+            padding: 1rem;
+        }
+        .line-3{
+            color: lightslategray;
+            text-align: center;
+            padding: 1rem;
+        }
+        .line-4{
+            font-weight: bold;
+            text-align: center;
+            padding: 1rem;
+        }
+        .line-5{
+            color: lightslategray;
+            text-align: center;
+            padding: 1rem;
+        }
+        .line-6{
+            font-weight: bold;
+            text-align: center;
+            padding: 1rem;
+        }
+
+    }
+}
