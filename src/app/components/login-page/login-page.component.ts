@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPageComponent implements OnInit {
 
+  //#region Public Members
+  public emailError: boolean;
+  public passwordError: boolean;
+  //#endregion
+
+  //#region Constructor & Lifecycle Hooks
   constructor() { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
   }
+  //#endregion
 
+  //#region Public Methods
+  //#endregion
 }
