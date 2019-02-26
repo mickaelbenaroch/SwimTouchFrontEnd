@@ -1,4 +1,4 @@
-<div class="envelop">
+<div id="envelop" class="envelop">
   <div class="div-1">
     <div class="logo-div">
       <img class="logo" src="/assets/logo.jpeg">
@@ -9,7 +9,7 @@
           <span>נא להזין כתובת מייל:</span>
         </div>
         <div class="form-2">
-          <input class="input-1" type="email" placeholder="youremail@youremail.com">
+          <input class="input-1" type="email" [(ngModel)]="email" name="first" (change)="DisableError()" placeholder="youremail@youremail.com">
         </div>
         <div [ngClass]="{'visible': emailError}" class="form-3">
           <span>כתובת המייל אינה תקינה</span>
@@ -18,7 +18,7 @@
           <span>סיסמא:</span>
         </div>
         <div class="form-5">
-          <input class="input-2" type="email" placeholder="הסיסמא שלך">
+          <input class="input-2" type="text" [(ngModel)]="password" name="second" placeholder="הסיסמא שלך">
         </div>
         <div [ngClass]="{'visible': passwordError}" class="form-6">
           <span>הסיסמא שהוזנה אינה תקינה</span>
@@ -27,7 +27,7 @@
           <span>שחכתי סיסמא</span>
         </div>
         <div class="form-8">
-          <button class="button">התחבר למערכת</button>
+          <button class="button" (click)="Validate()">התחבר למערכת</button>
         </div>
       </form>
     </div>

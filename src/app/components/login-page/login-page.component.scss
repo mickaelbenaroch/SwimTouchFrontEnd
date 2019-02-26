@@ -15,6 +15,7 @@
             }
         }
         .form-div{
+            padding-bottom: 2rem;
             .form{
                 margin: auto;
                 width: 50%;
@@ -136,7 +137,7 @@
 }
 
 .visible{
-    opacity: 1;
+    opacity: 1 !important;
 }
 
 input:focus
@@ -145,3 +146,21 @@ input:focus
     border: 1px solid #01a89e;
     outline: 0;
 }
+
+@media only screen and (max-width: 600px) {
+    .div-1{
+        width: 100% !important;
+        .form-div{
+            margin-top: 3rem;
+        }
+        .form{
+            width: 100% !important;
+            .input-1,.input-2{
+                width: 90% !important;
+            }
+        }
+    }
+    .div-2{
+        display: none !important;
+    }
+  }
