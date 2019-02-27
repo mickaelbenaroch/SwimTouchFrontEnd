@@ -44,10 +44,12 @@ export class LoginPageComponent implements OnInit {
       this.httpservice.httpPost('login',this.LoginModel).subscribe((res) =>{
           if(res.isTrue == true){
             this.navservice.navigateByUrl('/mainmenu');
-          }else{
-            this.OpenDialog();
           }
-      })
+      },
+      err =>{
+        this.OpenDialog();
+      }
+      )
     }
   }
 
