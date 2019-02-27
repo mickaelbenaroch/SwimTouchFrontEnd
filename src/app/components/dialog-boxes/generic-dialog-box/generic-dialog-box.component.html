@@ -1,0 +1,7 @@
+<div class="envelop">
+  <div class="div-1">{{title}}</div>
+  <div class="div-2">{{body}}</div>
+  <div class="div-3" *ngIf="button">
+    <button (click)="close()" class="but">{{buttonText}}</button>
+  </div>
+</div>
