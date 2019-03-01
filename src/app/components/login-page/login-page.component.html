@@ -4,7 +4,7 @@
       <img class="logo" src="/assets/logo.jpeg">
     </div>
     <div class="form-div">
-      <form class="form">
+      <form class="form" *ngIf="!signUp">
         <div class="form-1">
           <span>נא להזין כתובת מייל:</span>
         </div>
@@ -18,7 +18,7 @@
           <span>סיסמא:</span>
         </div>
         <div class="form-5">
-          <input class="input-2" type="text" [(ngModel)]="password" name="second" placeholder="הסיסמא שלך">
+          <input class="input-2" type="password" [(ngModel)]="password" name="second" placeholder="הסיסמא שלך">
         </div>
         <div [ngClass]="{'visible': passwordError}" class="form-6">
           <span>הסיסמא שהוזנה אינה תקינה</span>
@@ -29,6 +29,45 @@
         <div class="form-8">
           <button class="button" (click)="Validate()">התחבר למערכת</button>
         </div>
+        <div class="form-9">
+          <span class="not-member">עדיין לא רשום?</span><span class="signup" (click)="SignUp()">הירשם כאן</span>
+        </div>
+      </form>
+      <form class="su-form" *ngIf="signUp">
+        <div class="d1">
+          <span>שם פרטי:</span>
+          <input type="text" [(ngModel)]="this.SignUpModel.first_name" name="fname" class="fname" placeholder="שם פרטי">
+        </div>
+        <div class="d2">
+           <span>שם משפחה: </span>
+          <input type="text" [(ngModel)]="this.SignUpModel.last_name" name="lname" class="lname" placeholder="שם משפחה">
+        </div>
+        <div class="d3">
+           <span>שם משתמש:</span>
+          <input type="text" [(ngModel)]="this.SignUpModel.user" name="user" class="user" placeholder="שם משתמש">
+        </div>
+        <div class="d4">
+          <span>סיסמא:</span>
+          <input type="password" [(ngModel)]="this.SignUpModel.pwd" name="pwd" class="pwd" placeholder="סיסמא">
+        </div>
+        <div class="d5">
+         <span>גיל:</span>
+          <input type="number" [(ngModel)]="this.SignUpModel.age" name="age" class="age" placeholder="גיל">
+        </div>
+        <div class="d6">
+          <span>קבוצה:</span>
+          <input type="text" [(ngModel)]="this.SignUpModel.group" name="group" class="group" placeholder="קבוצה">
+        </div>
+        <div class="d7">
+          <span>תפקיד:</span>
+          <input type="text" [(ngModel)]="this.SignUpModel.type" name="type" class="role" placeholder="תפקיד">
+        </div>
+      <div class="su-group-4" [ngClass]="{'visible': signupError}"> 
+        <span>אחד או יותר מהפרטים שגויים</span>
+      </div>
+      <div class="su-group-5">
+          <button class="button" (click)="ValidateSignUp()">אישור</button>
+      </div>
       </form>
     </div>
   </div>

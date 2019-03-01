@@ -4,6 +4,7 @@
     font-family: Assistant;
     padding: 2rem;  
     background: #DCDCDC;
+    height: 95%;
     .div-1{
         width: 50%;
         background: white;
@@ -71,6 +72,155 @@
                     padding-right: 0.5rem;
                     text-align: center;
                     margin-top: 1rem;
+                    .button{
+                        background: #01a89e;
+                        padding-right: 1.5rem;
+                        padding-left: 1.5rem;
+                        padding-top: 0.5rem;
+                        padding-bottom: 0.5rem;
+                        color: white;
+                        font-weight: bold;
+                        font-size: 1.2rem;
+                        font-family: Assistant;
+                        cursor: pointer;
+                        border-radius: 10px;
+                    }
+                }
+                .form-9{
+                    margin-top: 3rem;
+                    text-align: center;
+                    .not-member{
+                    }
+                    .signup{
+                        color: #01a89e;
+                        cursor: pointer;
+                    }
+                }
+            }
+            .su-form{
+                display: flex;
+                flex-direction: column;
+                direction: rtl;
+                .d1{
+                    display: flex;
+                    justify-content: space-around;
+                    padding: 1rem;
+                    span{
+                        width: 40%;
+                        align-self: center;
+                    }
+                    .fname{
+                        width: 60%;
+                        padding: 0.5rem;
+                        border-radius: 10px;
+                        font-size: 1rem;
+                        border-width: 1px;
+                    }
+                }
+                .d2{
+                    display: flex;
+                    justify-content: space-around;
+                    padding: 1rem;
+                    span{
+                        width: 40%;
+                        align-self: center;
+                    }
+                    .lname{
+                        width: 60%;
+                        padding: 0.5rem;
+                        border-radius: 10px;
+                        font-size: 1rem;
+                        border-width: 1px;
+                    }
+                }
+                .d3{
+                    display: flex;
+                    justify-content: space-around;
+                    padding: 1rem;
+                    span{
+                        width: 40%;
+                        align-self: center;
+                    }
+                    .user{
+                        width: 60%;
+                        padding: 0.5rem;
+                        border-radius: 10px;
+                        font-size: 1rem;
+                        border-width: 1px;
+                    }
+                }
+                .d4{
+                    display: flex;
+                    justify-content: space-around;
+                    padding: 1rem;
+                    span{
+                        width: 40%;
+                        align-self: center;
+                    }
+                    .pwd{
+                        width: 60%;
+                        padding: 0.5rem;
+                        border-radius: 10px;
+                        font-size: 1rem;
+                        border-width: 1px;
+                    }
+                }
+                .d5{
+                    display: flex;
+                    justify-content: space-around;
+                    padding: 1rem;
+                    span{
+                        width: 40%;
+                        align-self: center;
+                    }
+                    .age{
+                        width: 60%;
+                        padding: 0.5rem;
+                        border-radius: 10px;
+                        font-size: 1rem;
+                        border-width: 1px;
+                    }
+                }
+                .d6{
+                    display: flex;
+                    justify-content: space-around;
+                    padding: 1rem;
+                    span{
+                        width: 40%;
+                        align-self: center;
+                    }
+                    .group{
+                        width: 60%;
+                        padding: 0.5rem;
+                        border-radius: 10px;
+                        font-size: 1rem;
+                        border-width: 1px;
+                    }
+                }
+                .d7{
+                    display: flex;
+                    justify-content: space-around;
+                    padding: 1rem;
+                    span{
+                        width: 40%;
+                        align-self: center;
+                    }
+                    .role{
+                        width: 60%;
+                        padding: 0.5rem;
+                        border-radius: 10px;
+                        font-size: 1rem;
+                        border-width: 1px;
+                    }
+                }
+                .su-group-4{
+                    opacity: 0;
+                    padding: 1.5rem;
+                    color: red;
+                    text-align: center;
+                }
+                .su-group-5{
+                    text-align: center;
                     .button{
                         background: #01a89e;
                         padding-right: 1.5rem;

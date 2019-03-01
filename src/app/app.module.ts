@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import {MatDialogModule} from "@angular/material";
+import { NgxUiLoaderModule } from  'ngx-ui-loader';
 import { Routes, RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http'; 
@@ -32,6 +33,7 @@ const appRoutes: Routes = [
     MatDialogModule,
     HttpClientModule,
     AppRoutingModule,
+    NgxUiLoaderModule,
     BrowserAnimationsModule
   ],
   providers: [
