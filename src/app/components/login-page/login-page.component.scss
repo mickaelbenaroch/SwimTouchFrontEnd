@@ -4,7 +4,6 @@
     font-family: Assistant;
     padding: 2rem;  
     background: #DCDCDC;
-    height: 95%;
     .div-1{
         width: 50%;
         background: white;
@@ -295,6 +294,10 @@ input:focus
     border: none;
     border: 1px solid #01a89e;
     outline: 0;
+}
+
+.height{
+    height: 95%;
 }
 
 @media only screen and (max-width: 600px) {
