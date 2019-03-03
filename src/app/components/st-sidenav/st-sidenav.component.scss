@@ -1,0 +1,139 @@
+.envelop{
+    padding: 1rem;
+    background: #01a89e;
+    color: white;
+    font-weight: bold;
+    font-family: Assistant;
+    display: flex;
+    direction: rtl;
+    flex-direction: column;
+    height: 100%;
+    .menu{
+        display: none;
+        width: 2rem;   
+    }
+    .div-group-1{
+        display: flex;
+        flex-direction: column;
+        .div-1{
+            padding:1rem;
+            display: flex;
+            flex-direction: row;
+            .div-1-1{
+                width: 20%;
+                .stats{
+                    width:1.5rem;
+                    margin-left: 0.5rem;            
+                }    
+            }
+            .div-1-2{
+                width: 80%;
+                align-self: center;
+            }
+        }
+        .div-2{
+            display: flex;
+            flex-direction: row;
+            padding:1rem;
+            .div-2-1{
+                width: 20%;
+                .train{
+                    width: 1.5rem;
+                    margin-left: 0.5rem;            
+                }
+            }
+            .div-2-2{
+                width: 80%;
+                align-self: center;
+            }
+        }
+        .div-3{
+            display: flex;
+            flex-direction: row;
+            padding:1rem;
+            .div-3-1{
+                width: 20%;
+                .history{
+                    width: 1.5rem;
+                    margin-left: 0.5rem;            
+                }
+            }
+            .div-3-2{
+                width: 80%;
+                align-self: center;
+            }
+        }
+        .div-4{
+            display: flex;
+            flex-direction: row;
+            padding:1rem;
+            .div-4-1{
+                width: 20%;
+                .matalot{
+                    width: 1.5rem;
+                    margin-left: 0.5rem;            
+                }
+            }
+            .div-4-2{
+                width: 80%;
+                align-self: center;
+            }
+        }
+        .div-5{
+            display: flex;
+            flex-direction: row;
+            padding:1rem;
+            .div-5-1{
+                width: 20%;
+                .search{
+                    width: 1.5rem;
+                    margin-left: 0.5rem;            
+                }
+            }
+            .div-5-2{
+                width: 80%;
+                align-self: center;
+            }
+        }
+        .div-6{
+            display: flex;
+            flex-direction: row;
+            padding:1rem;
+            .div-6-1{
+                width: 20%;
+                .sms{
+                    width: 1.5rem;
+                    margin-left: 0.5rem;
+                }
+            }
+            .div-6-2{
+                width: 80%;
+                align-self: center;
+            }
+        }
+
+    }
+    .div-7{
+        position: absolute;
+        bottom: 45px;
+        padding: 1rem;
+        .settings{
+            padding-bottom: 1rem;
+        }
+        .help{
+
+        }
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .div-7{
+        position: unset!important;
+    }
+    .center{
+        padding-right: 1rem;
+    }
+    .menu{
+        display: block !important;
+    }
+}

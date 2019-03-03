@@ -12,6 +12,9 @@ import { MainPageComponent } from './components/main-page/main-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { GenericDialogBoxComponent } from './components/dialog-boxes/generic-dialog-box/generic-dialog-box.component';
+import { StHeaderComponent } from './components/st-header/st-header.component';
+import { StSidenavComponent } from './components/st-sidenav/st-sidenav.component';
+import { StContentComponent } from './components/st-content/st-content.component';
     
 const appRoutes: Routes = [
   {path: '' , component: LoginPageComponent},
@@ -24,6 +27,9 @@ const appRoutes: Routes = [
     MainPageComponent,
     LoginPageComponent,
     GenericDialogBoxComponent,
+    StHeaderComponent,
+    StSidenavComponent,
+    StContentComponent,
   ],
   imports: [
     RouterModule.forRoot(

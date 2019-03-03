@@ -1,0 +1,39 @@
+
+.menu{
+    width: 2rem;   
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    cursor: pointer; 
+    display: none;
+}
+.envelop{
+    display: flex;
+    height: 100%;
+    .div-1{
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        .div-1-1{
+
+        }
+        .div-1-2{
+
+        }
+    }
+    .div-2{
+        width: 20%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .div-1{
+        width: 100% !important;
+    }
+    .div-2{
+        display: none;
+    }
+    .menu{
+        display: block !important;
+    }
+}
