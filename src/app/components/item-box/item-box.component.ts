@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, AfterViewChecked, AfterViewInit } from '@angular/core';
+import { debug } from 'util';
 
 
 @Component({
@@ -6,7 +7,7 @@ import { Component, OnInit, Input, AfterViewChecked, AfterViewInit } from '@angu
   templateUrl: './item-box.component.html',
   styleUrls: ['./item-box.component.scss']
 })
-export class ItemBoxComponent implements OnInit{
+export class ItemBoxComponent implements OnInit, AfterViewInit{
   
   //#region Region Public Members
   @Input() color: string;
@@ -18,11 +19,12 @@ export class ItemBoxComponent implements OnInit{
   //#region Constructor & Lifecycle Hooks
   constructor() { }
   
-  public ngOnInit(): void {
-    var temp = document.getElementById("color");
-    temp.style.background = this.color;
+  public ngOnInit(): void {    
   }
-
+  
+  public ngAfterViewInit(): void {
+    $("#div1"+this.color).css('background', this.color);
+  }
   //#endregion
   
   //#region Public Methods
