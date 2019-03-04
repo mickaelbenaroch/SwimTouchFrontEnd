@@ -15,7 +15,9 @@ import { GenericDialogBoxComponent } from './components/dialog-boxes/generic-dia
 import { StHeaderComponent } from './components/st-header/st-header.component';
 import { StSidenavComponent } from './components/st-sidenav/st-sidenav.component';
 import { StContentComponent } from './components/st-content/st-content.component';
-    
+import { ItemBoxComponent } from './components/item-box/item-box.component';
+import * as $ from 'jquery';
+
 const appRoutes: Routes = [
   {path: '' , component: LoginPageComponent},
   { path: 'mainmenu', component: MainPageComponent },
@@ -30,6 +32,7 @@ const appRoutes: Routes = [
     StHeaderComponent,
     StSidenavComponent,
     StContentComponent,
+    ItemBoxComponent,
   ],
   imports: [
     RouterModule.forRoot(

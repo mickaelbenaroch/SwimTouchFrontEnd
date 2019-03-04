@@ -1,0 +1,43 @@
+.envelop{
+    display: flex;
+    font-family: Assistant;
+    direction: rtl;
+    padding: 1rem;
+    .div1{
+        width: 10px;
+        height: 100%;
+    }
+    .div-2{
+        background: black;
+        border-radius: 50%;
+        padding: 1rem;
+        text-align: center;
+        width: 4rem;
+        height: 4rem;
+        align-self: center;
+        .icon{
+            width: 2rem;
+            height: 2rem;
+            position: relative;
+            top: 0.8rem;
+        }
+    }
+    .div-3{
+        padding: 2rem;  
+        min-width: 265px;
+        .main{
+            font-size: 1.5rem;
+        }
+        .sub{
+            font-size: 1rem;
+            color: lightgray;
+        }
+    }
+    .div-4{
+        align-self: center;
+        .arrow{
+            width: 1.5rem;
+            cursor: pointer;
+        }
+    }
+}

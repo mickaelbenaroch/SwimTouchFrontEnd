@@ -1,0 +1,17 @@
+.envelop{
+    display: flex;
+    display: -webkit-flex; /* Safari */
+    -webkit-flex-wrap: wrap; /* Safari 6.1+ */
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    padding: 2rem;
+    .div-1{
+        width: 50%;
+    }
+    .div-2{
+        width: 50%;
+    }
+    .div-3{
+        width: 50%;
+    }
+}
