@@ -44,13 +44,13 @@ export class MainPageComponent implements OnInit {
   public GetProfile():void{
     var temp = localStorage.getItem("email");
     let model = {
-      "email": temp
+      "user": temp
     }
     this.spinerservice.start();
-    this.httpservice.httpPost("profile", model).subscribe(
+    this.httpservice.httpPost("profile/getProfile", model).subscribe(
       (res: any)=>{
         this.spinerservice.stop();
-        this.profile = res.data;
+        this.profile = res.data[0];
       },
       err =>{
         this.spinerservice.stop();
