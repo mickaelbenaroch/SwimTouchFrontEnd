@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ProfileModel } from '../../models/ProfileModel';
 
 @Component({
   selector: 'app-st-header',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StHeaderComponent implements OnInit {
 
+  //#region Public Members 
+  @Input() title: string;
+  @Input() profile: ProfileModel;
+  //#endregion
+
+  //#region Constructor & Lifecycle Hooks 
   constructor() { }
 
-  ngOnInit() {
+  public  ngOnInit():void {
   }
+  //#endregion
+
+  //#region Public Methods 
+  //#endregion
 
 }

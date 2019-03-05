@@ -49,6 +49,7 @@ export class LoginPageComponent implements OnInit {
       this.httpservice.httpPost('login',this.LoginModel).subscribe((res) =>{
         this.ngxService.stop();
           if(res.isTrue == true){
+            localStorage.setItem("email",this.LoginModel.email);
             this.navservice.navigateByUrl('/mainmenu');
           }
       },
@@ -72,6 +73,7 @@ export class LoginPageComponent implements OnInit {
     this.httpservice.httpPost('login/signup',this.SignUpModel).subscribe((res)=>{
       this.ngxService.stop();
       if(res.isTrue == true){
+        localStorage.setItem("email",this.SignUpModel.user);
         this.navservice.navigateByUrl('/mainmenu');
       }
     },
