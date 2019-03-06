@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PageEnum } from '../../enums/componentview';
 
 @Component({
   selector: 'app-st-content',
@@ -8,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class StContentComponent implements OnInit {
 
   //#region Public Members
-  public add:boolean;
+  public pageenum: PageEnum = PageEnum.Landing;
+  public state = PageEnum;
   //#endregion
 
   //#region Constructor & Lifecycle Hooks
@@ -16,6 +18,7 @@ export class StContentComponent implements OnInit {
 
   public ngOnInit():void {
   }
+
   //#endregion
   
   //#region Public Methods
@@ -24,7 +27,7 @@ export class StContentComponent implements OnInit {
    */
   public CreateNewTrainningEvent(event: boolean){
     if(event){
-      this.add = event;
+      this.pageenum = PageEnum.CreateTraining;
     }
   }
   //#endregion

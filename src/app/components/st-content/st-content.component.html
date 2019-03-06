@@ -1,24 +1,30 @@
 <div class="envelop">
-    <div class="div-1" *ngIf="!add">
+    <div class="div-1" *ngIf="pageenum === state.Landing">
       <app-item-box [color]="'green'" 
                     [path]="'/assets/file.svg'"
                     [main]="'  הקמת אימון חדש'"
-                    [sub]="'יצירת מטלה אישית או קבוצתית'"
+                    [sub]="'יצירת אימון אישי או קבוצתי'"
                     (CreateNewTrainningEvent)="CreateNewTrainningEvent($event)"></app-item-box>
     </div>
-    <div class="div-2" *ngIf="!add"> 
+    <div class="div-2" *ngIf="pageenum === state.Landing"> 
       <app-item-box [color]="'blue'" 
                     [path]="'/assets/save.svg'"
-                    [main]="'בחירת אימון קיים'"
-                    [sub]="'        בחירת אימון שקיים במערכת'"></app-item-box>
+                    [main]="'יצירת קבוצה '"
+                    [sub]="'יצירת קבוצה חדשה '"></app-item-box>
     </div>
-    <div class="div-3" *ngIf="!add">
+    <div class="div-3" *ngIf="pageenum === state.Landing">
       <app-item-box [color]="'red'" 
                     [path]="'/assets/plan.svg'"
                     [main]="'     עריכת אימון'"
                     [sub]="'           עריכת פרטי אימון קיים'"></app-item-box>
     </div>
-    <div class="add-trainning" *ngIf="add">
+    <div class="div-4" *ngIf="pageenum === state.Landing">
+      <app-item-box [color]="'yellow'" 
+                    [path]="'/assets/plan.svg'"
+                    [main]="'     עריכת קבוצה'"
+                    [sub]="'עריכת פרטי קבוצה ושחיינים'"></app-item-box>
+    </div>
+    <div class="add-trainning" *ngIf="pageenum === state.CreateTraining">
       <app-create-training></app-create-training>
     </div>
 </div>
