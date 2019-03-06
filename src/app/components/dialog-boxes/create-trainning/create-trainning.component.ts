@@ -94,6 +94,7 @@ export class CreateTrainningComponent implements OnInit {
     dialogConfig.height = "250px";
     this.dialog.open(GenericDialogBoxComponent, dialogConfig);
 }
+
   //#endregion
 
 }

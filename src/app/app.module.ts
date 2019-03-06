@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http'; 
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpService } from './services/http-service.service';
+import {MatExpansionModule} from '@angular/material/expansion';
 import { ItemBoxComponent } from './components/item-box/item-box.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
@@ -45,6 +46,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     AppRoutingModule,
     NgxUiLoaderModule,
+    MatExpansionModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
   ],

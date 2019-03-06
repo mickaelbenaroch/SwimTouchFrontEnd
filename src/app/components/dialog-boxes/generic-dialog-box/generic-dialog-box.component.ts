@@ -13,6 +13,7 @@ export class GenericDialogBoxComponent implements OnInit {
   //#region Public Members
   @Input() title: string;
   @Input() body: string;
+  @Input() cancel: boolean;
   @Input() button: boolean;
   @Input() buttonText: string;
   //#endregion

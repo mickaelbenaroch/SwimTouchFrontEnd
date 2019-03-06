@@ -23,19 +23,49 @@
                 border-width: 1px;
             }
         }
-        .but{
-            padding:1rem;
-            border-radius: 15px;
-            background:lightgray;
-            border: none;
-            font-size: 1.5rem;
-            text-align: center;
-            font-weight: bold;
+        .buttons{
+            display: flex;
+            justify-content: space-between;
+            .but{
+                padding:1rem;
+                border-radius: 15px;
+                background:lightgray;
+                border: none;
+                font-size: 1.5rem;
+                text-align: center;
+                font-weight: bold;
+                margin-top: 1rem;
+                margin-right: 1rem;
+                cursor: pointer;
+                .plus{
+                    width: 1rem;
+                }
+            }
+        }
+        .error{
+            color: red;
+            opacity: 0;
             margin-top: 1rem;
-            margin-right: 1rem;
-            cursor: pointer;
-            .plus{
-                width: 1rem;
+        }
+    }
+    section{
+        margin-top: 1rem;
+        .exercises{
+            padding: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid lightgray;
+            font-family: Assistant;
+            font-style: italic;
+            background: #f5f5f5;
+            direction: rtl;
+            .div{
+                display: flex;
+                justify-content: space-between;
+                padding: 0.5rem;
+                font-weight: bold;
+                span{
+                }
             }
         }
     }
@@ -46,4 +76,8 @@ input:focus
     border: none;
     border: 1px solid #01a89e;
     outline: 0;
+}
+
+.visible{
+    opacity: 1 !important;
 }
