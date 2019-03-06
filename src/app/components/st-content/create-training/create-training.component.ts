@@ -41,7 +41,10 @@ export class CreateTrainingComponent implements OnInit {
     dialogConfig.height = "600px";
     var dialogRef = this.dialog.open(CreateTrainningComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(
-      data => console.log("Dialog output:", data)
+      (data: ExerciseModel) => {
+        console.log("Dialog output:", data);
+        this.trainnningModel.exercises.push(data.id);
+      }
   ); 
   }
   //#endregion
