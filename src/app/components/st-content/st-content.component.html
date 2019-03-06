@@ -1,20 +1,25 @@
 <div class="envelop">
-    <div class="div-1">
+    <div class="div-1" *ngIf="!add">
       <app-item-box [color]="'green'" 
                     [path]="'/assets/file.svg'"
                     [main]="'  הקמת אימון חדש'"
-                    [sub]="'יצירת מטלה אישית או קבוצתית'"></app-item-box>
+                    [sub]="'יצירת מטלה אישית או קבוצתית'"
+                    (CreateNewTrainningEvent)="CreateNewTrainningEvent($event)"></app-item-box>
     </div>
-    <div class="div-2"> 
+    <div class="div-2" *ngIf="!add"> 
       <app-item-box [color]="'blue'" 
                     [path]="'/assets/save.svg'"
                     [main]="'בחירת אימון קיים'"
                     [sub]="'        בחירת אימון שקיים במערכת'"></app-item-box>
     </div>
-    <div class="div-3">
+    <div class="div-3" *ngIf="!add">
       <app-item-box [color]="'red'" 
                     [path]="'/assets/plan.svg'"
                     [main]="'     עריכת אימון'"
                     [sub]="'           עריכת פרטי אימון קיים'"></app-item-box>
     </div>
+    <div class="add-trainning" *ngIf="add">
+      <app-create-training></app-create-training>
+    </div>
 </div>
+

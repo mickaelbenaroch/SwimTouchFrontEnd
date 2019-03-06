@@ -7,9 +7,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StContentComponent implements OnInit {
 
+  //#region Public Members
+  public add:boolean;
+  //#endregion
+
+  //#region Constructor & Lifecycle Hooks
   constructor() { }
 
-  ngOnInit() {
+  public ngOnInit():void {
   }
+  //#endregion
+  
+  //#region Public Methods
+  /**
+   * Create New Event
+   */
+  public CreateNewTrainningEvent(event: boolean){
+    if(event){
+      this.add = event;
+    }
+  }
+  //#endregion
 
 }

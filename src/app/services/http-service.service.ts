@@ -24,7 +24,7 @@ export class HttpService {
    * @param relativePath What path to add to http call.
    */
   public httpGet<T>(relativePath: string, options = null): Observable<any> {    
-    return this.http.get(this.apiUrl + relativePath).pipe(map(
+    return this.http.get(relativePath).pipe(map(
       success => {
       return success;
       },

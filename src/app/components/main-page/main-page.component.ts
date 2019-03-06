@@ -57,6 +57,20 @@ export class MainPageComponent implements OnInit {
       }
     )
   }
+
+  /**
+   * Start times record
+   */
+  public Start():void{
+    this.httpservice.httpGet("https://recordsystemserver.herokuapp.com").subscribe(
+      res =>{
+        console.log(res);
+      },
+      err =>{
+        console.log(err);
+      }
+    )
+  }
   //#endregion
 
 }

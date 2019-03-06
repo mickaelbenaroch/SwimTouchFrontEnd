@@ -1,0 +1,49 @@
+.envelop{
+    direction: rtl;
+    font-family: Assistant;
+    .div-1{
+        padding: 2rem;
+        font-size: 2rem;
+        font-weight: bold;
+        span{
+
+        }
+    }
+    .form{
+        .form-div-1{
+            padding: 1rem;
+            span{
+
+            }
+            .inp-1{
+                width: 100%;
+                padding: 0.5rem;
+                border-radius: 10px;
+                font-size: 1rem;
+                border-width: 1px;
+            }
+        }
+        .but{
+            padding:1rem;
+            border-radius: 15px;
+            background:lightgray;
+            border: none;
+            font-size: 1.5rem;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 1rem;
+            margin-right: 1rem;
+            cursor: pointer;
+            .plus{
+                width: 1rem;
+            }
+        }
+    }
+}
+
+input:focus
+{
+    border: none;
+    border: 1px solid #01a89e;
+    outline: 0;
+}

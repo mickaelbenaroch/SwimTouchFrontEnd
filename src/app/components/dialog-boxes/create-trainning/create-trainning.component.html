@@ -1,0 +1,31 @@
+<div class="envelop"> 
+  <div class="header">
+    <h1>{{this.name}}</h1>
+    <img src="/assets/close.svg" class="close" (click)="CLose()">
+  </div>
+  <div class="body">
+      <form class="form">
+        <div class="form-div-1">
+          <span>תאריך ביצוע האימון:</span>
+          <input type="date" [(ngModel)]="exercise.date" name="date" (change)="DisableError()">
+        </div>
+        <div class="form-div-2">
+          <span>קבוצת האימון:</span>
+          <input type="text" [(ngModel)]="exercise.group" name="group" (change)="DisableError()">
+        </div>
+        <div class="form-div-3">
+          <span>סגנון האימון:</span>
+          <input type="text" [(ngModel)]="exercise.style" name="style" (change)="DisableError()">
+        </div>
+        <div class="form-div-4">
+          <span>מרחק האימון:</span>
+          <input type="text" [(ngModel)]="exercise.distance" name="distance" (change)="DisableError()"> 
+        </div>
+        <div [ngClass]="{'visible':error}" class="error">אחד או יותר מהפרטים שהוזנו אינם נכונים!</div>
+      </form>
+  </div>
+  <div class="but-div">
+    <button class="but" (click)="CreateTrainning()"> <img class="plus" src="/assets/save.svg"> הוסף תרגיל</button>
+  </div>
+</div>
+

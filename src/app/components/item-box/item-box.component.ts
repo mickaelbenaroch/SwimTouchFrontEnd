@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewChecked, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, AfterViewChecked, AfterViewInit, EventEmitter, Output } from '@angular/core';
 import { debug } from 'util';
 
 
@@ -14,6 +14,7 @@ export class ItemBoxComponent implements OnInit, AfterViewInit{
   @Input() path: string;
   @Input() main: string;
   @Input() sub: string;
+  @Output() CreateNewTrainningEvent: EventEmitter<boolean> = new EventEmitter();
   //#endregion
   
   //#region Constructor & Lifecycle Hooks
@@ -28,5 +29,13 @@ export class ItemBoxComponent implements OnInit, AfterViewInit{
   //#endregion
   
   //#region Public Methods
+  /**
+   * Event click handler
+   */
+  public Click():void{
+    if(this.main == "  הקמת אימון חדש"){
+      this.CreateNewTrainningEvent.emit(true);
+    }
+  }
   //#endregion
 }
