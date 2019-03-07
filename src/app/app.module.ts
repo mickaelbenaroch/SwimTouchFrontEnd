@@ -17,6 +17,9 @@ import { StHeaderComponent } from './components/st-header/st-header.component';
 import { StSidenavComponent } from './components/st-sidenav/st-sidenav.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { StContentComponent } from './components/st-content/st-content.component';
+import { CreateTeamComponent } from './components/st-content/create-team/create-team.component';
+import { CreateTeamBoxComponent } from './components/dialog-boxes/create-team/create-team.component';
+import { PictureUpdateComponent } from './components/dialog-boxes/picture-update/picture-update.component';
 import { CreateTrainingComponent } from './components/st-content/create-training/create-training.component';
 import { CreateTrainningComponent } from './components/dialog-boxes/create-trainning/create-trainning.component';
 import { GenericDialogBoxComponent } from './components/dialog-boxes/generic-dialog-box/generic-dialog-box.component';
@@ -29,15 +32,18 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
+    ItemBoxComponent,
     MainPageComponent,
-    LoginPageComponent,
-    GenericDialogBoxComponent,
     StHeaderComponent,
+    LoginPageComponent,
     StSidenavComponent,
     StContentComponent,
-    ItemBoxComponent,
+    CreateTeamComponent,
+    CreateTeamBoxComponent,
+    PictureUpdateComponent,
     CreateTrainingComponent,
     CreateTrainningComponent,
+    GenericDialogBoxComponent,
   ],
   imports: [
     FormsModule,
@@ -55,6 +61,8 @@ const appRoutes: Routes = [
   ],
   bootstrap: [AppComponent],
   entryComponents: [
+    CreateTeamBoxComponent,
+    PictureUpdateComponent,
     CreateTrainningComponent,
     GenericDialogBoxComponent,
   ]

@@ -27,6 +27,7 @@ export class GenericDialogBoxComponent implements OnInit {
     this.body = this.data.body;
     this.button = this.data.button;
     this.buttonText = this.data.buttonText;
+    this.cancel = this.data.cancel;
   }
   //#endregion
 
@@ -35,7 +36,16 @@ export class GenericDialogBoxComponent implements OnInit {
    * Closes the dialog box
    */
   public close(): void {
-    this.dialogRef.close();
+      this.dialogRef.close();
+  }
+
+  /**
+   * Close and send object to caller
+   */
+  public CloseAndSend():void{
+    if(this.cancel){
+      this.dialogRef.close("ok");
+    }
   }
   //#endregion
 

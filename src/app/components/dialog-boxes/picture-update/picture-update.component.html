@@ -1,0 +1,11 @@
+   
+   <div class="envelop">
+      <div class="div-1">נא להעלות תמונה:</div>
+      <div class="div-2">
+        <label for="upload-photo">בחר...</label>
+        <input class="input" type="file" (change)="handleFileSelect($event)" accept="image/*" name="photo" id="upload-photo">
+      </div>
+      <div class="div-3">
+        <button (click)="Close()">שמור</button>
+      </div>
+   </div>

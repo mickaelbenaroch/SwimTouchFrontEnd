@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ExerciseModel } from '../../../models/ExerciseModel';
 import { TrainningModel } from 'src/app/models/TrainningModel';
 import { MatDialog, MatDialogConfig } from '@angular/material';
+import { HttpService } from '../../../services/http-service.service';
 import { CreateTrainningComponent } from '../../dialog-boxes/create-trainning/create-trainning.component';
 import { GenericDialogBoxComponent } from '../../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
 
@@ -19,7 +21,9 @@ export class CreateTrainingComponent implements OnInit {
   //#endregion
 
   //#region Constructor & Lifecycle Hooks
-  constructor( private dialog: MatDialog,) { }
+  constructor( private dialog: MatDialog,
+               private httpservice: HttpService,
+               private spinnerservice: NgxUiLoaderService) { }
 
   public ngOnInit(): void {
     this.trainnningModel.coachmail = localStorage.getItem("email");
@@ -63,8 +67,6 @@ export class CreateTrainingComponent implements OnInit {
     if(this.trainnningModel.coachmail !== undefined && this.trainnningModel.coachmail !== null &&
        this.trainnningModel.name !== undefined && this.trainnningModel.name !== null){
          this.OpenSureToSaveBox();
-        //send trainnig to server to be created
-
        }else{
          this.error = true;
        }
@@ -97,6 +99,64 @@ public OpenSureToSaveBox():void{
     };
     dialogConfig.width = "500px";
     dialogConfig.height = "250px";
+    var dialogRef = this.dialog.open(GenericDialogBoxComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(
+      (res:string)=>{
+        if(res !== null && res!== undefined && res == "ok"){
+          this.spinnerservice.start();
+          this.httpservice.httpPost('trainning',this.trainnningModel).subscribe(
+            res =>{
+              this.spinnerservice.stop();
+              this.OpenSuccesDialogBox();
+              console.log(res);
+            },
+            err =>{
+              this.spinnerservice.stop();
+              this.OpenDialog();
+            }
+          )
+        }
+      })
+}
+
+  /**
+   * Error dialog Box Opening
+   * @param email 
+   */
+  public OpenDialog() {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      title: 'נראה שמשהו השתבש בדרך...',
+      body: 'הפרטים שהוזנו אינם נכונים, נסה שוב!',
+      button: true,
+      buttonText: "הבנתי!"
+    };
+    dialogConfig.width = "420px";
+    dialogConfig.height = "250px";
+    this.dialog.open(GenericDialogBoxComponent, dialogConfig);
+}
+
+/**
+ * Open Succes box dialog
+ */
+public OpenSuccesDialogBox():void{
+    const dialogConfig = new MatDialogConfig();
+  
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      title:   ' האימון ' + this.trainnningModel.name + ' נשמר בהצלחה ',
+      body: 'באפשרותך לערוך אותו בכל רגע ',
+      button: true,
+      buttonText: "הבנתי!"
+    };
+
+    dialogConfig.width = "560px";
+    dialogConfig.height = "272px";
     this.dialog.open(GenericDialogBoxComponent, dialogConfig);
 }
   //#endregion

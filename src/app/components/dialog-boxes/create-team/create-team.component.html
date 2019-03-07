@@ -1,0 +1,34 @@
+<div class="envelop"> 
+  <div class="header">
+    <h1>{{this.name}}</h1>
+    <img src="/assets/close.svg" class="close" (click)="Close()">
+  </div>
+  <div class="body">
+      <form class="form">
+        <div class="form-div-1">
+          <span>שם השחיין:</span>
+          <input type="text" [(ngModel)]="swimmer.name" name="name" (change)="DisableError()">
+        </div>
+        <div class="form-div-2">
+          <span>גיל השחיין:</span>
+          <input type="text" [(ngModel)]="swimmer.age" name="age" (change)="DisableError()">
+        </div>
+        <div class="form-div-3">
+          <span>גובה השחיין:</span>
+          <input type="text" [(ngModel)]="swimmer.height" name="height" (change)="DisableError()">
+        </div>
+        <div class="form-div-4">
+          <span>קבוצת השחיין:</span>
+          <input type="text" [(ngModel)]="swimmer.group" name="group" (change)="DisableError()"> 
+        </div>
+        <div class="form-div-5">
+          <span>תמונת השחיין:</span>
+          <input type="file"  name="picture" (change)="handleFileSelect($event)"> 
+        </div>
+        <div [ngClass]="{'visible':error}" class="error">אחד או יותר מהפרטים שהוזנו אינם נכונים!</div>
+      </form>
+  </div>
+  <div class="but-div">
+    <button class="but" (click)="CreateTeam()"> <img class="plus" src="/assets/save.svg"> הוסף שחיין</button>
+  </div>
+</div>

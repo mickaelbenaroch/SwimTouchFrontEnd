@@ -1,0 +1,42 @@
+<div class="envelop">
+  <div class="div-1">
+    <span>יצרת קבוצה חדשה</span>
+  </div>
+
+  <form class="form">
+    <div class="form-div-1">
+      <span>שם הקבוצה:</span>
+      <input type="text" [(ngModel)]="teamModel.name" name="name" (change)="DisableError()" class="inp-1">
+    </div>
+    <div class="buttons">
+      <button class="but" (click)="OpenCreateBox()"> <img class="plus" src="/assets/plus.svg"> הוסף שחיין לקבוצה</button>
+      <button class="but" (click)="SaveTrainning()"> <img class="plus" src="/assets/save.svg"> סיים ושמור את הקבוצה</button>
+    </div>
+    <div [ngClass]="{'visible': error}" class="error">יש למלא לפחות את שם הקבוצה , בהמשך תוכל לערוך אותה!</div>
+  </form>
+
+  <section>
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let swimmer of swimmersModel">
+        <mat-expansion-panel-header>
+          <mat-panel-title><img [src]=swimmer.picture style="width:2rem;height:2rem;border-radius:50%"></mat-panel-title>
+          <mat-panel-description>{{swimmer.name}}</mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="swimmers">
+          <div class="div">
+            <span> שם השחיין: </span>{{swimmer.name}}
+          </div>
+          <div class="div">
+            <span> גיל השחיין: </span>{{swimmer.age}}
+          </div>
+          <div class="div">
+            <span> גובה השחיין: </span>{{swimmer.height}}
+          </div>
+          <div class="div">
+            <span> קבוצת השחיין: </span>{{swimmer.group}}
+          </div>
+      </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </section>
+</div>

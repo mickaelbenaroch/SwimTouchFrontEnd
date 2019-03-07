@@ -1,6 +1,6 @@
 <div class="envelop">
   <div class="div-1">
-    <img class="logo" src="/assets/logo.jpeg">
+    <img class="logo" src="/assets/logo.jpeg" (click)="Click()">
   </div>
   <div class="div-2">
     <div class="text">
@@ -8,11 +8,9 @@
       <div class="sub-title">שם: <span *ngIf="this.profile.first_name !== undefined && this.profile.last_name !== undefined">{{' ' + this.profile.first_name + ' ' + this.profile.last_name}}</span> </div>
       <div class="sub-sub-title">תפקיד: <span *ngIf="this.profile.type !== undefined">{{' ' + this.profile.type}}</span></div>
     </div>
-    <div class="div-2-2">
-      <img class="arrow" src="/assets/arrow-down.svg">
-    </div>
     <div class="div-2-1">
-      <img class="user" src="/assets/user.svg">
+      <img class="user" *ngIf="this.profile.picture == null || this.profile.picture == undefined || this.profile.picture == '' " src="/assets/user.svg" (click)="OpenDialog()">
+      <img class="user2"  *ngIf="this.profile.picture !== null && this.profile.picture !== undefined && this.profile.picture !== ''" [src]="this.profile.picture" (click)="OpenDialog()">
     </div>
   </div>
 </div>

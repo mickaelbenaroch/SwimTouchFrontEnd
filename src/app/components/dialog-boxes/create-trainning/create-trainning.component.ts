@@ -51,10 +51,10 @@ export class CreateTrainningComponent implements OnInit {
        }
     else{
       this.ngxService.start();
-      this.httpservice.httpPost('training',this.exercise).subscribe(
+      this.httpservice.httpPost('exercise',this.exercise).subscribe(
         res =>{
           this.ngxService.stop();
-          this.exercise.id = res.training_id;
+          this.exercise.id = res.exercise_id;
           this.dialogRef.close(this.exercise);
         },
         err =>{

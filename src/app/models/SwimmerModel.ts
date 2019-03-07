@@ -10,6 +10,8 @@ export class SwimmerModel{
 
     public group: string;
 
-    public coachid: string;
+    public coachmail: string;
+
+    public picture: string;
 
 }

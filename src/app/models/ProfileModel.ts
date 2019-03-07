@@ -14,4 +14,6 @@ export class ProfileModel{
     public group: string;
 
     public type: RoleEnum;
+
+    public picture: string;
 }

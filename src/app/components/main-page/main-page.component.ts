@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
 import { $ } from 'protractor';
-import { HttpService } from '../../services/http-service.service';
+import { Component, OnInit } from '@angular/core';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { PageEnum } from '../../enums/componentview';
 import { ProfileModel } from '../../models/ProfileModel';
+import { HttpService } from '../../services/http-service.service';
 
 @Component({
   selector: 'app-main-page',
@@ -13,6 +14,7 @@ export class MainPageComponent implements OnInit {
 
   //#region Public Members
   public profile: ProfileModel = new ProfileModel();
+  public homeEvent: boolean;
   //#endregion
 
   //#region Constructor & Lifecycle Hooks
@@ -70,6 +72,13 @@ export class MainPageComponent implements OnInit {
         console.log(err);
       }
     )
+  }
+
+  /**
+   * Go back yo main menu
+   */
+  public GoToMainMenu(event: PageEnum){
+    this.homeEvent = !this.homeEvent;
   }
   //#endregion
 

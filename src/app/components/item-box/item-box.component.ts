@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, AfterViewChecked, AfterViewInit, EventEmitter, Output } from '@angular/core';
-import { debug } from 'util';
+import { PageEnum } from '../../enums/componentview';
+import { Component, OnInit, Input, AfterViewInit, EventEmitter, Output } from '@angular/core';
 
 
 @Component({
@@ -14,7 +14,7 @@ export class ItemBoxComponent implements OnInit, AfterViewInit{
   @Input() path: string;
   @Input() main: string;
   @Input() sub: string;
-  @Output() CreateNewTrainningEvent: EventEmitter<boolean> = new EventEmitter();
+  @Output() CreateNewTrainningEvent: EventEmitter<PageEnum> = new EventEmitter();
   //#endregion
   
   //#region Constructor & Lifecycle Hooks
@@ -34,7 +34,13 @@ export class ItemBoxComponent implements OnInit, AfterViewInit{
    */
   public Click():void{
     if(this.main == "  הקמת אימון חדש"){
-      this.CreateNewTrainningEvent.emit(true);
+      this.CreateNewTrainningEvent.emit(PageEnum.CreateTraining);
+    }else if(this.main == "יצירת קבוצה "){
+      this.CreateNewTrainningEvent.emit(PageEnum.CreateSwimmer);
+    }else if(this.main == "     עריכת אימון"){
+      this.CreateNewTrainningEvent.emit(PageEnum.EditTrainning);    
+    }else{
+      this.CreateNewTrainningEvent.emit(PageEnum.EditTeam);
     }
   }
   //#endregion
