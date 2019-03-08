@@ -7,6 +7,7 @@ import { NgxUiLoaderModule } from  'ngx-ui-loader';
 import { Routes, RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http'; 
+import {MatSelectModule} from '@angular/material/select';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpService } from './services/http-service.service';
 import {MatExpansionModule} from '@angular/material/expansion';
@@ -23,6 +24,7 @@ import { PictureUpdateComponent } from './components/dialog-boxes/picture-update
 import { CreateTrainingComponent } from './components/st-content/create-training/create-training.component';
 import { CreateTrainningComponent } from './components/dialog-boxes/create-trainning/create-trainning.component';
 import { GenericDialogBoxComponent } from './components/dialog-boxes/generic-dialog-box/generic-dialog-box.component';
+import { AddTeamToTrainningComponent } from './components/dialog-boxes/add-team-to-trainning/add-team-to-trainning.component';
 
 const appRoutes: Routes = [
   {path: '' , component: LoginPageComponent},
@@ -44,10 +46,12 @@ const appRoutes: Routes = [
     CreateTrainingComponent,
     CreateTrainningComponent,
     GenericDialogBoxComponent,
+    AddTeamToTrainningComponent,
   ],
   imports: [
     FormsModule,
     BrowserModule,
+    MatSelectModule,
     MatDialogModule,
     HttpClientModule,
     AppRoutingModule,
@@ -65,6 +69,7 @@ const appRoutes: Routes = [
     PictureUpdateComponent,
     CreateTrainningComponent,
     GenericDialogBoxComponent,
+    AddTeamToTrainningComponent
   ]
 })
 export class AppModule { }

@@ -4,7 +4,7 @@
     <img src="/assets/close.svg" class="close" (click)="Close()">
   </div>
   <div class="body">
-      <form class="form">
+      <form class="form" *ngIf="this.edit == 'noedit'">
         <div class="form-div-1">
           <span>שם השחיין:</span>
           <input type="text" [(ngModel)]="swimmer.name" name="name" (change)="DisableError()">
@@ -19,7 +19,12 @@
         </div>
         <div class="form-div-4">
           <span>קבוצת השחיין:</span>
-          <input type="text" [(ngModel)]="swimmer.group" name="group" (change)="DisableError()"> 
+          <!---<input type="text" [(ngModel)]="swimmer.group" name="group" (change)="DisableError()"> -->
+          <mat-select placeholder="קבוצת השחיין:" (selectionChange)="Select($event)" name="group">
+            <mat-option *ngFor="let group of groups" [value]="group">
+              {{group}}
+            </mat-option>
+          </mat-select>
         </div>
         <div class="form-div-5">
           <span>תמונת השחיין:</span>
@@ -27,8 +32,20 @@
         </div>
         <div [ngClass]="{'visible':error}" class="error">אחד או יותר מהפרטים שהוזנו אינם נכונים!</div>
       </form>
+      <form class="form" *ngIf="this.edit == 'edit'">
+         <div class="form-div-4">
+          <span>קבוצת השחיין:</span>
+          <!---<input type="text" [(ngModel)]="swimmer.group" name="group" (change)="DisableError()"> -->
+          <mat-select placeholder="אוסף שחיין:" (selectionChange)="Select2($event)" name="swimmers">
+            <mat-option *ngFor="let swimmer of existingSwimmers" [value]="swimmer._id">
+              {{swimmer.name}}
+            </mat-option>
+          </mat-select>
+        </div>
+      </form>
   </div>
   <div class="but-div">
-    <button class="but" (click)="CreateTeam()"> <img class="plus" src="/assets/save.svg"> הוסף שחיין</button>
+    <button *ngIf="this.edit == 'edit'" class="but" (click)="CreateTeamWithExistingSwimmers()"> <img class="plus" src="/assets/save.svg"> הוסף שחיין</button>
+    <button *ngIf="this.edit == 'noedit'" class="but" (click)="CreateTeam()"> <img class="plus" src="/assets/save.svg"> הוסף שחיין</button>
   </div>
 </div>

@@ -6,6 +6,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material';
 import { HttpService } from '../../../services/http-service.service';
 import { CreateTrainningComponent } from '../../dialog-boxes/create-trainning/create-trainning.component';
 import { GenericDialogBoxComponent } from '../../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
+import { AddTeamToTrainningComponent } from '../../dialog-boxes/add-team-to-trainning/add-team-to-trainning.component';
+import { noUndefined } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-create-training',
@@ -65,7 +67,8 @@ export class CreateTrainingComponent implements OnInit {
    */
   public SaveTrainning():void{
     if(this.trainnningModel.coachmail !== undefined && this.trainnningModel.coachmail !== null &&
-       this.trainnningModel.name !== undefined && this.trainnningModel.name !== null){
+       this.trainnningModel.name !== undefined && this.trainnningModel.name !== null &&
+       this.trainnningModel.team_id !== undefined && this.trainnningModel.team_id !== null){
          this.OpenSureToSaveBox();
        }else{
          this.error = true;
@@ -138,6 +141,26 @@ public OpenSureToSaveBox():void{
     dialogConfig.width = "420px";
     dialogConfig.height = "250px";
     this.dialog.open(GenericDialogBoxComponent, dialogConfig);
+}
+
+/**
+ * Open Addd swimmers box
+ */
+public OpenAddTeamBox():void{
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.disableClose = true;
+      dialogConfig.autoFocus = true;
+      dialogConfig.data = {
+        coachmail: this.trainnningModel.coachmail
+      };
+      dialogConfig.width = "600px";
+      dialogConfig.height = "600px";
+      var dialogRef = this.dialog.open(AddTeamToTrainningComponent, dialogConfig);
+      dialogRef.afterClosed().subscribe(
+        res => {
+          this.trainnningModel.team_id = res;
+        }
+      );
 }
 
 /**

@@ -12,6 +12,6 @@ export class SwimmerModel{
 
     public coachmail: string;
 
-    public picture: string;
+    public picture: string = "";
 
 }

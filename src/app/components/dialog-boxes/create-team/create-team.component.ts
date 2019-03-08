@@ -15,9 +15,13 @@ export class CreateTeamBoxComponent implements OnInit {
 
   //#region Public Members
   @Input() name: string;
+  @Input() edit: string;
+  @Input() coachmail: string;
   public error: boolean;
   public swimmer: SwimmerModel = new SwimmerModel();
   public base64textString: string;
+  public groups: string[] = ["A","B","C","D"];
+  public existingSwimmers: SwimmerModel[] = [];
   //#endregion
 
   //#region Constructor & Lifecycle Hooks
@@ -29,16 +33,68 @@ export class CreateTeamBoxComponent implements OnInit {
 
   public ngOnInit(): void{
     this.name = this.data.name;
+    this.edit = this.data.edit;
+    this.coachmail = this.data.coachmail;
+    if(this.edit == "edit"){
+      this.spinerservice.start();
+      this.httpservice.httpPost('swimmer/getswimmers', this.coachmail).subscribe(
+        (res) =>{
+          this.spinerservice.stop();
+          this.existingSwimmers = res.swimmer;
+        },
+        err =>{
+          this.spinerservice.stop();
+        }
+      )
+    }
     this.swimmer.coachmail = localStorage.getItem("email");
   }
   //#endregion
 
   //#region Public Methods
+  /**
+   * Ob Select change 
+   */
+  public Select(event){
+    this.swimmer.group = event.value;
+  }
+  /**
+   * Ob Select change for choose from existiing swimmers
+   */
+  public Select2(event){
+    var swimmer = {
+      _id: event.value
+    }
+    this.spinerservice.start();
+    this.httpservice.httpPost('swimmer/getswimmers',swimmer).subscribe(
+      res =>{debugger;
+        this.spinerservice.stop();
+        this.swimmer._id = res.swimmer[0]._id;
+        this.swimmer.age = res.swimmer[0].age;
+        this.swimmer.coachmail = res.swimmer[0].coachmail;
+        this.swimmer.group = res.swimmer[0].group;
+        this.swimmer.height = res.swimmer[0].height;
+        this.swimmer.name = res.swimmer[0].name;
+        this.swimmer.picture = res.swimmer[0].picture;
+      },
+      err =>{
+        this.spinerservice.stop();
+        console.log("Swimmer not found");
+      }
+    )
+  }
    /**
    * Closes the dialog box
    */
   public Close(): void {
     this.dialogRef.close();
+  }
+
+  /**
+   * Create team with existing swimmers
+   */
+  public CreateTeamWithExistingSwimmers():void{
+    this.dialogRef.close(this.swimmer);
   }
 
   /**
@@ -52,7 +108,7 @@ export class CreateTeamBoxComponent implements OnInit {
          this.error = true;
        }
     else{
-      this.spinerservice.start();
+      this.spinerservice.start();debugger;
       this.httpservice.httpPost('swimmer',this.swimmer).subscribe(
         res =>{
           this.spinerservice.stop();

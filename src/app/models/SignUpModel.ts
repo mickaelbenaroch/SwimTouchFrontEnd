@@ -13,5 +13,5 @@ export class SignUpModel{
 
     public group: string;
 
-    public type: RoleEnum;
+    public type: RoleEnum = RoleEnum.Swimmer;
 }

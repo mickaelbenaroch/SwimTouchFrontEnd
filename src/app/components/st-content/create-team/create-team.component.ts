@@ -35,7 +35,7 @@ public ngOnInit(): void {
 /**
  * Open create trainning dialog box
  */
-public OpenCreateBox():void{
+public OpenCreateBox(edit: string = null):void{
   if(this.error){
     this.error = false;
   }
@@ -45,6 +45,8 @@ public OpenCreateBox():void{
   dialogConfig.autoFocus = true;
   dialogConfig.data = {
     name: this.teamModel.name,
+    edit: edit,
+    coachmail: this.teamModel.coachmail
   };
   dialogConfig.width = "600px";
   dialogConfig.height = "600px";
@@ -101,7 +103,7 @@ const dialogConfig = new MatDialogConfig();
   dialogConfig.height = "250px";
   var dialogRef = this.dialog.open(GenericDialogBoxComponent, dialogConfig);
   dialogRef.afterClosed().subscribe(
-    (res:string)=>{
+    (res:string)=>{debugger;
       if(res !== null && res!== undefined && res == "ok"){
         this.spinnerservice.start();
         this.httpservice.httpPost('team',this.teamModel).subscribe(
@@ -149,8 +151,8 @@ public OpenSuccesDialogBox():void{
   dialogConfig.disableClose = true;
   dialogConfig.autoFocus = true;
   dialogConfig.data = {
-    title:   ' האימון ' + this.teamModel.name + ' נשמר בהצלחה ',
-    body: 'באפשרותך לערוך אותו בכל רגע ',
+    title:   ' הקבוצה ' + this.teamModel.name + ' נשמרה בהצלחה ',
+    body: 'באפשרותך לערוך אותה בכל רגע ',
     button: true,
     buttonText: "הבנתי!"
   };

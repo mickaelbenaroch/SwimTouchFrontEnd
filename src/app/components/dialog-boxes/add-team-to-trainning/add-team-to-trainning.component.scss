@@ -1,0 +1,67 @@
+.envelop{
+    font-family: Assistant;
+    direction: rtl;
+    .header{
+        display: flex;
+        justify-content: space-between;
+        h1{
+    
+        }
+        .close{
+            width: 1rem;
+            align-self: flex-start;
+            cursor: pointer;
+        }
+    }
+    .body{
+        .form{
+            padding: 1rem;
+            .form-div-4{
+                padding: 1rem;
+                span{
+
+                }
+                input{
+                    width: 100%;
+                    padding: 0.5rem;
+                    border-radius: 10px;
+                    font-size: 1rem;
+                    border-width: 1px;
+                }
+            }
+        }
+    }
+    .but-div{
+        button{
+            padding:1rem;
+            border-radius: 15px;
+            background:lightgray;
+            border: none;
+            font-size: 1.5rem;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 1rem;
+            margin-right: 1rem;
+            cursor: pointer;
+            .plus{
+                width: 1rem;
+            }
+
+        }
+    }
+}
+
+input:focus
+{
+    border: none;
+    border: 1px solid #01a89e;
+    outline: 0;
+}
+
+.visible{
+    opacity: 1 !important;
+}
+
+.mat-select-panel .mat-optgroup-label, .mat-select-panel .mat-option {
+    text-align: right;
+}
