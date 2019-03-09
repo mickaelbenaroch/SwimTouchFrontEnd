@@ -1,0 +1,26 @@
+ <section>
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let trainning of trainnings">
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{trainning.name}}</mat-panel-title>
+          <mat-panel-description></mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="exercises">
+          <div class="div">
+            <span>קבוצת אימון:</span>{{trainning.team_id.name}}
+          </div>
+          <div class="div">
+            <span> מייל של המאמן: </span>{{trainning.coachmail}}
+          </div>
+          <div class="div">
+            <span> שחיינים באימון </span>
+            <div style="display:flexl flex-direction:ccolumn">
+              <div *ngFor="let swimmer of trainning.team_id.swimmers">
+                {{swimmer}}
+              </div>
+            </div>
+          </div>
+      </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </section>

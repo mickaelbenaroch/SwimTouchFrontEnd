@@ -25,6 +25,15 @@ import { CreateTrainingComponent } from './components/st-content/create-training
 import { CreateTrainningComponent } from './components/dialog-boxes/create-trainning/create-trainning.component';
 import { GenericDialogBoxComponent } from './components/dialog-boxes/generic-dialog-box/generic-dialog-box.component';
 import { AddTeamToTrainningComponent } from './components/dialog-boxes/add-team-to-trainning/add-team-to-trainning.component';
+import { MyTrainningsComponent } from './components/my-trainnings/my-trainnings.component';
+import { MyTeamsComponent } from './components/my-teams/my-teams.component';
+import { MySwimmersComponent } from './components/my-swimmers/my-swimmers.component';
+import { RealTimeTrainningComponent } from './components/real-time-trainning/real-time-trainning.component';
+import { StatsComponent } from './components/stats/stats.component';
+import { MatalotsComponent } from './components/matalots/matalots.component';
+import { MessagesComponent } from './components/messages/messages.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { HelpComponent } from './components/help/help.component';
 
 const appRoutes: Routes = [
   {path: '' , component: LoginPageComponent},
@@ -47,6 +56,15 @@ const appRoutes: Routes = [
     CreateTrainningComponent,
     GenericDialogBoxComponent,
     AddTeamToTrainningComponent,
+    MyTrainningsComponent,
+    MyTeamsComponent,
+    MySwimmersComponent,
+    RealTimeTrainningComponent,
+    StatsComponent,
+    MatalotsComponent,
+    MessagesComponent,
+    SettingsComponent,
+    HelpComponent,
   ],
   imports: [
     FormsModule,

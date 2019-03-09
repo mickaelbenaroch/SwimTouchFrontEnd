@@ -12,6 +12,8 @@ export class StContentComponent implements OnInit, OnChanges {
   public pageenum: PageEnum = PageEnum.Landing;
   public state = PageEnum;
   @Input() stateFromFather: boolean;
+  @Input() eventFromSideNav: PageEnum;
+  @Input() stateChange: PageEnum;
   
   //#endregion
 
@@ -24,6 +26,12 @@ export class StContentComponent implements OnInit, OnChanges {
   public ngOnChanges(changes: SimpleChanges): void {
     if(this.stateFromFather ){
       this.pageenum = PageEnum.Landing
+    }
+    if(this.eventFromSideNav){
+      this.pageenum = this.eventFromSideNav;
+    }
+    if(this.stateChange !== undefined){
+      this.pageenum = this.stateChange;
     }
   } 
 

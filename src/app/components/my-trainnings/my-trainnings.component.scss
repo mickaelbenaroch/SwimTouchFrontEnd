@@ -1,0 +1,25 @@
+section{
+    margin-top: 1rem;
+    .exercises{
+        padding: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid lightgray;
+        font-family: Assistant;
+        font-style: italic;
+        background: #f5f5f5; 
+        direction: rtl;
+        .div{
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem;
+            font-weight: bold;
+            span{
+            }
+        }
+        // .div-collapse{
+        //     display: flex;
+        //     flex-direction: column;
+        // }
+    }
+}

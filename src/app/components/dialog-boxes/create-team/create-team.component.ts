@@ -67,7 +67,7 @@ export class CreateTeamBoxComponent implements OnInit {
     }
     this.spinerservice.start();
     this.httpservice.httpPost('swimmer/getswimmers',swimmer).subscribe(
-      res =>{debugger;
+      res =>{
         this.spinerservice.stop();
         this.swimmer._id = res.swimmer[0]._id;
         this.swimmer.age = res.swimmer[0].age;
@@ -108,7 +108,7 @@ export class CreateTeamBoxComponent implements OnInit {
          this.error = true;
        }
     else{
-      this.spinerservice.start();debugger;
+      this.spinerservice.start();
       this.httpservice.httpPost('swimmer',this.swimmer).subscribe(
         res =>{
           this.spinerservice.stop();

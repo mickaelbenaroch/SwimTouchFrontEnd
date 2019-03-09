@@ -3,47 +3,63 @@
     <img src="/assets/menu.svg" class="menu" (click)="Menu()">
   </div>
   <div class="div-group-1">
-    <div class="div-1">
-      <div class="div-1-1">
-        <img src="/assets/stats.svg" class="stats"> 
+    <div class="div-0" (click)="SideNiveClick('landing')">
+      <div class="div-0-1">
+        <img src="/assets/mainmenu.svg" class="stats"> 
       </div>
-      <div class="div-1-2">
-        <span class="center">סטטיסטיקה</span>
+      <div class="div-0-2">
+        <span class="center">דף ראשי</span>
       </div>
     </div>
-    <div class="div-2">
+    <div class="div-1" (click)="SideNiveClick('mytrainnings')">
+      <div class="div-1-1">
+        <img src="/assets/train.svg" class="stats"> 
+      </div>
+      <div class="div-1-2">
+        <span class="center">האימונים שלי</span>
+      </div>
+    </div>
+    <div class="div-2" (click)="SideNiveClick('myteams')">
       <div class="div-2-1">
-        <img src="/assets/train.svg" class="train"> 
+        <img src="/assets/teams.svg" class="train"> 
       </div>
       <div class="div-2-2">
+        <span class="center">הקבוצות שלי</span>
+      </div>
+    </div>
+    <div class="div-2" (click)="SideNiveClick('myswimmers')">
+      <div class="div-2-1">
+        <img src="/assets/swimmers.svg" class="train"> 
+      </div>
+      <div class="div-2-2">
+        <span class="center">השחיינים שלי</span>
+      </div>
+    </div>
+    <div class="div-3" (click)="SideNiveClick('realtimetrainning')">
+      <div class="div-3-1">
+        <img src="/assets/realtime.svg" class="history"> 
+      </div>
+      <div class="div-3-2">
         <span class="center">אימון זמן אמת</span>
       </div>
     </div>
-    <div class="div-3">
-      <div class="div-3-1">
-        <img src="/assets/history.svg" class="history"> 
-      </div>
-      <div class="div-3-2">
-        <span class="center">היסטוריה</span>
-      </div>
-    </div>
-    <div class="div-4">
+    <div class="div-4" (click)="SideNiveClick('statistics')">
       <div class="div-4-1">
-        <img src="/assets/matalot.svg" class="matalot"> 
+        <img src="/assets/stats.svg" class="matalot"> 
       </div>
       <div class="div-4-2">
+        <span class="center">סטטיסטיקה</span>
+      </div>
+    </div>
+    <div class="div-5" (click)="SideNiveClick('matalots')">
+      <div class="div-5-1">
+        <img src="/assets/book.svg" class="search"> 
+      </div>
+      <div class="div-5-2">
         <span class="center">מטלות</span>
       </div>
     </div>
-    <div class="div-5">
-      <div class="div-5-1">
-        <img src="/assets/search.svg" class="search"> 
-      </div>
-      <div class="div-5-2">
-        <span class="center">חיפוש</span>
-      </div>
-    </div>
-    <div class="div-6">
+    <div class="div-6" (click)="SideNiveClick('messages')">
       <div class="div-6-1">
         <img src="/assets/envelope.svg" class="sms"> 
       </div>
@@ -51,9 +67,21 @@
         <span class="center">הודעות</span>
       </div>
     </div>
-  </div>
-  <div class="div-7">
-    <div class="settings">הגדרות</div>
-    <div class="help">עזרה</div>
+    <div class="div-7" (click)="SideNiveClick('settings')">
+      <div class="div-7-1">
+        <img src="/assets/settings.svg" class="settings"> 
+      </div>
+      <div class="div-7-2">
+        <span class="center">הגדרות</span>
+      </div>
+    </div>
+    <div class="div-8" (click)="SideNiveClick('help')">
+      <div class="div-8-1">
+        <img src="/assets/help.svg" class="help"> 
+      </div>
+      <div class="div-8-2">
+        <span class="center">עזרה</span>
+      </div>
+    </div>
   </div>
 </div>

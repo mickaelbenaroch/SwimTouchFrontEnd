@@ -103,7 +103,7 @@ const dialogConfig = new MatDialogConfig();
   dialogConfig.height = "250px";
   var dialogRef = this.dialog.open(GenericDialogBoxComponent, dialogConfig);
   dialogRef.afterClosed().subscribe(
-    (res:string)=>{debugger;
+    (res:string)=>{
       if(res !== null && res!== undefined && res == "ok"){
         this.spinnerservice.start();
         this.httpservice.httpPost('team',this.teamModel).subscribe(

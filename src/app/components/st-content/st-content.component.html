@@ -30,8 +30,35 @@
     <div class="add-trainning" *ngIf="pageenum === state.CreateTraining">
       <app-create-training></app-create-training>
     </div>
-     <div class="add-trainning" *ngIf="pageenum === state.CreateSwimmer">
+    <div class="add-trainning" *ngIf="pageenum === state.CreateSwimmer">
       <app-create-team></app-create-team>
+    </div>
+    <div class="my-trainnings" *ngIf="pageenum === state.MyTrainnings">
+      <app-my-trainnings></app-my-trainnings>
+    </div>
+    <div class="my-trainnings" *ngIf="pageenum === state.MyTeams">
+      <app-my-teams></app-my-teams>
+    </div>
+    <div class="my-trainnings" *ngIf="pageenum === state.MySwimmers">
+      <app-my-swimmers></app-my-swimmers>
+    </div>
+    <div class="my-trainnings" *ngIf="pageenum === state.RealTimeTrainning">
+      <app-real-time-trainning></app-real-time-trainning>
+    </div>
+    <div class="my-trainnings" *ngIf="pageenum === state.Statistics">
+      <app-stats></app-stats>
+    </div>
+    <div class="my-trainnings" *ngIf="pageenum === state.MyMatalots">
+      <app-matalots></app-matalots>
+    </div>
+    <div class="my-trainnings" *ngIf="pageenum === state.Messages">
+      <app-messages></app-messages>
+    </div>
+    <div class="my-trainnings" *ngIf="pageenum === state.Settings">
+      <app-settings></app-settings>
+    </div>
+    <div class="my-trainnings" *ngIf="pageenum === state.Help">
+      <app-help></app-help>
     </div>
 </div>
 
