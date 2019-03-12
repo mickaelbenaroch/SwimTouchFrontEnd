@@ -4,7 +4,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { LoginModel } from '../../models/LoginModel';
 import { SignUpModel } from '../../models/SignUpModel';
 import { MatDialog, MatDialogConfig } from '@angular/material';
-import { HttpService } from '../../services/http-service.service';
+import { HttpService } from '../../services/http-service/http-service.service';
 import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
 
 @Component({

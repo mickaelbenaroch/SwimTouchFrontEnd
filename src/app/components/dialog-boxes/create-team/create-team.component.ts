@@ -1,7 +1,7 @@
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { SwimmerModel } from '../../../models/SwimmerModel';
 import { Component, OnInit, Input, Inject } from '@angular/core';
-import { HttpService } from '../../../services/http-service.service';
+import { HttpService } from '../../../services/http-service/http-service.service';
 import { CreateTrainningComponent } from '../create-trainning/create-trainning.component';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog, MatDialogConfig } from '@angular/material';
 import { GenericDialogBoxComponent } from '../generic-dialog-box/generic-dialog-box.component';

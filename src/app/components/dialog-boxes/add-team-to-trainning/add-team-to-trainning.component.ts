@@ -1,7 +1,7 @@
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { TeamModel } from '../../../models/TeamModel';
 import { Component, OnInit, Input, Inject } from '@angular/core';
-import { HttpService } from '../../../services/http-service.service';
+import { HttpService } from '../../../services/http-service/http-service.service';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 
 @Component({

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { SwimmerModel } from '../../models/SwimmerModel';
 import { MatDialog, MatDialogConfig } from '@angular/material';
-import { HttpService } from '../../services/http-service.service';
+import { HttpService } from '../../services/http-service/http-service.service';
 import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
 
 @Component({

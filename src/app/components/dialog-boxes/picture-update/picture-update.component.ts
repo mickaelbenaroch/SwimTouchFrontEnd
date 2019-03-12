@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../../../services/http-service.service';
+import { HttpService } from '../../../services/http-service/http-service.service';
 import { MatDialogRef } from '@angular/material';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TeamModel } from '../../models/TeamModel';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { MatDialog, MatDialogConfig } from '@angular/material';
-import { HttpService } from '../../services/http-service.service';
+import { HttpService } from '../../services/http-service/http-service.service';
 import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
 
 @Component({

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { TrainningModel } from 'src/app/models/TrainningModel';
-import { HttpService } from '../../services/http-service.service';
+import { HttpService } from '../../services/http-service/http-service.service';
 import { MatDialogConfig, MatDialog } from '@angular/material';
 import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
 

@@ -3,7 +3,7 @@ import { ProfileModel } from '../../models/ProfileModel';
 import { MatDialogConfig, MatDialog } from '@angular/material';
 import { PictureUpdateComponent } from '../dialog-boxes/picture-update/picture-update.component';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { HttpService } from '../../services/http-service.service';
+import { HttpService } from '../../services/http-service/http-service.service';
 import { PageEnum } from 'src/app/enums/componentview';
 
 @Component({

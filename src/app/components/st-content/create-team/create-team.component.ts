@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { MatDialogConfig, MatDialog } from '@angular/material';
-import { HttpService } from 'src/app/services/http-service.service';
+import { HttpService } from 'src/app/services/http-service/http-service.service';
 import { SwimmerModel } from '../../../models/SwimmerModel';
 import { TeamModel } from '../../../models/TeamModel';
 import {CreateTeamBoxComponent } from '../../dialog-boxes/create-team/create-team.component';

@@ -3,7 +3,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ExerciseModel } from '../../../models/ExerciseModel';
 import { TrainningModel } from 'src/app/models/TrainningModel';
 import { MatDialog, MatDialogConfig } from '@angular/material';
-import { HttpService } from '../../../services/http-service.service';
+import { HttpService } from '../../../services/http-service/http-service.service';
 import { CreateTrainningComponent } from '../../dialog-boxes/create-trainning/create-trainning.component';
 import { GenericDialogBoxComponent } from '../../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
 import { AddTeamToTrainningComponent } from '../../dialog-boxes/add-team-to-trainning/add-team-to-trainning.component';

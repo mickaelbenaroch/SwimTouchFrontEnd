@@ -3,7 +3,7 @@ import { TeamModel } from '../../../models/TeamModel';
 import { RouteModel } from '../../../models/RouteModel';
 import { ExerciseModel } from '../../../models/ExerciseModel';
 import { Component, OnInit, Inject, Input} from '@angular/core';
-import { HttpService } from '../../../services/http-service.service';
+import { HttpService } from '../../../services/http-service/http-service.service';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig, MatDialog } from '@angular/material';
 import { GenericDialogBoxComponent } from '../generic-dialog-box/generic-dialog-box.component';
 

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { PageEnum } from '../../enums/componentview';
 import { ProfileModel } from '../../models/ProfileModel';
-import { HttpService } from '../../services/http-service.service';
+import { HttpService } from '../../services/http-service/http-service.service';
 
 @Component({
   selector: 'app-main-page',
