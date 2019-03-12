@@ -55,7 +55,7 @@ export class CreateTrainingComponent implements OnInit {
       (data: ExerciseModel) => {
         if(data !== undefined){
           console.log("Dialog output:", data);
-          this.trainnningModel.exercises.push(data.id);
+          this.trainnningModel.exercises.push(data);
           this.exerciceModel.push(data);
         }
       }
@@ -147,22 +147,25 @@ public OpenSureToSaveBox():void{
  * Open Addd swimmers box
  */
 public OpenAddTeamBox():void{
-      const dialogConfig = new MatDialogConfig();
-      dialogConfig.disableClose = true;
-      dialogConfig.autoFocus = true;
-      dialogConfig.data = {
-        coachmail: this.trainnningModel.coachmail
-      };
-      dialogConfig.width = "600px";
-      dialogConfig.height = "600px";
-      var dialogRef = this.dialog.open(AddTeamToTrainningComponent, dialogConfig);
-      dialogRef.afterClosed().subscribe(
-        res => {
-          this.trainnningModel.team_id = res;
-        }
-      );
+      setTimeout(()=>{
+        const dialogConfig = new MatDialogConfig();
+        dialogConfig.disableClose = true;
+        dialogConfig.autoFocus = true;
+        dialogConfig.data = {
+          coachmail: this.trainnningModel.coachmail,
+          team: this.trainnningModel.team_id
+        };
+        dialogConfig.width = "600px";
+        dialogConfig.height = "600px";
+        var dialogRef = this.dialog.open(AddTeamToTrainningComponent, dialogConfig);
+        dialogRef.afterClosed().subscribe(
+          res => {
+            this.trainnningModel.team_id = res;
+          }
+        );
+      },100)
 }
-
+ 
 /**
  * Open Succes box dialog
  */

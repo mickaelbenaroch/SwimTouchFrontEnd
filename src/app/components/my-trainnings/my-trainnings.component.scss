@@ -1,5 +1,6 @@
 section{
     margin-top: 1rem;
+    direction: rtl;
     .exercises{
         padding: 0.5rem;
         display: flex;
@@ -11,15 +12,106 @@ section{
         direction: rtl;
         .div{
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between; 
             padding: 0.5rem;
             font-weight: bold;
             span{
             }
         }
-        // .div-collapse{
-        //     display: flex;
-        //     flex-direction: column;
-        // }
+        .touches{
+            font-weight: bold;
+        }
+        .dessin{
+            display: flex;
+            justify-content: space-between;
+            .d-1{
+                display: flex;
+                flex-direction: column;
+                .icon{
+                    width: 4rem;
+                    height: 4rem;
+                    background-image: url('/assets/board.png');
+                    background-repeat: no-repeat;
+                    background-size: cover; 
+
+                }
+                .route{
+                    font-weight: bold; 
+                    color: red;
+                }
+                .swimmer{
+                    font-weight: bold;
+                    color: red;
+                }
+            }
+            .d-2{
+                display: flex;
+                flex-direction: column;
+                .icon{
+                    width: 4rem;
+                    height: 4rem;
+                    background-image: url('/assets/board.png');
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
+                .route{
+
+                }
+                .swimmer{
+                    
+                }
+            }
+            .d-3{
+                display: flex;
+                flex-direction: column;
+                .icon{
+                    width: 4rem;
+                    height: 4rem;
+                    background-image: url('/assets/board.png');
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
+                .route{
+
+                }
+                .swimmer{
+                    
+                }
+            }
+            .d-4{
+                display: flex;
+                flex-direction: column;
+                .icon{
+                    background-image: url('/assets/board.png');
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    width: 4rem;
+                    height: 4rem;
+                }
+                .route{
+
+                }
+                .swimmer{
+                    
+                }
+            }
+            .d-5{
+                display: flex;
+                flex-direction: column;
+                .icon{
+                    width: 4rem;
+                    height: 4rem;
+                    background-image: url('/assets/board.png');
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
+                .route{
+
+                }
+                .swimmer{
+                    
+                }
+            }
+        }
     }
 }

@@ -2,15 +2,20 @@
   <div class="div-1">
     <span>יצרת אימון חדש</span>
   </div>
-
+  <div class="info">
+    <div class="first">  <img src="/assets/information.svg" style="width:1.5rem;margin-left:1rem;">הקמת אימון נעשה ב 3 שלבים פשוטים:</div>
+    <div class="div"><span class="title"> שלב ראשון: </span> יצירת קבוצה שלאימון והוספת שחיינים לקבוצה </div>
+    <div class="div"><span class="title" style="padding-left: 1.9rem;"> שלב שני  : </span> יצירה והוספת תרגילים לאימון</div>
+    <div class="div"><span class="title"> שלב אחרון: </span> שמירת האימון</div>
+  </div>
   <form class="form">
     <div class="form-div-1">
       <span>שם אימון:</span>
       <input type="text" [(ngModel)]="trainnningModel.name" name="name" (change)="DisableError()" class="inp-1">
     </div>
     <div class="buttons">
-      <button class="but" (click)="OpenCreateBox()"> <img class="plus" src="/assets/plus.svg"> הוסף תרגיל לאימון</button>
       <button class="but" (click)="OpenAddTeamBox()"> <img class="plus" src="/assets/plus.svg"> הוסף קבוצה לאימון</button>
+      <button class="but" (click)="OpenCreateBox()"> <img class="plus" src="/assets/plus.svg"> הוסף תרגיל לאימון</button>
       <button class="but" (click)="SaveTrainning()"> <img class="plus" src="/assets/save.svg"> סיים ושמור את האימון</button>
     </div>
     <div [ngClass]="{'visible': error}" class="error">יש למלא לפחות את שם האימון , בהמשך תוכל לערוך אותו!</div>
@@ -33,8 +38,14 @@
           <div class="div">
             <span> קבוצת התרגיל: </span>{{exercise.group}}
           </div>
-          <div class="div">
-            <span> תרגיל מס׳: </span>{{exercise.id}}
+          <div class="div" style="display:flex;flex-direction:column">
+            <span> חלוקת למסלולים: </span>
+            <div *ngFor="let route of exercise.routes.routes">
+              <div style="display:flex;justify-content:space-between;">
+                <span>שחיין: {{ ' ' + route.swimmer_ref + ' ' }}</span>
+                <span>מסלול: {{ ' ' + route.number + ' '}}</span>
+              </div>
+            </div>
           </div>
       </div>
       </mat-expansion-panel>

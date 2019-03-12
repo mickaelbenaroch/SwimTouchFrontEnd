@@ -56,5 +56,12 @@ export class AddTeamToTrainningComponent implements OnInit {
   public AddTeam():void{
     this.dialogRef.close(this.teamChoosed);
   }
+
+  /**
+   * Close the box
+   */
+  public Close():void{
+    this.dialogRef.close();
+  }
   //#endregion
 }

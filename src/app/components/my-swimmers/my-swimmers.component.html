@@ -1,3 +1,29 @@
-<p>
-  my-swimmers works!
-</p>
+ <section>
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let swimmer of swimmers">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <img *ngIf="swimmer.picture == ''" src="/assets/user.svg" style="width:2rem;height:2rem;border-radius:50%">
+            <img *ngIf="swimmer.picture !== ''" [src]=swimmer.picture style="width:2rem;height:2rem;border-radius:50%">
+          </mat-panel-title>
+          <mat-panel-description>
+            {{swimmer.name}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="exercises">
+          <div class="div">
+            <span> שם השחיין: </span>{{swimmer.name}}
+          </div>
+          <div class="div">
+            <span> גיל השחיין: </span>{{swimmer.age}}
+          </div>
+          <div class="div">
+            <span> גובה השחיין: </span>{{swimmer.height}}
+          </div>
+          <div class="div">
+            <span> קבוצת השחיין: </span>{{swimmer.group}}
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </section>

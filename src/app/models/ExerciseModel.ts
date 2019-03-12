@@ -1,3 +1,5 @@
+import { PoolModel } from './PoolModel';
+
 export class ExerciseModel{
 
     public date: Date;
@@ -11,4 +13,8 @@ export class ExerciseModel{
     public group: string;
 
     public id: string;
+
+    public howMuchTouches: number = 0;
+
+    public routes: PoolModel = new PoolModel();
 }

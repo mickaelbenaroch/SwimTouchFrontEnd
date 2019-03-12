@@ -7,6 +7,23 @@
         font-weight: bold;
         span{
 
+        } 
+    } 
+    .info{
+        font-family: Assistant;
+        color: lightgray;
+        font-style: italic;
+        font-weight: bold;
+        .first{
+            padding-bottom: 1rem;
+        }
+        .div{   
+            padding-right: 2.5rem;
+            .title{
+                color: grey;
+                text-decoration: underline;
+                padding-left: 1rem;
+            }
         }
     }
     .form{

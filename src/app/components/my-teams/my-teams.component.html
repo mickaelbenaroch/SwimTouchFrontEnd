@@ -1,3 +1,23 @@
-<p>
-  my-teams works!
-</p>
+ <section>
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let team of teams">
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{team.name}}</mat-panel-title>
+          <mat-panel-description></mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="exercises">
+          <div class="div">
+            <span> מייל של המאמן: </span>{{team.coachmail}}
+          </div>
+          <div class="div">
+            <span> שחיינים בקבוצה: </span>
+            <div style="display:flexl flex-direction:ccolumn">
+              <div *ngFor="let swimmer of team.swimmers">
+                {{swimmer.name}}
+              </div>
+            </div>
+          </div>
+      </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </section>

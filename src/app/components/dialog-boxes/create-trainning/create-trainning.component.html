@@ -21,6 +21,20 @@
           <span>מרחק התרגיל:</span>
           <input type="text" [(ngModel)]="exercise.distance" name="distance" (change)="DisableError()"> 
         </div>
+        <div class="form-div-5">
+          <span>גודל בריכה:</span>
+          <input type="number" [(ngModel)]="exercise.howMuchTouches" name="pooldistance" (change)="PoolDistance()"> 
+        </div>
+        <div *ngFor="let swimmer of swimmers; let i = index">
+            <div>
+              <div id="swimmer{{i}}" style="padding: 0.5rem;">{{swimmer.name}}</div>
+              <mat-select id="select{{i}}" style="padding: 1rem;" placeholder="בחר מסלול" (selectionChange)="Select($event)" name="team">
+                <mat-option *ngFor="let route of routes" [value]="route">
+                  {{route}}
+                </mat-option>
+              </mat-select>
+            </div>
+        </div>
         <div [ngClass]="{'visible':error}" class="error">אחד או יותר מהפרטים שהוזנו אינם נכונים!</div>
       </form>
   </div>

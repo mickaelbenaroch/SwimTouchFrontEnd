@@ -12,15 +12,30 @@
           <div class="div">
             <span> מייל של המאמן: </span>{{trainning.coachmail}}
           </div>
-          <div class="div">
-            <span> שחיינים באימון </span>
-            <div style="display:flexl flex-direction:ccolumn">
-              <div *ngFor="let swimmer of trainning.team_id.swimmers">
-                {{swimmer}}
-              </div>
-            </div>
-          </div>
-      </div>
+                <div>תרגילים באימון:</div>
+                <mat-accordion>
+                  <mat-expansion-panel *ngFor="let exercise of trainning.exercises">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>{{exercise.date}}</mat-panel-title>
+                      <mat-panel-description>{{exercise.distance + "  מטר,   " + exercise.style+"," + "  קבוצה " + exercise.group}}</mat-panel-description>
+                    </mat-expansion-panel-header>
+                      <div class="touches">מספר נגיעות בתרגיל: {{exercise.howMuchTouches}}</div>
+                      <div class="div">
+                        <span> חלוקת מסלולים :</span>
+                      </div>
+                      <div class="dessin">
+                        <div class="d-1" *ngFor="let route of exercise.routes.routes">
+                          <div class="icon"></div>
+                          <div class="route">מסלול: {{route.number}}</div>
+                          <div color="swimmer">שחיין: {{route.swimmer_ref}}</div>
+                        </div>
+                    </div>
+                  </mat-expansion-panel>
+                </mat-accordion>
+        </div>
+  
       </mat-expansion-panel>
     </mat-accordion>
   </section>
+
+
