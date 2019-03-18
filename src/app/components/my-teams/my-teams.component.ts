@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamModel } from '../../models/TeamModel';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { HttpService } from '../../services/http-service/http-service.service';
 import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
@@ -18,22 +17,18 @@ export class MyTeamsComponent implements OnInit {
 
   //#region Constructor & Lifecycle Hooks
   constructor(private httpservice: HttpService,
-              private dialog: MatDialog,
-              private spinnerservice: NgxUiLoaderService) { }
+              private dialog: MatDialog) { }
 
   public ngOnInit(): void {
-    this.spinnerservice.start();
     var model = {
       coachmail: localStorage.getItem("email")
     }
     this.httpservice.httpPost('team/getteams',model).subscribe(
       res =>{
-        this.spinnerservice.stop();
         this.teams = res.team;
       },
       err =>{
-        this.spinnerservice.stop();
-      }
+        console.log(err);      }
     )
   }
   //#endregion

@@ -1,4 +1,3 @@
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { TeamModel } from '../../../models/TeamModel';
 import { RouteModel } from '../../../models/RouteModel';
 import { ExerciseModel } from '../../../models/ExerciseModel';
@@ -29,8 +28,7 @@ export class CreateTrainningComponent implements OnInit {
   constructor(public httpservice: HttpService,
               private dialogRef: MatDialogRef<CreateTrainningComponent>,
               @Inject(MAT_DIALOG_DATA) public data,
-              private dialog: MatDialog,
-              private ngxService: NgxUiLoaderService) { }
+              private dialog: MatDialog) { }
 
   public ngOnInit(): void{
     this.name = this.data.name;
@@ -41,14 +39,12 @@ export class CreateTrainningComponent implements OnInit {
     }
     this.httpservice.httpPost('team/getteams',model).subscribe(
       res =>{
-        this.ngxService.stop();
         this.team = res.team[0];
         this.swimmers = this.team.swimmers;
         console.log("TEAM ==>" + this.team.swimmers)
       },
       err =>{
-        this.ngxService.stop();
-      }
+        console.log(err);      }
     )
   }
   //#endregion
@@ -86,16 +82,14 @@ export class CreateTrainningComponent implements OnInit {
        }
     else{
       console.log(this.exercise)
-      this.ngxService.start();
       this.httpservice.httpPost('exercise',this.exercise).subscribe(
         res =>{
-          this.ngxService.stop();
           this.exercise.id = res.exercise_id;
           this.dialogRef.close(this.exercise);
         },
         err =>{
-            this.ngxService.stop();
-            this.OpenDialog();
+          console.log(err);
+          this.OpenDialog();
         }
       )
     }   

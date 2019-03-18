@@ -1,0 +1,178 @@
+section{
+    direction: rtl;
+    text-align: right;
+    font-family: Assistant;
+    .title{
+        padding: 1rem;
+        font-size: 1.5rem;
+        color: grey;
+        font-weight: bold;
+    }
+    .panel{
+        box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 
+                    0 2px 2px 0 rgba(0,0,0,.14), 
+                    0 1px 5px 0 rgba(0,0,0,.12);
+        border-top-right-radius: 4px;
+        border-top-left-radius: 4px;
+        padding: 1rem;
+        color: lightslategray;
+        cursor: pointer;
+        margin-bottom: 0.3rem;
+        .properties{
+            display: flex;
+            flex-direction: column;
+            .p{
+                display: flex;
+                justify-content: space-between;
+                padding: 0.5rem;
+            }
+            .t{
+
+            }
+            .v{
+
+            }
+        }
+        .division{
+            padding: 0.5rem;
+        }
+        .dessin{
+            display: flex;
+            justify-content: space-between;
+            .d-1{
+                display: flex;
+                flex-direction: column;
+                .icon{
+                    width: 4rem;
+                    height: 4rem;
+                    background-image: url('/assets/board.png');
+                    background-repeat: no-repeat;
+                    background-size: cover; 
+
+                }
+                .route{
+                    font-weight: bold; 
+                    color: red;
+                }
+                .swimmer{
+                    font-weight: bold;
+                    color: red;
+                }
+            }
+            .d-2{
+                display: flex;
+                flex-direction: column;
+                .icon{
+                    width: 4rem;
+                    height: 4rem;
+                    background-image: url('/assets/board.png');
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
+                .route{
+
+                }
+                .swimmer{
+                    
+                }
+            }
+            .d-3{
+                display: flex;
+                flex-direction: column;
+                .icon{
+                    width: 4rem;
+                    height: 4rem;
+                    background-image: url('/assets/board.png');
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
+                .route{
+
+                }
+                .swimmer{
+                    
+                }
+            }
+            .d-4{
+                display: flex;
+                flex-direction: column;
+                .icon{
+                    background-image: url('/assets/board.png');
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    width: 4rem;
+                    height: 4rem;
+                }
+                .route{
+
+                }
+                .swimmer{
+                    
+                }
+            }
+            .d-5{
+                display: flex;
+                flex-direction: column;
+                .icon{
+                    width: 4rem;
+                    height: 4rem;
+                    background-image: url('/assets/board.png');
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
+                .route{
+
+                }
+                .swimmer{
+                    
+                }
+            }
+        }
+        .choose-button{
+            text-align: center;
+            padding: 1rem;
+            margin-top: 1rem;
+            .choose{
+                padding: 1rem;
+                background: #01a89e;
+                width: 100%;
+                color: white;
+                font-weight: bold;
+                font-size: 1.5rem;
+                border-radius: 1rem;
+                cursor: pointer;
+            }
+        }
+    }
+    .real-time{
+        .choose-button{
+            text-align: center;
+            padding: 1rem;
+            margin-top: 1rem;
+            .choose{
+                padding: 1rem;
+                background: #01a89e;
+                width: 100%;
+                color: white;
+                font-weight: bold;
+                font-size: 1.5rem;
+                border-radius: 1rem;
+                cursor: pointer;
+            }
+        }
+    }
+    .table{
+        display: flex;
+        flex-direction: column;
+        .header{
+            display: flex;
+            justify-content: center;
+            .header-item{
+                padding: 1rem;
+                font-family: Assistant;
+                font-size: 1.3rem;
+                border: 1px solid grey;
+            }
+        }
+    }
+}

@@ -1,6 +1,5 @@
 import { $ } from 'protractor';
 import { Component, OnInit } from '@angular/core';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { PageEnum } from '../../enums/componentview';
 import { ProfileModel } from '../../models/ProfileModel';
 import { HttpService } from '../../services/http-service/http-service.service';
@@ -8,7 +7,7 @@ import { HttpService } from '../../services/http-service/http-service.service';
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
-  styleUrls: ['./main-page.component.scss']
+  styleUrls: ['./main-page.component.scss'],
 })
 export class MainPageComponent implements OnInit {
 
@@ -20,8 +19,7 @@ export class MainPageComponent implements OnInit {
   //#endregion
 
   //#region Constructor & Lifecycle Hooks
-  constructor(public httpservice: HttpService,
-              public spinerservice: NgxUiLoaderService) { }
+  constructor(public httpservice: HttpService) { }
 
   public ngOnInit(): void {
     this.title = "תפריט ראשי";
@@ -51,14 +49,13 @@ export class MainPageComponent implements OnInit {
     let model = {
       "user": temp
     }
-    this.spinerservice.start();
+    //this.spinerservice.start();
     this.httpservice.httpPost("profile/getProfile", model).subscribe(
       (res: any)=>{
-        this.spinerservice.stop();
         this.profile = res.data[0];
       },
       err =>{
-        this.spinerservice.stop();
+        console.log(err);
       }
     )
   }

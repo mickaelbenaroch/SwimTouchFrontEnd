@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { MatDialogConfig, MatDialog } from '@angular/material';
 import { HttpService } from 'src/app/services/http-service/http-service.service';
 import { SwimmerModel } from '../../../models/SwimmerModel';
@@ -22,8 +21,7 @@ public error: boolean;
 
 //#region Constructor & Lifecycle Hooks
 constructor( private dialog: MatDialog,
-             private httpservice: HttpService,
-             private spinnerservice: NgxUiLoaderService) { }
+             private httpservice: HttpService) { }
 
 public ngOnInit(): void {
   this.teamModel.coachmail = localStorage.getItem("email");
@@ -105,15 +103,13 @@ const dialogConfig = new MatDialogConfig();
   dialogRef.afterClosed().subscribe(
     (res:string)=>{
       if(res !== null && res!== undefined && res == "ok"){
-        this.spinnerservice.start();
         this.httpservice.httpPost('team',this.teamModel).subscribe(
           res =>{
-            this.spinnerservice.stop();
             this.OpenSuccesDialogBox();
             console.log(res);
           },
           err =>{
-            this.spinnerservice.stop();
+            console.log(err);            
             this.OpenDialog();
           }
         )

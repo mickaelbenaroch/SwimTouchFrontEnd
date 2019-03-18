@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { SwimmerModel } from '../../models/SwimmerModel';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { HttpService } from '../../services/http-service/http-service.service';
@@ -18,22 +17,18 @@ export class MySwimmersComponent implements OnInit {
 
   //#region Constructor & Lifecycle Hooks
   constructor(private httpservice: HttpService,
-              private dialog: MatDialog,
-              private spinnerservice: NgxUiLoaderService) { }
+              private dialog: MatDialog) { }
 
   public ngOnInit(): void {
-    this.spinnerservice.start();
     var model = {
       coachmail: localStorage.getItem("email")
     }
     this.httpservice.httpPost('swimmer/getswimmers',model).subscribe(
       res =>{
-        this.spinnerservice.stop();
         this.swimmers = res.swimmer;
       },
       err =>{
-        this.spinnerservice.stop();
-      }
+        console.log(err);      }
     )
   }
   //#endregion

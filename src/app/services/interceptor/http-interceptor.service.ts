@@ -1,11 +1,12 @@
-import { Injectable } from "@angular/core";
-import { tap } from "rxjs/operators";
-import {HttpRequest,HttpHandler,HttpEvent,HttpInterceptor,HttpResponse,HttpErrorResponse} from "@angular/common/http";
 import { Observable } from 'rxjs';
+import { tap } from "rxjs/operators";
+import { Injectable } from "@angular/core";
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import {HttpRequest,HttpHandler,HttpEvent,HttpInterceptor,HttpResponse,HttpErrorResponse} from "@angular/common/http";
 
 @Injectable()
 export class MyInterceptor implements HttpInterceptor {
-  constructor() { }
+  constructor(private spinnerservice: NgxUiLoaderService) { }
   //function which will be called for all http calls
   intercept(
     request: HttpRequest<any>,
@@ -17,18 +18,21 @@ export class MyInterceptor implements HttpInterceptor {
     });
     //logging the updated Parameters to browser's console
     console.log("Before making api call : ", updatedRequest);
+    this.spinnerservice.start();
     return next.handle(request).pipe(
       tap(
         event => {
           //logging the http response to browser's console in case of a success
           if (event instanceof HttpResponse) {
             console.log("api call success :", event);
+            this.spinnerservice.stop();
           }
         },
-        error => {
+        error => { 
           //logging the http response to browser's console in case of a failuer
           if (event instanceof HttpResponse) {
             console.log("api call error :", event);
+            this.spinnerservice.stop();
           }
         }
       )

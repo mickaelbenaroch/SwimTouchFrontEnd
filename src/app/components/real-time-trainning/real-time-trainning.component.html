@@ -1,3 +1,75 @@
-<p>
-  real-time-trainning works!
-</p>
+ <section>
+    <div *ngIf="state == stateHelper.TrainningView">
+      <div class="title">
+        <span>נא לבחור אימון מתוך הרשימה:</span>
+      </div>
+      <div class="panel" *ngFor="let trainning of trainnings" (click)="ChooseTrainning(trainning)">
+          {{trainning.name}}
+      </div>
+    </div>
+
+    <div *ngIf="state == stateHelper.ExerciseView">
+      <div class="title">
+        <span>נא לבחור תרגיל מתוך האימון:</span>
+      </div>
+      <div class="panel" *ngFor="let exercise of choosenTrainning.exercises">
+          <div class="properties">
+              <div class="p">
+               <div class="t">תאריך ביצוע התרגיל:</div>
+               <div class="v">{{exercise.date}}</div>
+              </div>
+              <div class="p">
+                <div class="t">סגנון התרגיל:</div>
+                <div class="v">{{exercise.style}}</div>
+              </div>
+              <div class="p">
+               <div class="t">קבוצת התרגיל:</div>
+               <div class="v"> {{exercise.group}}</div>
+             </div>
+             <div class="p">
+                <div class="t">מרחק התרגיל:</div>
+                <div class="v">{{exercise.distance}}</div>
+             </div>
+             <div class="p">
+                <div class="t">מספר נגיעות בתרגיל:</div>
+                <div class="v">{{exercise.howMuchTouches}}</div>
+             </div>
+        </div>
+        <div class="division">
+          <span> חלוקת מסלולים :</span>
+        </div>
+        <div class="dessin">
+          <div class="d-1" *ngFor="let route of exercise.routes.routes">
+            <div class="icon"></div>
+            <div class="route">מסלול: {{route.number}}</div>
+            <div color="swimmer">שחיין: {{route.swimmer_ref}}</div>
+          </div>
+        </div>
+        <div class="choose-button">
+          <button class="choose" (click)="ChooseExercise(exercise)">בחר תרגיל זה</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="real-time" *ngIf="state == stateHelper.RealTimeView">
+        <div class="choose-button">
+          <button class="choose" (click)="ChooseExercise(exercise)">הזנק</button>
+        </div>
+        <div class="table">
+            <div class="header">
+              <div class="header-item">מסלול</div>
+              <div class="header-item">שחיין</div>
+              <div class="header-item" *ngFor="let lap of temp;let i = index">זמן נגיעה {{i + 1}}</div>
+            </div>
+        </div>
+        <div class="table">
+            <div class="header">
+              <div class="header-item">1</div>
+              <div class="header-item">מיכאל בן ברוש</div>
+              <div class="header-item" *ngFor="let lap of temp;let i = index">זמן נגיעה {{i + 1}}</div>
+            </div>
+        </div>
+    </div>
+  </section>
+
+

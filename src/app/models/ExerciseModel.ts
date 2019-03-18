@@ -17,4 +17,6 @@ export class ExerciseModel{
     public howMuchTouches: number = 0;
 
     public routes: PoolModel = new PoolModel();
+
+    public hasBeenStarted: boolean = false;
 }

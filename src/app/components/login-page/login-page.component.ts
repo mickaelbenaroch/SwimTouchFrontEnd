@@ -1,6 +1,5 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { LoginModel } from '../../models/LoginModel';
 import { SignUpModel } from '../../models/SignUpModel';
 import { MatDialog, MatDialogConfig } from '@angular/material';
@@ -28,8 +27,7 @@ export class LoginPageComponent implements OnInit {
   //#region Constructor & Lifecycle Hooks
   constructor(public httpservice: HttpService,
               public navservice: Router,
-              private dialog: MatDialog,
-              private ngxService: NgxUiLoaderService) { }
+              private dialog: MatDialog) { }
 
   public ngOnInit(): void {
   }
@@ -43,18 +41,16 @@ export class LoginPageComponent implements OnInit {
     if(!this.validateEmail(this.email)){
       this.emailError = true;
     }else{
-      this.ngxService.start();
       this.LoginModel.email = this.email;
       this.LoginModel.pass = this.password;
       this.httpservice.httpPost('login',this.LoginModel).subscribe((res) =>{
-        this.ngxService.stop();
           if(res.isTrue == true){
             localStorage.setItem("email",this.LoginModel.email);
             this.navservice.navigateByUrl('/mainmenu');
           }
       },
       err =>{
-        this.ngxService.stop();
+        console.log(err);
         this.OpenDialog();
       })
     }
@@ -69,16 +65,14 @@ export class LoginPageComponent implements OnInit {
         this.SignUpModel.pwd == undefined ){
       this.signupError = true;
     }
-    this.ngxService.start();
     this.httpservice.httpPost('login/signup',this.SignUpModel).subscribe((res)=>{
-      this.ngxService.stop();
       if(res.isTrue == true){
         localStorage.setItem("email",this.SignUpModel.user);
         this.navservice.navigateByUrl('/mainmenu');
       }
     },
     err =>{
-      this.ngxService.stop();
+      console.log(err);      
       this.OpenDialog();
     })
   }

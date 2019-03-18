@@ -1,7 +1,6 @@
+import { MatDialogRef } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../services/http-service/http-service.service';
-import { MatDialogRef } from '@angular/material';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-picture-update',
@@ -16,7 +15,6 @@ export class PictureUpdateComponent implements OnInit {
 
   //#region Constructor & Lifecycle Hooks
   constructor(private httpservice: HttpService,
-              private spinnerservice: NgxUiLoaderService,
               private dialogRef: MatDialogRef<PictureUpdateComponent>) { }
 
   public ngOnInit():void {
@@ -40,14 +38,11 @@ export class PictureUpdateComponent implements OnInit {
           picture: this.base64textString
         };
         console.log("model ===>" + model.email)
-        this.spinnerservice.start();
         this.httpservice.httpPost('login/upload', model).subscribe(
           res =>{
-            this.spinnerservice.stop();
             console.log(res);
           },
           err =>{
-            this.spinnerservice.stop();
             console.log(err);
           }
         )

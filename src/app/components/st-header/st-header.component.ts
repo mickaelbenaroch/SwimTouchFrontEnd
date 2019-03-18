@@ -1,10 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { PageEnum } from 'src/app/enums/componentview';
 import { ProfileModel } from '../../models/ProfileModel';
 import { MatDialogConfig, MatDialog } from '@angular/material';
-import { PictureUpdateComponent } from '../dialog-boxes/picture-update/picture-update.component';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HttpService } from '../../services/http-service/http-service.service';
-import { PageEnum } from 'src/app/enums/componentview';
+import { PictureUpdateComponent } from '../dialog-boxes/picture-update/picture-update.component';
 
 @Component({
   selector: 'app-st-header',
@@ -22,8 +21,7 @@ export class StHeaderComponent implements OnInit {
 
   //#region Constructor & Lifecycle Hooks 
   constructor(private dialog: MatDialog,
-              private httpservice: HttpService,
-              private spinerservice: NgxUiLoaderService) { }
+              private httpservice: HttpService) { }
 
   public  ngOnInit():void {
   }
@@ -56,15 +54,12 @@ export class StHeaderComponent implements OnInit {
     let model = {
       "user": temp
     }
-    this.spinerservice.start();
     this.httpservice.httpPost("profile/getProfile", model).subscribe(
       (res: any)=>{
-        this.spinerservice.stop();
         this.profile = res.data[0];
       },
       err =>{
-        this.spinerservice.stop();
-      }
+        console.log(err);      }
     )
   }
 

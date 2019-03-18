@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ExerciseModel } from '../../../models/ExerciseModel';
 import { TrainningModel } from 'src/app/models/TrainningModel';
 import { MatDialog, MatDialogConfig } from '@angular/material';
@@ -7,7 +6,6 @@ import { HttpService } from '../../../services/http-service/http-service.service
 import { CreateTrainningComponent } from '../../dialog-boxes/create-trainning/create-trainning.component';
 import { GenericDialogBoxComponent } from '../../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
 import { AddTeamToTrainningComponent } from '../../dialog-boxes/add-team-to-trainning/add-team-to-trainning.component';
-import { noUndefined } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-create-training',
@@ -24,8 +22,7 @@ export class CreateTrainingComponent implements OnInit {
 
   //#region Constructor & Lifecycle Hooks
   constructor( private dialog: MatDialog,
-               private httpservice: HttpService,
-               private spinnerservice: NgxUiLoaderService) { }
+               private httpservice: HttpService) { }
 
   public ngOnInit(): void {
     this.trainnningModel.coachmail = localStorage.getItem("email");
@@ -106,15 +103,13 @@ public OpenSureToSaveBox():void{
     dialogRef.afterClosed().subscribe(
       (res:string)=>{
         if(res !== null && res!== undefined && res == "ok"){
-          this.spinnerservice.start();
           this.httpservice.httpPost('trainning',this.trainnningModel).subscribe(
             res =>{
-              this.spinnerservice.stop();
               this.OpenSuccesDialogBox();
               console.log(res);
             },
             err =>{
-              this.spinnerservice.stop();
+              console.log(err);              
               this.OpenDialog();
             }
           )

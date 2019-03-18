@@ -1,4 +1,3 @@
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { SwimmerModel } from '../../../models/SwimmerModel';
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { HttpService } from '../../../services/http-service/http-service.service';
@@ -28,23 +27,19 @@ export class CreateTeamBoxComponent implements OnInit {
   constructor(public httpservice: HttpService,
               private dialogRef: MatDialogRef<CreateTrainningComponent>,
               @Inject(MAT_DIALOG_DATA) public data,
-              private dialog: MatDialog,
-              private spinerservice: NgxUiLoaderService) { }
+              private dialog: MatDialog) { }
 
   public ngOnInit(): void{
     this.name = this.data.name;
     this.edit = this.data.edit;
     this.coachmail = this.data.coachmail;
     if(this.edit == "edit"){
-      this.spinerservice.start();
       this.httpservice.httpPost('swimmer/getswimmers', this.coachmail).subscribe(
         (res) =>{
-          this.spinerservice.stop();
           this.existingSwimmers = res.swimmer;
         },
         err =>{
-          this.spinerservice.stop();
-        }
+          console.log(err);        }
       )
     }
     this.swimmer.coachmail = localStorage.getItem("email");
@@ -65,10 +60,8 @@ export class CreateTeamBoxComponent implements OnInit {
     var swimmer = {
       _id: event.value
     }
-    this.spinerservice.start();
     this.httpservice.httpPost('swimmer/getswimmers',swimmer).subscribe(
       res =>{
-        this.spinerservice.stop();
         this.swimmer._id = res.swimmer[0]._id;
         this.swimmer.age = res.swimmer[0].age;
         this.swimmer.coachmail = res.swimmer[0].coachmail;
@@ -78,7 +71,6 @@ export class CreateTeamBoxComponent implements OnInit {
         this.swimmer.picture = res.swimmer[0].picture;
       },
       err =>{
-        this.spinerservice.stop();
         console.log("Swimmer not found");
       }
     )
@@ -108,15 +100,13 @@ export class CreateTeamBoxComponent implements OnInit {
          this.error = true;
        }
     else{
-      this.spinerservice.start();
       this.httpservice.httpPost('swimmer',this.swimmer).subscribe(
         res =>{
-          this.spinerservice.stop();
           this.swimmer._id = res.swimmer_id;
           this.dialogRef.close(this.swimmer);
         },
         err =>{
-            this.spinerservice.stop();
+            console.log(err);
             this.OpenDialog();
         }
       )
