@@ -12,6 +12,7 @@ export class AddTeamToTrainningComponent implements OnInit {
 
   //#region Public Members
   @Input() coachmail: string;
+  @Input() name: string;
   public teams: TeamModel[] = [];
   public teamChoosed: string;
   //#endregion
@@ -24,6 +25,7 @@ export class AddTeamToTrainningComponent implements OnInit {
 
   public ngOnInit():void{
     this.coachmail = this.data.coachmail;
+    this.name = this.data.name;
     if(this.coachmail !== undefined){
       this.httpservice.httpPost('team/getteams', this.coachmail).subscribe(
         (res) =>{
