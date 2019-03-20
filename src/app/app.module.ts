@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import {MatSelectModule} from '@angular/material/select';
 import { BrowserModule } from '@angular/platform-browser';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { HelpComponent } from './components/help/help.component';
 import { StatsComponent } from './components/stats/stats.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; 
@@ -31,11 +32,10 @@ import { CreateTeamComponent } from './components/st-content/create-team/create-
 import { CreateTeamBoxComponent } from './components/dialog-boxes/create-team/create-team.component';
 import { PictureUpdateComponent } from './components/dialog-boxes/picture-update/picture-update.component';
 import { CreateTrainingComponent } from './components/st-content/create-training/create-training.component';
+import { RealTimeTrainningComponent } from './components/real-time-trainning/real-time-trainning.component';
 import { CreateTrainningComponent } from './components/dialog-boxes/create-trainning/create-trainning.component';
 import { GenericDialogBoxComponent } from './components/dialog-boxes/generic-dialog-box/generic-dialog-box.component';
 import { AddTeamToTrainningComponent } from './components/dialog-boxes/add-team-to-trainning/add-team-to-trainning.component';
-import { RealTimeTrainningComponent } from './components/real-time-trainning/real-time-trainning.component';
-import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 const appRoutes: Routes = [
   { path: '' , component: LoginPageComponent},
