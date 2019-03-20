@@ -4,5 +4,5 @@ export class RouteResultModel{
 
     public jump_time: string;
 
-    public results: string[];
+    public results: string[]=[];
 }

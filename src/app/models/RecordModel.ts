@@ -8,5 +8,5 @@ export class RecordModel{
 
     public training_id: number;
 
-    public route: RouteResultModel[];
+    public route: RouteResultModel[]=[];
 }

@@ -1,6 +1,7 @@
 import { RoleEnum } from '../enums/roleenum';
 
 export class ProfileModel{
+    
     public _id: string;
 
     public user: string;

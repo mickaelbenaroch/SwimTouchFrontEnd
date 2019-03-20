@@ -34,39 +34,46 @@
                 <div class="t">מספר נגיעות בתרגיל:</div>
                 <div class="v">{{exercise.howMuchTouches}}</div>
              </div>
-        </div>
-        <div class="division">
-          <span> חלוקת מסלולים :</span>
-        </div>
-        <div class="dessin">
-          <div class="d-1" *ngFor="let route of exercise.routes.routes">
-            <div class="icon"></div>
-            <div class="route">מסלול: {{route.number}}</div>
-            <div color="swimmer">שחיין: {{route.swimmer_ref}}</div>
           </div>
-        </div>
-        <div class="choose-button">
-          <button class="choose" (click)="ChooseExercise(exercise)">בחר תרגיל זה</button>
+          <div class="division">
+            <span> חלוקת מסלולים :</span>
+          </div>
+          <div class="dessin">
+            <div class="d-1" *ngFor="let route of exercise.routes.routes">
+              <div class="icon"></div>
+              <div class="route">מסלול: {{route.number}}</div>
+              <div color="swimmer">שחיין: {{route.swimmer_ref}}</div>
+            </div>
+          </div>
+          <div class="choose-button">
+            <button class="choose" (click)="ChooseExercise(exercise)">בחר תרגיל זה</button>
         </div>
       </div>
-    </div>
+    </div> 
 
     <div class="real-time" *ngIf="state == stateHelper.RealTimeView">
         <div class="choose-button">
-          <button class="choose" (click)="ChooseExercise(exercise)">הזנק</button>
+          <button class="choose" (click)="Start(choosenExercise)">הזנק</button>
         </div>
+        <div class="choose-button">
+          <button class="choose2" (click)="Stop(choosenExercise)">עצור</button>
+        </div> 
         <div class="table">
             <div class="header">
-              <div class="header-item">מסלול</div>
-              <div class="header-item">שחיין</div>
-              <div class="header-item" *ngFor="let lap of temp;let i = index">זמן נגיעה {{i + 1}}</div>
+              <div style="font-weight:bold;" class="header-item">מסלול</div>
+              <div style="font-weight:bold;" class="header-item">שחיין</div>
+              <div style="font-weight:bold;" class="header-item">זמן קפיצה</div>
+              <div style="font-weight:bold;" class="header-item" *ngFor="let lap of temp;let i = index">זמן נגיעה {{i + 1}}</div>
+              <div style="font-weight:bold;" class="header-item">זמן סופי</div>
             </div>
         </div>
-        <div class="table">
+        <div class="table" *ngFor="let swimmer of choosenExercise.routes.routes;let i = index">
             <div class="header">
-              <div class="header-item">1</div>
-              <div class="header-item">מיכאל בן ברוש</div>
-              <div class="header-item" *ngFor="let lap of temp;let i = index">זמן נגיעה {{i + 1}}</div>
+              <div style="font-weight:bold;" class="header-item">{{swimmer.number}}</div>
+              <div style="font-weight:bold;" class="header-item">{{swimmer.swimmer_ref}}</div>
+              <div class="header-item jump" id="jump{{i + 1}}" ><span class="animated flash center">0.00</span></div>
+              <div class="header-item touch" id="touch{{swimmer.number + j }}" *ngFor="let lap of temp;let j = index"><span class="animated heartBeat center">0.00</span></div>
+              <div class="header-item final" id="final{{i + 1}}"><span class="animated flash center">0.00 </span></div>
             </div>
         </div>
     </div>

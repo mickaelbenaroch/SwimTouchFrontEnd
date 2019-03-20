@@ -35,11 +35,13 @@ import { CreateTrainningComponent } from './components/dialog-boxes/create-train
 import { GenericDialogBoxComponent } from './components/dialog-boxes/generic-dialog-box/generic-dialog-box.component';
 import { AddTeamToTrainningComponent } from './components/dialog-boxes/add-team-to-trainning/add-team-to-trainning.component';
 import { RealTimeTrainningComponent } from './components/real-time-trainning/real-time-trainning.component';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 const appRoutes: Routes = [
   { path: '' , component: LoginPageComponent},
   { path: 'mainmenu', component: MainPageComponent },
 ];
+const config: SocketIoConfig = { url: 'https://record-system-server.herokuapp.com', options: {} };
 
 @NgModule({
   declarations: [
@@ -77,6 +79,7 @@ const appRoutes: Routes = [
     NgxUiLoaderModule,
     MatExpansionModule,
     BrowserAnimationsModule,
+    SocketIoModule.forRoot(config),
     RouterModule.forRoot(appRoutes),
   ],
   providers: [

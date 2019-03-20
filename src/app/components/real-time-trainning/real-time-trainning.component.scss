@@ -159,6 +159,16 @@ section{
                 border-radius: 1rem;
                 cursor: pointer;
             }
+            .choose2{
+                padding: 1rem;
+                background: red;
+                width: 100%;
+                color: white;
+                font-weight: bold;
+                font-size: 1.5rem;
+                border-radius: 1rem;
+                cursor: pointer;
+            }
         }
     }
     .table{
@@ -170,8 +180,24 @@ section{
             .header-item{
                 padding: 1rem;
                 font-family: Assistant;
-                font-size: 1.3rem;
+                font-size: 1.1rem;
                 border: 1px solid grey;
+                width:8.3333333%;
+            }
+            .final{
+                color: gray;
+                font-weight: bold;
+            }
+            .touch{
+                color: green; 
+                font-weight: bold;
+            }
+            .jump{
+                font-weight: bold;
+                color: orange;
+            }
+            .center{
+                align-self: center;
             }
         }
     }
