@@ -1,5 +1,6 @@
 import { TeamModel } from '../../../models/TeamModel';
 import { RouteModel } from '../../../models/RouteModel';
+import { SwimmerModel } from '../../../models/SwimmerModel';
 import { ExerciseModel } from '../../../models/ExerciseModel';
 import { Component, OnInit, Inject, Input} from '@angular/core';
 import { HttpService } from '../../../services/http-service/http-service.service';
@@ -41,10 +42,11 @@ export class CreateTrainningComponent implements OnInit {
       res =>{
         this.team = res.team[0];
         this.swimmers = this.team.swimmers;
-        console.log("TEAM ==>" + this.team.swimmers)
+        console.log("TEAM ==>" + this.team.swimmers);
       },
       err =>{
-        console.log(err);      }
+        console.log(err);      
+      }
     )
   }
   //#endregion
@@ -104,7 +106,19 @@ export class CreateTrainningComponent implements OnInit {
       let route1 = new RouteModel();
       route1.number = event.value;
       route1.swimmer_ref = $("#swimmer" + selectNumber)[0].textContent;
-      this.exercise.routes.routes.push(route1);
+      var model = {
+        name: route1.swimmer_ref
+      }
+      this.httpservice.httpPost('swimmer/getswimmers',model).subscribe(
+        (res: any) =>{debugger;
+          route1.swimmer_id = res.swimmer[0]._id;
+          this.exercise.routes.routes.push(route1);
+        },
+        err =>{
+          console.log(err);
+          this.OpenDialog()        
+        }
+      )
   }
 
   /**
