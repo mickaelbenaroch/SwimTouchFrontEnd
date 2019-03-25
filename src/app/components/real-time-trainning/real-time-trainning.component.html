@@ -52,12 +52,8 @@
     </div> 
 
     <div class="real-time" *ngIf="state == stateHelper.RealTimeView">
-        <div class="choose-button">
-          <button class="choose" (click)="Start(choosenExercise)">הזנק</button>
-        </div>
-        <div class="choose-button">
-          <button class="choose2" (click)="Stop(choosenExercise)">עצור</button>
-        </div> 
+        <div *ngIf="ready" id="print-section">
+        <div class="resume">תוצאות המשחה</div>
         <div class="table">
             <div class="header">
               <div style="font-weight:bold;" class="header-item">מסלול</div>
@@ -67,15 +63,23 @@
               <div style="font-weight:bold;" class="header-item">זמן סופי</div>
             </div>
         </div>
-        <div class="table" *ngFor="let swimmer of choosenExercise.routes.routes;let i = index">
+        <div class="table" *ngFor="let route of finalResultModel.routes;let i = index">
             <div class="header">
-              <div style="font-weight:bold;" class="header-item">{{swimmer.number}}</div>
-              <div style="font-weight:bold;" class="header-item">{{swimmer.swimmer_ref}}</div>
-              <div class="header-item jump" id="jump{{i + 1}}" ><span class="animated flash center">0.00</span></div>
-              <div class="header-item touch" id="touch{{swimmer.number + j }}" *ngFor="let lap of temp;let j = index"><span class="animated heartBeat center">0.00</span></div>
-              <div class="header-item final" id="final{{i + 1}}"><span class="animated flash center">0.00 </span></div>
+              <div style="font-weight:bold;" class="header-item">{{route.swimmer.number}}</div>
+              <div style="font-weight:bold;" class="header-item">{{route.swimmer.swimmer_ref}}</div>
+              <div class="header-item jump">
+                  <span class="animated flash center">{{route.jump_time}}</span>
+              </div>
+              <div class="header-item touch" *ngFor="let res of route.results">
+                  <span class="animated heartBeat center">{{res}}</span>
+              </div>
+              <div class="header-item final">
+                <span class="animated flash center">{{route.total}}</span>
+              </div>
             </div>
         </div>
+      </div>
+      <div class="tv" (click)="ShowTvMode()">TV Mode</div>
     </div>
   </section>
 

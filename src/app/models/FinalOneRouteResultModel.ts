@@ -12,5 +12,7 @@ export class OneRouteFinalResultModel{
 
     public results: number[] = [];
 
-    public swimmer: RouteModel;
+    public swimmer: RouteModel = new RouteModel();
+
+    public total: number = 0;
 }

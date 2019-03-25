@@ -8,6 +8,7 @@ import { TrainningModel } from 'src/app/models/TrainningModel';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { RealTrainningEnum } from '../../enums/realtrainningenum';
 import { OneJumpTimeResult } from '../../models/OneJumpTimeResult';
+import { TvModeComponent } from '../dialog-boxes/tv-mode/tv-mode.component';
 import { HttpService } from '../../services/http-service/http-service.service';
 import { OneRouteFinalResultModel } from 'src/app/models/FinalOneRouteResultModel';
 import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
@@ -32,6 +33,8 @@ export class RealTimeTrainningComponent implements OnInit {
    public finalCounter1: number = 0;
    public finalCounter2: number = 0;
    public finalCounter3: number = 0;
+   public finalResultModel: FinalResultModel = new FinalResultModel();
+   public ready: boolean;
    //#endregion
   
    //#region Constructor & Lifecycle Hooks
@@ -67,164 +70,6 @@ export class RealTimeTrainningComponent implements OnInit {
    }
 
    /**
-    * Launch Start competiton
-    * @param trainning 
-    */
-   public Start(exercise: ExerciseModel):void{
-     var model = {
-       action: "start",
-       exercise_id: exercise.id
-     }
-     //Tells the broaker that the competition has been started
-     this.socket.emit("action", model);
-
-     //On every Touch on wall sensor, get the result from callback
-     this.socket.on("WallSensor", (result:OneTimeResult) => {
-      console.log(result);
-      this.DivideResultsTouchTime(result);
-    });
-
-    //On every jump time get the result from callback
-    this.socket.on("jumpTime", (result: OneJumpTimeResult) => {
-      console.log(result);
-      this.DivideResultsJumpTime(result);
-    });
-   }
-
-    /**
-    * Stop competiton
-    * @param trainning 
-    */
-   public Stop(exercise: ExerciseModel):void{
-    var model = {
-      action: "stop",
-      exercise_id: exercise.id
-    }
-    this.socket.emit("action",model)
-    this.socket.on("stop-swim", (result: FinalResultModel) => {
-      //send to db the result 
-      console.log(result);
-      this.DivideResultsFinalTime(result);
-    });
-  }
-
-  /**
-   * Repartition of results
-   * @param trainning 
-   */
-  public DivideResultsJumpTime(result: OneJumpTimeResult):void{
-    if(result !== undefined && result !== null){
-      $("#jump"+result.route).text(result.jumpTime);
-    }
-  }
-
-  /**
-   * Repartition of results
-   * @param trainning 
-   */
-  public DivideResultsTouchTime(result: OneTimeResult):void{
-    if(result !== undefined && result !== null){
-        switch(result.route){
-              case "1":
-              if(this.choosenExercise.routes.routes[Number(result.route) -1] !== undefined){
-                $("#touch"+ this.choosenExercise.routes.routes[Number(result.route) -1].number + this.r1counter.toString()).text(result.touchTime);      
-                this.finalCounter1 += result.touchTime;
-                if(this.finalCounter1 > 60){
-                  this.finalCounter1 = this.finalCounter1/60;
-                }
-                this.finalCounter1 = Number(this.finalCounter1.toFixed(3));
-                this.r1counter++;
-              }
-              break;
-              case "2":
-              if(this.choosenExercise.routes.routes[Number(result.route) -1] !== undefined){
-                $("#touch"+ this.choosenExercise.routes.routes[Number(result.route) -1].number + this.r2counter.toString()).text(result.touchTime);    
-                this.finalCounter2 += result.touchTime;
-                if(this.finalCounter2 > 60){
-                  this.finalCounter2 = this.finalCounter2/60;
-                }
-                this.finalCounter2 = Number(this.finalCounter2.toFixed(3));
-                this.r2counter++;
-              }
-              break; 
-              case "3":
-              if(this.choosenExercise.routes.routes[Number(result.route) -1] !== undefined){
-                $("#touch"+ this.choosenExercise.routes.routes[Number(result.route) -1].number + this.r3counter.toString()).text(result.touchTime);    
-                this.finalCounter3 += result.touchTime;
-                if(this.finalCounter3 > 60){
-                  this.finalCounter3 = this.finalCounter3/60;
-                }
-                this.finalCounter3 = Number(this.finalCounter3.toFixed(3));
-                this.r3counter++;
-              }
-              break;
-            }
-    }
-  }
-
-  /**
-   * Repartition of results
-   * @param trainning 
-   */
-  public DivideResultsFinalTime(result: any):void{
-    if(result !== undefined && result !== null){
-      for(var i = 0; i<this.choosenExercise.routes.routes.length;i++){
-        if($("#final"+(i+1))){
-          if(i == 0){
-            if(this.finalCounter1 > 60){
-              this.finalCounter1 = this.finalCounter1/60;
-            }
-            $("#final"+(i+1)).text(this.finalCounter1);
-            var resultToDb = new OneRouteFinalResultModel();
-            resultToDb.date = this.choosenExercise.date;
-            resultToDb.jump_time = result.routes.route1.jump_time;
-            resultToDb.results = result.routes.route1.results;
-            resultToDb.swimmer = new RouteModel();
-            resultToDb.swimmer.swimmer_ref = this.choosenExercise.routes.routes[i].swimmer_ref;
-            resultToDb.swimmer.swimmer_id =  this.choosenExercise.routes.routes[i].swimmer_id;
-            resultToDb.exercise_id = this.choosenExercise.id;
-            console.log("data 1st" +  resultToDb)
-            this.SaverecordInDB(resultToDb);
-
-          }else if(i == 1){
-            if(this.finalCounter2 > 60){
-              this.finalCounter2 = this.finalCounter2/60;
-            }
-            $("#final"+(i+1)).text(this.finalCounter2); 
-            var resultToDb = new OneRouteFinalResultModel();
-            resultToDb.date = this.choosenExercise.date;
-            resultToDb.jump_time = result.routes.route2.jump_time;
-            resultToDb.results = result.routes.route2.results;
-            resultToDb.swimmer = new RouteModel();
-            resultToDb.swimmer.swimmer_ref = this.choosenExercise.routes.routes[i].swimmer_ref;
-            resultToDb.swimmer.swimmer_id =  this.choosenExercise.routes.routes[i].swimmer_id;
-            resultToDb.exercise_id = this.choosenExercise.id;
-            console.log("data 2nd" + resultToDb)
-            this.SaverecordInDB(resultToDb);
-
-          }else if(i == 2){
-            if(this.finalCounter3 > 60){
-              this.finalCounter3 = this.finalCounter3/60;
-            }
-            $("#final"+(i+1)).text(this.finalCounter3);
-            var resultToDb = new OneRouteFinalResultModel();
-            resultToDb.date = this.choosenExercise.date;
-            resultToDb.jump_time = result.routes.route3.jump_time;
-            resultToDb.results = result.routes.route3.results;
-            resultToDb.swimmer = new RouteModel();
-            resultToDb.swimmer.swimmer_ref = this.choosenExercise.routes.routes[i].swimmer_ref;
-            resultToDb.swimmer.swimmer_id =  this.choosenExercise.routes.routes[i].swimmer_id;
-            resultToDb.exercise_id = this.choosenExercise.id;
-            console.log("data 3rd" + resultToDb)
-            this.SaverecordInDB(resultToDb);
-
-          }
-        }
-      }
-    }
-  }
-
-   /**
     * Get the choosed trainning
     */ 
    public ChooseTrainning(trainning: TrainningModel){
@@ -233,6 +78,83 @@ export class RealTimeTrainningComponent implements OnInit {
      this.state = RealTrainningEnum.ExerciseView;
    }
    
+
+   /**
+    * Show table of record on tv mode
+    */
+    public ShowTvMode():void{
+      const dialogConfig = new MatDialogConfig();
+    
+      dialogConfig.disableClose = true;
+      dialogConfig.autoFocus = true;
+      dialogConfig.data = {
+        exercise: this.choosenExercise,
+        swimmers: this.temp,
+      };
+      dialogConfig.width = screen.width + 'px';
+      dialogConfig.height = screen.height + 'px';
+      dialogConfig.panelClass = "tv-dialog";
+      var dialogRef = this.dialog.open(TvModeComponent, dialogConfig);
+      dialogRef.afterClosed().subscribe(
+        (res: any) => {debugger;
+            console.log( "after tv mode closed ==>" + res);
+            var oneResult1 = new OneRouteFinalResultModel();
+            var oneResult2 = new OneRouteFinalResultModel();
+            var oneResult3 = new OneRouteFinalResultModel();
+           for(let i = 0; i<res.routes.route1.results.length; i++){
+             oneResult1.results.push(res.routes.route1.results[i]);
+             oneResult1.total += res.routes.route1.results[i];
+            }
+            
+            for(let i = 0; i<res.routes.route2.results.length; i++){
+              oneResult2.results.push(res.routes.route2.results[i]);
+              oneResult2.total += res.routes.route2.results[i];
+            }
+            for(let i = 0; i<res.routes.route3.results.length; i++){
+              oneResult3.results.push(res.routes.route3.results[i]);
+              oneResult3.total += res.routes.route3.results[i];
+            }
+            oneResult1.swimmer.number = 1;
+            if(this.choosenExercise.routes.routes[0] !== undefined){
+              oneResult1.swimmer.swimmer_id = this.choosenExercise.routes.routes[0].swimmer_id;
+              oneResult1.swimmer.swimmer_ref = this.choosenExercise.routes.routes[0].swimmer_ref;
+              oneResult1.jump_time = res.routes.route1.jump_time;
+              if(oneResult1.total > 60){
+                oneResult1.total = oneResult1.total/60;
+              }
+              oneResult1.total = Number(oneResult1.total.toFixed(3));
+              this.finalResultModel.routes.push(oneResult1);
+            }
+            oneResult2.swimmer.number = 2;
+            if(this.choosenExercise.routes.routes[1] !== undefined){
+              oneResult2.swimmer.swimmer_id = this.choosenExercise.routes.routes[1].swimmer_id;
+              oneResult2.swimmer.swimmer_ref = this.choosenExercise.routes.routes[1].swimmer_ref;
+              oneResult2.jump_time = res.routes.route2.jump_time;
+              if(oneResult2.total > 60){
+                oneResult2.total = oneResult2.total/60;
+              }
+              oneResult2.total = Number(oneResult2.total.toFixed(3));
+              this.finalResultModel.routes.push(oneResult2);
+            }
+            oneResult3.swimmer.number = 3;
+            if(this.choosenExercise.routes.routes[2] !== undefined){
+              oneResult3.swimmer.swimmer_id = this.choosenExercise.routes.routes[2].swimmer_id;
+              oneResult3.swimmer.swimmer_ref = this.choosenExercise.routes.routes[2].swimmer_ref;
+              oneResult3.jump_time = res.routes.route3.jump_time;
+              if(oneResult3.total > 60){
+                oneResult3.total = oneResult3.total/60;
+              }
+              oneResult3.total = Number(oneResult3.total.toFixed(3));
+              this.finalResultModel.routes.push(oneResult3);
+            }
+            this.ready = true;
+        },
+        err =>{
+          this.OpenDialog();
+        }
+      )
+    } 
+
    /**
     * Error dialog Box Opening
     * @param email 

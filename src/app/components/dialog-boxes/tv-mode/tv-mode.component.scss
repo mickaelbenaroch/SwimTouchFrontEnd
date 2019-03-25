@@ -1,0 +1,93 @@
+.envelop{
+    direction: rtl;
+    text-align: right;
+    font-family: Assistant;
+    .choose-button{
+        text-align: center;
+        padding: 1rem;
+        margin-top: 1rem;
+        .choose{
+            padding: 1rem;
+            background: #01a89e;
+            width: 100%;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            border-radius: 1rem;
+            cursor: pointer;
+        }
+        .choose2{
+            padding: 1rem;
+            background: red;
+            width: 100%;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            border-radius: 1rem;
+            cursor: pointer;
+        }
+    }
+    .table{
+        display: flex;
+        flex-direction: column;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        .header{
+            display: flex;
+            justify-content: center;
+            .header-item{
+                padding: 1rem;
+                font-family: Assistant;
+                font-size: 1.1rem;
+                border: 1px solid grey;
+                width:8.3333333%;
+            }
+            .final{
+                color: gray;
+                font-weight: bold;
+            }
+            .touch{
+                color: green; 
+                font-weight: bold;
+            }
+            .jump{
+                font-weight: bold;
+                color: orange;
+            }
+            .center{
+                align-self: center;
+            }
+        }
+    }
+    .buttons{
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem;
+        .tv{
+            background: red;
+            border-radius: 15px;
+            padding: 1rem;
+            color: white;
+            font-weight: bold; 
+            font-family: Assistant; 
+            cursor: pointer;
+            text-align: center;
+            width: 30%;
+            font-size: 1.5rem;
+            margin: auto;
+        }
+        .tv2{
+            background: #01a89e;
+            border-radius: 15px;
+            padding: 1rem;
+            color: white;
+            font-weight: bold; 
+            font-family: Assistant; 
+            cursor: pointer;
+            text-align: center;
+            font-size: 1.5rem;
+            width: 30%;
+            margin: auto;
+        }
+    }
+}

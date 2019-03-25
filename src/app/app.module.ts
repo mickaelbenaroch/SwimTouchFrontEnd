@@ -1,4 +1,5 @@
 import * as $ from 'jquery';
+import {NgxPrintModule} from 'ngx-print';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
@@ -27,6 +28,7 @@ import { StSidenavComponent } from './components/st-sidenav/st-sidenav.component
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { StContentComponent } from './components/st-content/st-content.component';
 import { MySwimmersComponent } from './components/my-swimmers/my-swimmers.component';
+import { TvModeComponent } from './components/dialog-boxes/tv-mode/tv-mode.component';
 import { MyTrainningsComponent } from './components/my-trainnings/my-trainnings.component';
 import { CreateTeamComponent } from './components/st-content/create-team/create-team.component';
 import { CreateTeamBoxComponent } from './components/dialog-boxes/create-team/create-team.component';
@@ -48,6 +50,7 @@ const config: SocketIoConfig = { url: 'https://record-system-server.herokuapp.co
     AppComponent,
     HelpComponent,
     StatsComponent,
+    TvModeComponent,
     ItemBoxComponent,
     MyTeamsComponent,
     MainPageComponent,
@@ -66,12 +69,13 @@ const config: SocketIoConfig = { url: 'https://record-system-server.herokuapp.co
     CreateTrainingComponent,
     CreateTrainningComponent,
     GenericDialogBoxComponent,
-    AddTeamToTrainningComponent,
     RealTimeTrainningComponent,
+    AddTeamToTrainningComponent,
   ],
   imports: [
     FormsModule,
     BrowserModule,
+    NgxPrintModule,
     MatSelectModule,
     MatDialogModule,
     HttpClientModule,
@@ -92,6 +96,7 @@ const config: SocketIoConfig = { url: 'https://record-system-server.herokuapp.co
   ],
   bootstrap: [AppComponent],
   entryComponents: [
+    TvModeComponent,
     CreateTeamBoxComponent,
     PictureUpdateComponent,
     CreateTrainningComponent,
