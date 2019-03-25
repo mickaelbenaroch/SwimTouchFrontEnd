@@ -36,7 +36,16 @@ export class StContentComponent implements OnInit, OnChanges {
   } 
 
   //#endregion
-  
+  /**
+   * Goes to main page
+   * @param event 
+   */
+  public LandToMainPage(event: PageEnum):void{
+    if(event == PageEnum.Landing){
+      this.pageenum = PageEnum.Landing;
+    }
+  }
+
   //#region Public Methods
   /**
    * Create New Event

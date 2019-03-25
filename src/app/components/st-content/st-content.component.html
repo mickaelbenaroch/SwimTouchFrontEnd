@@ -34,16 +34,16 @@
       <app-create-team></app-create-team>
     </div>
     <div class="my-trainnings" *ngIf="pageenum === state.MyTrainnings">
-      <app-my-trainnings></app-my-trainnings>
+      <app-my-trainnings (GoBackEvent)="LandToMainPage($event)"></app-my-trainnings>
     </div>
     <div class="my-trainnings" *ngIf="pageenum === state.MyTeams">
-      <app-my-teams></app-my-teams>
+      <app-my-teams (GoBackEvent)="LandToMainPage($event)"></app-my-teams>
     </div>
     <div class="my-trainnings" *ngIf="pageenum === state.MySwimmers">
-      <app-my-swimmers></app-my-swimmers>
+      <app-my-swimmers (GoBackEvent)="LandToMainPage($event)"></app-my-swimmers>
     </div>
     <div class="my-trainnings" *ngIf="pageenum === state.RealTimeTrainning">
-      <app-real-time-trainning></app-real-time-trainning>
+      <app-real-time-trainning (GoBackEvent)="LandToMainPage($event)"></app-real-time-trainning>
     </div>
     <div class="my-trainnings" *ngIf="pageenum === state.Statistics">
       <app-stats></app-stats>

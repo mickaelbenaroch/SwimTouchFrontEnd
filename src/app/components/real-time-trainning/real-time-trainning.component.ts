@@ -1,16 +1,14 @@
 import { Socket } from 'ngx-socket-io';
-import { Component, OnInit } from '@angular/core';
-import { RouteModel } from '../../models/RouteModel';
+import { PageEnum } from '../../enums/componentview';
 import { ExerciseModel } from '../../models/ExerciseModel';
-import { OneTimeResult } from '../../models/OneTimeResult';
 import { FinalResultModel } from '../../models/FinalResult';
 import { TrainningModel } from 'src/app/models/TrainningModel';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { RealTrainningEnum } from '../../enums/realtrainningenum';
-import { OneJumpTimeResult } from '../../models/OneJumpTimeResult';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { TvModeComponent } from '../dialog-boxes/tv-mode/tv-mode.component';
 import { HttpService } from '../../services/http-service/http-service.service';
-import { OneRouteFinalResultModel } from 'src/app/models/FinalOneRouteResultModel';
+import { OneRouteFinalResultModel } from '../../models/FinalOneRouteResultModel';
 import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
 
 @Component({
@@ -21,6 +19,7 @@ import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/ge
 export class RealTimeTrainningComponent implements OnInit {
   
    //#region Public Members
+   @Output() GoBackEvent: EventEmitter<PageEnum> = new EventEmitter();
    public trainnings: TrainningModel[] = [];
    public stateHelper = RealTrainningEnum;
    public state: RealTrainningEnum = RealTrainningEnum.TrainningView;
@@ -57,6 +56,13 @@ export class RealTimeTrainningComponent implements OnInit {
    //#endregion
   
    //#region Public Methods
+   /**
+   * Go back to main page
+   */
+  public GoBack(): void{
+    this.GoBackEvent.emit(PageEnum.Landing);
+  }
+
    /**
     * Choose a specific Exercise
     * @param trainning 
@@ -96,7 +102,7 @@ export class RealTimeTrainningComponent implements OnInit {
       dialogConfig.panelClass = "tv-dialog";
       var dialogRef = this.dialog.open(TvModeComponent, dialogConfig);
       dialogRef.afterClosed().subscribe(
-        (res: any) => {debugger;
+        (res: any) => {
             console.log( "after tv mode closed ==>" + res);
             var oneResult1 = new OneRouteFinalResultModel();
             var oneResult2 = new OneRouteFinalResultModel();

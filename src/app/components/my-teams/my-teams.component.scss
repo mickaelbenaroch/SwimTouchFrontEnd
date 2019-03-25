@@ -1,6 +1,15 @@
 section{
     margin-top: 1rem;
     direction: rtl;
+    .no-teams{
+        font-size: 1.5rem;
+        font-family: Assistant;
+        text-align: right;
+        .back{
+            cursor: pointer;
+            color: #01a89e;
+        }
+    }
     .exercises{
         padding: 0.5rem;
         display: flex;

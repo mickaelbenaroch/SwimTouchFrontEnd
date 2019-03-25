@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { PageEnum } from '../../enums/componentview';
 import { SwimmerModel } from '../../models/SwimmerModel';
 import { MatDialog, MatDialogConfig } from '@angular/material';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpService } from '../../services/http-service/http-service.service';
 import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
 
@@ -12,6 +13,7 @@ import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/ge
 export class MySwimmersComponent implements OnInit {
 
   //#region Public Members
+  @Output() GoBackEvent: EventEmitter<PageEnum> = new EventEmitter();
   public swimmers: SwimmerModel[] = [];
   //#endregion
 
@@ -34,11 +36,18 @@ export class MySwimmersComponent implements OnInit {
   //#endregion
 
   //#region Public Methods
-      /**
+  /**
+   * Go back to main page
+   */
+  public GoBack(): void{
+    this.GoBackEvent.emit(PageEnum.Landing);
+  }
+
+  /**
    * Error dialog Box Opening
    * @param email 
    */
-  public OpenDialog() {
+  public OpenDialog():void{
 
     const dialogConfig = new MatDialogConfig();
 

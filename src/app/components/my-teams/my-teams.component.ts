@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
 import { TeamModel } from '../../models/TeamModel';
+import { PageEnum } from '../../enums/componentview';
 import { MatDialog, MatDialogConfig } from '@angular/material';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpService } from '../../services/http-service/http-service.service';
 import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
 
@@ -12,6 +13,7 @@ import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/ge
 export class MyTeamsComponent implements OnInit {
 
   //#region Public Members
+  @Output() GoBackEvent: EventEmitter<PageEnum> = new EventEmitter();
   public teams: TeamModel[] = [];
   //#endregion
 
@@ -34,7 +36,14 @@ export class MyTeamsComponent implements OnInit {
   //#endregion
 
   //#region Public Methods
-      /**
+    /**
+   * Go back to main page
+   */
+  public GoBack(): void{
+    this.GoBackEvent.emit(PageEnum.Landing);
+  }
+
+  /**
    * Error dialog Box Opening
    * @param email 
    */

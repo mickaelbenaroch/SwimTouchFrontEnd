@@ -100,7 +100,7 @@ export class CreateTrainningComponent implements OnInit {
   /**
    * On Mat select change handler
    */
-  public Select(event):void{debugger;
+  public Select(event):void{
       var temp = event.source.id.split('t');
       var selectNumber = temp[1];
       let route1 = new RouteModel();
@@ -110,7 +110,7 @@ export class CreateTrainningComponent implements OnInit {
         name: route1.swimmer_ref
       }
       this.httpservice.httpPost('swimmer/getswimmers',model).subscribe(
-        (res: any) =>{debugger;
+        (res: any) =>{
           route1.swimmer_id = res.swimmer[0]._id;
           this.exercise.routes.routes.push(route1);
         },

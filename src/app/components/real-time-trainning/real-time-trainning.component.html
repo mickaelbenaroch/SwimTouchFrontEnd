@@ -1,5 +1,6 @@
  <section>
-    <div *ngIf="state == stateHelper.TrainningView">
+    <div *ngIf="trainnings == undefined || trainnings.length == 0" class="no-trainnings"> לא נמצאו אימונים בבסיס הנתונים. באשרותך ליצור קבוצה חדשה <span class="back" (click)="GoBack()">בתפריט הראשי</span></div>
+    <div *ngIf="state == stateHelper.TrainningView && trainnings !== undefined && trainnings.length > 0">
       <div class="title">
         <span>נא לבחור אימון מתוך הרשימה:</span>
       </div>

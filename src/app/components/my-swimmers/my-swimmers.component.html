@@ -1,4 +1,5 @@
  <section>
+    <div *ngIf="swimmers == undefined || swimmers.length == 0" class="no-swimmers"> לא נמצאו שחיינים בבסיס הנתונים. באשרותך ליצור קבוצה חדשה <span class="back" (click)="GoBack()">בתפריט הראשי</span></div>
     <mat-accordion>
       <mat-expansion-panel *ngFor="let swimmer of swimmers">
         <mat-expansion-panel-header>

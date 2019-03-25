@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { TrainningModel } from 'src/app/models/TrainningModel';
-import { HttpService } from '../../services/http-service/http-service.service';
+import { PageEnum } from '../../enums/componentview';
+import { TrainningModel } from '../../models/TrainningModel';
 import { MatDialogConfig, MatDialog } from '@angular/material';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { HttpService } from '../../services/http-service/http-service.service';
 import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
 
 @Component({
@@ -12,6 +13,7 @@ import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/ge
 export class MyTrainningsComponent implements OnInit {
 
   //#region Public Members
+  @Output() GoBackEvent: EventEmitter<PageEnum> = new EventEmitter();
   public trainnings: TrainningModel[] = [];
   //#endregion
 
@@ -34,7 +36,14 @@ export class MyTrainningsComponent implements OnInit {
   //#endregion
 
   //#region Public Methods
-    /**
+  /**
+   * Go back to main page
+   */
+  public GoBack(): void{
+    this.GoBackEvent.emit(PageEnum.Landing);
+  }
+  
+  /**
    * Error dialog Box Opening
    * @param email 
    */

@@ -2,6 +2,15 @@ section{
     direction: rtl;
     text-align: right;
     font-family: Assistant;
+    .no-trainnings{
+        font-size: 1.5rem;
+        font-family: Assistant;
+        text-align: right;
+        .back{
+            cursor: pointer;
+            color: #01a89e;
+        }
+    }
     .title{
         padding: 1rem;
         font-size: 1.5rem;
