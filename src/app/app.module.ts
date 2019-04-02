@@ -2,6 +2,7 @@ import * as $ from 'jquery';
 import {NgxPrintModule} from 'ngx-print';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { TimerPipe } from './pipes/timerpipe';
 import { AppComponent } from './app.component';
 import {MatDialogModule} from "@angular/material";
 import { NgxUiLoaderModule } from  'ngx-ui-loader';
@@ -47,6 +48,7 @@ const config: SocketIoConfig = { url: 'https://record-system-server.herokuapp.co
 
 @NgModule({
   declarations: [
+    TimerPipe,
     AppComponent,
     HelpComponent,
     StatsComponent,

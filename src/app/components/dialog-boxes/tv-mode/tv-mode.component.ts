@@ -27,6 +27,9 @@ export class TvModeComponent implements OnInit {
   public finalCounter1: number = 0;
   public finalCounter2: number = 0;
   public finalCounter3: number = 0;
+  public milli: string = '00';
+  public seconds: string = '00';
+  public minutes: string = '00';
   //#endregion
 
   //#region Constructor & Lifecycle Hooks
@@ -49,6 +52,7 @@ export class TvModeComponent implements OnInit {
     * @param trainning 
     */
    public Start(exercise: ExerciseModel):void{
+     this.StartTimer();
     var model = {
       action: "start",
       exercise_id: exercise.id
@@ -249,6 +253,27 @@ export class TvModeComponent implements OnInit {
     dialogConfig.width = "420px";
     dialogConfig.height = "250px";
     this.dialog.open(GenericDialogBoxComponent, dialogConfig);
+}
+
+/**
+ * Timer
+ */
+public StartTimer():void{
+  var mil = 0; var sec = 0; var min = 0;
+  setInterval(()=>{
+    mil += 100;
+    if(mil == 1000){
+      mil = 0
+      sec +=1;
+      if(sec == 60){
+        sec = 0;
+        min +=1;
+      }
+    }
+    this.milli = mil.toString();
+    this.seconds = sec.toString(); 
+    this.minutes = min.toString();
+  },10)
 }
   //#endregion
 

@@ -90,4 +90,13 @@
             margin: auto;
         }
     }
+    .timer{
+        direction: rtl;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+   .table{
+       display:none !important;
+   }
 }
