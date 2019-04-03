@@ -205,6 +205,7 @@ export class TvModeComponent implements OnInit {
         }
       }
       console.log("final result ===> " + JSON.stringify(this.finalArrayResults))
+      this.SaverecordInDB();
     }
   }
 
@@ -252,24 +253,24 @@ export class TvModeComponent implements OnInit {
   /**
    * Save record in db
    */
-  // public SaverecordInDB():void{
-  //   this.finalArrayResults.forEach(rec =>{
-  //     if(rec !== undefined && rec !== null){
-  //       this.httpservice.httpPost('records/setrecords',rec).subscribe(
-  //         res =>{
-  //           console.log(rec);
-  //         },
-  //         err =>{
-  //           console.log(err);
-  //           this.OpenDialog();
-  //         }
-  //       )
-  //     }else{
-  //       this.OpenDialog();
-  //       return;
-  //     }
-  //   })
-  // }
+  public SaverecordInDB():void{
+    this.finalArrayResults.forEach(rec =>{
+      if(rec !== undefined && rec !== null){
+        this.httpservice.httpPost('records/setrecords',rec).subscribe(
+          res =>{
+            console.log(rec);
+          },
+          err =>{
+            console.log(err);
+            this.OpenDialog();
+          }
+        )
+      }else{
+        this.OpenDialog();
+        return;
+      }
+    })
+  }
   //#endregion
 
 }
