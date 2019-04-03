@@ -39,8 +39,12 @@ export class CreateTrainningComponent implements OnInit {
       _id: this.team_id
     }
     this.httpservice.httpGet(this.httpservice.apiUrl + "team/getteams").subscribe(
-      res =>{
-        this.team = res.team[0];
+      (res: any )=>{
+        this.team = res.team.forEach(team => {
+          if(team._id == this.team_id){
+            this.team = team;
+          }
+        });
         this.swimmers = this.team.swimmers;
         console.log("TEAM ==>" + this.team.swimmers);
       },
