@@ -15,6 +15,7 @@ export class MyTeamsComponent implements OnInit {
   //#region Public Members
   @Output() GoBackEvent: EventEmitter<PageEnum> = new EventEmitter();
   public teams: TeamModel[] = [];
+  public temp: TeamModel[] = [];
   //#endregion
 
   //#region Constructor & Lifecycle Hooks
@@ -26,8 +27,14 @@ export class MyTeamsComponent implements OnInit {
       coachmail: localStorage.getItem("email")
     }
     this.httpservice.httpGet(this.httpservice.apiUrl + "team/getteams").subscribe(
-      res =>{
-        this.teams = res.team;
+      (res: any) =>{
+        this.temp = res.team;
+        this.temp.forEach(team =>{
+          if(team.coachmail == localStorage.getItem("email")){
+            this.teams.push(team);
+          }
+        })
+
       },
       err =>{
         console.log(err);      }
