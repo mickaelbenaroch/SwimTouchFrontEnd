@@ -25,7 +25,7 @@ export class MyTeamsComponent implements OnInit {
     var model = {
       coachmail: localStorage.getItem("email")
     }
-    this.httpservice.httpPost('team/getteams',model).subscribe(
+    this.httpservice.httpGet(this.httpservice.apiUrl + "team/getteams").subscribe(
       res =>{
         this.teams = res.team;
       },

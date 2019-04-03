@@ -24,12 +24,11 @@ export class TvModeComponent implements OnInit {
   public r1counter: number = 0;
   public r2counter: number = 0;
   public r3counter: number = 0;
-  public finalCounter1: number = 0;
-  public finalCounter2: number = 0;
-  public finalCounter3: number = 0;
+  public finalCounter: number = 0;
   public milli: string = '00';
   public seconds: string = '00';
   public minutes: string = '00';
+  public finalArrayResults: OneRouteFinalResultModel[] = [];
   //#endregion
 
   //#region Constructor & Lifecycle Hooks
@@ -86,8 +85,12 @@ export class TvModeComponent implements OnInit {
    this.socket.on("stop-swim", (result: FinalResultModel) => {
      //send to db the result 
      console.log(result);
-     this.finalResultModel = result;
-     this.DivideResultsFinalTime(result); 
+     this.finalCounter +=1;
+     if(this.finalCounter == 1){
+       console.log("save")
+       this.finalResultModel = result;
+       this.DivideResultsFinalTime(result); 
+     }
    });
  }
 
@@ -118,37 +121,35 @@ export class TvModeComponent implements OnInit {
         switch(result.route){
               case "1":
               if(this.exercise.routes.routes[Number(result.route) -1] !== undefined){
-                $("#touch"+ this.exercise.routes.routes[Number(result.route) -1].number + this.r1counter.toString()).text(result.touchTime);      
-                this.finalCounter1 += result.touchTime;
-                if(this.finalCounter1 > 60){
-                  this.finalCounter1 = this.finalCounter1/60;
-                }
-                this.finalCounter1 = Number(this.finalCounter1.toFixed(3));
+                $("#touch"+ this.exercise.routes.routes[Number(result.route) -1].number + this.r1counter.toString()).text(result.touchTime);                   
                 this.r1counter++;
               }
               break;
               case "2":
               if(this.exercise.routes.routes[Number(result.route) -1] !== undefined){
                 $("#touch"+ this.exercise.routes.routes[Number(result.route) -1].number + this.r2counter.toString()).text(result.touchTime);    
-                this.finalCounter2 += result.touchTime;
-                if(this.finalCounter2 > 60){
-                  this.finalCounter2 = this.finalCounter2/60;
-                }
-                this.finalCounter2 = Number(this.finalCounter2.toFixed(3));
                 this.r2counter++;
               }
               break; 
               case "3":
               if(this.exercise.routes.routes[Number(result.route) -1] !== undefined){
                 $("#touch"+ this.exercise.routes.routes[Number(result.route) -1].number + this.r3counter.toString()).text(result.touchTime);    
-                this.finalCounter3 += result.touchTime;
-                if(this.finalCounter3 > 60){
-                  this.finalCounter3 = this.finalCounter3/60;
-                }
-                this.finalCounter3 = Number(this.finalCounter3.toFixed(3));
                 this.r3counter++;
               }
               break;
+            }
+            //if all the times arrived, stop the exercise
+            if(this.exercise.routes.routes.length == 1 && this.r1counter == this.exercise.howMuchTouches){
+              console.log("stop1");
+              this.Stop(this.exercise);
+            }
+            if(this.exercise.routes.routes.length == 2 && this.r1counter == this.r2counter && this.r1counter == this.exercise.howMuchTouches){
+              console.log("stop2");
+              this.Stop(this.exercise);
+            }
+            if(this.exercise.routes.routes.length == 3 && this.r1counter == this.r2counter && this.r1counter == this.r3counter && this.r1counter == this.exercise.howMuchTouches ){
+              console.log("stop3");
+              this.Stop(this.exercise);
             }
     }
   }
@@ -162,10 +163,7 @@ export class TvModeComponent implements OnInit {
       for(var i = 0; i<this.exercise.routes.routes.length;i++){
         if($("#final"+(i+1))){
           if(i == 0){
-            if(this.finalCounter1 > 60){
-              this.finalCounter1 = this.finalCounter1/60;
-            }
-            $("#final"+(i+1)).text(this.finalCounter1);
+            $("#final"+(i+1)).text($("#touch1"+ (this.swimmers.length - 1).toString()).text());
             var resultToDb = new OneRouteFinalResultModel();
             resultToDb.date = this.exercise.date;
             resultToDb.jump_time = result.routes.route1.jump_time;
@@ -175,13 +173,10 @@ export class TvModeComponent implements OnInit {
             resultToDb.swimmer.swimmer_id =  this.exercise.routes.routes[i].swimmer_id;
             resultToDb.exercise_id = this.exercise.id;
             console.log("data 1st" +  resultToDb)
-            this.SaverecordInDB(resultToDb);
+            this.finalArrayResults.push(resultToDb);
 
           }else if(i == 1){
-            if(this.finalCounter2 > 60){
-              this.finalCounter2 = this.finalCounter2/60;
-            }
-            $("#final"+(i+1)).text(this.finalCounter2); 
+            $("#final"+(i+1)).text($("#touch2"+ (this.swimmers.length - 1).toString()).text());
             var resultToDb = new OneRouteFinalResultModel();
             resultToDb.date = this.exercise.date;
             resultToDb.jump_time = result.routes.route2.jump_time;
@@ -190,14 +185,11 @@ export class TvModeComponent implements OnInit {
             resultToDb.swimmer.swimmer_ref = this.exercise.routes.routes[i].swimmer_ref;
             resultToDb.swimmer.swimmer_id =  this.exercise.routes.routes[i].swimmer_id;
             resultToDb.exercise_id = this.exercise.id;
-            console.log("data 2nd" + resultToDb)
-            this.SaverecordInDB(resultToDb);
+            console.log("data 2nd" + resultToDb);
+            this.finalArrayResults.push(resultToDb);
 
           }else if(i == 2){
-            if(this.finalCounter3 > 60){
-              this.finalCounter3 = this.finalCounter3/60;
-            }
-            $("#final"+(i+1)).text(this.finalCounter3);
+            $("#final"+(i+1)).text($("#touch3"+ (this.swimmers.length - 1).toString()).text());
             var resultToDb = new OneRouteFinalResultModel();
             resultToDb.date = this.exercise.date;
             resultToDb.jump_time = result.routes.route3.jump_time;
@@ -206,40 +198,21 @@ export class TvModeComponent implements OnInit {
             resultToDb.swimmer.swimmer_ref = this.exercise.routes.routes[i].swimmer_ref;
             resultToDb.swimmer.swimmer_id =  this.exercise.routes.routes[i].swimmer_id;
             resultToDb.exercise_id = this.exercise.id;
-            console.log("data 3rd" + resultToDb)
-            this.SaverecordInDB(resultToDb);
+            console.log("data 3rd" + resultToDb);
+            this.finalArrayResults.push(resultToDb);
 
           }
         }
       }
+      console.log("final result ===> " + JSON.stringify(this.finalArrayResults))
     }
   }
 
-    /**
-   * Save record in db
-   */
-  public SaverecordInDB(model: OneRouteFinalResultModel):void{
-    if(model !== undefined && model !== null){
-      this.httpservice.httpPost('records/setrecords',model).subscribe(
-        res =>{
-          console.log(res);
-        },
-        err =>{
-          console.log(err);
-          this.OpenDialog();
-        }
-      )
-    }else{
-      this.OpenDialog();
-      return;
-    }
-  }
-
-     /**
+  /**
     * Error dialog Box Opening
     * @param email 
     */
-   public OpenDialog() {
+  public OpenDialog() {
     const dialogConfig = new MatDialogConfig();
  
     dialogConfig.disableClose = true;
@@ -255,26 +228,48 @@ export class TvModeComponent implements OnInit {
     this.dialog.open(GenericDialogBoxComponent, dialogConfig);
 }
 
-/**
- * Timer
- */
-public StartTimer():void{
-  var mil = 0; var sec = 0; var min = 0;
-  setInterval(()=>{
-    mil += 100;
-    if(mil == 1000){
-      mil = 0
-      sec +=1;
-      if(sec == 60){
-        sec = 0;
-        min +=1;
+  /**
+   * Timer
+   */
+  public StartTimer():void{
+    var mil = 0; var sec = 0; var min = 0;
+    setInterval(()=>{
+      mil += 100;
+      if(mil == 1000){
+        mil = 0
+        sec +=1;
+        if(sec == 60){
+          sec = 0;
+          min +=1;
+        }
       }
-    }
-    this.milli = mil.toString();
-    this.seconds = sec.toString(); 
-    this.minutes = min.toString();
-  },10)
-}
+      this.milli = mil.toString();
+      this.seconds = sec.toString(); 
+      this.minutes = min.toString();
+    },10)
+  }
+
+  /**
+   * Save record in db
+   */
+  // public SaverecordInDB():void{
+  //   this.finalArrayResults.forEach(rec =>{
+  //     if(rec !== undefined && rec !== null){
+  //       this.httpservice.httpPost('records/setrecords',rec).subscribe(
+  //         res =>{
+  //           console.log(rec);
+  //         },
+  //         err =>{
+  //           console.log(err);
+  //           this.OpenDialog();
+  //         }
+  //       )
+  //     }else{
+  //       this.OpenDialog();
+  //       return;
+  //     }
+  //   })
+  // }
   //#endregion
 
 }

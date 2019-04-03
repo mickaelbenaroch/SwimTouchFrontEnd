@@ -38,7 +38,7 @@ export class CreateTrainningComponent implements OnInit {
     var model = {
       _id: this.team_id
     }
-    this.httpservice.httpPost('team/getteams',model).subscribe(
+    this.httpservice.httpGet(this.httpservice.apiUrl + "team/getteams").subscribe(
       res =>{
         this.team = res.team[0];
         this.swimmers = this.team.swimmers;

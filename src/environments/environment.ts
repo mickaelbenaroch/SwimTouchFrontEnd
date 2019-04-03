@@ -7,7 +7,8 @@ export const environment = {
   baseUrl: "https://swimtouch.herokuapp.com/"
 };
 
-/** dev: "http://localhost:3030/" */
+/** dev: "http://localhost:3030/" */ 
+/**"https://swimtouch.herokuapp.com/" */
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

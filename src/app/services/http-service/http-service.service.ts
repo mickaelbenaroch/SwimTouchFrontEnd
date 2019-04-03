@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 export class HttpService {
 
   //#region Public Members
-  protected apiUrl: string;
+  public apiUrl: string;
   //#endregion
 
   //#region Lifecycle Hooks

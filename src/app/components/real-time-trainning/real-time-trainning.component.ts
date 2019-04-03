@@ -181,25 +181,6 @@ export class RealTimeTrainningComponent implements OnInit {
        this.dialog.open(GenericDialogBoxComponent, dialogConfig);
   }
 
-  /**
-   * Save record in db
-   */
-  public SaverecordInDB(model: OneRouteFinalResultModel):void{
-    if(model !== undefined && model !== null){
-      this.httpservice.httpPost('records/setrecords',model).subscribe(
-        res =>{
-          console.log(res);
-        },
-        err =>{
-          console.log(err);
-          this.OpenDialog();
-        }
-      )
-    }else{
-      this.OpenDialog();
-      return;
-    }
-  }
    //#endregion
   
 }

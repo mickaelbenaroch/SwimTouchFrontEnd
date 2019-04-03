@@ -27,7 +27,7 @@ export class AddTeamToTrainningComponent implements OnInit {
     this.coachmail = this.data.coachmail;
     this.name = this.data.name;
     if(this.coachmail !== undefined){
-      this.httpservice.httpPost('team/getteams', this.coachmail).subscribe(
+      this.httpservice.httpGet(this.httpservice.apiUrl + "team/getteams").subscribe(
         (res) =>{
           this.teams = res.team;
         },
