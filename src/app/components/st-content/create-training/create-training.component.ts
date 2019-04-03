@@ -44,19 +44,21 @@ export class CreateTrainingComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.data = {
       name: this.trainnningModel.name,
+      team: this.trainnningModel.team_id._id
     };
     dialogConfig.width = "600px";
     dialogConfig.height = "600px";
-    var dialogRef = this.dialog.open(CreateTrainningComponent, dialogConfig);
-    dialogRef.afterClosed().subscribe(
-      (data: ExerciseModel) => {
-        if(data !== undefined){
-          console.log("Dialog output:", data);
-          this.trainnningModel.exercises.push(data);
-          this.exerciceModel.push(data);
-        }
-      }
-  ); 
+    setTimeout(()=>{
+      var dialogRef = this.dialog.open(CreateTrainningComponent, dialogConfig);
+      dialogRef.afterClosed().subscribe(
+        (data: ExerciseModel) => {
+          if(data !== undefined){
+            console.log("Dialog output:", data);
+            this.trainnningModel.exercises.push(data);
+            this.exerciceModel.push(data);
+          }
+        }); 
+    })
   }
 
   /**
@@ -155,6 +157,7 @@ public OpenAddTeamBox():void{
         var dialogRef = this.dialog.open(AddTeamToTrainningComponent, dialogConfig);
         dialogRef.afterClosed().subscribe(
           res => {
+            debugger;
             this.trainnningModel.team_id = res;
           }
         );

@@ -31,7 +31,7 @@ export class CreateTrainningComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public data,
               private dialog: MatDialog) { }
 
-  public ngOnInit(): void{
+  public ngOnInit(): void{debugger;
     this.name = this.data.name;
     this.exercise.coach = localStorage.getItem("email");
     this.team_id = this.data.team;
@@ -39,14 +39,13 @@ export class CreateTrainningComponent implements OnInit {
       _id: this.team_id
     }
     this.httpservice.httpGet(this.httpservice.apiUrl + "team/getteams").subscribe(
-      (res: any )=>{
+      (res: any )=>{debugger;
         this.team = res.team.forEach(team => {
           if(team._id == this.team_id){
             this.team = team;
+            this.swimmers = team.swimmers;
           }
         });
-        this.swimmers = this.team.swimmers;
-        console.log("TEAM ==>" + this.team.swimmers);
       },
       err =>{
         console.log(err);      

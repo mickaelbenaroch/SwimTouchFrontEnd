@@ -28,8 +28,12 @@ export class AddTeamToTrainningComponent implements OnInit {
     this.name = this.data.name;
     if(this.coachmail !== undefined){
       this.httpservice.httpGet(this.httpservice.apiUrl + "team/getteams").subscribe(
-        (res) =>{
-          this.teams = res.team;
+        (res:any) =>{
+          res.team.forEach(team => {
+            if(team.coachmail == this.coachmail){
+              this.teams.push(team);
+            }
+          });
         },
         err =>{
           console.log(err);
