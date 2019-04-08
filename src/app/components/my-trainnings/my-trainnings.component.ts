@@ -14,7 +14,10 @@ export class MyTrainningsComponent implements OnInit {
 
   //#region Public Members
   @Output() GoBackEvent: EventEmitter<PageEnum> = new EventEmitter();
+  public trainning: TrainningModel;
   public trainnings: TrainningModel[] = [];
+  public details: boolean;
+  public refill: boolean = false;
   //#endregion
 
   //#region Constructor & Lifecycle Hooks
@@ -42,6 +45,14 @@ export class MyTrainningsComponent implements OnInit {
   public GoBack(): void{
     this.GoBackEvent.emit(PageEnum.Landing);
   }
+
+  /**
+   * Go back to calendar
+   */
+  public Back():void{
+    this.details = false;
+    this.refill = true;
+  }
   
   /**
    * Error dialog Box Opening
@@ -62,6 +73,16 @@ export class MyTrainningsComponent implements OnInit {
     dialogConfig.width = "420px";
     dialogConfig.height = "250px";
     this.dialog.open(GenericDialogBoxComponent, dialogConfig);
+}
+
+/**
+ * Get current trainning details for son component
+ */
+public GetCurrentTrainning(event: TrainningModel):void{
+  if(event !== null && event !== undefined){
+    this.details = true;
+    this.trainning = event;
+  }
 }
   //#endregion
 }

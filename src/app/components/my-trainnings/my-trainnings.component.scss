@@ -1,3 +1,18 @@
+
+.back-div{
+    text-align: right;
+    .back{
+        background-color: #01a89e;
+        padding: 1rem;
+        font-size: 1.5rem;
+        text-align: center;
+        cursor: pointer;
+        font-family: Assistant;
+        color: white;
+        border-radius: 15px
+    }
+}
+
 section{
     margin-top: 1rem;
     direction: rtl;

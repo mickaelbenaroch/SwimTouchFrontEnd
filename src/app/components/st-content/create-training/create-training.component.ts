@@ -44,7 +44,8 @@ export class CreateTrainingComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.data = {
       name: this.trainnningModel.name,
-      team: this.trainnningModel.team_id._id
+      team: this.trainnningModel.team_id._id,
+      date: this.trainnningModel.date
     };
     dialogConfig.width = "600px";
     dialogConfig.height = "600px";

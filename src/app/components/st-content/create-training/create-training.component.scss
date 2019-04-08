@@ -98,3 +98,18 @@ input:focus
 .visible{
     opacity: 1 !important;
 }
+.form-div-1{
+    padding: 1rem;
+    direction: rtl;
+    font-family: Assitant;
+    span{
+        
+    }
+    input{
+        width: 100%;
+        padding: 0.5rem;
+        border-radius: 10px;
+        font-size: 1rem;
+        border-width: 1px;
+    }
+}

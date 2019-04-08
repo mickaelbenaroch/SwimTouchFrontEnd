@@ -13,6 +13,10 @@
       <span>שם אימון:</span>
       <input type="text" [(ngModel)]="trainnningModel.name" name="name" (change)="DisableError()" class="inp-1">
     </div>
+    <div class="form-div-1">
+      <span>תאריך ביצוע האימון:</span>
+      <input type="date" [(ngModel)]="trainnningModel.date" name="date" (change)="DisableError()">
+    </div>
     <div class="buttons">
       <button class="but" (click)="OpenAddTeamBox()"> <img class="plus" src="/assets/plus.svg"> הוסף קבוצה לאימון</button>
       <button class="but" (click)="OpenCreateBox()"> <img class="plus" src="/assets/plus.svg"> הוסף תרגיל לאימון</button>

@@ -17,6 +17,7 @@ export class CreateTrainningComponent implements OnInit {
   //#region Public Members
   @Input() name: string;
   @Input() team: TeamModel;
+  @Input() date: string;
   public team_id: string;
   public error: boolean;
   public swimmers: string[] = [];
@@ -33,6 +34,7 @@ export class CreateTrainningComponent implements OnInit {
 
   public ngOnInit(): void{debugger;
     this.name = this.data.name;
+    this.date = this.data.date;
     this.exercise.coach = localStorage.getItem("email");
     this.team_id = this.data.team;
     var model = {
@@ -77,6 +79,7 @@ export class CreateTrainningComponent implements OnInit {
    * Create Trainning 
    */
   public CreateTrainning():void{
+    this.exercise.date = new Date(this.date);
     if(this.exercise.date == undefined || this.exercise == null ||
        this.exercise.distance == undefined || this.exercise.distance == null ||
        this.exercise.group == undefined || this.exercise.group == null ||

@@ -1,7 +1,10 @@
- <section>
+ <div class="back-div">
+  <button *ngIf="details" class="back" (click)="Back()">חזרה</button>
+ </div>
+ <section *ngIf="details">
     <div *ngIf="trainnings == undefined || trainnings.length == 0" class="no-trainnings"> לא נמצאו אימונים בבסיס הנתונים. באשרותך ליצור קבוצה חדשה <span class="back" (click)="GoBack()">בתפריט הראשי</span></div>
     <mat-accordion>
-      <mat-expansion-panel *ngFor="let trainning of trainnings">
+      <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>{{trainning.name}}</mat-panel-title>
           <mat-panel-description></mat-panel-description>
@@ -37,5 +40,10 @@
       </mat-expansion-panel>
     </mat-accordion>
   </section>
+
+
+  <div *ngIf="!details">
+    <app-month [trains]="trainnings" (trainningDetailEvent)="GetCurrentTrainning($event)" [refill]="refill"></app-month>
+  </div>
 
 

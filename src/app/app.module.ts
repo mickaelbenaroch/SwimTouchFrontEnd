@@ -39,6 +39,7 @@ import { RealTimeTrainningComponent } from './components/real-time-trainning/rea
 import { CreateTrainningComponent } from './components/dialog-boxes/create-trainning/create-trainning.component';
 import { GenericDialogBoxComponent } from './components/dialog-boxes/generic-dialog-box/generic-dialog-box.component';
 import { AddTeamToTrainningComponent } from './components/dialog-boxes/add-team-to-trainning/add-team-to-trainning.component';
+import { MonthComponent } from './components/my-trainnings/month/month.component';
 
 const appRoutes: Routes = [
   { path: '' , component: LoginPageComponent},
@@ -73,6 +74,7 @@ const config: SocketIoConfig = { url: 'https://record-system-server.herokuapp.co
     GenericDialogBoxComponent,
     RealTimeTrainningComponent,
     AddTeamToTrainningComponent,
+    MonthComponent,
   ],
   imports: [
     FormsModule,

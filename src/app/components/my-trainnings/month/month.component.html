@@ -1,0 +1,15 @@
+<div class="month">
+  <div style="padding-top: 0.2rem;">
+    <img src="/assets/right-arrow.svg" class="right" (click)="PreviousMonth()">
+  </div>
+  <div>חודש {{CurrentMonth.name}}</div>
+  <div style="padding-top: 0.2rem;">
+    <img src="/assets/right-arrow.svg" class="left" (click)="NextMonth()">
+  </div>
+</div>
+<div class="envelop">
+  <div class="calendar" *ngFor="let day of CurrentMonth.DayArray">
+    <div class="day">{{day.string}}</div>
+    <div class="dailyTrain" *ngFor="let des of day.description" (click)="TrainningDetails(des)">אימון {{des}} </div>
+  </div>
+</div>  

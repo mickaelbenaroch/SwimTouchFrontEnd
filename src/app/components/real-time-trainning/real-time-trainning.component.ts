@@ -107,18 +107,23 @@ export class RealTimeTrainningComponent implements OnInit {
             var oneResult1 = new OneRouteFinalResultModel();
             var oneResult2 = new OneRouteFinalResultModel();
             var oneResult3 = new OneRouteFinalResultModel();
-           for(let i = 0; i<res.routes.route1.results.length; i++){
-             oneResult1.results.push(res.routes.route1.results[i]);
-             oneResult1.total += res.routes.route1.results[i];
+            if(res.routes !== undefined){
+              for(let i = 0; i<res.routes.route1.results.length; i++){
+                oneResult1.results.push(res.routes.route1.results[i]);
+                oneResult1.total += res.routes.route1.results[i];
+               }
             }
-            
-            for(let i = 0; i<res.routes.route2.results.length; i++){
-              oneResult2.results.push(res.routes.route2.results[i]);
-              oneResult2.total += res.routes.route2.results[i];
+            if(res.routes !== undefined){
+              for(let i = 0; i<res.routes.route2.results.length; i++){
+                oneResult2.results.push(res.routes.route2.results[i]);
+                oneResult2.total += res.routes.route2.results[i];
+              }
             }
-            for(let i = 0; i<res.routes.route3.results.length; i++){
-              oneResult3.results.push(res.routes.route3.results[i]);
-              oneResult3.total += res.routes.route3.results[i];
+            if(res.routes !== undefined){
+              for(let i = 0; i<res.routes.route3.results.length; i++){
+                oneResult3.results.push(res.routes.route3.results[i]);
+                oneResult3.total += res.routes.route3.results[i];
+              }
             }
             oneResult1.swimmer.number = 1;
             if(this.choosenExercise.routes.routes[0] !== undefined){
