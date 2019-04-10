@@ -18,11 +18,14 @@ export class CreateTrainningComponent implements OnInit {
   @Input() name: string;
   @Input() team: TeamModel;
   @Input() date: string;
-  public team_id: string;
+  public team_id: string; 
   public error: boolean;
+  public calculated: boolean;
   public swimmers: string[] = [];
   public exercise: ExerciseModel = new ExerciseModel();
   public routes: string[] = ['1','2','3','4','5'];
+  public groups: string[] = ['A','B','C','D'];
+  public styles: string[] = ["חתירה","גב","פרפר","חזה","חופשי","מעורב","שליחים","כפות","סנפירים","משקלים","צפרדע","שחיית-צד","אחר"];
   
   //#endregion
 
@@ -32,7 +35,7 @@ export class CreateTrainningComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public data,
               private dialog: MatDialog) { }
 
-  public ngOnInit(): void{debugger;
+  public ngOnInit(): void{
     this.name = this.data.name;
     this.date = this.data.date;
     this.exercise.coach = localStorage.getItem("email");
@@ -41,7 +44,7 @@ export class CreateTrainningComponent implements OnInit {
       _id: this.team_id
     }
     this.httpservice.httpGet(this.httpservice.apiUrl + "team/getteams").subscribe(
-      (res: any )=>{debugger;
+      (res: any )=>{
         this.team = res.team.forEach(team => {
           if(team._id == this.team_id){
             this.team = team;
@@ -64,6 +67,7 @@ export class CreateTrainningComponent implements OnInit {
   public PoolDistance():void{
     this.DisableError();
     if(this.exercise.howMuchTouches !== undefined && this.exercise.howMuchTouches >0){
+      this.calculated = true;
       this.exercise.howMuchTouches = Number(this.exercise.distance) / this.exercise.howMuchTouches;
     }
   }
@@ -126,6 +130,24 @@ export class CreateTrainningComponent implements OnInit {
         }
       )
   }
+
+  /**
+   * On group selection change
+   */
+  public SelectGroup(event):void{
+      this.DisableError();
+      console.log(event);
+      this.exercise.group = event.value;
+  }
+
+  /**
+   * On Style selection change
+   */
+  public SelectStyle(event):void{
+    this.DisableError();
+    console.log(event);
+    this.exercise.style = event.value;
+}
 
   /**
    * Disable Error

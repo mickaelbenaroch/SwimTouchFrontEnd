@@ -68,7 +68,8 @@ export class CreateTrainingComponent implements OnInit {
   public SaveTrainning():void{
     if(this.trainnningModel.coachmail !== undefined && this.trainnningModel.coachmail !== null &&
        this.trainnningModel.name !== undefined && this.trainnningModel.name !== null &&
-       this.trainnningModel.team_id !== undefined && this.trainnningModel.team_id !== null){
+       this.trainnningModel.team_id !== undefined && this.trainnningModel.team_id !== null &&
+       this.trainnningModel.date !== undefined && this.trainnningModel.date !== null){
          this.OpenSureToSaveBox();
        }else{
          this.error = true;
@@ -158,7 +159,6 @@ public OpenAddTeamBox():void{
         var dialogRef = this.dialog.open(AddTeamToTrainningComponent, dialogConfig);
         dialogRef.afterClosed().subscribe(
           res => {
-            debugger;
             this.trainnningModel.team_id = res;
           }
         );

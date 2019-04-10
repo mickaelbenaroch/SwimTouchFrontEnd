@@ -7,7 +7,7 @@
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>{{trainning.name}}</mat-panel-title>
-          <mat-panel-description></mat-panel-description>
+          <mat-panel-description>תאריך ביצוע: {{trainning.date}}  </mat-panel-description>
         </mat-expansion-panel-header>
         <div class="exercises">
           <div class="div">
@@ -18,9 +18,9 @@
           </div>
             <div>תרגילים באימון:</div>
             <mat-accordion>
-              <mat-expansion-panel *ngFor="let exercise of trainning.exercises">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>{{exercise.date}}</mat-panel-title>
+              <mat-expansion-panel *ngFor="let exercise of trainning.exercises" (click)="FillRouteArray(exercise)">
+                <mat-expansion-panel-header> 
+                  <mat-panel-title>{{exercise.date | datepipe}}</mat-panel-title>
                     <mat-panel-description>{{exercise.distance + "  מטר,   " + exercise.style+"," + "  קבוצה " + exercise.group}}</mat-panel-description>
                   </mat-expansion-panel-header>
                   <div class="touches">מספר נגיעות בתרגיל: {{exercise.howMuchTouches}}</div>
@@ -33,12 +33,28 @@
                     <div class="route">מסלול: {{route.number}}</div>
                     <div color="swimmer">שחיין: {{route.swimmer_ref}}</div>
                   </div>
+
                 </div>
+                  <div class="edit-routes" (click)="EditRoutes(exercise)">עריכת חלוקת מסלולים</div>
+                  <div *ngIf="editRoute" cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+                    <div style="display:flex; flex-direction:column; width:25%;">
+                      <div class="example-box" *ngFor="let route of routes; let i = index">
+                        מסלול:  {{i + 1}}  
+                      </div>
+                    </div>
+                    <div style="display:flex; flex-direction:column; width:75%;">
+                      <div class="example-box" *ngFor="let route of routes; let i = index" cdkDrag>
+                        <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+                        {{route}} 
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="editRoute" style="margin-top: 1rem;" class="edit-routes" (click)="SaveRoutes(exercise)">שמור חלוקה</div>
               </mat-expansion-panel>
             </mat-accordion>
         </div>
       </mat-expansion-panel>
-    </mat-accordion>
+    </mat-accordion> 
   </section>
 
 

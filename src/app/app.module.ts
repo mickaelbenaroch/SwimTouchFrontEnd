@@ -4,8 +4,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TimerPipe } from './pipes/timerpipe';
 import { AppComponent } from './app.component';
+import { CustomDatePipe } from './pipes/datepipe';
 import {MatDialogModule} from "@angular/material";
 import { NgxUiLoaderModule } from  'ngx-ui-loader';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 import { Routes, RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import {MatSelectModule} from '@angular/material/select';
@@ -27,6 +29,7 @@ import { StHeaderComponent } from './components/st-header/st-header.component';
 import { MyInterceptor } from './services/interceptor/http-interceptor.service';
 import { StSidenavComponent } from './components/st-sidenav/st-sidenav.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
+import { MonthComponent } from './components/my-trainnings/month/month.component';
 import { StContentComponent } from './components/st-content/st-content.component';
 import { MySwimmersComponent } from './components/my-swimmers/my-swimmers.component';
 import { TvModeComponent } from './components/dialog-boxes/tv-mode/tv-mode.component';
@@ -39,7 +42,6 @@ import { RealTimeTrainningComponent } from './components/real-time-trainning/rea
 import { CreateTrainningComponent } from './components/dialog-boxes/create-trainning/create-trainning.component';
 import { GenericDialogBoxComponent } from './components/dialog-boxes/generic-dialog-box/generic-dialog-box.component';
 import { AddTeamToTrainningComponent } from './components/dialog-boxes/add-team-to-trainning/add-team-to-trainning.component';
-import { MonthComponent } from './components/my-trainnings/month/month.component';
 
 const appRoutes: Routes = [
   { path: '' , component: LoginPageComponent},
@@ -52,6 +54,8 @@ const config: SocketIoConfig = { url: 'https://record-system-server.herokuapp.co
     TimerPipe,
     AppComponent,
     HelpComponent,
+    CustomDatePipe,
+    MonthComponent,
     StatsComponent,
     TvModeComponent,
     ItemBoxComponent,
@@ -74,11 +78,11 @@ const config: SocketIoConfig = { url: 'https://record-system-server.herokuapp.co
     GenericDialogBoxComponent,
     RealTimeTrainningComponent,
     AddTeamToTrainningComponent,
-    MonthComponent,
   ],
   imports: [
     FormsModule,
     BrowserModule,
+    DragDropModule,
     NgxPrintModule,
     MatSelectModule,
     MatDialogModule,

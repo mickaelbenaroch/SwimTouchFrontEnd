@@ -5,7 +5,7 @@
         <span>נא לבחור אימון מתוך הרשימה:</span>
       </div>
       <div class="panel" *ngFor="let trainning of trainnings" (click)="ChooseTrainning(trainning)">
-          {{trainning.name}}
+           שם האימון: {{trainning.name + ', '}} תאריך: {{' ' + trainning.date + ' '}} 
       </div>
     </div>
 

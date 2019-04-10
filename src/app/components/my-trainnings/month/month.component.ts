@@ -47,7 +47,7 @@ export class MonthComponent implements OnInit, AfterViewChecked,OnChanges{
         day = day[1];
       }
       if(month == this.CurrentMonth.number.toString() || month == '0'+ this.CurrentMonth.number.toString()){
-        this.CurrentMonth.DayArray[ Number(day) + 1].description.push(trainning.name);
+        this.CurrentMonth.DayArray[ Number(day) - 1].description.push(trainning.name);
       }
     })
   }

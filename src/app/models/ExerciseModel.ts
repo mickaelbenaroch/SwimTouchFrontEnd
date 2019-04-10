@@ -19,4 +19,6 @@ export class ExerciseModel{
     public routes: PoolModel = new PoolModel();
 
     public hasBeenStarted: boolean = false;
+
+    public ExerciseModel(){}
 }
