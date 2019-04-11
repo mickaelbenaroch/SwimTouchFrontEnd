@@ -47,7 +47,7 @@ const appRoutes: Routes = [
   { path: '' , component: LoginPageComponent},
   { path: 'mainmenu', component: MainPageComponent },
 ];
-const config: SocketIoConfig = { url: 'https://record-system-server.herokuapp.com', options: {} };
+const config: SocketIoConfig = { url: 'https://record-system-server-1.herokuapp.com', options: {} };
 
 @NgModule({
   declarations: [
