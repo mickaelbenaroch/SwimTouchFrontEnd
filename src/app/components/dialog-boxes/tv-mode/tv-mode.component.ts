@@ -116,7 +116,7 @@ export class TvModeComponent implements OnInit {
    * Repartition of results
    * @param trainning 
    */
-  public DivideResultsTouchTime(result: OneTimeResult):void{
+  public DivideResultsTouchTime(result: OneTimeResult):void{debugger;
     if(result !== undefined && result !== null){
         switch(result.route){
               case "1":
@@ -138,6 +138,7 @@ export class TvModeComponent implements OnInit {
               }
               break;
             }
+            debugger;
             //if all the times arrived, stop the exercise
             if(this.exercise.routes.routes.length == 1 && this.r1counter == this.exercise.howMuchTouches){
               console.log("stop1");
