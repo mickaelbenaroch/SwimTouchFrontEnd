@@ -31,4 +31,101 @@
             }
         }
     }
+
+
+    .swimmer-details{
+        padding: 1rem;
+        .swimmer-details-father{
+            display: flex;
+            justify-content: space-between;
+            .group-div-1{
+                display: flex;
+                flex-direction: row;
+                .name-div{
+                    .first{
+                        padding: 0.5rem;
+                        font-weight: bold;
+                        color: grey;
+                    }
+                    .second{
+                        padding: 0.5rem;
+                    }
+                }
+                .picture-div{
+                    .first{
+                        padding: 0.5rem;
+                        font-weight: bold;
+                    }
+                    .second{
+                        padding: 0.5rem;
+                    }
+                }
+            }
+            .group-div-2{
+                button{
+                    padding: 1rem;
+                    border-radius: 10px;
+                    background-color: #01a89e;
+                    color: white;
+                    font-weight: bold;
+                    font-family: Assistant;
+                    cursor: pointer;
+                    font-size: 1rem;
+                }
+            }
+
+        }
+        .group-div{
+            padding: 0.5rem;
+            .first{
+                font-weight: bold;
+                color: grey;
+            }
+            .second{
+                padding: 0.5rem;
+            }
+        }
+        .age-div{
+            padding: 0.5rem;
+            .first{
+                font-weight: bold;
+                color: grey;
+            }
+            .second{
+                padding: 0.5rem;
+            }
+        }
+        .height-div{
+            padding: 0.5rem;
+            .first{
+                font-weight: bold;
+                color: grey;
+            }
+            .second{
+                padding: 0.5rem;
+            }
+        }
+    }
+    .buttons-div{
+        .button-1{
+            padding: 1rem;
+            border-radius: 10px;
+            background-color: #01a89e;
+            color: white;
+            font-weight: bold;
+            font-family: Assistant;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .button-2{
+            padding: 1rem;
+            border-radius: 10px;
+            background-color: #01a89e;
+            color: white;
+            font-weight: bold;
+            font-family: Assistant;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+    }
 }

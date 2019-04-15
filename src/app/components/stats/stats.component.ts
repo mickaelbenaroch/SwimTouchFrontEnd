@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamModel } from '../../models/TeamModel';
+import { SwimmerModel } from '../../models/SwimmerModel';
+import { SwimmerTargetModel } from '../../models/SwimmerTargetModel';
 import { HttpService } from '../../services/http-service/http-service.service';
-import { SwimmerModel } from 'src/app/models/SwimmerModel';
 
 @Component({
   selector: 'app-stats',
@@ -14,6 +15,9 @@ export class StatsComponent implements OnInit {
   public teams: TeamModel[] = [];
   public temp: TeamModel[] = [];
   public currentTeam: TeamModel;
+  public choosenSwimmer: boolean;
+  public currentSwimmer: SwimmerModel;
+  public SwimmerTargetModel: SwimmerTargetModel;
   //#endregion
 
   //#regiom Constructor & Lifecycle Hooks
@@ -54,13 +58,38 @@ export class StatsComponent implements OnInit {
    */
   public SwimmerDetails(swimmer: SwimmerModel):void{
     console.log(swimmer);
-    age: "31"
-coachmail: "mickaelbenaroch@yahoo.fr"
-group: "A"
-height: "184"
-name: "ליאור שחר"
-picture: ""
-_id: "6d0f88bb-a707-4756-bec4-d81f6aa52571"
+    this.choosenSwimmer = true;
+    this.currentSwimmer = swimmer;
+
   }
+
+  /**
+   * BackToSwimmerChoose
+   */
+  public BackToSwimmerChoose():void{
+    this.choosenSwimmer = false;
+  }
+
+  /**
+   * GetSwimmerTargets
+   */
+  public GetSwimmerTargets(): void{
+    if(this.currentSwimmer == null || this.currentSwimmer == undefined){
+      return;
+    }else{
+      var model = {
+        Swimmer_ref: this.currentSwimmer._id
+      }
+      this.httpservice.httpPost('target/getswimmertarget', model).subscribe(
+        res => {
+          console.log(res);
+        },
+        err =>{
+          console.log(err);
+        }
+      )
+    }
+  }
+
   //#endregion
 }

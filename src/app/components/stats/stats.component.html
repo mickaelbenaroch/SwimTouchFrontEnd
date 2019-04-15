@@ -11,9 +11,50 @@
   </div>
   <div class="div-3" *ngIf="currentTeam !== undefined">
     <div class="div-3-1"><span class="name">שם הקבוצה:</span> {{currentTeam.name + '  '}}</div>
-    <div class="div-3-2">שחיינים:</div>
-    <ul class="div-3-3" *ngFor="let swimmer of currentTeam.swimmers">
-      <li class="li" (click)="SwimmerDetails(swimmer)">{{swimmer.name}}</li>
-    </ul>
-  </div>
+    <div *ngIf="!choosenSwimmer">
+      <div class="div-3-2">שחיינים:</div>
+        <ul class="div-3-3" *ngFor="let swimmer of currentTeam.swimmers">
+          <li class="li" (click)="SwimmerDetails(swimmer)">{{swimmer.name}}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="swimmer-details" *ngIf="choosenSwimmer">
+    <div class="swimmer-details-father">
+      <div class="group-div-1">
+        <div class="name-div">
+          <span class="first">שם:</span> 
+          <span class="second">{{currentSwimmer.name}}</span>
+        </div>
+        <div class="picture-div">
+          <img style="width: 2rem;border-radius:50%" *ngIf="currentSwimmer.picture !== '' && currentSwimmer.picture !== null && currentSwimmer.picture !== undefined" [src]=currentSwimmer.picture> 
+          <img style="width: 2rem;border-radius:50%" *ngIf="currentSwimmer.picture == '' || currentSwimmer.picture !== null || currentSwimmer.picture == undefined" src="/assets/user.svg">
+        </div>
+      </div>
+      <div class="group-div-2">
+        <button (click)="BackToSwimmerChoose()">אחורה</button>
+      </div>
+    </div>
+      <div class="group-div">
+        <span class="first">קבוצה:</span>
+        <span class="second">{{currentSwimmer.group}}</span>
+      </div>
+      <div class="height-div">
+        <span class="first">גובה:</span>
+        <span class="second">{{currentSwimmer.height}}</span>  
+      </div>
+      <div class="age-div">
+        <span class="first">גיל:</span>
+        <span class="second">{{currentSwimmer.age}}</span>
+      </div>
+    </div>
+
+
+    <div class="buttons-div">
+      <button class="button-1" *ngIf="choosenSwimmer" (click)="GetSwimmerTargets()">צפיה בעדים של השחיין</button>
+      <button class="button-2" *ngIf="choosenSwimmer" (click)="OpenAddSwimmerTarget()">קביעת יעד חדש לשחיין</button>
+    </div>
 </div>
+
+
+

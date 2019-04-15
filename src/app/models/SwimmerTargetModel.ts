@@ -1,5 +1,4 @@
 import { SwimmingStylesEnum } from '../enums/swimmingstylesenum';
-import { NumberValueAccessor } from '@angular/forms/src/directives';
 
 export class SwimmerTargetModel{
 
@@ -14,5 +13,8 @@ export class SwimmerTargetModel{
 
     //In how much tries the swimmer has to improve its record
     public TriesToImprove: number;
+
+    //Swimmer ID for reference
+    public Swimmer_ref: string;
 
 }
