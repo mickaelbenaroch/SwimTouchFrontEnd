@@ -17,6 +17,7 @@ export class MonthComponent implements OnInit, AfterViewChecked,OnChanges{
   @Input() refill: boolean;
   public CurrentMonth: MonthModel;
   public monthEnum = MonthEnum;
+  public done: boolean;
   //#endregion
 
   //region Constructor & Lifecycle Hooks
@@ -38,18 +39,21 @@ export class MonthComponent implements OnInit, AfterViewChecked,OnChanges{
   } 
 
   public ngAfterViewChecked(): void {
-    console.log("test "+ this.trains )
-    this.trains.forEach(trainning => {
-      var split = trainning.date.split('-');
-      var month = split[1];
-      var day = split[2];
-      if(day[0] == '0'){
-        day = day[1];
-      }
-      if(month == this.CurrentMonth.number.toString() || month == '0'+ this.CurrentMonth.number.toString()){
-        this.CurrentMonth.DayArray[ Number(day) - 1].description.push(trainning.name);
-      }
-    })
+      console.log("test "+ this.trains )
+      this.trains.forEach(trainning => {
+        var split = trainning.date.split('-');
+        var month = split[1];
+        var day = split[2];
+        if(day[0] == '0'){
+          day = day[1];
+        }
+        if(month == this.CurrentMonth.number.toString() || month == '0'+ this.CurrentMonth.number.toString()){
+          //check for dupplicates values
+          if(!this.CurrentMonth.DayArray[Number(day) -1].description.includes(trainning.name)){
+            this.CurrentMonth.DayArray[ Number(day) - 1].description.push(trainning.name);
+          }
+        }
+      })
   }
   //#endregion
 

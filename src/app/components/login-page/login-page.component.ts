@@ -5,6 +5,7 @@ import { SignUpModel } from '../../models/SignUpModel';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { HttpService } from '../../services/http-service/http-service.service';
 import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
+import { RoleEnum } from 'src/app/enums/roleenum';
 
 @Component({
   selector: 'app-login-page',
@@ -22,6 +23,7 @@ export class LoginPageComponent implements OnInit {
   public signupError: boolean;
   public LoginModel: LoginModel = new LoginModel();
   public SignUpModel: SignUpModel = new SignUpModel();
+  public Roles: string[] = ['מאמן','שחיין'];
   //#endregion 
  
   //#region Constructor & Lifecycle Hooks
@@ -75,6 +77,22 @@ export class LoginPageComponent implements OnInit {
       console.log(err);      
       this.OpenDialog();
     })
+  }
+
+  /**
+   * On selct change
+   */
+  public Select(event):void{
+    if(event !== null && event !== undefined){
+      switch(event.value){
+        case "מאמן": 
+        this.SignUpModel.type = RoleEnum.Trainner;
+        break;
+        case "שחיין":
+        this.SignUpModel.type = RoleEnum.Swimmer;
+        break;
+      }
+    }
   }
 
   /**

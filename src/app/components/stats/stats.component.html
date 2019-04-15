@@ -1,3 +1,19 @@
-<p>
-  stats works!
-</p>
+<div class="envelop">
+  <div class="div-1">
+    <span>בחר קבוצה:</span>
+  </div>
+  <div class="div-2">
+    <mat-select placeholder="בחר קבוצה" (selectionChange)="Select($event)" name="team">
+      <mat-option *ngFor="let team of teams" [value]="team">
+          {{team.name}}
+      </mat-option>
+    </mat-select>
+  </div>
+  <div class="div-3" *ngIf="currentTeam !== undefined">
+    <div class="div-3-1"><span class="name">שם הקבוצה:</span> {{currentTeam.name + '  '}}</div>
+    <div class="div-3-2">שחיינים:</div>
+    <ul class="div-3-3" *ngFor="let swimmer of currentTeam.swimmers">
+      <li class="li" (click)="SwimmerDetails(swimmer)">{{swimmer.name}}</li>
+    </ul>
+  </div>
+</div>

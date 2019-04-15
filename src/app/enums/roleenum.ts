@@ -1,6 +1,6 @@
 export enum RoleEnum{
 
-    Admin = "admin",
+    Trainner = "מאמן",
 
-    Swimmer = "swimmer"
+    Swimmer = "שחיין"
 }

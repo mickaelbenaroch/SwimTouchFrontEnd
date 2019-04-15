@@ -59,8 +59,11 @@
           <input type="text" [(ngModel)]="this.SignUpModel.group" name="group" class="group" placeholder="קבוצה">
         </div>
         <div class="d7">
-          <span>תפקיד:</span>
-          <input disabled type="text" name="type" class="role" placeholder="Swimmer">
+          <mat-select placeholder="בחר תפקיד" (selectionChange)="Select($event)" name="role">
+            <mat-option *ngFor="let role of Roles" [value]="role">
+              {{role}}
+            </mat-option>
+          </mat-select>
         </div>
       <div class="su-group-4" [ngClass]="{'visible': signupError}"> 
         <span>אחד או יותר מהפרטים שגויים</span>
