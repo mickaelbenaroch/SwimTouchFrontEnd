@@ -6,7 +6,7 @@ export class SwimmerTargetModel{
     public style: SwimmingStylesEnum;
 
     //Distance of a specific style of swimming
-    public sistance: number;
+    public distance: number;
 
     //Target of the swimmer in a specific style of swimming
     public targetTime: number;
