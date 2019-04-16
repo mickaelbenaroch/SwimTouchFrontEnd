@@ -3,19 +3,19 @@ import { SwimmingStylesEnum } from '../enums/swimmingstylesenum';
 export class SwimmerTargetModel{
 
     //Style of specific swimming
-    public Style: SwimmingStylesEnum;
+    public style: SwimmingStylesEnum;
 
     //Distance of a specific style of swimming
-    public Distance: number;
+    public sistance: number;
 
     //Target of the swimmer in a specific style of swimming
-    public TargetTime: number;
+    public targetTime: number;
 
     //In how much tries the swimmer has to improve its record
-    public TriesToImprove: number;
+    public triesToImprove: number;
 
     //Swimmer ID for reference
-    public Swimmer_ref: string;
+    public swimmer_ref: string;
 
     //Constructor
     public SwimmerTargetModel(){};

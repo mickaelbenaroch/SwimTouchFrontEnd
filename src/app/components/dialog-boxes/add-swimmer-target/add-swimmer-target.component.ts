@@ -43,7 +43,7 @@ export class AddSwimmerTargetComponent implements OnInit {
    * AddSwimmerTarget
    */
   public AddSwimmerTarget():void{debugger;
-    this.target.Swimmer_ref = this.swimmer._id;
+    this.target.swimmer_ref = this.swimmer._id;
     this.httpservice.httpPost('target/swimmertarget',this.target).subscribe(
       res=>{
         console.log(res);
@@ -61,43 +61,43 @@ export class AddSwimmerTargetComponent implements OnInit {
   public Select(event):void{
     switch(event.value){
       case "חתירה":
-      this.target.Style = SwimmingStylesEnum.Crawl;
+      this.target.style = SwimmingStylesEnum.Crawl;
       break;
       case "גב":
-      this.target.Style = SwimmingStylesEnum.Back;
+      this.target.style = SwimmingStylesEnum.Back;
       break;
       case "פרפר":
-      this.target.Style = SwimmingStylesEnum.Butterfly;
+      this.target.style = SwimmingStylesEnum.Butterfly;
       break;
       case "חזה":
-      this.target.Style = SwimmingStylesEnum.Belly;
+      this.target.style = SwimmingStylesEnum.Belly;
       break;
       case "חופשי":
-      this.target.Style = SwimmingStylesEnum.Free;
+      this.target.style = SwimmingStylesEnum.Free;
       break;
       case "מעורב":
-      this.target.Style = SwimmingStylesEnum.Mix;
+      this.target.style = SwimmingStylesEnum.Mix;
       break;
       case "שליחים":
-      this.target.Style = SwimmingStylesEnum.Delivery;
+      this.target.style = SwimmingStylesEnum.Delivery;
       break;
       case "כפות":
-      this.target.Style = SwimmingStylesEnum.Palms;
+      this.target.style = SwimmingStylesEnum.Palms;
       break;
       case "סנפירים":
-      this.target.Style = SwimmingStylesEnum.Snapirims;
+      this.target.style = SwimmingStylesEnum.Snapirims;
       break;
       case "משקלים":
-      this.target.Style = SwimmingStylesEnum.Weights;
+      this.target.style = SwimmingStylesEnum.Weights;
       break;
       case "צפרדע":
-      this.target.Style = SwimmingStylesEnum.Frog;
+      this.target.style = SwimmingStylesEnum.Frog;
       break;
       case "שחיית-צד":
-      this.target.Style = SwimmingStylesEnum.Side;
+      this.target.style = SwimmingStylesEnum.Side;
       break;
       case "אחר":
-      this.target.Style = SwimmingStylesEnum.Other;
+      this.target.style = SwimmingStylesEnum.Other;
       break;
 
     }

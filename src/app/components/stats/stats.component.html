@@ -54,6 +54,27 @@
       <button class="button-1" *ngIf="choosenSwimmer" (click)="GetSwimmerTargets()">צפיה בעדים של השחיין</button>
       <button class="button-2" *ngIf="choosenSwimmer" (click)="OpenAddSwimmerTarget()">קביעת יעד חדש לשחיין</button>
     </div>
+
+    <div *ngIf="targ">
+        <div class="targets" *ngFor="let target of currentSwimmerTargets">
+          <div class="div">
+            <span>סגנון:</span>
+            <div>{{"  " + target.style}}</div>
+          </div>
+          <div class="div"> 
+            <span>מרחק:</span>
+            <div>{{"  " +  target.distance + " מטר  "}}</div>
+          </div>
+          <div class="div">
+            <span>שיפור תוך </span>
+            <div>{{"  " + target.triesToImprove + "  משחים  "}}</div>
+          </div>
+          <div class="div">
+            <span>יעד:</span>
+            <div>{{"  " + target.targetTime  + "  שניות  "}}</div>
+          </div>
+        </div>
+    </div>
 </div>
 
 

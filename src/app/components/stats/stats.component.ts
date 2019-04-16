@@ -18,9 +18,11 @@ export class StatsComponent implements OnInit {
   public teams: TeamModel[] = [];
   public temp: TeamModel[] = [];
   public currentTeam: TeamModel;
+  public targ: boolean;
   public choosenSwimmer: boolean;
   public currentSwimmer: SwimmerModel;
   public SwimmerTargetModel: SwimmerTargetModel;
+  public currentSwimmerTargets: SwimmerTargetModel[] = [];
   //#endregion
 
   //#regiom Constructor & Lifecycle Hooks
@@ -88,6 +90,8 @@ export class StatsComponent implements OnInit {
       this.httpservice.httpPost('target/getswimmertarget', model).subscribe(
         res => {
           console.log(res);
+          this.targ = true;
+          this.currentSwimmerTargets = res.target;
         },
         err =>{
           this.OpenErrorDialogBox();
