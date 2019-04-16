@@ -41,6 +41,7 @@ import { CreateTrainingComponent } from './components/st-content/create-training
 import { RealTimeTrainningComponent } from './components/real-time-trainning/real-time-trainning.component';
 import { CreateTrainningComponent } from './components/dialog-boxes/create-trainning/create-trainning.component';
 import { GenericDialogBoxComponent } from './components/dialog-boxes/generic-dialog-box/generic-dialog-box.component';
+import { AddSwimmerTargetComponent } from './components/dialog-boxes/add-swimmer-target/add-swimmer-target.component';
 import { AddTeamToTrainningComponent } from './components/dialog-boxes/add-team-to-trainning/add-team-to-trainning.component';
 
 const appRoutes: Routes = [
@@ -76,6 +77,7 @@ const config: SocketIoConfig = { url: 'https://record-system-server-1.herokuapp.
     CreateTrainingComponent,
     CreateTrainningComponent,
     GenericDialogBoxComponent,
+    AddSwimmerTargetComponent,
     RealTimeTrainningComponent,
     AddTeamToTrainningComponent,
   ],
@@ -109,6 +111,7 @@ const config: SocketIoConfig = { url: 'https://record-system-server-1.herokuapp.
     PictureUpdateComponent,
     CreateTrainningComponent,
     GenericDialogBoxComponent,
+    AddSwimmerTargetComponent,
     AddTeamToTrainningComponent
   ]
 })

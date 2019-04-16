@@ -9,12 +9,15 @@ export class SwimmerTargetModel{
     public Distance: number;
 
     //Target of the swimmer in a specific style of swimming
-    public Target: number;
+    public TargetTime: number;
 
     //In how much tries the swimmer has to improve its record
     public TriesToImprove: number;
 
     //Swimmer ID for reference
     public Swimmer_ref: string;
+
+    //Constructor
+    public SwimmerTargetModel(){};
 
 }

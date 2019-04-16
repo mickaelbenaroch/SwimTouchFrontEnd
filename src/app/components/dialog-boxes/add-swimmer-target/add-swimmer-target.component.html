@@ -1,0 +1,36 @@
+
+<div class="envelop"> 
+  <div class="header">
+    <h1>{{this.swimmer.name}}</h1>
+    <img src="/assets/close.svg" class="close" (click)="Close()">
+  </div>
+  <div class="body">
+      <form class="form">
+        <div class="form-div-4">
+          <span>סגנון:</span>
+          <mat-select placeholder="בחר סגנון לקביעת היעד" (selectionChange)="Select($event)" name="style">
+            <mat-option *ngFor="let style of styles" [value]="style">
+              {{style}}
+            </mat-option>
+          </mat-select>
+        </div>
+        <div class="form-div-5"> 
+          <span>מרחק המשחה:</span>
+          <input [(ngModel)]="this.target.Distance" name="Distance" type="number"> 
+        </div>
+        <div class="form-div-6">
+          <span>זמן של היעד:</span>
+          <input [(ngModel)]="this.target.TargetTime" name="TargetTime" type="number"> 
+        </div>
+        <div class="form-div-7">
+          <span>מספר משחים להשגת היעד:</span>
+          <input [(ngModel)]="this.target.TriesToImprove" name="TriesToImprove" type="number"> 
+        </div>
+      </form>
+  </div>
+  <div class="but-div">
+    <button class="but" (click)="AddSwimmerTarget()"> <img class="plus" src="/assets/save.svg"> הוסף יעד לשחיין זה</button>
+  </div>
+</div>
+
+

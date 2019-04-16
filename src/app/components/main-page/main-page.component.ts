@@ -103,7 +103,7 @@ export class MainPageComponent implements OnInit {
       this.title = "אימון זמן אמת";
       break;
       case PageEnum.Statistics:
-      this.title = "סטטיסטיקה";
+      this.title = "מעקב אחר ביצועים";
       break;
       case PageEnum.MyMatalots:
       this.title = "מטלות";

@@ -3,6 +3,9 @@ import { TeamModel } from '../../models/TeamModel';
 import { SwimmerModel } from '../../models/SwimmerModel';
 import { SwimmerTargetModel } from '../../models/SwimmerTargetModel';
 import { HttpService } from '../../services/http-service/http-service.service';
+import { MatDialogConfig, MatDialog } from '@angular/material';
+import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
+import { AddSwimmerTargetComponent } from '../dialog-boxes/add-swimmer-target/add-swimmer-target.component';
 
 @Component({
   selector: 'app-stats',
@@ -21,7 +24,8 @@ export class StatsComponent implements OnInit {
   //#endregion
 
   //#regiom Constructor & Lifecycle Hooks
-  constructor(private httpservice: HttpService) { }
+  constructor(private httpservice: HttpService,
+              private dialog: MatDialog ) { }
 
   public ngOnInit():void {
     var model = {
@@ -38,7 +42,8 @@ export class StatsComponent implements OnInit {
 
       },
       err =>{
-        console.log(err);      }
+        this.OpenErrorDialogBox();      
+      }
     )
   }
   //#endregion
@@ -85,10 +90,45 @@ export class StatsComponent implements OnInit {
           console.log(res);
         },
         err =>{
-          console.log(err);
+          this.OpenErrorDialogBox();
         }
       )
     }
+  }
+
+  /**
+   * OpenAddSwimmerTarget
+   */
+  public OpenAddSwimmerTarget():void{
+    const dialogConfig = new MatDialogConfig();
+    
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      swimmer: this.currentSwimmer
+    };
+    dialogConfig.width = "500px";
+    dialogConfig.height = "500px";
+    this.dialog.open(AddSwimmerTargetComponent, dialogConfig);
+  }
+
+  /**
+   * Open Dialog error box
+   */
+  public OpenErrorDialogBox():void{
+    const dialogConfig = new MatDialogConfig();
+    
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      title: 'נראה שמשהו השתבש בדרך...',
+      body: 'נא לנסות מאוחר יותר',
+      button: true,
+      buttonText: "הבנתי!"
+    };
+    dialogConfig.width = "420px";
+    dialogConfig.height = "250px";
+    this.dialog.open(GenericDialogBoxComponent, dialogConfig);
   }
 
   //#endregion
