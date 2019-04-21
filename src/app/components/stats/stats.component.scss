@@ -129,18 +129,29 @@
         }
     }
 
-    .targets{
-        margin-top: 1rem;
-        .div{
-            padding: 1rem;
-            display: flex;
-            span{
-                font-weight: bold;
-                color: grey;
-                margin-left: 1rem;
-            }
-            div{
-
+    .targets-div{
+        display: flex; 
+        flex-wrap: wrap;
+        .targets{
+            margin-top: 1rem;
+            box-shadow: 0 6px 18px 0 rgba(34,34,34,.11);
+            background-color: lightgoldenrodyellow;
+            border-radius: 10px;
+            margin-left: 1rem;
+            .div{
+                padding: 1rem;
+                display: flex;
+                padding-left: 0.7rem !important;
+                padding-right: 0.7rem !important;
+                span{
+                    font-weight: bold;
+                    color: grey;
+                    margin-left: 0.2rem;
+                    font-style: italic;
+                }
+                div{ 
+                    font-style: italic;
+                }
             }
         }
     }

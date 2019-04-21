@@ -42,7 +42,7 @@ export class AddSwimmerTargetComponent implements OnInit {
   /**
    * AddSwimmerTarget
    */
-  public AddSwimmerTarget():void{debugger;
+  public AddSwimmerTarget():void{
     this.target.swimmer_ref = this.swimmer._id;
     this.httpservice.httpPost('target/swimmertarget',this.target).subscribe(
       res=>{
