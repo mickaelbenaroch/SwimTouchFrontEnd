@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { PageEnum } from '../../enums/componentview';
 import { ProfileModel } from '../../models/ProfileModel';
 import { HttpService } from '../../services/http-service/http-service.service';
+import { ProfileServiceService } from '../../services/profile-service/profile-service.service';
 
 @Component({
   selector: 'app-main-page',
@@ -19,11 +20,14 @@ export class MainPageComponent implements OnInit {
   //#endregion
 
   //#region Constructor & Lifecycle Hooks
-  constructor(public httpservice: HttpService) { }
+  constructor(public httpservice: HttpService,
+              public profileservice: ProfileServiceService) { }
 
   public ngOnInit(): void {
     this.title = "תפריט ראשי";
-    this.GetProfile();
+    //this.GetProfile();
+    this.profileservice.GetProfile();
+    
   }
   //#endregion
 

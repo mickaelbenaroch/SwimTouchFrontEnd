@@ -5,12 +5,12 @@
   <div class="div-2">
     <div class="text">
       <div class="title">{{title}}</div>
-      <div class="sub-title">שם: <span *ngIf="this.profile.first_name !== undefined && this.profile.last_name !== undefined">{{' ' + this.profile.first_name + ' ' + this.profile.last_name}}</span> </div>
-      <div class="sub-sub-title">תפקיד: <span *ngIf="this.profile.type !== undefined">{{' ' + this.profile.type}}</span></div>
+      <div class="sub-title">שם: <span *ngIf="this.profile !== undefined && this.profile.first_name !== undefined && this.profile.last_name !== undefined">{{' ' + this.profile.first_name + ' ' + this.profile.last_name}}</span> </div>
+      <div class="sub-sub-title">תפקיד: <span *ngIf="this.profile !== undefined && this.profile.type !== undefined">{{' ' + this.profile.type}}</span></div>
     </div>
     <div class="div-2-1">
-      <img class="user" *ngIf="this.profile.picture == null || this.profile.picture == undefined || this.profile.picture == '' " src="/assets/user.svg" (click)="OpenDialog()">
-      <img class="user2"  *ngIf="this.profile.picture !== null && this.profile.picture !== undefined && this.profile.picture !== ''" [src]="this.profile.picture" (click)="OpenDialog()">
+      <img class="user" *ngIf="(this.profile !== undefined && this.profile.picture == null) || (this.profile !== undefined && this.profile.picture == undefined) || (this.profile !== undefined && this.profile.picture == '' )" src="/assets/user.svg" (click)="OpenDialog()">
+      <img class="user2"  *ngIf="this.profile !== undefined && this.profile.picture !== null && this.profile.picture !== undefined && this.profile.picture !== ''" [src]="this.profile.picture" (click)="OpenDialog()">
     </div>
   </div>
 </div>

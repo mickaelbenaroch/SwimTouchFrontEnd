@@ -17,6 +17,9 @@ export class SwimmerTargetModel{
     //Swimmer ID for reference
     public swimmer_ref: string;
 
+    //Selected Card
+    public selected: boolean;
+
     //Constructor
     public SwimmerTargetModel(){};
 

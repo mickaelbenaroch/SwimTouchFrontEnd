@@ -52,6 +52,21 @@ export class StatsComponent implements OnInit {
 
   //#region Public Methods
   /**
+   * On card selction give animation
+   * @param event 
+   */
+  public ShowSelectedCard(target: SwimmerTargetModel):void{
+    target.selected = true;
+  }
+
+  /* On card deselction hide animation
+  * @param event 
+  */
+ public HideSelectedCard(target: SwimmerTargetModel):void{
+   target.selected = false;
+ }
+
+  /**
    * On selection change callback
    */
   public Select(event):void{
@@ -75,6 +90,9 @@ export class StatsComponent implements OnInit {
    */
   public BackToSwimmerChoose():void{
     this.choosenSwimmer = false;
+    if(this.targ){
+      this.targ = false;
+    }
   }
 
   /**

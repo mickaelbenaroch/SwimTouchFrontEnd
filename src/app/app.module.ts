@@ -33,6 +33,7 @@ import { MonthComponent } from './components/my-trainnings/month/month.component
 import { StContentComponent } from './components/st-content/st-content.component';
 import { MySwimmersComponent } from './components/my-swimmers/my-swimmers.component';
 import { TvModeComponent } from './components/dialog-boxes/tv-mode/tv-mode.component';
+import { ProfileServiceService } from './services/profile-service/profile-service.service';
 import { MyTrainningsComponent } from './components/my-trainnings/my-trainnings.component';
 import { CreateTeamComponent } from './components/st-content/create-team/create-team.component';
 import { CreateTeamBoxComponent } from './components/dialog-boxes/create-team/create-team.component';
@@ -102,7 +103,8 @@ const config: SocketIoConfig = { url: 'https://record-system-server-1.herokuapp.
       provide: HTTP_INTERCEPTORS,
       useClass: MyInterceptor,
       multi: true
-    }
+    },
+    ProfileServiceService
   ],
   bootstrap: [AppComponent],
   entryComponents: [

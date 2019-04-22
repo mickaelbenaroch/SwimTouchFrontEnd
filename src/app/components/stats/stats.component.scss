@@ -138,6 +138,7 @@
             background-color: lightgoldenrodyellow;
             border-radius: 10px;
             margin-left: 1rem;
+            cursor: pointer;
             .div{
                 padding: 1rem;
                 display: flex;
@@ -156,3 +157,7 @@
         }
     }
 }
+
+    .more-margin{
+        margin-top: 2rem !important;
+    }
