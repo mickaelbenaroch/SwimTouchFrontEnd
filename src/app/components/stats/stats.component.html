@@ -50,12 +50,13 @@
     </div>
 
     <div class="buttons-div">
-      <button class="button-1" *ngIf="choosenSwimmer" (click)="GetSwimmerTargets()">צפיה בעדים של <span style="color:#ff6666">{{currentSwimmer.name}}</span></button>
+      <button class="button-1" *ngIf="choosenSwimmer" (click)="GetSwimmerTargets()">צפייה ביעדים של <span style="color:#ff6666">{{currentSwimmer.name}}</span></button>
       <button class="button-2" *ngIf="choosenSwimmer" (click)="OpenAddSwimmerTarget()">קביעת יעד חדש <span style="color:#ff6666">{{currentSwimmer.name}}</span></button>
     </div>
 
+    <div style="margin-top: 1rem;" *ngIf="currentSwimmer !== undefined && currentSwimmer !== null && targ && currentSwimmerTargets == undefined">לא נמצאו יעדים עבור {{currentSwimmer.name}}. לחץ על ׳קביעת יעד חדש׳ כדי להוסיף יעד</div>
     <div class="targets-div" *ngIf="targ">
-        <div class="targets" [ngClass]="{'more-margin': target.selected}" (mouseenter)="ShowSelectedCard(target)" (mouseleave)="HideSelectedCard(target)" *ngFor="let target of currentSwimmerTargets">
+        <div class="targets" (click)="EnterTarget(target)" [ngClass]="{'more-margin': target.selected}" (mouseenter)="ShowSelectedCard(target)" (mouseleave)="HideSelectedCard(target)" *ngFor="let target of currentSwimmerTargets">
           <div class="div">
             <span>סגנון:</span>
             <div>{{target.style}}</div>
@@ -74,6 +75,33 @@
           </div>
         </div>
     </div>
+
+  <div *ngIf="targetChoosen">
+    <div class="targets">
+          <div class="div">
+            <span>סגנון:</span>
+            <div>{{choosenTarget.style}}</div>
+          </div>
+          <div class="div"> 
+            <span>מרחק:</span>
+            <div>{{choosenTarget.distance + " מטר "}}</div>
+          </div>
+          <div class="div">
+            <span>השגת מטרה תוך:</span>
+            <div>{{choosenTarget.triesToImprove + " משחים "}}</div>
+          </div>
+          <div class="div">
+            <span>יעד:</span>
+            <div>{{choosenTarget.targetTime  + " שניות "}}</div>
+          </div>
+        </div>
+  </div>
+  <div>
+    <div *ngFor="let record of specificRecords">
+
+    </div>
+  </div>
+
 </div>
 
 
