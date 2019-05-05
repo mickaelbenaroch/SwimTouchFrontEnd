@@ -7,6 +7,9 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpService } from '../../services/http-service/http-service.service';
 import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
 import { ExerciseModel } from 'src/app/models/ExerciseModel';
+import { ProfileServiceService } from '../../services/profile-service/profile-service.service';
+import { RoleEnum } from 'src/app/enums/roleenum';
+import { ExerciseTypeEnum } from 'src/app/enums/exercisetypeenum';
 
 @Component({
   selector: 'app-my-trainnings',
@@ -24,23 +27,62 @@ export class MyTrainningsComponent implements OnInit {
   public editRoute: boolean;
   public routes: string[] = [];
   public tempRoutesArray: RouteModel[] = [];
+  public warmupcount: number = 0;
+  public buildupcount: number = 0;
+  public corecount: number = 0;
+  public warmdowncount: number = 0;
+  public warmuparray: ExerciseModel[] = [];
+  public builduparray: ExerciseModel[] = [];
+  public corearray: ExerciseModel[] = [];
+  public warmdownarray: ExerciseModel[] = [];
+  public wurepeat: number = 1;
+  public burepeat: number = 1;
+  public corepeat: number = 1;
+  public wdrepeat: number = 1;
   //#endregion
 
   //#region Constructor & Lifecycle Hooks
   constructor(private httpservice: HttpService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              public profileservice: ProfileServiceService) { }
 
   public ngOnInit(): void {
-    var model = {
-      coachmail: localStorage.getItem("email")
+    if(this.profileservice.profile !== undefined && this.profileservice.profile.type == RoleEnum.Swimmer){
+      let swimmerName = {
+        name: this.profileservice.profile.first_name + ' ' + this.profileservice.profile.last_name
+      }
+      this.httpservice.httpPost('swimmer/getswimmers',swimmerName).subscribe(
+        res =>{
+            let idOfSwimmer = {
+              swimmer_id: res.swimmer[0]._id
+            }
+            this.httpservice.httpPost('trainning/getSwimmerTrainnings',idOfSwimmer).subscribe(
+              res => {
+                this.trainnings = res.trainning;
+              },  
+              err =>{
+                this.OpenDialog();
+              }
+            )
+        },
+        err =>{
+          this.OpenDialog();
+        }
+      )
+    }else{
+      var model = {
+        coachmail: localStorage.getItem("email")
+      }
+      this.httpservice.httpPost('trainning/getTrainnings',model).subscribe(
+        res =>{
+          this.trainnings = res.trainning;
+        },
+        err =>{
+          this.OpenDialog();
+          console.log(err);      
+        }
+      )
     }
-    this.httpservice.httpPost('trainning/getTrainnings',model).subscribe(
-      res =>{
-        this.trainnings = res.trainning;
-      },
-      err =>{
-        console.log(err);      }
-    )
   }
   //#endregion
 
@@ -146,6 +188,78 @@ public GetCurrentTrainning(event: TrainningModel):void{
   if(event !== null && event !== undefined){
     this.details = true;
     this.trainning = event;
+    this.trainning.exercises.forEach(ex =>{
+      switch(ex.type){
+        case ExerciseTypeEnum.WarmUp:
+        this.warmupcount += ex.distance;
+        if(this.warmuparray !== undefined && this.warmuparray.length >= 1){
+          this.warmuparray.forEach(exer =>{
+              if(exer.description == ex.description && 
+                exer.style == ex.style && 
+                exer.singleSwimDistance == ex.singleSwimDistance && 
+                exer.repeat == ex.repeat){
+                  this.wurepeat += 1;
+              }else{debugger
+                this.warmuparray.push(ex);
+              }
+            })
+        }else{
+          this.warmuparray.push(ex);
+        }
+        break;
+        case ExerciseTypeEnum.BuildUp:
+        this.buildupcount += ex.distance;
+        if(this.builduparray !== undefined && this.builduparray.length >= 1){
+          this.builduparray.forEach(exer =>{
+            if(exer.description == ex.description && 
+              exer.style == ex.style && 
+              exer.singleSwimDistance == ex.singleSwimDistance && 
+              exer.repeat == ex.repeat){
+                this.burepeat += 1;
+            }else{
+              this.builduparray.push(ex);
+            }
+          })
+        }else{
+          this.builduparray.push(ex);
+        }
+        break;
+        case ExerciseTypeEnum.Core:
+        this.corecount += ex.distance;
+        if(this.corearray !== undefined && this.corearray.length >= 1){
+          this.corearray.forEach(exer =>{
+            if(exer.description == ex.description && 
+              exer.style == ex.style && 
+              exer.singleSwimDistance == ex.singleSwimDistance && 
+              exer.repeat == ex.repeat){
+                this.corepeat += 1;
+            }else{
+              this.corearray.push(ex);
+            }
+          })
+        }else{
+          this.corearray.push(ex);
+        }
+        break;
+        case ExerciseTypeEnum.WarmDown:
+        this.warmdowncount += ex.distance;
+        if(this.warmdownarray !== undefined && this.warmdownarray.length >= 1){
+          this.warmdownarray.forEach(exer =>{
+            if(exer.description == ex.description && 
+               exer.style == ex.style && 
+               exer.singleSwimDistance == ex.singleSwimDistance && 
+               exer.repeat == ex.repeat){
+                this.wdrepeat += 1;
+            }else{
+              this.warmdownarray.push(ex);
+            }
+          })
+        }else{
+          this.warmdownarray.push(ex);
+        }
+        break;
+      }
+    })
   }
 }
 

@@ -1,0 +1,12 @@
+.envelop{
+    display: flex;
+    flex-direction: column;
+    direction: rtl;
+    .div-1{
+        display: flex;
+        justify-content: space-between;
+    }
+    .div-2{
+        display: flex;
+    }
+}

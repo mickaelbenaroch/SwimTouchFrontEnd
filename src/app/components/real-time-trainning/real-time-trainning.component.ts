@@ -10,6 +10,7 @@ import { TvModeComponent } from '../dialog-boxes/tv-mode/tv-mode.component';
 import { HttpService } from '../../services/http-service/http-service.service';
 import { OneRouteFinalResultModel } from '../../models/FinalOneRouteResultModel';
 import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
+import {ExerciseTypeEnum} from '../../enums/exercisetypeenum'
 
 @Component({
   selector: 'app-real-time-trainning',
@@ -34,6 +35,7 @@ export class RealTimeTrainningComponent implements OnInit {
    public finalCounter3: number = 0;
    public finalResultModel: FinalResultModel = new FinalResultModel();
    public ready: boolean;
+   public typeenum = ExerciseTypeEnum;
    //#endregion
   
    //#region Constructor & Lifecycle Hooks
@@ -68,6 +70,10 @@ export class RealTimeTrainningComponent implements OnInit {
     * @param trainning 
     */
    public ChooseExercise(exercise: ExerciseModel):void{
+      if(exercise.hasBeenStarted !== undefined && exercise.hasBeenStarted == true){
+        this.OpenDialogForExerciseAlreadyDone();
+        return;
+      }
       console.log(exercise);
       this.choosenExercise = exercise;
       for(let i = 0; i<this.choosenExercise.howMuchTouches; i++)
@@ -185,6 +191,26 @@ export class RealTimeTrainningComponent implements OnInit {
        dialogConfig.height = "250px";
        this.dialog.open(GenericDialogBoxComponent, dialogConfig);
   }
+
+     /**
+    * Error dialog Box Opening
+    * @param email 
+    */
+   public OpenDialogForExerciseAlreadyDone() {
+    const dialogConfig = new MatDialogConfig();
+ 
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      title: 'שגיאה!',
+      body: 'תרגיל זה כבר בוצע. אפשר לבצע תרגיל אך ורק פעם אחת',
+      button: true,
+      buttonText: "הבנתי!"
+    };
+    dialogConfig.width = "420px";
+    dialogConfig.height = "250px";
+    this.dialog.open(GenericDialogBoxComponent, dialogConfig);
+}
 
    //#endregion
   

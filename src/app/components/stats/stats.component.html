@@ -58,6 +58,10 @@
     <div class="targets-div" *ngIf="targ">
         <div class="targets" (click)="EnterTarget(target)" [ngClass]="{'more-margin': target.selected}" (mouseenter)="ShowSelectedCard(target)" (mouseleave)="HideSelectedCard(target)" *ngFor="let target of currentSwimmerTargets">
           <div class="div">
+            <span>נוצר ב-:</span>
+            <div>{{target.date | datepipe}}</div>
+          </div>
+          <div class="div">
             <span>סגנון:</span>
             <div>{{target.style}}</div>
           </div>
@@ -79,6 +83,10 @@
   <div *ngIf="targetChoosen">
     <div class="targets">
           <div class="div">
+            <span>נוצר ב-:</span>
+            <div>{{choosenTarget.date |datepipe}}</div>
+          </div>
+          <div class="div">
             <span>סגנון:</span>
             <div>{{choosenTarget.style}}</div>
           </div>
@@ -96,11 +104,44 @@
           </div>
         </div>
   </div>
-  <div>
+  <div class="results-title" *ngIf="targetChoosen && specificRecords !== undefined && specificRecords !== null && specificRecords.length > 0">להלן ההשיגים של השחיין ליעד שנקבע:</div>
+  <div class="results-title" *ngIf="targetChoosen && specificRecords !== undefined && specificRecords !== null && specificRecords.length == 0">אין הישיגים לשחיין ליעד זה</div>
+  <div class="specific-div">
     <div *ngFor="let record of specificRecords">
-
+        <div class="div-1">
+          <div class="part">
+            <div class="title">סגנון:</div>
+            <div class="content">{{record.exercise_id.style}}</div>
+          </div>
+          <div class="part">
+            <div class="title">מרחק:</div>
+            <div class="content">{{record.exercise_id.distance}}</div>
+          </div>
+          <div class="part">
+            <div class="title">תאריך:</div>
+            <div class="content">{{record.date | datepipe}}</div> 
+          </div>
+          <div class="part">
+            <div class="title">זמן סיום:</div>
+            <div class="content">{{record.results[record.results.length - 1]}}</div>
+          </div>
+        </div>
     </div>
   </div>
+  <div *ngIf="graphReady" style="margin-top: 1rem;color:#800000;">
+    <span>הצגת ההישגים של היעד בגרף של השחיין:</span>
+  </div>
+  <div *ngIf="graphReady" style="display: block;margin-top: 1rem;width: 50%;margin: auto;">
+    <canvas baseChart width="100" height="100"
+      [datasets]="lineChartData"
+      [labels]="lineChartLabels"
+      [options]="lineChartOptions"
+      [colors]="lineChartColors"
+      [chartType]="lineChartType"
+      [plugins]="lineChartPlugins">
+    </canvas>
+  </div>
+
 
 </div>
 

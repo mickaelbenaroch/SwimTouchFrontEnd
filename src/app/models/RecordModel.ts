@@ -9,4 +9,10 @@ export class RecordModel{
     public training_id: number;
 
     public route: RouteResultModel[]=[];
+
+    public style: string;
+
+    public date: Date;
+
+    public RecordModel(){};
 }

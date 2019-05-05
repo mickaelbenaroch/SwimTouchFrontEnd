@@ -1,6 +1,7 @@
 import * as $ from 'jquery';
 import {NgxPrintModule} from 'ngx-print';
 import { NgModule } from '@angular/core';
+import { ChartsModule } from 'ng2-charts';
 import { FormsModule } from '@angular/forms';
 import { TimerPipe } from './pipes/timerpipe';
 import { AppComponent } from './app.component';
@@ -44,6 +45,7 @@ import { CreateTrainningComponent } from './components/dialog-boxes/create-train
 import { GenericDialogBoxComponent } from './components/dialog-boxes/generic-dialog-box/generic-dialog-box.component';
 import { AddSwimmerTargetComponent } from './components/dialog-boxes/add-swimmer-target/add-swimmer-target.component';
 import { AddTeamToTrainningComponent } from './components/dialog-boxes/add-team-to-trainning/add-team-to-trainning.component';
+import { SwimmerMainPageComponent } from './components/swimmer-main-page/swimmer-main-page.component';
 
 const appRoutes: Routes = [
   { path: '' , component: LoginPageComponent},
@@ -81,9 +83,11 @@ const config: SocketIoConfig = { url: 'https://record-system-server-1.herokuapp.
     AddSwimmerTargetComponent,
     RealTimeTrainningComponent,
     AddTeamToTrainningComponent,
+    SwimmerMainPageComponent,
   ],
   imports: [
     FormsModule,
+    ChartsModule,
     BrowserModule,
     DragDropModule,
     NgxPrintModule,

@@ -19,7 +19,7 @@
         <span class="center">לוח המחוונים</span>
       </div>
     </div>
-    <div class="div-2" (click)="SideNiveClick('myteams')">
+    <div *ngIf="profileservice.profile !== undefined && profileservice.profile.type == role.Trainner" class="div-2" (click)="SideNiveClick('myteams')">
       <div class="div-2-1">
         <img src="/assets/teams.svg" class="train"> 
       </div>
@@ -27,7 +27,7 @@
         <span class="center">הקבוצות שלי</span>
       </div>
     </div>
-    <div class="div-2" (click)="SideNiveClick('myswimmers')">
+    <div *ngIf="profileservice.profile !== undefined && profileservice.profile.type == role.Trainner" class="div-2" (click)="SideNiveClick('myswimmers')">
       <div class="div-2-1">
         <img src="/assets/swimmers.svg" class="train"> 
       </div>
@@ -35,7 +35,7 @@
         <span class="center">השחיינים שלי</span>
       </div>
     </div>
-    <div class="div-3" (click)="SideNiveClick('realtimetrainning')">
+    <div *ngIf="profileservice.profile !== undefined && profileservice.profile.type == role.Trainner" class="div-3" (click)="SideNiveClick('realtimetrainning')">
       <div class="div-3-1">
         <img src="/assets/realtime.svg" class="history"> 
       </div>
@@ -48,7 +48,8 @@
         <img src="/assets/stats.svg" class="matalot"> 
       </div>
       <div class="div-4-2">
-        <span class="center">מעקב אחר ביצועים</span>
+        <span class="center" *ngIf="profileservice.profile !== undefined && profileservice.profile.type == role.Trainner">ייעדים של השחיינים</span>
+        <span class="center" *ngIf="profileservice.profile !== undefined && profileservice.profile.type == role.Swimmer">הייעדים שלי</span>
       </div>
     </div>
     <div class="div-5" (click)="SideNiveClick('matalots')">
@@ -56,7 +57,8 @@
         <img src="/assets/book.svg" class="search"> 
       </div>
       <div class="div-5-2">
-        <span class="center">מטלות</span>
+        <span class="center" *ngIf="profileservice.profile !== undefined && profileservice.profile.type == role.Trainner">צפייה בהישיגי השחיינים</span>
+        <span class="center" *ngIf="profileservice.profile !== undefined && profileservice.profile.type == role.Swimmer">ההישיגים שלי</span>
       </div>
     </div>
     <div class="div-6" (click)="SideNiveClick('messages')">
@@ -67,21 +69,21 @@
         <span class="center">הודעות</span>
       </div>
     </div>
-    <div class="div-7" (click)="SideNiveClick('settings')">
+    <!---<div class="div-7" (click)="SideNiveClick('settings')">
       <div class="div-7-1">
         <img src="/assets/settings.svg" class="settings"> 
       </div>
       <div class="div-7-2">
         <span class="center">הגדרות</span>
       </div>
-    </div>
-    <div class="div-8" (click)="SideNiveClick('help')">
+    </div>-->
+    <!-- <div class="div-8" (click)="SideNiveClick('help')">
       <div class="div-8-1">
         <img src="/assets/help.svg" class="help"> 
       </div>
       <div class="div-8-2">
         <span class="center">עזרה</span>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>

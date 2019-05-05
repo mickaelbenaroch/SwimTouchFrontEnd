@@ -1,60 +1,67 @@
  <div class="back-div">
   <button *ngIf="details" class="back" (click)="Back()">חזרה</button>
  </div>
- <section *ngIf="details">
-    <div *ngIf="trainnings == undefined || trainnings.length == 0" class="no-trainnings"> לא נמצאו אימונים בבסיס הנתונים. באשרותך ליצור קבוצה חדשה <span class="back" (click)="GoBack()">בתפריט הראשי</span></div>
-    <mat-accordion>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>{{trainning.name}}</mat-panel-title>
-          <mat-panel-description>תאריך ביצוע: {{trainning.date}}  </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div class="exercises">
-          <div class="div">
-            <span>קבוצת אימון:</span>{{trainning.team_id.name}}
-          </div>
-          <div class="div">
-            <span> מייל של המאמן: </span>{{trainning.coachmail}}
-          </div>
-            <div>תרגילים באימון:</div>
-            <mat-accordion>
-              <mat-expansion-panel *ngFor="let exercise of trainning.exercises" (click)="FillRouteArray(exercise)">
-                <mat-expansion-panel-header> 
-                  <mat-panel-title>{{exercise.date | datepipe}}</mat-panel-title>
-                    <mat-panel-description>{{exercise.distance + "  מטר,   " + exercise.style+"," + "  קבוצה " + exercise.group}}</mat-panel-description>
-                  </mat-expansion-panel-header>
-                  <div class="touches">מספר נגיעות בתרגיל: {{exercise.howMuchTouches}}</div>
-                  <div class="div">
-                    <span> חלוקת מסלולים :</span>
-                  </div>
-                  <div class="dessin">
-                  <div class="d-1" *ngFor="let route of exercise.routes.routes">
-                    <div class="icon"></div>
-                    <div class="route">מסלול: {{route.number}}</div>
-                    <div color="swimmer">שחיין: {{route.swimmer_ref}}</div>
-                  </div>
-
-                </div>
-                  <div class="edit-routes" (click)="EditRoutes(exercise)">עריכת חלוקת מסלולים</div>
-                  <div *ngIf="editRoute" cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-                    <div style="display:flex; flex-direction:column; width:25%;">
-                      <div class="example-box" *ngFor="let route of routes; let i = index">
-                        מסלול:  {{i + 1}}  
-                      </div>
-                    </div>
-                    <div style="display:flex; flex-direction:column; width:75%;">
-                      <div class="example-box" *ngFor="let route of routes; let i = index" cdkDrag>
-                        <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-                        {{route}} 
-                      </div>
-                    </div>
-                  </div>
-                  <div *ngIf="editRoute" style="margin-top: 1rem;" class="edit-routes" (click)="SaveRoutes(exercise)">שמור חלוקה</div>
-              </mat-expansion-panel>
-            </mat-accordion>
-        </div>
-      </mat-expansion-panel>
-    </mat-accordion> 
+<section *ngIf="details">
+  <div class="resume" *ngIf="trainning.name !== undefined">
+    <div style="display:flex;">
+      <div>Trainning:</div>
+      <div>{{trainning.name}},</div>
+      <div>{{warmupcount + buildupcount + corecount + warmdowncount}} meters</div>
+    </div>
+    <div>Date: {{trainning.date}}</div>
+  </div>
+    <div class="wu-div" *ngIf="warmuparray !== undefined && warmuparray.length > 0">
+      <div class="title">
+        Warm-Up {{warmupcount }} meters 
+        <span *ngIf="wurepeat > 0">(repeat X {{wurepeat}})</span>
+      </div>
+      <div class="buttons">
+        <button class="repeat" (click)="Repeat('warmup')">Repeat</button>
+      </div>
+    </div>
+    <div class="wu" *ngFor="let ex of warmuparray">
+      <img src="/assets/warming-up.svg"/>
+      <span>{{ex.repeat}}X{{ex.singleSwimDistance}}m {{' ' +  ex.style + ' '}} {{ex.description}}</span>
+    </div>
+    <div class="wu-div" *ngIf="builduparray !== undefined && builduparray.length > 0">
+      <div class="title">
+        Build-Up {{buildupcount }} meters 
+        <span *ngIf="burepeat > 0">(repeat X {{burepeat}})</span>
+      </div>
+      <div class="buttons">
+        <button class="repeat" (click)="Repeat('buildup')">Repeat</button>
+      </div>
+    </div>
+    <div class="bu" *ngFor="let ex of builduparray">
+      <img src="/assets/build-up.svg"/>
+      <span>{{ex.repeat}}X{{ex.singleSwimDistance}}m {{' ' +  ex.style + ' '}} {{ex.description}}</span>
+    </div>
+    <div class="wu-div" *ngIf="corearray !== undefined && corearray.length > 0">
+      <div class="title">
+        Core-Main Set {{corecount }} meters 
+        <span *ngIf="corepeat > 0">(repeat X {{corepeat}})</span>
+      </div>    
+      <div class="buttons">
+        <button class="repeat" (click)="Repeat('core')">Repeat</button>
+      </div>
+    </div>
+    <div class="co" *ngFor="let ex of corearray">
+      <img src="/assets/core.svg"/>
+      <span>{{ex.repeat}}X{{ex.singleSwimDistance}}m {{' ' +  ex.style + ' '}} {{ex.description}}</span>
+    </div>
+    <div class="wu-div" *ngIf="warmdownarray !== undefined && warmdownarray.length > 0">
+      <div class="title">
+        Warm-Down {{warmdowncount }} meters 
+        <span *ngIf="wdrepeat > 0">(repeat X {{wdrepeat}})</span>
+      </div>    
+      <div class="buttons">
+        <button class="repeat" (click)="Repeat('warmdown')">Repeat</button>
+      </div>
+    </div>
+    <div class="wd" *ngFor="let ex of warmdownarray">
+      <img src="/assets/warm-down.svg"/>
+      <span>{{ex.repeat}}X{{ex.singleSwimDistance}}m {{' ' +  ex.style + ' '}} {{ex.description}}</span>
+    </div>
   </section>
 
 

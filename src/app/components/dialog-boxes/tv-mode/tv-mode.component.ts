@@ -259,6 +259,18 @@ export class TvModeComponent implements OnInit {
         this.httpservice.httpPost('records/setrecords',rec).subscribe(
           res =>{
             console.log(rec);
+            //update exercise to done
+            let model = {
+              hasBeenStarted: true
+            }
+            this.httpservice.httpPost('exercise/updateExercise',model).subscribe(
+              res=>{
+                console.log(res);
+              },
+              err =>{
+                this.OpenDialog();
+              }
+            )
           },
           err =>{
             console.log(err);

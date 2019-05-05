@@ -9,45 +9,20 @@
       </div>
     </div>
 
-    <div *ngIf="state == stateHelper.ExerciseView">
+    <div *ngIf="state == stateHelper.ExerciseView"> 
       <div class="title">
         <span>נא לבחור תרגיל מתוך האימון:</span>
       </div>
-      <div class="panel" *ngFor="let exercise of choosenTrainning.exercises">
-          <div class="properties">
-              <div class="p">
-               <div class="t">תאריך ביצוע התרגיל:</div>
-               <div class="v">{{exercise.date}}</div>
-              </div>
-              <div class="p">
-                <div class="t">סגנון התרגיל:</div>
-                <div class="v">{{exercise.style}}</div>
-              </div>
-              <div class="p">
-               <div class="t">קבוצת התרגיל:</div>
-               <div class="v"> {{exercise.group}}</div>
-             </div>
-             <div class="p">
-                <div class="t">מרחק התרגיל:</div>
-                <div class="v">{{exercise.distance}}</div>
-             </div>
-             <div class="p">
-                <div class="t">מספר נגיעות בתרגיל:</div>
-                <div class="v">{{exercise.howMuchTouches}}</div>
-             </div>
-          </div>
-          <div class="division">
-            <span> חלוקת מסלולים :</span>
-          </div>
-          <div class="dessin">
-            <div class="d-1" *ngFor="let route of exercise.routes.routes">
-              <div class="icon"></div>
-              <div class="route">מסלול: {{route.number}}</div>
-              <div color="swimmer">שחיין: {{route.swimmer_ref}}</div>
-            </div>
-          </div>
-          <div class="choose-button">
-            <button class="choose" (click)="ChooseExercise(exercise)">בחר תרגיל זה</button>
+      <div class="panel" style="direction: ltr;" *ngFor="let exercise of choosenTrainning.exercises">
+        <div [ngClass]="{'bg-warm-up':exercise.type == this.typeenum.WarmUp, 'bg-build-up':exercise.type == this.typeenum.BuildUp,'bg-core':exercise.type == this.typeenum.Core, 'bg-warm-down': exercise.type == this.typeenum.WarmDown}" style="display:flex"><span style="font-weight:bold">Exercise Category:</span> {{exercise.type}}, <span style="font-weight:bold; margin-left:1rem;">Group:</span> {{exercise.group}},</div>
+        <div [ngClass]="{'bg-warm-up':exercise.type == this.typeenum.WarmUp, 'bg-build-up':exercise.type == this.typeenum.BuildUp,'bg-core':exercise.type == this.typeenum.Core, 'bg-warm-down': exercise.type == this.typeenum.WarmDown}" style="display:flex">
+        <img class="img" *ngIf="exercise.type == 'Warm UP'" src="/assets/warming-up.svg"> 
+        <img class="img" *ngIf="exercise.type == 'Build Up'" src="/assets/build-up.svg">
+        <img class="img" *ngIf="exercise.type == 'Core - Main Set'" src="/assets/core.svg">
+        <img class="img" *ngIf="exercise.type == 'Warm Down'" src="/assets/warm-down.svg">
+        {{exercise.repeat}}X{{exercise.singleSwimDistance}} {{exercise.style}} {{exercise.description}}</div> 
+        <div class="choose-button">
+          <button class="choose" (click)="ChooseExercise(exercise)">בחר תרגיל זה</button>
         </div>
       </div>
     </div> 

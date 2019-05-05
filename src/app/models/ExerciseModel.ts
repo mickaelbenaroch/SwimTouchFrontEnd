@@ -1,4 +1,5 @@
 import { PoolModel } from './PoolModel';
+import { ExerciseTypeEnum } from '../enums/exercisetypeenum';
 
 export class ExerciseModel{
 
@@ -8,7 +9,7 @@ export class ExerciseModel{
 
     public style: string;
 
-    public distance: string;
+    public distance: number;
 
     public group: string;
 
@@ -19,6 +20,14 @@ export class ExerciseModel{
     public routes: PoolModel = new PoolModel();
 
     public hasBeenStarted: boolean = false;
+
+    public description: string;
+
+    public type: ExerciseTypeEnum;
+
+    public repeat: number;
+
+    public singleSwimDistance: number;
 
     public ExerciseModel(){}
 }

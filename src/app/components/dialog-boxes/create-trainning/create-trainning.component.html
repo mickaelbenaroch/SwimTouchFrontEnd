@@ -6,14 +6,52 @@
   <div class="body">
       <form class="form">
         <div class="form-div-2">
-          <span>קבוצת התרגיל:</span>
-          <mat-select style="padding: 1rem;" placeholder="בחר קבוצה" (selectionChange)="SelectGroup($event)" name="group">
+          <span style="text-decoration: underline;font-size: 1.2rem;font-weight: bold;">קבוצת התרגיל:</span>
+          <mat-select style="width: 30%;background: lightgoldenrodyellow;" placeholder="בחר קבוצה" (selectionChange)="SelectGroup($event)" name="group">
             <mat-option *ngFor="let group of groups" [value]="group">
                 {{group}}
             </mat-option>
           </mat-select>
-          <!--<input type="text" [(ngModel)]="exercise.group" name="group" (change)="DisableError()">-->
         </div>
+         <div style="text-decoration: underline;font-size: 1.2rem;font-weight: bold;padding:1rem;display:flex;">
+          <div>קטגוריית התרגיל:</div>
+          <mat-select style="width: 30%;background: lightgoldenrodyellow;font-size: 16px;font-weight: normal;" placeholder="בחר קטגוריה" (selectionChange)="SelectCategory($event)" name="category">
+            <mat-option *ngFor="let cat of categories" [value]="cat">
+                {{cat}}
+            </mat-option>
+          </mat-select>
+        </div>
+        
+        <div style="text-decoration: underline;font-size: 1.2rem;font-weight: bold;padding:1rem;">
+          <span>בניית משחה של התרגיל:</span>
+        </div>
+        <div style="display:flex;direction: ltr;padding:1rem; background: whitesmoke;">
+          <div style="text-align:center;display:flex;flex-direction: column;align-items: center;">
+            <div style="padding-bottom: 1rem;">REPEAT</div>
+            <input style="width:50%" type="number" name="howmuch" [(ngModel)]="exercise.repeat"/>
+          </div>
+          <div style="text-align:center;display:flex;flex-direction: column;align-items: center;">
+            <div style="padding-bottom: 1rem;">X</div>
+            <div>X</div>
+          </div>
+          <div style="text-align:center;display:flex;flex-direction: column;align-items: center;">
+             <div style="padding-bottom: 1rem;">DISTANCE</div>
+             <input style="width:50%" type="number" name="distance" [(ngModel)]="exercise.distance"/>
+          </div>
+          <div style="width: 35%;display:flex;flex-direction: column;align-items: center;align-items: center;">
+            <div style="padding-bottom: 1rem;">STYLE</div>
+            <mat-select style="background: lightgoldenrodyellow;" placeholder="בחר סגנון" (selectionChange)="SelectStyle($event)" name="style">
+              <mat-option *ngFor="let style of styles" [value]="style">
+                {{style}} 
+              </mat-option>
+            </mat-select>
+          </div>
+          <div style="display:flex;flex-direction: column;align-items: center;">
+            <div style="padding-bottom: 1rem;">DESCRIPTION</div>
+            <input type="text" [(ngModel)]="exercise.description" name="description" />
+          </div>
+        </div>
+        <!--
         <div class="form-div-3">
           <span>סגנון התרגיל:</span>
           <mat-select style="padding: 1rem;" placeholder="בחר סגנון" (selectionChange)="SelectStyle($event)" name="style">
@@ -21,7 +59,6 @@
                 {{style}}
             </mat-option>
           </mat-select>
-          <!--<input type="text" [(ngModel)]="exercise.style" name="style" (change)="DisableError()">-->
         </div>
         <div class="form-div-4">
           <span>מרחק התרגיל:</span>
@@ -32,19 +69,21 @@
           <span *ngIf="calculated">מספר נגיעות בתרגיל:</span>
           <input type="number" [(ngModel)]="exercise.howMuchTouches" name="pooldistance" (change)="PoolDistance()"> 
         </div>
+        <div class="form-div-5">
+          <span>תיאור התרגיל:</span>
+          <input type="text" [(ngModel)]="exercise.description" name="description" (change)="DisableError()"> 
+        </div>-->
+
+
+        <div style="padding:1rem;margin-top:1rem;text-decoration: underline;font-size: 1.2rem;font-weight: bold;">חלוקת מסלולים:</div>
         <div *ngFor="let swimmer of swimmers; let i = index">
-            <div>
-              <div id="swimmer{{i}}" style="padding: 0.5rem;">{{swimmer.name}}</div>
-              <mat-select id="select{{i}}" style="padding: 1rem;" placeholder="בחר מסלול" (selectionChange)="Select($event)" name="team">
-                <mat-option *ngFor="let route of routes" [value]="route">
-                  {{route}}
-                </mat-option>
-              </mat-select>
+            <div style="display:flex;padding:0.5rem;padding-right:1rem !important;background: whitesmoke;">
+              <div> מסלול {{i + 1}} -----> </div>
+              <div id="swimmer{{i + 1}}" style="text-align: right;margin-right:0.5rem;">{{swimmer.name}}</div>
             </div>
         </div>
         <div [ngClass]="{'visible':error}" class="error">אחד או יותר מהפרטים שהוזנו אינם נכונים!</div>
       </form>
-  </div>
   <div class="but-div">
     <button class="but" (click)="CreateTrainning()"> <img class="plus" src="/assets/save.svg"> הוסף תרגיל</button>
   </div>

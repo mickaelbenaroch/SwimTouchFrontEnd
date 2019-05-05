@@ -3,6 +3,7 @@ import { RouteModel } from '../../../models/RouteModel';
 import { SwimmerModel } from '../../../models/SwimmerModel';
 import { ExerciseModel } from '../../../models/ExerciseModel';
 import { Component, OnInit, Inject, Input} from '@angular/core';
+import { ExerciseTypeEnum } from '../../../enums/exercisetypeenum';
 import { HttpService } from '../../../services/http-service/http-service.service';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig, MatDialog } from '@angular/material';
 import { GenericDialogBoxComponent } from '../generic-dialog-box/generic-dialog-box.component';
@@ -21,12 +22,13 @@ export class CreateTrainningComponent implements OnInit {
   public team_id: string; 
   public error: boolean;
   public calculated: boolean;
-  public swimmers: string[] = [];
+  public swimmers: SwimmerModel[] = [];
   public exercise: ExerciseModel = new ExerciseModel();
   public routes: string[] = ['1','2','3','4','5'];
   public groups: string[] = ['A','B','C','D'];
-  public styles: string[] = ["חתירה","גב","פרפר","חזה","חופשי","מעורב","שליחים","כפות","סנפירים","משקלים","צפרדע","שחיית-צד","אחר"];
-  
+  public styles: string[] = ['Freestyle','Backstroke','Breaststroke','Butterfly','Individual Medley'];
+  public pooldistance: number = 25;
+  public categories: string[] = ['Warm Up','Build Up','Core - Main Set', 'Warm Down']
   //#endregion
 
   //#region Constructor & Lifecycle Hooks
@@ -49,6 +51,7 @@ export class CreateTrainningComponent implements OnInit {
           if(team._id == this.team_id){
             this.team = team;
             this.swimmers = team.swimmers;
+            this.Select();
           }
         });
       },
@@ -66,10 +69,14 @@ export class CreateTrainningComponent implements OnInit {
    */
   public PoolDistance():void{
     this.DisableError();
-    if(this.exercise.howMuchTouches !== undefined && this.exercise.howMuchTouches >0){
-      this.calculated = true;
-      this.exercise.howMuchTouches = Number(this.exercise.distance) / this.exercise.howMuchTouches;
-    }
+    //if(this.exercise.howMuchTouches !== undefined && this.exercise.howMuchTouches >0){
+     // this.calculated = true;
+     if(this.exercise.distance !== undefined){
+      this.exercise.singleSwimDistance = this.exercise.distance; 
+      this.exercise.distance = this.exercise.distance * this.exercise.repeat;
+       this.exercise.howMuchTouches = Number(this.exercise.distance) / this.pooldistance;
+     }
+    //}
   }
 
    /**
@@ -84,7 +91,10 @@ export class CreateTrainningComponent implements OnInit {
    */
   public CreateTrainning():void{
     this.exercise.date = new Date(this.date);
-    if(this.exercise.date == undefined || this.exercise == null ||
+    this.PoolDistance();
+    if(this.exercise.repeat == undefined || this.exercise.repeat == null ||
+       this.exercise.type == undefined || this.exercise.type == null ||
+       this.exercise.date == undefined || this.exercise == null ||
        this.exercise.distance == undefined || this.exercise.distance == null ||
        this.exercise.group == undefined || this.exercise.group == null ||
        this.exercise.style == undefined || this.exercise.style == null ||
@@ -93,29 +103,28 @@ export class CreateTrainningComponent implements OnInit {
          this.error = true;
        }
     else{
-      console.log(this.exercise)
-      this.httpservice.httpPost('exercise',this.exercise).subscribe(
-        res =>{
-          this.exercise.id = res.exercise_id;
-          this.dialogRef.close(this.exercise);
-        },
-        err =>{
-          console.log(err);
-          this.OpenDialog();
-        }
-      )
+        console.log(this.exercise)
+        this.httpservice.httpPost('exercise',this.exercise).subscribe(
+          res =>{
+            this.exercise.id = res.exercise_id;
+            this.dialogRef.close(this.exercise);
+          },
+          err =>{
+            console.log(err);
+            this.OpenDialog();
+          }
+        )
     }   
   }
 
   /**
    * On Mat select change handler
    */
-  public Select(event):void{
-      var temp = event.source.id.split('t');
-      var selectNumber = temp[1];
+  public Select():void{
+    for(var i = 0; i<this.swimmers.length; i++){
       let route1 = new RouteModel();
-      route1.number = event.value;
-      route1.swimmer_ref = $("#swimmer" + selectNumber)[0].textContent;
+      route1.number = i;
+      route1.swimmer_ref = this.swimmers[i].name;
       var model = {
         name: route1.swimmer_ref
       }
@@ -129,6 +138,7 @@ export class CreateTrainningComponent implements OnInit {
           this.OpenDialog()        
         }
       )
+    }
   }
 
   /**
@@ -139,6 +149,28 @@ export class CreateTrainningComponent implements OnInit {
       console.log(event);
       this.exercise.group = event.value;
   }
+
+    /**
+   * On Category selection change
+   */
+  public SelectCategory(event):void{
+    this.DisableError();
+    console.log(event);
+    switch(event.value){
+      case "Warm Up":
+      this.exercise.type = ExerciseTypeEnum.WarmUp;
+      break;
+      case "Build Up":
+      this.exercise.type = ExerciseTypeEnum.BuildUp;
+      break;
+      case "Core - Main Set":
+      this.exercise.type = ExerciseTypeEnum.Core;
+      break;
+      case "Warm Down":
+      this.exercise.type = ExerciseTypeEnum.WarmDown;
+      break;
+    }
+}
 
   /**
    * On Style selection change

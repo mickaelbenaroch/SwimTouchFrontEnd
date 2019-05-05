@@ -44,6 +44,7 @@ export class AddSwimmerTargetComponent implements OnInit {
    */
   public AddSwimmerTarget():void{
     this.target.swimmer_ref = this.swimmer._id;
+    this.target.date = new Date();
     this.httpservice.httpPost('target/swimmertarget',this.target).subscribe(
       res=>{
         console.log(res);

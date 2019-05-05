@@ -202,3 +202,111 @@ section{
     margin: auto;
     cursor: pointer;
   }
+
+  section{
+    direction: ltr;
+    text-align: left;
+    font-family: Assistant;
+    .repeat{
+        cursor: pointer;
+        background-color: orange;
+    }
+    .save{
+        cursor: pointer;
+        background-color: #009933;
+    }
+    .resume{
+        display: flex;
+        justify-content: space-between;
+        font-size: 24px;
+    }
+    .title{
+        font-weight: normal;
+        color: #000;
+        font-size: 1.3em;
+        margin-bottom: 0.3rem;
+        margin-top: 1rem;
+    }
+    .wu{
+        img{
+            width: 2rem;
+            height: 2rem;
+            margin-right: 1rem;
+        }
+        span{
+            align-self: center;
+        }
+        padding: 4px 20px 4px 4px;
+        font-size: 13pt;
+        position: relative;
+        margin-bottom: 2px;
+        cursor: pointer; 
+        background-color: #999999;
+        display: flex;
+        color: white;
+    }
+    .bu{
+        img{
+            width: 2rem;
+            height: 2rem;
+            margin-right: 1rem;
+        }
+        span{
+            align-self: center;
+        }
+        padding: 4px 20px 4px 4px;
+        font-size: 13pt;
+        position: relative;
+        margin-bottom: 2px;
+        cursor: pointer;
+        background-color: #009933;
+        display: flex;
+        color: white;
+    }
+    .co{
+        img{
+            width: 2rem;
+            height: 2rem;
+            margin-right: 1rem;
+        }
+        span{
+            align-self: center;
+        }
+        padding: 4px 20px 4px 4px;
+        font-size: 13pt;
+        position: relative;
+        margin-bottom: 2px;
+        cursor: pointer;
+        background-color: #0066cc;
+        display: flex;
+        color: white;
+    }
+    .wd{
+        img{
+            width: 2rem;
+            height: 2rem;
+            margin-right: 1rem;
+        }
+        span{
+            align-self: center;
+        }
+        color: white;
+        padding: 4px 20px 4px 4px;
+        font-size: 13pt;
+        position: relative;
+        margin-bottom: 2px;
+        cursor: pointer;
+        background-color: #ff6600;
+        display: flex;
+    }
+}
+
+.wu-div{
+    display:flex;
+    justify-content: space-between;
+}
+
+.buttons{
+    align-self: flex-end;
+    padding-bottom: 0.5rem;
+}

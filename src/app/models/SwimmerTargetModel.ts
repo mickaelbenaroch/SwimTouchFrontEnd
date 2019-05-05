@@ -2,6 +2,8 @@ import { SwimmingStylesEnum } from '../enums/swimmingstylesenum';
 
 export class SwimmerTargetModel{
 
+    public date: Date;
+    
     //Style of specific swimming
     public style: SwimmingStylesEnum;
 

@@ -1,5 +1,7 @@
 import { PageEnum } from '../../enums/componentview';
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ProfileServiceService } from '../../services/profile-service/profile-service.service';
+import { RoleEnum } from '../../enums/roleenum';
 
 @Component({
   selector: 'app-st-content',
@@ -11,6 +13,7 @@ export class StContentComponent implements OnInit, OnChanges {
   //#region Public Members
   public pageenum: PageEnum = PageEnum.Landing;
   public state = PageEnum;
+  public role = RoleEnum;
   @Input() stateFromFather: boolean;
   @Input() eventFromSideNav: PageEnum;
   @Input() stateChange: PageEnum;
@@ -18,7 +21,7 @@ export class StContentComponent implements OnInit, OnChanges {
   //#endregion
 
   //#region Constructor & Lifecycle Hooks
-  constructor() { }
+  constructor(public profileservice: ProfileServiceService) { }
 
   public ngOnInit():void {
   }

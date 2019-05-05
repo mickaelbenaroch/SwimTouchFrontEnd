@@ -8,4 +8,6 @@ export class TrainningModel{
     public coachmail: string;
     public team_id: TeamModel;
     public date: string;
+    public exercisesCount = this.exercises.length;
+    public distance: number;
 } 

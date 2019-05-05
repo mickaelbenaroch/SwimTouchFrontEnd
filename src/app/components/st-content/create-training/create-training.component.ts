@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ExerciseModel } from '../../../models/ExerciseModel';
 import { TrainningModel } from 'src/app/models/TrainningModel';
 import { MatDialog, MatDialogConfig } from '@angular/material';
+import { NotificationModel } from '../../../models/NotificationModel';
 import { HttpService } from '../../../services/http-service/http-service.service';
 import { CreateTrainningComponent } from '../../dialog-boxes/create-trainning/create-trainning.component';
 import { GenericDialogBoxComponent } from '../../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
 import { AddTeamToTrainningComponent } from '../../dialog-boxes/add-team-to-trainning/add-team-to-trainning.component';
+import { ExerciseTypeEnum } from 'src/app/enums/exercisetypeenum';
 
 @Component({
   selector: 'app-create-training',
@@ -18,6 +20,18 @@ export class CreateTrainingComponent implements OnInit {
   public trainnningModel: TrainningModel = new TrainningModel();
   public exerciceModel: ExerciseModel[] = [];
   public error: boolean;
+  public warmupcount: number = 0;
+  public buildupcount: number = 0;
+  public corecount: number = 0;
+  public warmdowncount: number = 0;
+  public warmuparray: ExerciseModel[] = [];
+  public builduparray: ExerciseModel[] = [];
+  public corearray: ExerciseModel[] = [];
+  public warmdownarray: ExerciseModel[] = [];
+  public wurepeat: number = 1;
+  public burepeat: number = 1;
+  public corepeat: number = 1;
+  public wdrepeat: number = 1;
   //#endregion
 
   //#region Constructor & Lifecycle Hooks
@@ -55,6 +69,24 @@ export class CreateTrainingComponent implements OnInit {
         (data: ExerciseModel) => {
           if(data !== undefined){
             console.log("Dialog output:", data);
+            switch(data.type){
+              case ExerciseTypeEnum.WarmUp:
+              this.warmupcount+=data.distance;
+              this.warmuparray.push(data);
+              break;
+              case ExerciseTypeEnum.BuildUp:
+              this.buildupcount+=data.distance;
+              this.builduparray.push(data);
+              break;
+              case ExerciseTypeEnum.Core:
+              this.corecount+=data.distance;
+              this.corearray.push(data);
+              break;
+              case ExerciseTypeEnum.WarmDown:
+              this.warmdowncount+=data.distance;
+              this.warmdownarray.push(data);
+              break;
+            }
             this.trainnningModel.exercises.push(data);
             this.exerciceModel.push(data);
           }
@@ -87,6 +119,78 @@ export class CreateTrainingComponent implements OnInit {
   }
 
 /**
+ * Repeat set
+ */
+public Repeat(str: string):void{
+  switch(str){
+    case 'warmup':
+    this.warmuparray.forEach(ex =>{
+      this.httpservice.httpPost('exercise',ex).subscribe(
+        res =>{
+           this.trainnningModel.exercises.push(ex);
+           this.trainnningModel.exercisesCount += 1;
+           this.wurepeat += 1;
+           this.warmupcount += ex.distance;
+        },
+        err =>{
+          console.log(err);
+          this.OpenDialog();
+        }
+      )
+    })
+    break;
+    case 'buildup':
+    this.warmuparray.forEach(ex =>{
+      this.httpservice.httpPost('exercise',ex).subscribe(
+        res =>{
+           this.trainnningModel.exercises.push(ex);
+           this.trainnningModel.exercisesCount += 1;
+           this.burepeat += 1;
+           this.buildupcount += ex.distance;
+        },
+        err =>{
+          console.log(err);
+          this.OpenDialog();
+        }
+      )
+    })
+    break;
+    case 'core':
+    this.warmuparray.forEach(ex =>{
+      this.httpservice.httpPost('exercise',ex).subscribe(
+        res =>{
+           this.trainnningModel.exercises.push(ex);
+           this.trainnningModel.exercisesCount += 1;
+           this.corepeat += 1;
+           this.corecount += ex.distance;
+        },
+        err =>{
+          console.log(err);
+          this.OpenDialog();
+        }
+      )
+    })
+    break;
+    case 'warmdown':
+    this.warmuparray.forEach(ex =>{
+      this.httpservice.httpPost('exercise',ex).subscribe(
+        res =>{
+           this.trainnningModel.exercises.push(ex);
+           this.trainnningModel.exercisesCount += 1;
+           this.wdrepeat += 1;
+           this.warmdowncount += ex.distance;
+        },
+        err =>{
+          console.log(err);
+          this.OpenDialog();
+        }
+      )
+    })
+    break;
+  }
+}
+
+/**
  * Open generic box Sure To Save trainning?
  */
 public OpenSureToSaveBox():void{
@@ -106,9 +210,13 @@ public OpenSureToSaveBox():void{
     var dialogRef = this.dialog.open(GenericDialogBoxComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(
       (res:string)=>{
+        this.trainnningModel.exercisesCount = this.warmdownarray.length + this.warmuparray.length + this.builduparray.length + this.corearray.length;
+        this.trainnningModel.distance = this.warmupcount + this.buildupcount + this.corecount + this.warmdowncount;
         if(res !== null && res!== undefined && res == "ok"){
           this.httpservice.httpPost('trainning',this.trainnningModel).subscribe(
             res =>{
+              //Send notification to swimmers
+              this.SendNotificationToSwimmers();
               this.OpenSuccesDialogBox();
               console.log(res);
             },
@@ -183,6 +291,32 @@ public OpenSuccesDialogBox():void{
     dialogConfig.width = "560px";
     dialogConfig.height = "272px";
     this.dialog.open(GenericDialogBoxComponent, dialogConfig);
+}
+
+/**
+ * Sends Notifications to swimmers in the trainning
+ */
+public SendNotificationToSwimmers():void{
+  var swimmers = [];
+  //SEND TO BACKEND NOTIFICATIONS TO SWIMMERS
+  this.trainnningModel.exercises.forEach(exercise =>{
+      exercise.routes.routes.forEach(route =>{
+        swimmers.push(route.swimmer_id);
+      })
+    });
+    var uniqueNames = [];
+    $.each(swimmers, function(i, el){
+        if($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
+    });
+    uniqueNames.forEach(swimmer =>{
+      //send notification to each swimmer in the trainning;
+      let notification = new NotificationModel();
+      notification.coachmail = this.trainnningModel.coachmail;
+      notification.date = new Date();
+      notification.swimmer_id = swimmer;
+      notification.message = "הוזמנת להשתתף באימון " + this.trainnningModel.name + "בתאריך " + this.trainnningModel.date + "תוכל לראות את פרטי האימון בלוח המחוונים שלך. בהצלחה!";
+
+    })
 }
   //#endregion
 }

@@ -1,5 +1,7 @@
 <div class="envelop">
-    <div class="div-1" *ngIf="pageenum === state.Landing">
+
+    <!--Main Screen of the Trainner-->
+    <div class="div-1" *ngIf="pageenum === state.Landing && profileservice.profile !== undefined && profileservice.profile.type == role.Trainner">
       <app-item-box [color]="'green'" 
                     [path]="'/assets/file.svg'"
                     [main]="'  הקמת אימון חדש'"
@@ -7,7 +9,7 @@
                     (CreateNewTrainningEvent)="CreateNewTrainningEvent($event)">
       </app-item-box>
     </div>
-    <div class="div-2" *ngIf="pageenum === state.Landing"> 
+    <div class="div-2" *ngIf="pageenum === state.Landing && profileservice.profile !== undefined && profileservice.profile.type == role.Trainner"> 
       <app-item-box [color]="'blue'" 
                     [path]="'/assets/save.svg'"
                     [main]="'יצירת קבוצה '"
@@ -15,7 +17,7 @@
                     (CreateNewTrainningEvent)="CreateNewTrainningEvent($event)">
       </app-item-box>
     </div>
-    <div class="div-3" *ngIf="pageenum === state.Landing">
+    <div class="div-3" *ngIf="pageenum === state.Landing && profileservice.profile !== undefined && profileservice.profile.type == role.Trainner">
       <app-item-box [color]="'red'" 
                     [path]="'/assets/plan.svg'"
                     [main]="'     עריכת אימון'"
@@ -23,7 +25,7 @@
                     (CreateNewTrainningEvent)="CreateNewTrainningEvent($event)">
       </app-item-box>
     </div>
-    <div class="div-4" *ngIf="pageenum === state.Landing">
+    <div class="div-4" *ngIf="pageenum === state.Landing && profileservice.profile !== undefined && profileservice.profile.type == role.Trainner">
       <app-item-box [color]="'yellow'" 
                     [path]="'/assets/plan.svg'"
                     [main]="'     עריכת קבוצה'"
@@ -31,6 +33,12 @@
                     (CreateNewTrainningEvent)="CreateNewTrainningEvent($event)">
       </app-item-box>
     </div>
+
+    <!--Main Screen Of the Swimmer-->
+    <div *ngIf="profileservice.profile !== undefined && profileservice.profile.type == role.Swimmer">
+      <app-swimmer-main-page></app-swimmer-main-page>
+    </div>
+
     <div class="add-trainning" *ngIf="pageenum === state.CreateTraining">
       <app-create-training></app-create-training>
     </div>

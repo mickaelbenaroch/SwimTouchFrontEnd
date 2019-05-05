@@ -1,5 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { RoleEnum } from '../../enums/roleenum';
 import { PageEnum } from 'src/app/enums/componentview';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ProfileServiceService } from '../../services/profile-service/profile-service.service';
 
 @Component({
   selector: 'app-st-sidenav',
@@ -10,10 +12,11 @@ export class StSidenavComponent implements OnInit {
 
   //#region Public Members
   @Output() eventFromSideNav: EventEmitter<PageEnum> = new EventEmitter();
+  public role = RoleEnum;
   //#endregion
 
   //#region Constructor & Lifecycle Hooks
-  constructor() { }
+  constructor(public profileservice: ProfileServiceService) { }
 
   public ngOnInit(): void {
   }
