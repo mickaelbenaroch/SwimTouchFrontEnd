@@ -1,6 +1,8 @@
 section{
     margin-top: 1rem;
     direction: rtl;
+    font-family: 'Alef', sans-serif;
+
     .no-teams{
         font-size: 1.5rem;
         font-family: Assistant;
@@ -21,10 +23,12 @@ section{
         direction: rtl;
         .div{
             display: flex;
-            justify-content: space-between;
             padding: 0.5rem;
             font-weight: bold;
+            font-family: 'Alef', sans-serif;
+
             span{
+              
             }
         }
     }

@@ -21,12 +21,12 @@
 
   <section>
   <div class="resume" *ngIf="trainnningModel.name !== undefined">
-    <div style="display:flex;">
-      <div>Trainning:</div>
-      <div>{{trainnningModel.name}},</div>
-      <div>{{warmupcount + buildupcount + corecount + warmdowncount}} meters</div>
-    </div>
-    <div>Date: {{trainnningModel.date}}</div>
+      <div style="display:flex;">
+        <div>שם האימון:</div>
+        <div>{{trainnningModel.name}},</div>
+        <div>{{warmupcount + buildupcount + corecount + warmdowncount}} מטר</div>
+      </div>
+      <div>תאריך: {{trainnningModel.date}}</div>
   </div>
     <div class="wu-div" *ngIf="warmuparray !== undefined && warmuparray.length > 0">
       <div class="title">
