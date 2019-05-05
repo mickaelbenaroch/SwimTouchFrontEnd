@@ -8,12 +8,12 @@
     display: none;
 }
 .envelop{
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 16%;
+    grid-template-areas: "div1 div2";
    // height: 100%;
     .div-1{
-        display: flex;
-        flex-direction: column;
-        width: 80%;
+        grid-area: div1;
         .div-1-1{
 
         }
@@ -22,7 +22,7 @@
         }
     }
     .div-2{
-        width: 20%;
+        grid-area: div2;
     }
 }
 

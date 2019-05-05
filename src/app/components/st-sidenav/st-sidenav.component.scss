@@ -4,11 +4,15 @@
     color: white;
     font-weight: bold;
     font-family: Assistant;
-    display: flex;
     direction: rtl;
+    display: flex;
     text-align: right;
     flex-direction: column;
-    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 13%;
+    height: 100vh;
     .menu{
         display: none;
         width: 2rem;   
@@ -53,13 +57,13 @@
         .div-2{
             display: flex;
             flex-direction: row;
-            padding:1rem;
+            padding: 1rem;
             cursor: pointer;
             .div-2-1{
                 width: 20%;
                 .train{
                     width: 1.5rem;
-                    margin-left: 0.5rem;            
+                    margin-left: 0.8rem;            
                 }
             }
             .div-2-2{
