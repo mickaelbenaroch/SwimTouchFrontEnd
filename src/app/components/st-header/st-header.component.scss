@@ -1,18 +1,16 @@
 .envelop{
     display: flex;
     justify-content: space-between;
-    padding: 2rem;
     border-bottom: 1px solid lightgray;
     margin-right: 5px;
     .div-1{
         .logo{
-            width:25%;
+            width:35%;
             cursor: pointer;
         }
     }
     .div-2{
         display: flex;
-        //width: 50%;
         width: 100%;
         text-align: right;
         justify-content: flex-end;
@@ -26,7 +24,7 @@
             .title{
                 font-size: 1.8rem;
                 font-weight: bold;
-                padding-bottom: 0.5rem;
+                padding-bottom: 0.1rem;
             }
             .sub-title{
                 padding-bottom: 0.3rem;
@@ -37,13 +35,13 @@
             }
         }
         .div-2-1{
-            width: 40%;
+            width: 13%;
             .user{
                 width: 50%;
                 cursor: pointer;
             }
             .user2{
-                width: 50%;
+                width: 100%;
                 cursor: pointer;
                 border-radius: 50%;
             }
