@@ -36,6 +36,18 @@ export class RealTimeTrainningComponent implements OnInit {
    public finalResultModel: FinalResultModel = new FinalResultModel();
    public ready: boolean;
    public typeenum = ExerciseTypeEnum;
+   public warmupcount: number = 0;
+   public buildupcount: number = 0;
+   public corecount: number = 0;
+   public warmdowncount: number = 0;
+   public warmuparray: ExerciseModel[] = [];
+   public builduparray: ExerciseModel[] = [];
+   public corearray: ExerciseModel[] = [];
+   public warmdownarray: ExerciseModel[] = [];
+   public wurepeat: number = 1;
+   public burepeat: number = 1;
+   public corepeat: number = 1;
+   public wdrepeat: number = 1;
    //#endregion
   
    //#region Constructor & Lifecycle Hooks
@@ -69,7 +81,7 @@ export class RealTimeTrainningComponent implements OnInit {
     * Choose a specific Exercise
     * @param trainning 
     */
-   public ChooseExercise(exercise: ExerciseModel):void{
+   public ChooseExercise(exercise: ExerciseModel):void{debugger;
       if(exercise.hasBeenStarted !== undefined && exercise.hasBeenStarted == true){
         this.OpenDialogForExerciseAlreadyDone();
         return;
@@ -81,12 +93,83 @@ export class RealTimeTrainningComponent implements OnInit {
       this.state = RealTrainningEnum.RealTimeView;
    }
 
+  /**
+   * Filter of trainning array
+   * @param trainning 
+   */
+  public Filter(str: string):void{
+    var na = $("#namefilter").css('background-color','transparent');
+    var da = $("#datefilter").css('background-color','transparent');
+    var di = $("#distancefilter").css('background-color','transparent');
+    switch(str){
+      case 'date':
+      da.css('background-color','yellow');
+      this.trainnings = this.trainnings.sort((a,b)=>{
+        if (a.date < b.date) //sort string ascending
+         return -1;
+        if (a.date > b.date)
+         return 1;
+        return 0; //default return value (no sorting)
+      })
+      break;
+      case 'name':
+      na.css('background-color','yellow');
+      this.trainnings = this.trainnings.sort((a,b)=>{
+        var nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase();
+        if (nameA < nameB) //sort string ascending
+         return -1;
+        if (nameA > nameB)
+         return 1;
+        return 0; //default return value (no sorting)
+      })
+      break;
+      case 'distance':
+      di.css('background-color','yellow');
+      this.trainnings = this.trainnings.sort((a,b)=>{
+        if (a.distance < b.distance) //sort string ascending
+         return -1;
+        if (a.distance > b.distance)
+         return 1;
+        return 0; //default return value (no sorting)
+      })
+      break;
+    }
+  }
+
+  /**
+   * Back
+   * @param trainning 
+   */
+  public Back():void{
+    this.state = this.stateHelper.TrainningView;
+  }
+
    /**
     * Get the choosed trainning
     */ 
    public ChooseTrainning(trainning: TrainningModel){
      console.log(trainning);
      this.choosenTrainning = trainning;  
+     this.choosenTrainning.exercises.forEach(ex=>{
+       switch(ex.type){
+         case ExerciseTypeEnum.WarmUp:
+         this.warmuparray.push(ex);
+         this.warmupcount += ex.distance;
+         break;
+         case ExerciseTypeEnum.BuildUp:
+         this.builduparray.push(ex);
+         this.buildupcount += ex.distance;
+         break;
+         case ExerciseTypeEnum.Core:
+         this.corearray.push(ex);
+         this.corecount += ex.distance;
+         break;
+         case ExerciseTypeEnum.WarmDown:
+         this.warmdownarray.push(ex);
+         this.warmdowncount +=ex.distance;
+         break;
+       }
+     })
      this.state = RealTrainningEnum.ExerciseView;
    }
    

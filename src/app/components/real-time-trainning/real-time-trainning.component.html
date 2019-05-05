@@ -2,31 +2,95 @@
     <div *ngIf="trainnings == undefined || trainnings.length == 0" class="no-trainnings"> לא נמצאו אימונים בבסיס הנתונים. באשרותך ליצור קבוצה חדשה <span class="back" (click)="GoBack()">בתפריט הראשי</span></div>
     <div *ngIf="state == stateHelper.TrainningView && trainnings !== undefined && trainnings.length > 0">
       <div class="title">
-        <span>נא לבחור אימון מתוך הרשימה:</span>
+        <div style="align-self: center;">
+          <span>נא לבחור אימון מתוך הרשימה:</span>
+        </div> 
+        <div style="display:flex;flex-direction:row;">
+          <div style="color:blue;align-self: center;margin-left: 1rem;">מיון לפי:</div>
+          <div id="namefilter" style="font-size:normal;cursor:pointer;padding:0.5rem" (click)="Filter('name')">שם</div>
+          <div id="datefilter" style="font-size:normal;cursor:pointer;padding:0.5rem;margin-left:0.5rem;margin-right:0.5rem;" (click)="Filter('date')">תאריך</div>
+          <div id="distancefilter" style="font-size:normal;cursor:pointer;padding:0.5rem" (click)="Filter('distance')">מרחק</div>
+        </div>
       </div>
       <div class="panel" *ngFor="let trainning of trainnings" (click)="ChooseTrainning(trainning)">
-           שם האימון: {{trainning.name + ', '}} תאריך: {{' ' + trainning.date + ' '}} 
+           שם האימון: {{trainning.name + ', '}} תאריך: {{' ' + trainning.date + ' '}} מרחק: {{' ' + trainning.distance +' '}}
       </div>
     </div>
-
-    <div *ngIf="state == stateHelper.ExerciseView"> 
-      <div class="title">
+ 
+    <div id="section" *ngIf="state == stateHelper.ExerciseView"> 
+      <div class="back" (click)="Back()"><img src="/assets/back.svg"/>חזרה</div>
+      <div class="title" *ngIf="choosenTrainning.name == undefined">
         <span>נא לבחור תרגיל מתוך האימון:</span>
       </div>
-      <div class="panel" style="direction: ltr;" *ngFor="let exercise of choosenTrainning.exercises">
-        <div [ngClass]="{'bg-warm-up':exercise.type == this.typeenum.WarmUp, 'bg-build-up':exercise.type == this.typeenum.BuildUp,'bg-core':exercise.type == this.typeenum.Core, 'bg-warm-down': exercise.type == this.typeenum.WarmDown}" style="display:flex"><span style="font-weight:bold">Exercise Category:</span> {{exercise.type}}, <span style="font-weight:bold; margin-left:1rem;">Group:</span> {{exercise.group}},</div>
-        <div [ngClass]="{'bg-warm-up':exercise.type == this.typeenum.WarmUp, 'bg-build-up':exercise.type == this.typeenum.BuildUp,'bg-core':exercise.type == this.typeenum.Core, 'bg-warm-down': exercise.type == this.typeenum.WarmDown}" style="display:flex">
-        <img class="img" *ngIf="exercise.type == 'Warm UP'" src="/assets/warming-up.svg"> 
-        <img class="img" *ngIf="exercise.type == 'Build Up'" src="/assets/build-up.svg">
-        <img class="img" *ngIf="exercise.type == 'Core - Main Set'" src="/assets/core.svg">
-        <img class="img" *ngIf="exercise.type == 'Warm Down'" src="/assets/warm-down.svg">
-        {{exercise.repeat}}X{{exercise.singleSwimDistance}} {{exercise.style}} {{exercise.description}}</div> 
-        <div class="choose-button">
-          <button class="choose" (click)="ChooseExercise(exercise)">בחר תרגיל זה</button>
+      <div class="resume" *ngIf="choosenTrainning.name !== undefined">
+        <div style="display:flex;">
+          <div>Trainning:</div>
+          <div>{{choosenTrainning.name}},</div>
+          <div>{{warmupcount + buildupcount + corecount + warmdowncount}} meters</div>
+        </div>
+        <div>Date: {{choosenTrainning.date}}</div>
+      </div>
+      <div class="wu-div" *ngIf="warmuparray !== undefined && warmuparray.length > 0">
+        <div class="title">
+          Warm-Up {{warmupcount }} meters 
+        </div>
+      </div>
+      <div class="wu" *ngFor="let ex of warmuparray" (click)="ChooseExercise(ex)">
+        <div>
+          <img src="/assets/warming-up.svg"/>
+          <span>{{ex.repeat}}X{{ex.singleSwimDistance}}m {{' ' +  ex.style + ' '}} {{ex.description}}</span>        
+        </div>
+        <div>
+          <img *ngIf="ex.hasBeenStarted" style="margin-left: 2rem;" src="/assets/checked.svg"><span *ngIf="ex.hasBeenStarted" style="ppsition:relative; bottom: 0.5rem;">DONE</span>
+          <img *ngIf="!ex.hasBeenStarted" style="margin-left: 2rem;" src="/assets/exclamation-mark.svg"><span *ngIf="!ex.hasBeenStarted" style="ppsition:relative; bottom: 0.5rem;">READY</span>
+        </div>
+      </div>
+      <div class="wu-div" *ngIf="builduparray !== undefined && builduparray.length > 0">
+        <div class="title">
+          Build-Up {{buildupcount }} meters 
+        </div>
+      </div>
+      <div class="bu" *ngFor="let ex of builduparray" (click)="ChooseExercise(ex)">
+        <div>
+          <img src="/assets/build-up.svg"/>
+          <span>{{ex.repeat}}X{{ex.singleSwimDistance}}m {{' ' +  ex.style + ' '}} {{ex.description}}</span>
+        </div>
+        <div>
+          <img *ngIf="ex.hasBeenStarted" style="margin-left: 2rem;" src="/assets/checked.svg"><span *ngIf="ex.hasBeenStarted" style="ppsition:relative; bottom: 0.5rem;">DONE</span>
+          <img *ngIf="!ex.hasBeenStarted" style="margin-left: 2rem;" src="/assets/exclamation-mark.svg"><span *ngIf="!ex.hasBeenStarted" style="ppsition:relative; bottom: 0.5rem;">READY</span>
+        </div>
+      </div>
+      <div class="wu-div" *ngIf="corearray !== undefined && corearray.length > 0">
+        <div class="title">
+          Core-Main Set {{corecount }} meters 
+        </div>    
+      </div>
+      <div class="co" *ngFor="let ex of corearray" (click)="ChooseExercise(ex)">
+        <div>
+          <img src="/assets/core.svg"/>
+          <span>{{ex.repeat}}X{{ex.singleSwimDistance}}m {{' ' +  ex.style + ' '}} {{ex.description}}</span>
+        </div>
+        <div>
+          <img *ngIf="ex.hasBeenStarted" style="margin-left: 2rem;" src="/assets/checked.svg"><span *ngIf="ex.hasBeenStarted" style="ppsition:relative; bottom: 0.5rem;">DONE</span>
+          <img *ngIf="!ex.hasBeenStarted" style="margin-left: 2rem;" src="/assets/exclamation-mark.svg"><span *ngIf="!ex.hasBeenStarted" style="ppsition:relative; bottom: 0.5rem;">READY</span>
+        </div>
+      </div>
+      <div class="wu-div" *ngIf="warmdownarray !== undefined && warmdownarray.length > 0">
+        <div class="title">
+          Warm-Down {{warmdowncount }} meters 
+        </div>    
+      </div>
+      <div class="wd" *ngFor="let ex of warmdownarray" (click)="ChooseExercise(ex)">
+        <div>
+          <img src="/assets/warm-down.svg"/>
+          <span>{{ex.repeat}}X{{ex.singleSwimDistance}}m {{' ' +  ex.style + ' '}} {{ex.description}}</span>
+        </div>
+        <div>
+          <img *ngIf="ex.hasBeenStarted" style="margin-left: 2rem;" src="/assets/checked.svg"><span *ngIf="ex.hasBeenStarted" style="ppsition:relative; bottom: 0.5rem;">DONE</span>
+          <img *ngIf="!ex.hasBeenStarted" style="margin-left: 2rem;" src="/assets/exclamation-mark.svg"><span *ngIf="!ex.hasBeenStarted" style="ppsition:relative; bottom: 0.5rem;">READY</span>
         </div>
       </div>
     </div> 
-
     <div class="real-time" *ngIf="state == stateHelper.RealTimeView">
         <div *ngIf="ready" id="print-section">
         <div class="resume">תוצאות המשחה</div>

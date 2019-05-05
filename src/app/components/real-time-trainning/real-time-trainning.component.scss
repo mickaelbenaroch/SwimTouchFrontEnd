@@ -16,6 +16,11 @@ section{
         font-size: 1.5rem;
         color: grey;
         font-weight: bold;
+        direction: rtl;
+        text-align: right;
+        padding-right: 0;
+        display: flex;
+        justify-content: space-between;
     }
     .panel{
         box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 
@@ -259,4 +264,151 @@ section{
 .bg-warm-down{
     background-color: #ff6600;
     padding: 0.5rem;
+}
+
+.disable{
+    opacity: 0.4;
+}
+
+
+#section{
+    direction: ltr;
+    text-align: left;
+    font-family: Assistant;
+    .back{
+        padding: 0.5rem;
+        background-color: #01a89e;
+        text-align: center;
+        cursor: pointer;
+        font-family: Assistant;
+        color: white;
+        border-radius: 15px;
+        width: 10%;
+        margin-bottom: 1rem;
+        img{
+            width: 1rem;
+            margin-right: 1rem;
+            position: relative;
+            top: 3px;
+        }
+
+    }
+    .repeat{
+        cursor: pointer;
+        background-color: orange;
+    }
+    .save{
+        cursor: pointer;
+        background-color: #009933;
+    }
+    .resume{
+        display: flex;
+        justify-content: space-between;
+        font-size: 24px;
+    }
+    .title{
+        font-weight: normal; 
+        color: #000;
+        font-size: 1.3em;
+        margin-bottom: 0.3rem;
+        margin-top: 1rem;
+    }
+    .wu{
+            display: flex;
+            justify-content: space-between;
+        img{
+            width: 2rem;
+            height: 2rem;
+            margin-right: 1rem;
+        }
+        span{
+            position: relative;
+            bottom: 0.5rem;
+            align-self: center;
+        }
+        padding: 4px 20px 4px 4px;
+        font-size: 13pt;
+        position: relative;
+        margin-bottom: 2px;
+        cursor: pointer; 
+        background-color: #999999;
+        display: flex;
+        color: white;
+    }
+    .bu{
+        display: flex;
+        justify-content: space-between;
+        img{
+            width: 2rem;
+            height: 2rem;
+            margin-right: 1rem;
+        }
+        span{
+            position: relative;
+            bottom: 0.5rem;
+            align-self: center;
+        }
+        padding: 4px 20px 4px 4px;
+        font-size: 13pt;
+        position: relative;
+        margin-bottom: 2px;
+        cursor: pointer;
+        background-color: #009933;
+        display: flex;
+        color: white;
+    }
+    .co{
+        display: flex;
+        justify-content: space-between;
+        img{
+            width: 2rem;
+            height: 2rem;
+            margin-right: 1rem;
+        }
+        span{
+            position: relative;
+            bottom: 0.5rem;
+            align-self: center;
+        }
+        padding: 4px 20px 4px 4px;
+        font-size: 13pt;
+        position: relative;
+        margin-bottom: 2px;
+        cursor: pointer;
+        background-color: #0066cc;
+        display: flex;
+        color: white;
+    }
+    .wd{
+        display: flex;
+        justify-content: space-between;
+        img{
+            width: 2rem;
+            height: 2rem;
+            margin-right: 1rem;
+        }
+        span{
+            position: relative;
+            bottom: 0.5rem;
+            align-self: center;
+        }
+        color: white;
+        padding: 4px 20px 4px 4px;
+        font-size: 13pt;
+        position: relative;
+        margin-bottom: 2px;
+        cursor: pointer;
+        background-color: #ff6600;
+        display: flex;
+    }
+}
+
+.wu-div{
+    display:flex;
+    justify-content: space-between;
+}
+
+.buttons{
+    align-self: flex-end;
+    padding-top: 1rem;
 }
