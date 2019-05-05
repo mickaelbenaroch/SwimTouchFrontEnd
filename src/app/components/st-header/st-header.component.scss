@@ -1,21 +1,27 @@
 .envelop{
     display: flex;
     justify-content: space-between;
+<<<<<<< HEAD
     padding: 1rem;
+=======
+>>>>>>> 226cd4618f1497fac0ab6ccddfaab9b2bb580940
     border-bottom: 1px solid lightgray;
     margin-right: 5px;
     .div-1{
+        display: grid;
+        align-items: center;
         .logo{
-            width:25%;
+            width:35%;
             cursor: pointer;
+            margin-top: 5px;
         }
     }
     .div-2{
         display: flex;
-        //width: 50%;
         width: 100%;
         text-align: right;
         justify-content: flex-end;
+        margin-top: 5px;
         .text{
             font-family: Assistant;
             color: grey;
@@ -26,7 +32,7 @@
             .title{
                 font-size: 1.8rem;
                 font-weight: bold;
-                padding-bottom: 0.5rem;
+                padding-bottom: 0.1rem;
             }
             .sub-title{
                 padding-bottom: 0.3rem;
@@ -37,13 +43,13 @@
             }
         }
         .div-2-1{
-            width: 40%;
+            width: 13%;
             .user{
                 width: 50%;
                 cursor: pointer;
             }
             .user2{
-                width: 50%;
+                width: 100%;
                 cursor: pointer;
                 border-radius: 50%;
             }
@@ -63,6 +69,7 @@
     .envelop{
         flex-direction: column;
         text-align: center;
+        width: 100%;
         padding: 1rem !important;
         .div-1{
             .logo{
@@ -80,10 +87,17 @@
             .div-2-1{
                 text-align: center;
                 padding-top: 1rem;
+                display: none;
             }
             .text{
                 .title{
                     font-size: 1.5rem;
+                }
+                .sub-title{
+                    display: none;
+                }
+                .sub-sub-title{
+                    display: none;
                 }
             }
         }
