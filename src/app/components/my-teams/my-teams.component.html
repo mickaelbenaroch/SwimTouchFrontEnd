@@ -8,13 +8,13 @@
         </mat-expansion-panel-header>
         <div class="exercises">
           <div class="div">
-            <span> מייל של המאמן: </span>{{team.coachmail}}
+            <span> מייל של המאמן: </span><br>{{team.coachmail}}
           </div>
           <div class="div">
             <span> שחיינים בקבוצה: </span>
             <div style="display:flexl flex-direction:ccolumn">
               <div *ngFor="let swimmer of team.swimmers">
-                {{swimmer.name}}
+                <br>{{swimmer.name}}
               </div>
             </div>
           </div>
