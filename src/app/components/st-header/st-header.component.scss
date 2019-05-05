@@ -4,6 +4,8 @@
     border-bottom: 1px solid lightgray;
     margin-right: 5px;
     .div-1{
+        display: grid;
+        align-items: center;
         .logo{
             width:35%;
             cursor: pointer;
@@ -63,6 +65,7 @@
     .envelop{
         flex-direction: column;
         text-align: center;
+        width: 100%;
         padding: 1rem !important;
         .div-1{
             .logo{
@@ -80,10 +83,17 @@
             .div-2-1{
                 text-align: center;
                 padding-top: 1rem;
+                display: none;
             }
             .text{
                 .title{
                     font-size: 1.5rem;
+                }
+                .sub-title{
+                    display: none;
+                }
+                .sub-sub-title{
+                    display: none;
                 }
             }
         }
