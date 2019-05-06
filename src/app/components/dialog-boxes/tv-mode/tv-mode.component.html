@@ -16,7 +16,7 @@
               <div style="font-weight:bold;" class="header-item">{{swimmer.number}}</div>
               <div style="font-weight:bold;" class="header-item">{{swimmer.swimmer_ref}}</div>
               <div class="header-item jump" id="jump{{i + 1}}" ><span class="animated flash center">0.00</span></div>
-              <div class="header-item touch" id="touch{{swimmer.number + j }}" *ngFor="let lap of swimmers;let j = index"><span class="animated heartBeat center">0.00</span></div>
+              <div class="header-item touch" id="touch{{swimmer.number}}{{j}}" *ngFor="let lap of swimmers;let j = index"><span class="animated heartBeat center">0.00</span></div>
               <div class="header-item final" id="final{{i + 1}}"><span class="animated flash center">0.00 </span></div>
             </div>
         </div>

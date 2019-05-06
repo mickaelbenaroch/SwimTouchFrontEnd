@@ -3,6 +3,7 @@ import { RouteModel } from '../../../models/RouteModel';
 import { OneTimeResult } from '../../../models/OneTimeResult';
 import { ExerciseModel } from '../../../models/ExerciseModel';
 import { FinalResultModel } from '../../../models/FinalResult';
+import { TrainningModel } from '../../../models/TrainningModel';
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { OneJumpTimeResult } from '../../../models/OneJumpTimeResult';
 import { HttpService } from '../../../services/http-service/http-service.service';
@@ -19,6 +20,7 @@ export class TvModeComponent implements OnInit {
 
   //#region Public Members
   @Input() exercise: ExerciseModel;
+  @Input() trainning: TrainningModel;
   @Input() swimmers: string[] = [];
   public finalResultModel: FinalResultModel = new FinalResultModel();
   public r1counter: number = 0;
@@ -41,7 +43,9 @@ export class TvModeComponent implements OnInit {
   public ngOnInit():void {
     this.exercise = this.data.exercise;
     this.swimmers = this.data.swimmers;
+    this.trainning = this.data.trainning;
     $(".tv-dialog").css('max-width','unset');
+    this.exercise.routes.routes.sort((a, b) => a.number - b.number);
   }
   //#endregion
   
@@ -163,7 +167,7 @@ export class TvModeComponent implements OnInit {
       for(var i = 0; i<this.exercise.routes.routes.length;i++){
         if($("#final"+(i+1))){
           if(i == 0){
-            $("#final"+(i+1)).text($("#touch1"+ (this.swimmers.length - 1).toString()).text());
+            $("#final"+(i+1)).text($("#touch0"+ (this.swimmers.length - 1).toString()).text());
             var resultToDb = new OneRouteFinalResultModel();
             resultToDb.date = this.exercise.date;
             resultToDb.jump_time = result.routes.route1.jump_time;
@@ -176,7 +180,7 @@ export class TvModeComponent implements OnInit {
             this.finalArrayResults.push(resultToDb);
 
           }else if(i == 1){
-            $("#final"+(i+1)).text($("#touch2"+ (this.swimmers.length - 1).toString()).text());
+            $("#final"+(i+1)).text($("#touch1"+ (this.swimmers.length - 1).toString()).text());
             var resultToDb = new OneRouteFinalResultModel();
             resultToDb.date = this.exercise.date;
             resultToDb.jump_time = result.routes.route2.jump_time;
@@ -189,7 +193,7 @@ export class TvModeComponent implements OnInit {
             this.finalArrayResults.push(resultToDb);
 
           }else if(i == 2){
-            $("#final"+(i+1)).text($("#touch3"+ (this.swimmers.length - 1).toString()).text());
+            $("#final"+(i+1)).text($("#touch2"+ (this.swimmers.length - 1).toString()).text());
             var resultToDb = new OneRouteFinalResultModel();
             resultToDb.date = this.exercise.date;
             resultToDb.jump_time = result.routes.route3.jump_time;
@@ -261,9 +265,12 @@ export class TvModeComponent implements OnInit {
             console.log(rec);
             //update exercise to done
             let model = {
-              hasBeenStarted: true
+              hasBeenStarted: true,
+              exercise_id: rec.exercise_id,
+              training_id: this.trainning._id
+
             }
-            this.httpservice.httpPost('exercise/updateExercise',model).subscribe(
+            this.httpservice.httpPost('exercise/update',model).subscribe(
               res=>{
                 console.log(res);
               },

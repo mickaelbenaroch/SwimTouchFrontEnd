@@ -10,4 +10,5 @@ export class TrainningModel{
     public date: string;
     public exercisesCount = this.exercises.length;
     public distance: number;
+    public _id: string;
 } 

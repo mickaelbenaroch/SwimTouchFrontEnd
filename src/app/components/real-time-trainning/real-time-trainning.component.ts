@@ -82,7 +82,7 @@ export class RealTimeTrainningComponent implements OnInit {
     * @param trainning 
     */
    public ChooseExercise(exercise: ExerciseModel):void{debugger;
-      if(exercise.hasBeenStarted !== undefined && exercise.hasBeenStarted == true){
+      if(exercise.hasBeenStarted !== undefined && (exercise.hasBeenStarted == true || exercise.hasBeenStarted == "true")){
         this.OpenDialogForExerciseAlreadyDone();
         return;
       }
@@ -142,6 +142,10 @@ export class RealTimeTrainningComponent implements OnInit {
    */
   public Back():void{
     this.state = this.stateHelper.TrainningView;
+    this.warmuparray = [];
+    this.builduparray = [];
+    this.corearray = [];
+    this.warmdownarray = [];
   }
 
    /**
@@ -185,6 +189,7 @@ export class RealTimeTrainningComponent implements OnInit {
       dialogConfig.data = {
         exercise: this.choosenExercise,
         swimmers: this.temp,
+        trainning: this.choosenTrainning
       };
       dialogConfig.width = screen.width + 'px';
       dialogConfig.height = screen.height + 'px';
@@ -199,19 +204,19 @@ export class RealTimeTrainningComponent implements OnInit {
             if(res.routes !== undefined && res.routes.route3 !== undefined){
               for(let i = 0; i<res.routes.route1.results.length; i++){
                 oneResult1.results.push(res.routes.route1.results[i]);
-                oneResult1.total += res.routes.route1.results[i];
+                oneResult1.total = res.routes.route1.results[res.routes.route1.results.length -1];
                }
             }
             if(res.routes !== undefined && res.routes.route2 !== undefined){
               for(let i = 0; i<res.routes.route2.results.length; i++){
                 oneResult2.results.push(res.routes.route2.results[i]);
-                oneResult2.total += res.routes.route2.results[i];
+                oneResult2.total = res.routes.route2.results[res.routes.route2.results.length -1];
               }
             }
             if(res.routes !== undefined && res.routes.route3 !== undefined){
               for(let i = 0; i<res.routes.route3.results.length; i++){
                 oneResult3.results.push(res.routes.route3.results[i]);
-                oneResult3.total += res.routes.route3.results[i];
+                oneResult3.total = res.routes.route3.results[res.routes.route3.results.length -1];
               }
             }
             oneResult1.swimmer.number = 1;
@@ -248,6 +253,7 @@ export class RealTimeTrainningComponent implements OnInit {
               this.finalResultModel.routes.push(oneResult3);
             }
             this.ready = true;
+            $(".tv").css('display','none');
         },
         err =>{
           this.OpenDialog();
