@@ -1,44 +1,45 @@
 .envelop{
     display: flex;
     justify-content: space-between;
-    padding: 1rem;
     border-bottom: 1px solid lightgray;
-    margin-right: 5px;
+    
     .div-1{
-        display: grid;
-        align-items: center;
+        
         .logo{
-            width:35%;
+            width:28%;
             cursor: pointer;
-            margin-top: 5px;
+            margin-left: 2%;
+            margin-top: 2%;
         }
     }
     .div-2{
         display: flex;
-        width: 100%;
+        width: 70%;
         text-align: right;
         justify-content: flex-end;
         margin-top: 5px;
+        margin-right: 2%;
         .text{
             font-family: Assistant;
             color: grey;
             display: flex;
             flex-direction: column;
             padding-right: 1rem;
-            width: 60%;
+            width: 70%;
             .title{
-                font-size: 1.8rem;
+                font-size: 1.5rem;
                 font-weight: bold;
                 padding-bottom: 0.1rem;
                 font-family: 'Secular One', sans-serif;
             }
             .sub-title{
-                padding-bottom: 0.3rem;
+                padding-bottom: 0.1rem;
                 direction: rtl;
                 font-family: 'Alef', sans-serif;
             }
             .sub-sub-title{
                 direction: rtl;
+                font-family: 'Alef', sans-serif;
             }
         }
         .div-2-1{
@@ -51,6 +52,7 @@
                 width: 100%;
                 cursor: pointer;
                 border-radius: 50%;
+                
             }
         }
         .div-2-2{
