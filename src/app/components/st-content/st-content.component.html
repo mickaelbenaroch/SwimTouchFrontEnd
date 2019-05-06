@@ -1,6 +1,6 @@
 <div class="envelop">
 
-    <!--Main Screen of the Trainner-->
+    <!--Main Screen of the Trainner - PLEASE DONT REMOVE WHITE SPACES-->
     <div class="div-1" *ngIf="pageenum === state.Landing && profileservice.profile !== undefined && profileservice.profile.type == role.Trainner">
       <app-item-box [color]="'green'" 
                     [path]="'/assets/file.svg'"
@@ -12,7 +12,7 @@
     <div class="div-2" *ngIf="pageenum === state.Landing && profileservice.profile !== undefined && profileservice.profile.type == role.Trainner"> 
       <app-item-box [color]="'blue'" 
                     [path]="'/assets/save.svg'"
-                    [main]="'יצירת קבוצה     '"
+                    [main]="'יצירת קבוצה '"
                     [sub]="'יצירת קבוצה חדשה '"
                     (CreateNewTrainningEvent)="CreateNewTrainningEvent($event)">
       </app-item-box>
