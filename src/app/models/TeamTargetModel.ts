@@ -25,6 +25,9 @@ export class TeamTargetModel{
     //Is the target done
     public done: boolean = false;
 
+    //notification_has_been_send
+    public notification_has_been_send: boolean = false;
+
     //Constructor
     public TeamTargetModel(){};
 
