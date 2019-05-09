@@ -46,6 +46,9 @@ import { GenericDialogBoxComponent } from './components/dialog-boxes/generic-dia
 import { AddSwimmerTargetComponent } from './components/dialog-boxes/add-swimmer-target/add-swimmer-target.component';
 import { AddTeamToTrainningComponent } from './components/dialog-boxes/add-team-to-trainning/add-team-to-trainning.component';
 import { SwimmerMainPageComponent } from './components/swimmer-main-page/swimmer-main-page.component';
+import { TargetDetailsComponent } from './components/dialog-boxes/target-details/target-details.component';
+import { AddTeamTargetComponent } from './components/dialog-boxes/add-team-target/add-team-target.component';
+import { TeamTargetDetailsComponent } from './components/dialog-boxes/team-target-details/team-target-details.component';
 
 const appRoutes: Routes = [
   { path: '' , component: LoginPageComponent},
@@ -77,13 +80,16 @@ const config: SocketIoConfig = { url: 'https://record-system-server-1.herokuapp.
     MyTrainningsComponent,
     CreateTeamBoxComponent,
     PictureUpdateComponent,
+    TargetDetailsComponent,
+    AddTeamTargetComponent,
     CreateTrainingComponent,
     CreateTrainningComponent,
+    SwimmerMainPageComponent,
     GenericDialogBoxComponent,
     AddSwimmerTargetComponent,
+    TeamTargetDetailsComponent,
     RealTimeTrainningComponent,
     AddTeamToTrainningComponent,
-    SwimmerMainPageComponent,
   ],
   imports: [
     FormsModule,
@@ -115,10 +121,13 @@ const config: SocketIoConfig = { url: 'https://record-system-server-1.herokuapp.
     TvModeComponent,
     CreateTeamBoxComponent,
     PictureUpdateComponent,
+    TargetDetailsComponent,
+    AddTeamTargetComponent,
     CreateTrainningComponent,
     GenericDialogBoxComponent,
     AddSwimmerTargetComponent,
-    AddTeamToTrainningComponent
+    TeamTargetDetailsComponent,
+    AddTeamToTrainningComponent,
   ]
 })
 export class AppModule { }

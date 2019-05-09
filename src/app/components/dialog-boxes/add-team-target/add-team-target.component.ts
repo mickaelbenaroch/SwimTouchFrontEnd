@@ -1,22 +1,21 @@
-import { SwimmerModel } from '../../../models/SwimmerModel';
-import { Component, OnInit, Inject, Input } from '@angular/core';
-import { SwimmingStylesEnum } from '../../../enums/swimmingstylesenum';
-import { SwimmerTargetModel } from '../../../models/SwimmerTargetModel';
+import { TeamModel } from '../../../models/TeamModel';
+import { Component, OnInit, Input, Inject } from '@angular/core';
+import { TeamTargetModel } from '../../../models/TeamTargetModel';
+import { HttpService } from 'src/app/services/http-service/http-service.service';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig } from '@angular/material';
-import { HttpService } from '../../../services/http-service/http-service.service';
-import { AddTeamToTrainningComponent } from '../add-team-to-trainning/add-team-to-trainning.component';
 import { GenericDialogBoxComponent } from '../generic-dialog-box/generic-dialog-box.component';
 
 @Component({
-  selector: 'app-add-swimmer-target',
-  templateUrl: './add-swimmer-target.component.html',
-  styleUrls: ['./add-swimmer-target.component.scss']
+  selector: 'app-add-team-target',
+  templateUrl: './add-team-target.component.html',
+  styleUrls: ['./add-team-target.component.scss']
 })
-export class AddSwimmerTargetComponent implements OnInit {
+export class AddTeamTargetComponent implements OnInit {
+
 
   //#region Public Members
-  @Input() swimmer: SwimmerModel;
-  public target: SwimmerTargetModel = new SwimmerTargetModel();
+  @Input() team: TeamModel;
+  public target: TeamTargetModel = new TeamTargetModel();
   public styles: string[] = ['Freestyle','Backstroke','Breaststroke','Butterfly','Individual Medley'];
   //#endregion
 
@@ -24,10 +23,10 @@ export class AddSwimmerTargetComponent implements OnInit {
   constructor(private dialog: MatDialog,
               private httpservice: HttpService,
               @Inject(MAT_DIALOG_DATA) public data,
-              private dialogRef: MatDialogRef<AddSwimmerTargetComponent>) { }
+              private dialogRef: MatDialogRef<AddTeamTargetComponent>) { }
 
   public ngOnInit():void {
-    this.swimmer = this.data.swimmer;
+    this.team = this.data.team;
   }
   //#endregion
 
@@ -42,10 +41,10 @@ export class AddSwimmerTargetComponent implements OnInit {
   /**
    * AddSwimmerTarget
    */
-  public AddSwimmerTarget():void{
-    this.target.swimmer_ref = this.swimmer._id;
+  public AddTeamTarget():void{
+    this.target.team_ref = this.team._id;
     this.target.date = new Date();
-    this.httpservice.httpPost('target/swimmertarget',this.target).subscribe(
+    this.httpservice.httpPost('target/teamtarget',this.target).subscribe(
       res=>{
         console.log(res);
         this.OpenSuccesDialogBox();
@@ -92,7 +91,7 @@ public OpenSuccesDialogBox():void{
   dialogConfig.disableClose = true;
   dialogConfig.autoFocus = true;
   dialogConfig.data = {
-    title: "היעד נוצר בהצלחה ל- " + this.swimmer.name,
+    title: "היעד נוצר בהצלחה ל- " + this.team.name,
     body: 'באפשרותך לערוך אותו בכל רגע ',
     button: true,
     buttonText: "הבנתי!"
@@ -107,5 +106,4 @@ public OpenSuccesDialogBox():void{
   
 }
   //#endregion
-
 }

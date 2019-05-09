@@ -1,6 +1,6 @@
 import { SwimmingStylesEnum } from '../enums/swimmingstylesenum';
 
-export class SwimmerTargetModel{
+export class TeamTargetModel{
 
     public date: Date;
     
@@ -17,7 +17,7 @@ export class SwimmerTargetModel{
     public triesToImprove: number;
 
     //Swimmer ID for reference
-    public swimmer_ref: string;
+    public team_ref: string;
 
     //Selected Card
     public selected: boolean;
@@ -26,6 +26,6 @@ export class SwimmerTargetModel{
     public done: boolean = false;
 
     //Constructor
-    public SwimmerTargetModel(){};
+    public TeamTargetModel(){};
 
 }

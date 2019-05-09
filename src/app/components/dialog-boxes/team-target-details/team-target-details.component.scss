@@ -1,0 +1,68 @@
+.envelop{
+    padding: 1rem;
+    font-family: Assistant;
+    direction: rtl;
+    .close{
+        text-align: left;
+        img{
+            width: 1rem;
+            cursor: pointer;
+        }
+    }
+    .div-1{
+        padding-bottom: 1rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: grey;
+    }
+    .div-2{
+        padding-bottom: 1rem;
+        font-size: 1rem;
+        color: grey;
+        display: flex;
+        flex-direction: column;
+        .header{
+            display: flex;
+            div{
+                width: 20%;
+                align-self: center;
+                padding: 1rem;
+                font-weight: bold;
+                border: 1px solid lightgray;
+                color: black;
+                font-size: 0.8rem;
+            }
+        }
+        .line{
+            display: flex;
+            div{
+                width: 20%;
+                align-self: center;
+                padding: 1rem;
+                font-weight: bold;
+                border: 1px solid lightgray;
+            }
+            .green{
+                color: green;
+            }
+            .red{
+                color: red;
+            }
+        }
+    }
+    .div-3{
+        padding-bottom: 1rem;
+        margin-top: 1rem;
+        text-align: center;
+        .but{
+            padding:1rem;
+            border: none;
+            background: #01a89e;
+            border-radius: 7px;
+            font-size: 1.2rem;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    }
+}

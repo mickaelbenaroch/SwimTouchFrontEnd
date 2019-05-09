@@ -1,0 +1,27 @@
+<div class="envelop">
+  <div class="close"><img src="/assets/close.svg" (click)="close()"></div>
+  <div class="div-1" *ngIf="filteredRecords !== undefined && filteredRecords.length > 0">{{title}}</div>
+  <div class="div-1" *ngIf="filteredRecords == undefined || filteredRecords.length == 0">
+    <span>לא קיימים הישגים עבור יעד זה!</span>
+  </div>
+  <div class="div-2" *ngIf="filteredRecords !== undefined && filteredRecords.length > 0">
+    <div class="header">
+      <div>שחיין</div>
+      <div>תאריך ביצוע המשחה</div>
+      <div>סגנון המשחה</div>
+      <div>מרחק המשחה</div>
+      <div>זמן המשחה (שניות)</div>
+    </div>
+    <div class="line" *ngFor="let rec of filteredRecords">
+      <div>{{rec.swimmer.name}}</div>
+      <div>{{rec.exercise_id.date | datepipe}}</div>
+      <div>{{rec.exercise_id.style}}</div>
+      <div>{{rec.exercise_id.distance}}</div>
+      <div [ngClass]="{'red':(bad !== undefined && bad === true), 'green': (bad == undefined || bad === false)}">{{rec.results[rec.results.length - 1]}}</div>
+    </div>
+  </div>
+  <div class="div-3" *ngIf="button">
+    <button *ngIf="!cancel" (click)="close()" class="but">{{buttonText}}</button>
+    <button *ngIf="cancel" (click)="CloseAndSend()" class="but">{{buttonText}}</button>
+  </div>
+</div>
