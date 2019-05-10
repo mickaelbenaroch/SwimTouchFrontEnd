@@ -7,6 +7,8 @@ import { RecordModel } from '../../models/RecordModel';
 import { SwimmerModel } from '../../models/SwimmerModel';
 import { ExerciseModel } from '../../models/ExerciseModel';
 import { MatDialogConfig, MatDialog } from '@angular/material';
+import { TeamTargetModel } from '../../models/TeamTargetModel';
+import { NotificationModel } from '../../models/NotificationModel';
 import { SwimmerTargetModel } from '../../models/SwimmerTargetModel';
 import { HttpService } from '../../services/http-service/http-service.service';
 import { ProfileServiceService } from '../../services/profile-service/profile-service.service';
@@ -32,7 +34,7 @@ export class StatsComponent implements OnInit {
   public currentSwimmer: SwimmerModel;
   public SwimmerTargetModel: SwimmerTargetModel;
   public currentSwimmerTargets: SwimmerTargetModel[] = [];
-  public currentTeamTargets: SwimmerTargetModel[] = [];
+  public currentTeamTargets: TeamTargetModel[] = [];
   public specificRecords: RecordModel[] = [];
   public choosenTarget: SwimmerTargetModel;
   public targetChoosen: boolean;
@@ -68,8 +70,8 @@ export class StatsComponent implements OnInit {
   //#endregion
 
   //#regiom Constructor & Lifecycle Hooks
-  constructor(private httpservice: HttpService,
-              private dialog: MatDialog,
+  constructor( private dialog: MatDialog,
+              private httpservice: HttpService,
               private profileservice: ProfileServiceService ) { }
 
   public ngOnInit():void {
@@ -132,10 +134,12 @@ public AllTheTeamChoosen():void{
   this.currentTeam.swimmers.forEach((swimmer: any) =>{
     this.httpservice.httpPost('statistic/full_records',{swimmer_id: swimmer._id}).subscribe(
       res =>{
-        res.records.forEach(rec => {
-          this.teamRecords.push(rec);
-        });
-        console.log(this.teamRecords)
+        if(res !== undefined && res.records !== undefined){
+          res.records.forEach(rec => {
+            this.teamRecords.push(rec);
+          });
+          console.log(this.teamRecords)
+        }
       },
       err =>{
         this.OpenErrorDialogBox();
@@ -149,7 +153,7 @@ public AllTheTeamChoosen():void{
  * @param target 
  */
 public GetTeamTargets():void{
-
+  
   let model = {
     team_id: this.currentTeam._id
   }
@@ -157,22 +161,32 @@ public GetTeamTargets():void{
     res => {
       console.log(res.target);
       this.currentTeamTargets = res.target;
+      if(this.currentTeamTargets == undefined){
+        return;
+      }
       this.currentTeamTargets.forEach(tar =>{
-          this.teamRecords.forEach(tr=>{debugger
-            if(((new Date(tr.exercise_id.date).getTime()) > (new Date(tar.date).getTime())) &&
-               tr.exercise_id.style == tar.style && tr.exercise_id.distance == tar.distance && 
-               tr.results !== undefined &&
-               tr.results[tr.results.length - 1] > tar.targetTime ){
-                 this.recorsNotBetterThanTargetForTeam.push(tr);
-
-               }else if(((new Date(tr.exercise_id.date).getTime()) > (new Date(tar.date).getTime())) &&
-               tr.exercise_id.style == tar.style && tr.exercise_id.distance == tar.distance && 
-               tr.results !== undefined &&
-               tr.results[tr.results.length - 1] <= tar.targetTime){
-                  tar.done = true;
-                  this.recorsBetterThanTargetForTeam.push(tr);
-               }
-          })
+            this.teamRecords.forEach(tr=>{
+              if(((new Date(tr.exercise_id.date).getTime()) > (new Date(tar.date).getTime())) &&
+                 tr.exercise_id.style == tar.style && tr.exercise_id.distance == tar.distance && 
+                 tr.results !== undefined &&
+                 tr.results[tr.results.length - 1] > tar.targetTime ){
+                   this.recorsNotBetterThanTargetForTeam.push(tr);
+                   if(!tar.notification_has_been_send){
+                    this.sendNotificationForTeamTarget(tar);
+                    tar.notification_has_been_send = true;
+                  }
+  
+                 }else if(((new Date(tr.exercise_id.date).getTime()) > (new Date(tar.date).getTime())) &&
+                 tr.exercise_id.style == tar.style && tr.exercise_id.distance == tar.distance && 
+                 tr.results !== undefined &&
+                 tr.results[tr.results.length - 1] <= tar.targetTime){
+                    if(!tar.done){
+                      this.updateTeamTarget(tar);
+                      tar.done = true;
+                    }
+                    this.recorsBetterThanTargetForTeam.push(tr);
+                 }
+            })  
       })
     }
   )
@@ -288,13 +302,14 @@ public EnterTeamTarget(target: SwimmerTargetModel):void{
     //First getting all the records of the choosen swimmer
     this.httpservice.httpPost('statistic/full_records', model).subscribe(
         res=>{
-            this.records = res.records;
+            if(res !== undefined && res.records !== undefined){
+              this.records = res.records;
+            }
         },
         err =>{
           this.OpenErrorDialogBox();
         }
     );
-
   }
 
   /**
@@ -330,24 +345,36 @@ public EnterTeamTarget(target: SwimmerTargetModel):void{
           console.log(res);
           this.targ = true;
           this.currentSwimmerTargets = res.target;
-          this.currentSwimmerTargets.forEach(tar =>{debugger;
-            this.records.forEach(rec => {
-              if(((new Date(rec.exercise_id.date).getTime()) > (new Date(tar.date).getTime())) &&
-                   rec.exercise_id.style == tar.style &&
-                   rec.exercise_id.distance == tar.distance &&
-                   rec.exercise_id.hasBeenStarted &&
-                   rec.results !== undefined &&
-                   rec.results[rec.results.length - 1] <= tar.targetTime){debugger;
-                          tar.done = true;
-                          this.recorsBetterThanTarget.push(rec);
-                    }else if(((new Date(rec.exercise_id.date).getTime()) > (new Date(tar.date).getTime())) &&
-                    rec.exercise_id.style == tar.style &&
-                    rec.exercise_id.distance == tar.distance &&
-                    rec.results !== undefined &&
-                    rec.results[rec.results.length - 1] > tar.targetTime){
-                      this.recorsNotBetterThanTarget.push(rec);
-                    }
-            });
+          if(this.currentSwimmerTargets == undefined){
+            return;
+          }
+          this.currentSwimmerTargets.forEach(tar =>{
+            if(!tar.done){
+              this.records.forEach(rec => {
+                if(((new Date(rec.exercise_id.date).getTime()) > (new Date(tar.date).getTime())) &&
+                     rec.exercise_id.style == tar.style &&
+                     rec.exercise_id.distance == tar.distance &&
+                     rec.exercise_id.hasBeenStarted &&
+                     rec.results !== undefined &&
+                     rec.results[rec.results.length - 1] <= tar.targetTime){
+                            if(!tar.done){
+                              this.updateSwimmerTarget(tar);
+                            }
+                            tar.done = true;
+                            this.recorsBetterThanTarget.push(rec);
+                      }else if(((new Date(rec.exercise_id.date).getTime()) > (new Date(tar.date).getTime())) &&
+                      rec.exercise_id.style == tar.style &&
+                      rec.exercise_id.distance == tar.distance &&
+                      rec.results !== undefined &&
+                      rec.results[rec.results.length - 1] > tar.targetTime){
+                        this.recorsNotBetterThanTarget.push(rec);
+                        if(!tar.notification_has_been_send){
+                          this.sendNotificationForSwimmerTarget(tar);
+                          tar.notification_has_been_send = true;
+                        }
+                      }
+              });
+            }
           })
         },
         err =>{
@@ -355,6 +382,110 @@ public EnterTeamTarget(target: SwimmerTargetModel):void{
         }
       )
     }
+  }
+
+/**
+ * sendNotificationForTeamTarget
+ * @param tar 
+ */
+public sendNotificationForTeamTarget(tar: TeamTargetModel):void{debugger
+  let model = {
+    team_id: tar.team_id
+  }
+  this.httpservice.httpPost('team/getteamById',model).subscribe(
+    res =>{
+      res.team[0].swimmers.forEach(swimmer => {
+        this.sendNotificationForSwimmerTarget(tar, swimmer);
+      });
+    },
+    err =>{
+      this.OpenErrorDialogBox();
+    }
+  )
+}
+
+  /**
+   * sendNotification to swimmer about bad performances
+   * @param target 
+   */
+  public sendNotificationForSwimmerTarget(tar: any, swimmer_ref: string = null):void{
+    //First create send notification to swimmer
+    let notification = new NotificationModel();
+    notification.coachmail = localStorage.getItem("email");
+    notification.date = new Date();
+    notification.message = "נא לשים לב שהיעד הבא לא הושג" + tar.style + ' ' + tar.distance + ',זמן' + tar.targetTime;
+    notification.title = "הזהרה עקב אי עמידה ביעד שנקבע  לך על ידי המאמן!";
+    notification.priority = "didnt_get_target_message";
+    if(swimmer_ref == null){
+      notification.swimmer_id = tar.swimmer_ref;
+    }else{
+      notification.swimmer_id = swimmer_ref;
+    }
+    notification.coachId = this.profileservice.profile._id;
+
+    this.httpservice.httpPost('notification/setNotification', notification).subscribe(
+      res =>{
+        console.log(res);
+      },
+      err =>{
+        this.OpenErrorDialogBox();
+      }
+    )
+
+
+    //second, update target notification
+    let model = {
+      _id: tar._id,
+      notification_has_been_send: true,
+      done: false
+    }
+    this.httpservice.httpPost('target/updateswimmertarget',model).subscribe(
+      res =>{
+        console.log();
+      },
+      err =>{
+        this.OpenErrorDialogBox();
+      }
+    )
+  }
+  
+
+  /**
+   * updateSwimmerTarget
+   */
+  public updateSwimmerTarget(target: SwimmerTargetModel):void{
+    let model = {
+      _id: target._id,
+      notification_has_been_send: false,
+      done: true
+    }
+    this.httpservice.httpPost('target/updateswimmertarget', model).subscribe(
+      res =>{
+          console.log(res);
+      },
+      err =>{
+        this.OpenErrorDialogBox();
+      }
+    )
+  }
+
+    /**
+   * updateSwimmerTarget
+   */
+  public updateTeamTarget(target: TeamTargetModel):void{
+    let model = {
+      _id: target._id,
+      notification_has_been_send: false,
+      done: true
+    }
+    this.httpservice.httpPost('target/updateteamtarget', model).subscribe(
+      res =>{
+          console.log(res);
+      },
+      err =>{
+        this.OpenErrorDialogBox();
+      }
+    )
   }
 
   /**

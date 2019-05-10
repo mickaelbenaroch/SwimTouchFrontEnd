@@ -28,6 +28,9 @@ export class SwimmerTargetModel{
     //notification_has_been_send
     public notification_has_been_send: boolean = false;
 
+    //ID
+    public _id: string;
+    
     //Constructor
     public SwimmerTargetModel(){};
 

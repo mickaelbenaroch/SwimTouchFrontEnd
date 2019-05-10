@@ -2,6 +2,12 @@
   <div class="menu">
     <img src="/assets/menu.svg" class="menu" (click)="Menu()">
   </div>
+  <div class="div-group-0">
+    <app-st-header [title]="title"
+                   [profile]="profileservice.profile"
+                   (HomeEvent)="GoToMainMenu($event)">
+    </app-st-header>
+  </div>
   <div class="div-group-1">
     <div class="div-0" (click)="SideNiveClick('landing')">
       <div class="div-0-1">

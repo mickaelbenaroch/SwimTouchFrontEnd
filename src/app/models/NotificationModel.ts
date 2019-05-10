@@ -11,4 +11,11 @@ export class NotificationModel{
     public coachId: string;
     
     public date: Date;
+
+    public title: string;
+
+    public priority: string;
+
+    public NotificationModel(){}
 }
+

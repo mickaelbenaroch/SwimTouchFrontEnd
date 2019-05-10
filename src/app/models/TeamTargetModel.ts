@@ -17,7 +17,7 @@ export class TeamTargetModel{
     public triesToImprove: number;
 
     //Swimmer ID for reference
-    public team_ref: string;
+    public team_id: string;
 
     //Selected Card
     public selected: boolean;
@@ -27,6 +27,9 @@ export class TeamTargetModel{
 
     //notification_has_been_send
     public notification_has_been_send: boolean = false;
+
+    //ID
+    public _id: string;
 
     //Constructor
     public TeamTargetModel(){};

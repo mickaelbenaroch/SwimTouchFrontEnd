@@ -42,7 +42,7 @@ export class AddTeamTargetComponent implements OnInit {
    * AddSwimmerTarget
    */
   public AddTeamTarget():void{
-    this.target.team_ref = this.team._id;
+    this.target.team_id = this.team._id;
     this.target.date = new Date();
     this.httpservice.httpPost('target/teamtarget',this.target).subscribe(
       res=>{

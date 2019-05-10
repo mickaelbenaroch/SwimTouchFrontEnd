@@ -103,6 +103,8 @@
         </div>
     </div>
 
+
+    <div style="margin-top: 1rem;" *ngIf="currentTeam !== undefined && currentTeam !== null && (currentTeamTargets == undefined || currentTeamTargets.length == 0)">לא נמצאו יעדים עבור {{currentTeam.name}}. לחץ על ׳קביעת יעד חדש׳ כדי להוסיף יעד</div>
     <div class="targets-div" *ngIf="teamChoosen && currentTeamTargets !== undefined && currentTeamTargets.length > 0">
         <div class="table-header">
           <div class="div">
