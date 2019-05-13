@@ -1,10 +1,10 @@
+
 .envelop{
     display: flex;
     flex-direction: column;
-    border-bottom: 1px solid lightgray;
-    
+    background: linear-gradient(rgba(20,20,20, .5), rgba(20,20,20, .5)),url('../../../assets/header.jpg');
+    background-size: 100% 100%;
     .div-1{
-        
         .logo{
             width:28%;
             cursor: pointer;
@@ -27,6 +27,7 @@
             text-align: center;
             color: white;
             padding-bottom: 1rem;
+            margin-right: 1.5%;
             .title{
                 font-size: 1.5rem;
                 font-weight: bold;
@@ -35,28 +36,31 @@
             }
             .sub-title{
                 padding-bottom: 0.1rem;
-                font-size: 1.5rem;
+                font-size: 1.2rem;
                 direction: rtl;
                 font-family: 'Alef', sans-serif;
+                text-align: right;
             }
             .sub-sub-title{
                 direction: rtl;
                 font-family: 'Alef', sans-serif;
+                text-align: right;
+                opacity: 0.7;
             }
         }
         .div-2-1{
             //width: 13%;
             text-align: center;
+            margin-right: 1.5%;
             .user{
                 width: 55%;
                 cursor: pointer;
             }
             .user2{
-                //width: 100%;
                 cursor: pointer;
                 border-radius: 50%;
-                width: 55%;
-                
+                width: 25%;
+                float: right;
             }
         }
         .div-2-2{
@@ -69,6 +73,14 @@
         }
     }
 }
+
+.envelop:hover{
+    background: linear-gradient(rgba(119, 117, 117, 0.5), rgba(112, 112, 112, 0.5)),url('../../../assets/header.jpg');
+    background-size: 100% 100%;
+    animation: fadein 1s;
+}
+
+
 
 @media only screen and (max-width: 600px) {
     .envelop{

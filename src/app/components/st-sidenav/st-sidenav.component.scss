@@ -1,6 +1,6 @@
 .envelop{
-    padding: 1rem;
-    background: #01a89e;
+    //padding: 1rem;
+    background: #2D353C;
     color: white;
     font-weight: bold;
     font-family: Assistant;
@@ -34,7 +34,8 @@
                 width: 20%;
                 .stats{
                     width:1.5rem;
-                    margin-left: 0.5rem;        
+                    margin-left: 0.5rem;   
+                    color: red;   
                 }    
             }
             .div-0-2{
