@@ -1,7 +1,7 @@
 .envelop{
     //padding: 1rem;
     background: #2D353C;
-    color: white;
+    color: #A8ACB1;
     font-weight: bold;
     font-family: Assistant;
     direction: rtl;
@@ -35,7 +35,7 @@
                 .stats{
                     width:1.5rem;
                     margin-left: 0.5rem;   
-                    color: red;   
+                    filter: invert(.5);
                 }    
             }
             .div-0-2{
@@ -52,7 +52,8 @@
                 width: 20%;
                 .stats{
                     width:1.5rem;
-                    margin-left: 0.5rem;            
+                    margin-left: 0.5rem;  
+                    filter: invert(.5);          
                 }    
             }
             .div-1-2{
@@ -69,7 +70,8 @@
                 width: 20%;
                 .train{
                     width: 1.5rem;
-                    margin-left: 0.8rem;            
+                    margin-left: 0.8rem; 
+                    filter: invert(.5);           
                 }
             }
             .div-2-2{
@@ -86,7 +88,8 @@
                 width: 20%;
                 .history{
                     width: 1.5rem;
-                    margin-left: 0.5rem;            
+                    margin-left: 0.5rem;  
+                    filter: invert(.5);          
                 }
             }
             .div-3-2{
@@ -103,7 +106,8 @@
                 width: 20%;
                 .matalot{
                     width: 1.5rem;
-                    margin-left: 0.5rem;            
+                    margin-left: 0.5rem;   
+                    filter: invert(.5);         
                 }
             }
             .div-4-2{
@@ -120,7 +124,8 @@
                 width: 20%;
                 .search{
                     width: 1.5rem;
-                    margin-left: 0.5rem;            
+                    margin-left: 0.5rem;   
+                    filter: invert(.5);         
                 }
             }
             .div-5-2{
@@ -138,6 +143,7 @@
                 .sms{
                     width: 1.5rem;
                     margin-left: 0.5rem;
+                    filter: invert(.5);
                 }
             }
             .div-6-2{
@@ -155,6 +161,7 @@
                 .settings{
                     width: 1.5rem;
                     margin-left: 0.5rem;
+                    filter: invert(.5);
                 }
             }
             .div-7-2{
@@ -172,6 +179,7 @@
                 .help{
                     width: 1.5rem;
                     margin-left: 0.5rem;
+                    filter: invert(.5);
                 }
             }
             .div-8-2{
@@ -183,9 +191,11 @@
     }
 }
 
-.div-1:hover,.div-2:hover,.div-3:hover,.div-4:hover,.div-5:hover,.div-6:hover,.div-7:hover,.div-8:hover{
-    background: whitesmoke;
-    color: grey;
+.div-0:hover, .div-1:hover,.div-2:hover,.div-3:hover,.div-4:hover,.div-5:hover,.div-6:hover,.div-7:hover,.div-8:hover
+{
+    //background: whitesmoke;
+    color: white;
+    filter: brightness(0) invert(1);         
 }
 
 @media only screen and (max-width: 600px) {

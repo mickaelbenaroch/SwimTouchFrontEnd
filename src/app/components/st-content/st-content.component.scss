@@ -27,7 +27,12 @@
             .div-4{
                 background-image: url('../../../assets/editTeam.png');
             }
+
+            .div-1:hover, .div-2:hover, .div-3:hover, .div-4:hover{
+                filter: invert(100%);
+            }
     }
+    
     
     .add-trainning{
         
