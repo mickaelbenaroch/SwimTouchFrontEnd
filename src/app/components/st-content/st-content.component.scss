@@ -1,47 +1,43 @@
 .envelop{
-    display: flex;
-    display: -webkit-flex; /* Safari */
-    -webkit-flex-wrap: wrap; /* Safari 6.1+ */
-    flex-wrap: wrap;
-    justify-content: flex-end;
     font-family: 'Alef', sans-serif;
-    padding-top: 3rem !important;    
-    padding: 2rem;
-    .div-1{
-        width: 45%;
-        margin-left: 2%;
-        margin-right: 2%;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
+    padding: 2%;   
+
+    #box-section{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 2%;
+        grid-auto-flow: dense;
+            .mainBox{
+                width: 100%;
+                background-size: 100% 100%;
+                border-radius: 3px;
+            }
+            .div-1{
+                background-image: url('../../../assets/addTraining.png');
+            }
+        
+            .div-2{
+                background-image: url('../../../assets/addTeam.png');
+            }
+            
+            .div-3{
+                background-image: url('../../../assets/editTraining.png');
+            }
+            
+            .div-4{
+                background-image: url('../../../assets/editTeam.png');
+            }
     }
-    .div-2{
-        width: 45%;
-        margin-left: 2%;
-        margin-right: 2%;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-    }
-    .div-3{
-        width: 45%;
-        margin-left: 2%;
-        margin-right: 2%;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-    }
-    .div-4{
-        width: 45%;
-        margin-left: 2%;
-        margin-right: 2%;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-    }
+    
     .add-trainning{
         
     }
     .my-trainnings{
         width: 100%; 
+        
     }
 }
+
 
 @media only screen and (max-width: 600px) {
     .envelop{

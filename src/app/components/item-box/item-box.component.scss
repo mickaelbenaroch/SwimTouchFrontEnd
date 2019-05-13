@@ -3,9 +3,13 @@
     justify-content:space-between;
     font-family: Assistant;
     direction: rtl;
-    border: 1px solid lightgray;
+    cursor: pointer;
+
     .group-div-1{
-        display: flex; 
+        width: 100%;
+        display: flex;
+        flex-direction: row-reverse;
+
         .div-1{
             width: 10px;
             margin-left: 10px;
@@ -17,6 +21,7 @@
             padding: 1rem;
             text-align: center;
             align-self: center;  
+            
             .icon{ 
                 width: 2rem;
                 height: 2rem;
@@ -26,19 +31,18 @@
             padding: 2rem;  
             .main{
                 font-size: 1.5rem;
+                color: #E7E8E9;
+                font-weight: bolder;
             }
             .sub{
                 font-size: 1rem;
-                color: lightgray;
+                color: #B1B4B8;
+                font-weight: 500;
             }
         }
     }
-    .div-4{
-        align-self: center;
-        padding: 1rem;
-        .arrow{
-            width: 1.5rem;
-            cursor: pointer;
-        }
+    .group-div-1:hover{
+        box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+        filter: invert(100%);
     }
 }
