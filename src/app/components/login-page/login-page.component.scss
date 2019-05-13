@@ -14,22 +14,35 @@
             border-bottom: 1px solid #8a8264;
             background-color: transparent;
             color: #8a8264;
-            width: 50%;
+            width: 80%;
+            font-family: 'Quattrocento', serif;
+
+
         }
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active {
+            -webkit-transition: "color 9999s ease-out, background-color 9999s ease-out";
+            -webkit-transition-delay: 9999s;
+        }
+
         .form-div{
-            padding-bottom: 2rem;
             .form{
-                margin: auto;
-                width: 40%;
                 direction: rtl;
-                display: flex;
-                align-items: right;
-                flex-direction: column;
+                width: 20%;
+                margin: 3% auto;
+
                 .form-1{
                     padding: 0.5rem;
+                    font-family: 'Alef', sans-serif;
+
                 }
                 .form-2{
                     padding: 0.5rem;
+                    font-family: 'Alef', sans-serif;
+
                     .input-1{
                         padding: 0.5rem;
                         font-size: 1rem;
@@ -63,12 +76,12 @@
                     color: grey;
                     cursor: pointer;
                 }
-                .form-8{
-                    padding-right: 0.5rem;
-                    text-align: center;
+                .form-8{                    
                     margin-top: 1rem;
+                   
                     .button{
-                        background: #01a89e;
+                        width: 85%;
+                        background: #999999;
                         padding-right: 1.5rem;
                         padding-left: 1.5rem;
                         padding-top: 0.5rem;
@@ -76,18 +89,21 @@
                         color: white;
                         font-weight: bold;
                         font-size: 1.2rem;
-                        font-family: Assistant;
+                        font-family: 'Alef', sans-serif;
                         cursor: pointer;
-                        border-radius: 10px;
+                        outline: none;
+                        border: none; 
                     }
                 }
                 .form-9{
                     margin-top: 3rem;
+                    width: 85%;
                     text-align: center;
+                    
                     .not-member{
                     }
                     .signup{
-                        color: #01a89e;
+                        color: #8C7B7C;
                         cursor: pointer;
                     }
                 }

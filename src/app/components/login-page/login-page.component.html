@@ -3,7 +3,7 @@
     <div class="form-div">
       <form class="form" *ngIf="!signUp">
         <div class="form-1">
-          <span>נא להזין כתובת מייל:</span>
+          <span>שם משתמש (דוא"ל):</span>
         </div>
         <div class="form-2">
           <input class="input-1" type="email" [(ngModel)]="email" name="first" (change)="DisableError()" placeholder="youremail@youremail.com">
@@ -27,7 +27,7 @@
           <button class="button" (click)="Validate()">התחבר למערכת</button>
         </div>
         <div class="form-9">
-          <span class="not-member">עדיין לא רשום?</span><span class="signup" (click)="SignUp()">הירשם כאן</span>
+          <span class="not-member">עדיין לא רשום?</span><span class="signup" (click)="SignUp()"> הירשם כאן</span>
         </div>
       </form>
       <form class="su-form" *ngIf="signUp">
