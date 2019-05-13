@@ -1,24 +1,26 @@
 .envelop{
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-rows: 40% 1fr;
+    grid-template-areas: "back" "login";
     font-family: Assistant;
-    padding: 2rem;  
-    background: #DCDCDC;
+
     .div-1{
-        width: 50%;
-        background: white;
-        .logo-div{
-            padding: 1rem;
-            text-align: center;
-            .logo{
-                width: 60%;
-            }
+        grid-area: login;
+        background-color: white;
+    
+        input{
+            outline: none;
+            border: none;
+            border-bottom: 1px solid #8a8264;
+            background-color: transparent;
+            color: #8a8264;
+            width: 50%;
         }
         .form-div{
             padding-bottom: 2rem;
             .form{
                 margin: auto;
-                width: 50%;
+                width: 40%;
                 direction: rtl;
                 display: flex;
                 align-items: right;
@@ -29,11 +31,8 @@
                 .form-2{
                     padding: 0.5rem;
                     .input-1{
-                        width: 100%;
                         padding: 0.5rem;
-                        border-radius: 10px;
                         font-size: 1rem;
-                        border-width: 1px;
                     }
                 }
                 .form-3{
@@ -48,11 +47,8 @@
                 .form-5{
                     padding: 0.5rem;
                     .input-2{
-                        width: 100%;
                         padding: 0.5rem;
-                        border-radius: 10px;
                         font-size: 1rem;
-                        border-width: 1px;
                     }
                 }
                 .form-6{
@@ -238,50 +234,20 @@
         }
 
     }
-    .div-2{
-        width: 50%;
-        background: lightgray;
-        display: flex;
-        flex-direction: column;
-        font-size: 5rem;
-        font-family: 'Amatic SC', cursive;
-        .line-1{
-            font-weight: bold;
-            text-align: center;
-            font-size: 7rem;
-            letter-spacing: 1.5rem;
-        }
-        .line-2{
-            color: lightslategray;
-            text-align: center;
-            font-size: 3.5rem;
-            letter-spacing: 0.55rem;
-        }
-        .line-3{
-            color: lightslategray;
-            text-align: center;
-            font-size: 3.5rem;
-            letter-spacing: 0.55rem;
-        }
-        .line-4{
-            font-weight: bold;
-            text-align: center;
-            font-size: 7rem;
-            letter-spacing: 1.5rem;
-        }
-        .line-5{
-            color: lightslategray;
-            text-align: center;
-            font-size: 3.5rem;
-            letter-spacing: 0.55rem;
-        }
-        .line-6{
-            font-weight: bold;
-            text-align: center;
-            font-size: 7rem;
-            letter-spacing: 1.5rem;
-        }
 
+    .div-2{
+        background: linear-gradient(rgba(20,20,20, .5), rgba(20,20,20, .5)), url("../../../assets/login-background.jpg");
+        background-size: 100% 100%;
+        filter: grayscale(50%);
+        
+        .logo-div{
+            padding: 1rem;
+            text-align: center;
+            filter: invert(60%);
+            .logo{
+                width: 35%;
+            }
+        }
     }
 }
 
@@ -289,12 +255,6 @@
     opacity: 1 !important;
 }
 
-input:focus
-{
-    border: none;
-    border: 1px solid #01a89e;
-    outline: 0;
-}
 
 .height{
     height: 95%;
