@@ -2,6 +2,17 @@
     font-family: 'Alef', sans-serif;
     padding: 2%;   
 
+    .group-div-0{
+        h1{
+            
+            display: inline;
+            direction: rtl;
+        }
+        span{
+          
+        }
+    }
+
     #box-section{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
