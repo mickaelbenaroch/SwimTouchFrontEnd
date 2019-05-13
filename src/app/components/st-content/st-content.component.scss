@@ -32,6 +32,26 @@
                 filter: invert(100%);
             }
     }
+
+    #box-section2{
+        margin-top: 5%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas: "A B C";
+        grid-gap: 3%;
+
+        app-swimmer-box{
+            grid-area: B;
+        }
+
+        app-schedule-box{
+            grid-area: A;
+        }
+
+        app-last-training-box{
+            grid-area: C;
+        }
+    }
     
     
     .add-trainning{

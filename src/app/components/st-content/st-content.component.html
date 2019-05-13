@@ -36,6 +36,12 @@
       </div>
     </div>
 
+    <div id="box-section2" *ngIf="pageenum === state.Landing && profileservice.profile !== undefined && profileservice.profile.type == role.Trainner">
+        <app-swimmer-box></app-swimmer-box>
+        <app-schedule-box></app-schedule-box>
+        <app-last-training-box></app-last-training-box>
+    </div>
+
     <!--Main Screen Of the Swimmer-->
     <div *ngIf="profileservice.profile !== undefined && profileservice.profile.type == role.Swimmer">
       <app-swimmer-main-page></app-swimmer-main-page>
