@@ -3,13 +3,23 @@
     padding: 2%;   
 
     .group-div-0{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "brad title";
+        margin-bottom: 2%;
+        position: relative;
+
+
         h1{
-            
-            display: inline;
-            direction: rtl;
+            grid-area: title;   
+            direction: rtl; 
+            color: #A8ACB1;
         }
         span{
-          
+            grid-area: brad;
+            position: absolute;
+            bottom: 0;
+            color: #A8ACB1;
         }
     }
 
