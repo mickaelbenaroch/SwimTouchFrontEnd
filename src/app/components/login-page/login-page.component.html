@@ -32,27 +32,21 @@
       </form>
       <form class="su-form" *ngIf="signUp">
         <div class="d1">
-          <span>שם פרטי:</span>
           <input type="text" [(ngModel)]="this.SignUpModel.first_name" name="fname" class="fname" placeholder="שם פרטי">
-        </div>
+        </div><br>
         <div class="d2">
-           <span>שם משפחה: </span>
           <input type="text" [(ngModel)]="this.SignUpModel.last_name" name="lname" class="lname" placeholder="שם משפחה">
         </div>
         <div class="d3">
-           <span>שם משתמש:</span>
           <input type="text" [(ngModel)]="this.SignUpModel.user" name="user" class="user" placeholder="שם משתמש">
         </div>
         <div class="d4">
-          <span>סיסמא:</span>
           <input type="password" [(ngModel)]="this.SignUpModel.pwd" name="pwd" class="pwd" placeholder="סיסמא">
         </div>
         <div class="d5">
-         <span>גיל:</span>
           <input type="number" [(ngModel)]="this.SignUpModel.age" name="age" class="age" placeholder="גיל">
         </div>
         <div class="d6">
-          <span>קבוצה:</span>
           <input type="text" [(ngModel)]="this.SignUpModel.group" name="group" class="group" placeholder="קבוצה">
         </div>
         <div class="d7">
