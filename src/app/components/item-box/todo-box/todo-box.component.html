@@ -1,0 +1,15 @@
+<div id="todo-box">
+  <div class="box-title"><h3>המשימות שלי</h3></div>
+  <div class="box-content">
+      <div *ngFor="let swimmer of swimmers| slice:0:6"  class="image-box">
+            <img *ngIf="swimmer.picture == ''" src="/assets/user.svg" >
+            <div class="swimmerName"><p>{{swimmer.name}}</p></div>
+      </div> 
+  </div>
+  <div class="box-herf">
+      <label> הוסף משימה חדשה:
+        <input type="text" name="text" >
+         <button>הוסף</button>
+      </label>  
+  </div>
+</div>

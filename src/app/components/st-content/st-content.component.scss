@@ -58,7 +58,8 @@
         margin-top: 5%;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        grid-template-areas: "A B C";
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas: "A B C" "todo todo graph";
         grid-gap: 3%;
 
         app-swimmer-box{
@@ -71,6 +72,10 @@
 
         app-last-training-box{
             grid-area: C;
+        }
+
+        app-todo-box{
+            grid-area: todo;
         }
     }
     

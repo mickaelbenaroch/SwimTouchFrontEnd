@@ -1,0 +1,77 @@
+#todo-box{
+    direction: rtl;
+    font-family: 'Alef', sans-serif;
+
+    .box-title{
+        background-color: #242A30;
+        color: #FFFFFF;
+        width: 100%;
+        height: 35px;
+        display: grid;
+        align-items: center;
+        border-bottom: 1px solid gray;
+        
+        h3{
+            font-size: 0.8vw;
+            margin-right: 2%;
+        }
+    }
+
+    .box-content{
+        width: 100%;
+        height: 35vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        background-color: #242A30;
+        align-items: center;
+        justify-items: center;
+
+        .image-box{
+            width: 80%;
+            background-color: white;
+        }
+
+        img{
+           width: 100%;
+        }
+
+        .swimmerName{
+            text-align: center;
+            font-size: 0.7vw;
+        }
+    }
+
+    .box-herf{
+        width: 100%;
+        height: 45px;
+        background-color: #242A30;
+        border-top: 1px solid #EEEEEE;
+        display: grid;
+        align-items: center;
+        font-weight: 700;
+
+        label{
+            margin-right: 2%;
+            color: white;
+            width: 80%;
+
+            input{
+                width: 70%;
+                outline: none;
+                border: none;
+                height: 25px;
+                font-size: 1vw;
+            }
+
+            button{
+                margin-right: 2%;
+                outline: none;
+                border: none;
+                background-color: transparent;
+                font-size: 1vw;
+                color: white;
+            }
+        }
+        
+    }
+}

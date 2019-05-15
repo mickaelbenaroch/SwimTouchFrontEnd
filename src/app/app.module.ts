@@ -52,6 +52,7 @@ import { TeamTargetDetailsComponent } from './components/dialog-boxes/team-targe
 import { SwimmerBoxComponent } from './components/item-box/swimmer-box/swimmer-box.component';
 import { ScheduleBoxComponent } from './components/item-box/schedule-box/schedule-box.component';
 import { LastTrainingBoxComponent } from './components/item-box/last-training-box/last-training-box.component';
+import { TodoBoxComponent } from './components/item-box/todo-box/todo-box.component';
 
 const appRoutes: Routes = [
   { path: '' , component: LoginPageComponent},
@@ -96,6 +97,7 @@ const config: SocketIoConfig = { url: 'https://record-system-server-1.herokuapp.
     SwimmerBoxComponent,
     ScheduleBoxComponent,
     LastTrainingBoxComponent,
+    TodoBoxComponent,
   ],
   imports: [
     FormsModule,
