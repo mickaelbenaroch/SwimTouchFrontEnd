@@ -1,14 +1,7 @@
 <div class="envelop">
-  <div class="div-1">
-    <div>
-      <span>הפרטים שלי:</span>
-      <div *ngFor="let team of teams">{{team.name}}</div>
+    <app-todo-box ></app-todo-box>
+    <div class="details" >
+        <app-details-box></app-details-box>
+        <app-best-records-box></app-best-records-box>
     </div>
-    <div>
-      <span>השיאים שלי:</span>
-    </div>
-  </div>
-  <div class="div-2">
-    <span>ההישיגים שלי האחרונים:</span>
-  </div>
 </div>

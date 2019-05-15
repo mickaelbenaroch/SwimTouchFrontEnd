@@ -1,12 +1,34 @@
 .envelop{
-    display: flex;
-    flex-direction: column;
-    direction: rtl;
-    .div-1{
-        display: flex;
-        justify-content: space-between;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "todo" "details";
+    grid-gap: 3%;
+
+    app-todo-box{
+        grid-area: todo;
     }
-    .div-2{
-        display: flex;
+
+    .details{
+        grid-area: details;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "details records";
+        grid-gap: 3%;
+
+        app-details-box{
+            grid-area: details;
+        }
+
+        app-best-records-box{
+            grid-area: records;
+        }
     }
+
+
+
+    
+
+
+    
+    
 }

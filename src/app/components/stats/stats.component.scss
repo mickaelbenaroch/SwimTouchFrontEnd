@@ -1,19 +1,25 @@
 .envelop{
     direction: rtl;
     text-align: right;
-    font-family: Assistant;
+    font-family: 'Alef', sans-serif;
 
     .div-1{
         padding: 1rem;
+        color: #A8ACB1;
+        font-size: 2rem;
     }
+
     .div-2{
         padding: 1rem;
         background: lightgray;
     }
+    .div-2:hover{
+        opacity: 0.8;
+    }
+
     .div-3{
         .all-team{
             cursor: pointer; 
-            cursor: pointer;
             font-style: italic;
             color: cadetblue;
             display: flex;
@@ -32,6 +38,8 @@
             font-weight: bold;
             color: grey;
             text-decoration: underline;
+            font-size: 1rem;
+
         }
         .div-3-3{
             align-items: center;
