@@ -1,5 +1,24 @@
  <section>
     <div *ngIf="swimmers == undefined || swimmers.length == 0" class="no-swimmers"> לא נמצאו שחיינים בבסיס הנתונים. באשרותך ליצור קבוצה חדשה <span class="back" (click)="GoBack()">בתפריט הראשי</span></div>
+    
+    <form id="filter">
+        <h1>סינון תוצאות</h1>
+        <label>שם פרטי: 
+          <input type="text">
+          <span>&#9830;</span>
+        </label>
+        <label>גיל: 
+          <input type="text">
+          <span>&#9830;</span>
+        </label>
+        <label>קבוצת שחייה: 
+          <input type="radio" name="type" value="A" > A 
+          <input type="radio" name="type" value="B" > B 
+          <input type="radio" name="type" value="C" > C 
+          <input type="radio" name="type" value="D" > D
+        </label>
+    </form>
+    
     <mat-accordion>
       <mat-expansion-panel *ngFor="let swimmer of swimmers">
         <mat-expansion-panel-header>

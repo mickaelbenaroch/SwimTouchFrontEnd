@@ -32,4 +32,37 @@ section{
             }
         }
     }
+    
+    #filter{
+        margin-bottom: 4%;
+        padding: 1%;
+        background-color: #2D353C;
+
+        h1{
+            direction: rtl; 
+            color: white;
+            margin-bottom: 2%;
+        }
+
+        label{
+            margin: 3% 0  3% 2%;
+            font-size: 1vw;
+            color: #A8ACB1;
+            span{
+                padding: 2%;
+            }
+        }
+
+        input{
+            outline: none;
+            border: none;
+            border-bottom: 1px solid #8a8264;
+            background-color: transparent;
+            color: #8a8264;
+        }
+
+        input[name="type"]{
+            margin-right: 1%;
+        }
+    }
 }

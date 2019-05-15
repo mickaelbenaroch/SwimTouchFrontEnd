@@ -1,5 +1,24 @@
  <section>
-     <div *ngIf="teams == undefined || teams.length == 0" class="no-teams"> לא נמצאו קבוצות בבסיס הנתונים. באשרותך ליצור קבוצה חדשה <span class="back" (click)="GoBack()">בתפריט הראשי</span></div>
+    <div *ngIf="teams == undefined || teams.length == 0" class="no-teams"> לא נמצאו קבוצות בבסיס הנתונים. באשרותך ליצור קבוצה חדשה <span class="back" (click)="GoBack()">בתפריט הראשי</span></div>
+    
+    <form id="filter">
+        <h1>סינון תוצאות</h1>
+        <label>שם הקבוצה: 
+          <input type="text">
+          <span>&#9830;</span>
+        </label>
+        <label>שם השחיין: 
+          <input type="text">
+          <span>&#9830;</span>
+        </label>
+        <label>קבוצת שחייה: 
+          <input type="radio" name="type" value="A" > A 
+          <input type="radio" name="type" value="B" > B 
+          <input type="radio" name="type" value="C" > C 
+          <input type="radio" name="type" value="D" > D
+        </label>
+    </form>
+    
     <mat-accordion>
       <mat-expansion-panel *ngFor="let team of teams">
         <mat-expansion-panel-header>
