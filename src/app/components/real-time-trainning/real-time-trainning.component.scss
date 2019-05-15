@@ -14,7 +14,7 @@ section{
     .title{
         padding: 1rem;
         font-size: 1.5rem;
-        color: grey;
+        color: #A8ACB1;
         font-weight: bold;
         direction: rtl;
         text-align: right;
@@ -274,24 +274,24 @@ section{
 #section{
     direction: ltr;
     text-align: left;
-    font-family: Assistant;
+    font-family: 'Alef', sans-serif;
+
     .back{
-        padding: 0.5rem;
-        background-color: #01a89e;
-        text-align: center;
+        background-color: white;
         cursor: pointer;
-        font-family: Assistant;
-        color: white;
-        border-radius: 15px;
-        width: 10%;
+        color: #2D353C;
+        width: 15%;
         margin-bottom: 1rem;
+        font-size: 1.2vw;
         img{
-            width: 1rem;
+            width: 1.2vw;
             margin-right: 1rem;
             position: relative;
             top: 3px;
         }
-
+    }
+    .back:hover{
+        opacity: 0.7;
     }
     .repeat{
         cursor: pointer;
@@ -302,16 +302,32 @@ section{
         background-color: #009933;
     }
     .resume{
-        display: flex;
-        justify-content: space-between;
         font-size: 24px;
+        text-align: right;
+
+        div:nth-of-type(1){
+            color: #A8ACB1;
+            font-size: 2vw;
+            padding: 1%;
+            font-weight: 800;
+        }
+        div:nth-of-type(2){
+            font-size: 1vw;
+            padding: 0.5%;
+        }
+        div:nth-of-type(3){
+            font-size: 1vw;
+            padding: 0.5%;
+        }
     }
     .title{
         font-weight: normal; 
-        color: #000;
+        color: #A8ACB1;
         font-size: 1.3em;
         margin-bottom: 0.3rem;
         margin-top: 1rem;
+        font-family: 'Quattrocento', serif;
+
     }
     .wu{
             display: flex;

@@ -23,12 +23,9 @@
         <span>נא לבחור תרגיל מתוך האימון:</span>
       </div>
       <div class="resume" *ngIf="choosenTrainning.name !== undefined">
-        <div style="display:flex;">
-          <div>Trainning:</div>
-          <div>{{choosenTrainning.name}},</div>
-          <div>{{warmupcount + buildupcount + corecount + warmdowncount}} meters</div>
-        </div>
-        <div>Date: {{choosenTrainning.date}}</div>
+        <div>{{choosenTrainning.name}}</div>
+        <div>מרחק כולל: {{warmupcount + buildupcount + corecount + warmdowncount}} מטר</div>
+        <div>תאריך האימון: {{choosenTrainning.date}}</div>
       </div>
       <div class="wu-div" *ngIf="warmuparray !== undefined && warmuparray.length > 0">
         <div class="title">
