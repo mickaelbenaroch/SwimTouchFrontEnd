@@ -1,3 +1,9 @@
+.title{
+    color: #A8ACB1;
+    direction: rtl; 
+    font-size: 1rem;
+}
+
 .month{
     font-size: 2rem;
     font-family: Assistant;
@@ -6,15 +12,18 @@
     padding: 1rem;
     display: flex;
     justify-content: center;
-
+    background-color: #2D353C;
+    color: white;
     .left{
         width: 2rem;
         cursor: pointer;
+        color: white;
     }
     .right{
         width: 2rem;
         cursor: pointer;
-        transform: rotate(180deg)
+        transform: rotate(180deg);
+        color: white;
     }
 }
 
@@ -22,14 +31,23 @@
     display: flex;
     flex-wrap: wrap;
     direction: rtl;  
-    font-family: Assistant;
+    font-family: 'Alef', sans-serif;
     justify-content: center;
+    width: 100%;
+    padding: 3% 0 3% 0;
+    //background: linear-gradient(rgba(197, 194, 194, 0.5), rgba(177, 176, 176, 0.5)), url('../../../../assets/calander.jpg');
+    background-image:  url("../../../../assets/calander.png");
+    background-repeat: no-repeat;
+    background-position-x: center;
+   
 
     .calendar{
         padding: 1rem;
         border: 1px solid lightgray;
         flex-basis: 21%;
         height: 100px;
+        background-color: transparent;
+        
         .day{
             font-size: 2rem;
             font-weight: bold;
