@@ -59,7 +59,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: 1fr 1fr;
-        grid-template-areas: "A B C" "todo todo graph";
+        grid-template-areas: "A B C" "todo todo todo";
         grid-gap: 3%;
 
         app-swimmer-box{
