@@ -42,7 +42,7 @@ export class MatalotsComponent implements OnInit {
     var model = {
       coachmail: localStorage.getItem("email")
     }
-    this.httpservice.httpGet(this.httpservice.apiUrl + "team/getteams").subscribe(
+    this.httpservice.httpPost("team/getteams",{}).subscribe(
       (res: any) =>{
         this.temp = res.team;
         this.temp.forEach(team =>{
