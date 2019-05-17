@@ -4,7 +4,7 @@
   </div>
   <form class="form">
     <div class="form-div-1">
-      <span>שם אימון:</span>
+      <span>שם האימון:</span>
       <input type="text" [(ngModel)]="trainnningModel.name" name="name" (change)="DisableError()" class="inp-1">
     </div>
     <div class="form-div-1">
@@ -14,19 +14,15 @@
     <div class="buttons">
       <button class="but" (click)="OpenAddTeamBox()"> <img class="plus" src="/assets/plus.svg"> הוסף קבוצה לאימון</button>
       <button class="but" (click)="OpenCreateBox()"> <img class="plus" src="/assets/plus.svg"> הוסף תרגיל לאימון</button>
-      <button class="but" (click)="SaveTrainning()"> <img class="plus" src="/assets/save.svg"> סיים ושמור את האימון</button>
     </div>
     <div [ngClass]="{'visible': error}" class="error">יש למלא לפחות את שם האימון , בהמשך תוכל לערוך אותו!</div>
   </form>
 
   <section>
   <div class="resume" *ngIf="trainnningModel.name !== undefined">
-      <div style="display:flex;">
-        <div>שם האימון:</div>
-        <div>{{trainnningModel.name}},</div>
-        <div>{{warmupcount + buildupcount + corecount + warmdowncount}} מטר</div>
-      </div>
-      <div>תאריך: {{trainnningModel.date}}</div>
+      <div>{{trainnningModel.name}}</div>
+      <div>מרחק כולל: {{warmupcount + buildupcount + corecount + warmdowncount}} מטר</div>
+      <div>תאריך האימון: {{trainnningModel.date}}</div>
   </div>
     <div class="wu-div" *ngIf="warmuparray !== undefined && warmuparray.length > 0">
       <div class="title">
@@ -81,4 +77,5 @@
       <span>{{ex.repeat}}X{{ex.singleSwimDistance}}m {{' ' +  ex.style + ' '}} {{ex.description}}</span>
     </div>
   </section>
+  <button class="accept but" (click)="SaveTrainning()"> <img class="plus" src="/assets/save.svg"> סיים ושמור את האימון</button>
 </div> 
