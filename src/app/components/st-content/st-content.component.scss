@@ -1,27 +1,30 @@
+.title{
+    font-family: 'Alef', sans-serif;
+    padding: 2%; 
+    margin-bottom: 2%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "brad title";
+    margin-bottom: 1%;
+    position: relative;
+
+
+    h1{
+        grid-area: title;   
+        direction: rtl; 
+        color: #A8ACB1;
+    }
+    span{
+        grid-area: brad;
+        position: absolute;
+        bottom: 0;
+        color: #A8ACB1;
+    }
+}
+
 .envelop{
     font-family: 'Alef', sans-serif;
     padding: 2%;   
-
-    .group-div-0{
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas: "brad title";
-        margin-bottom: 2%;
-        position: relative;
-
-
-        h1{
-            grid-area: title;   
-            direction: rtl; 
-            color: #A8ACB1;
-        }
-        span{
-            grid-area: brad;
-            position: absolute;
-            bottom: 0;
-            color: #A8ACB1;
-        }
-    }
 
     #box-section{
         display: grid;

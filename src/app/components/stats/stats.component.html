@@ -1,9 +1,8 @@
+<div class="title">
+    <h1>קביעת יעדים</h1>
+</div>
+
 <div class="envelop">
-
-  <div class="div-1">
-    <span>קביעת יעדים</span>
-  </div>
-
   <div class="div-2">
     <mat-select placeholder="בחר קבוצה" (selectionChange)="Select($event)" name="team">
       <mat-option *ngFor="let team of teams" [value]="team">
