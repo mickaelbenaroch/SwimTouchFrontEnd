@@ -49,7 +49,7 @@
         display: grid;
         align-items: center;
         font-weight: 700;
-
+        margin-bottom: 2%;
         label{
             margin-right: 2%;
             color: white;
@@ -61,6 +61,8 @@
                 border: none;
                 height: 25px;
                 font-size: 1vw;
+                padding-right: 1%;
+                font-family: 'Alef', sans-serif;
             }
 
             button{
