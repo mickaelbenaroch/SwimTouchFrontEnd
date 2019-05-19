@@ -99,5 +99,9 @@
         .div-1,.div-2,.div-3,.div-4{
             width: unset!important;
         }
+        #box-section{
+            display: flex;
+            flex-direction: column;
+        }
     }
 }

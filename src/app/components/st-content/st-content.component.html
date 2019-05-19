@@ -9,7 +9,7 @@
       <div class="div-1 mainBox" *ngIf="pageenum === state.Landing && profileservice.profile !== undefined && profileservice.profile.type == role.Trainner">
         <app-item-box [color]="'green'" 
                       [path]="'/assets/file.svg'"
-                      [main]="'  הקמת אימון חדש'"
+                      [main]="'  יצירת אימון חדש'"
                       [sub]="'יצירת אימון אישי או קבוצתי'"
                       (CreateNewTrainningEvent)="CreateNewTrainningEvent($event)">
         </app-item-box>

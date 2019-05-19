@@ -41,6 +41,31 @@ export class TvModeComponent implements OnInit {
               private socket: Socket) { }
 
   public ngOnInit():void {
+    this.socket.connect();
+
+        //On every Touch on wall sensor, get the result from callback
+        this.socket.on("WallSensor", (result:OneTimeResult) => {
+         console.log(result);
+         this.DivideResultsTouchTime(result);
+       });
+    
+       //On every jump time get the result from callback
+       this.socket.on("jumpTime", (result: OneJumpTimeResult) => {
+         console.log(result);
+         this.DivideResultsJumpTime(result);
+       });
+
+       this.socket.on("stop-swim", (result: FinalResultModel) => {
+        //send to db the result 
+        console.log(result);
+        this.finalCounter +=1;
+        if(this.finalCounter == 1){
+          console.log("save")
+          this.finalResultModel = result;
+          this.DivideResultsFinalTime(result); 
+        }
+      });
+      
     this.exercise = this.data.exercise;
     this.swimmers = this.data.swimmers;
     this.trainning = this.data.trainning;

@@ -33,7 +33,7 @@ export class ItemBoxComponent implements OnInit, AfterViewInit{
    * Event click handler
    */
   public Click():void{
-    if(this.main == "  הקמת אימון חדש"){
+    if(this.main == "  יצירת אימון חדש"){
       this.CreateNewTrainningEvent.emit(PageEnum.CreateTraining);
     }else if(this.main == "יצירת קבוצה "){
       this.CreateNewTrainningEvent.emit(PageEnum.CreateSwimmer);
