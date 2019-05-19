@@ -62,10 +62,10 @@ export class TvModeComponent implements OnInit {
         if(this.finalCounter == 1){
           console.log("save")
           this.finalResultModel = result;
-          this.DivideResultsFinalTime(result); 
+          this.DivideResultsFinalTime2(result); 
         }
       });
-      
+
     this.exercise = this.data.exercise;
     this.swimmers = this.data.swimmers;
     this.trainning = this.data.trainning;
@@ -235,6 +235,61 @@ export class TvModeComponent implements OnInit {
       }
       console.log("final result ===> " + JSON.stringify(this.finalArrayResults))
       this.SaverecordInDB();
+    }
+  }
+
+    /**
+   * Repartition of results
+   * @param trainning 
+   */
+  public DivideResultsFinalTime2(result: any):void{
+    if(result !== undefined && result !== null){
+      for(var i = 0; i<this.exercise.routes.routes.length;i++){
+        if($("#final"+(i+1))){
+          if(i == 0){
+            $("#final"+(i+1)).text($("#touch0"+ (this.swimmers.length - 1).toString()).text());
+            var resultToDb = new OneRouteFinalResultModel();
+            resultToDb.date = this.exercise.date;
+            resultToDb.jump_time = result.routes.route1.jump_time;
+            resultToDb.results = result.routes.route1.results;
+            resultToDb.swimmer = new RouteModel();
+            resultToDb.swimmer.swimmer_ref = this.exercise.routes.routes[i].swimmer_ref;
+            resultToDb.swimmer.swimmer_id =  this.exercise.routes.routes[i].swimmer_id;
+            resultToDb.exercise_id = this.exercise.id;
+            console.log("data 1st" +  resultToDb)
+            this.finalArrayResults.push(resultToDb);
+
+          }else if(i == 1){
+            $("#final"+(i+1)).text($("#touch1"+ (this.swimmers.length - 1).toString()).text());
+            var resultToDb = new OneRouteFinalResultModel();
+            resultToDb.date = this.exercise.date;
+            resultToDb.jump_time = result.routes.route2.jump_time;
+            resultToDb.results = result.routes.route2.results;
+            resultToDb.swimmer = new RouteModel();
+            resultToDb.swimmer.swimmer_ref = this.exercise.routes.routes[i].swimmer_ref;
+            resultToDb.swimmer.swimmer_id =  this.exercise.routes.routes[i].swimmer_id;
+            resultToDb.exercise_id = this.exercise.id;
+            console.log("data 2nd" + resultToDb);
+            this.finalArrayResults.push(resultToDb);
+
+          }else if(i == 2){
+            $("#final"+(i+1)).text($("#touch2"+ (this.swimmers.length - 1).toString()).text());
+            var resultToDb = new OneRouteFinalResultModel();
+            resultToDb.date = this.exercise.date;
+            resultToDb.jump_time = result.routes.route3.jump_time;
+            resultToDb.results = result.routes.route3.results;
+            resultToDb.swimmer = new RouteModel();
+            resultToDb.swimmer.swimmer_ref = this.exercise.routes.routes[i].swimmer_ref;
+            resultToDb.swimmer.swimmer_id =  this.exercise.routes.routes[i].swimmer_id;
+            resultToDb.exercise_id = this.exercise.id;
+            console.log("data 3rd" + resultToDb);
+            this.finalArrayResults.push(resultToDb);
+
+          }
+        }
+      }
+      console.log("final result ===> " + JSON.stringify(this.finalArrayResults))
+      //this.SaverecordInDB();
     }
   }
 
