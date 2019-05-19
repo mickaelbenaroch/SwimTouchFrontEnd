@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TeamModel } from '../../../models/TeamModel';
 
 @Component({
   selector: 'app-details-box',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailsBoxComponent implements OnInit {
 
+  //#region Public Members
+  public teams: TeamModel[] = [];
+  //#endregion
+
+  //#region Constructor & Lyfecycle Hooks
   constructor() { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
   }
+  //#endregion
+
+  //#region Public Methods
+  //#endregion
 
 }

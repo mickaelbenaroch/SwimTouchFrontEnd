@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TeamModel } from '../../../models/TeamModel';
 
 @Component({
   selector: 'app-best-records-box',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BestRecordsBoxComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+   //#region Public Members
+   public teams: TeamModel[] = [];
+   //#endregion
+ 
+   //#region Constructor & Lyfecycle Hooks
+   constructor() { }
+ 
+   public ngOnInit(): void {
+   }
+   //#endregion
+ 
+   //#region Public Methods
+   //#endregion
 }

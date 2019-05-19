@@ -45,7 +45,7 @@ export class CreateTrainningComponent implements OnInit {
     var model = {
       _id: this.team_id
     }
-    this.httpservice.httpPost("team/getteams",{}).subscribe(
+    this.httpservice.httpGet(this.httpservice.apiUrl + "team/getteams").subscribe(
       (res: any )=>{
         this.team = res.team.forEach(team => {
           if(team._id == this.team_id){

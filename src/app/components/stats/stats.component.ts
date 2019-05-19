@@ -81,7 +81,7 @@ export class StatsComponent implements OnInit {
     var model = {
       coachmail: localStorage.getItem("email")
     }
-    this.httpservice.httpPost("team/getteams",{}).subscribe(
+    this.httpservice.httpGet(this.httpservice.apiUrl + "team/getteams").subscribe(
       (res: any) =>{
         this.temp = res.team;
         this.temp.forEach(team =>{
