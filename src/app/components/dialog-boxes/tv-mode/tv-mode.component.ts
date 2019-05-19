@@ -56,14 +56,16 @@ export class TvModeComponent implements OnInit {
        });
 
        this.socket.on("stop-swim", (result: FinalResultModel) => {
-        //send to db the result 
-        console.log(result);
-        this.finalCounter +=1;
-        if(this.finalCounter == 1){
-          console.log("save")
-          this.finalResultModel = result;
-          this.DivideResultsFinalTime2(result); 
-        }
+         setTimeout(()=>{
+          //send to db the result 
+          console.log(result);
+          this.finalCounter +=1;
+          if(this.finalCounter == 1){
+            console.log("save")
+            this.finalResultModel = result;
+            this.DivideResultsFinalTime(result); 
+          }
+        },5000)
       });
 
     this.exercise = this.data.exercise;
@@ -88,17 +90,17 @@ export class TvModeComponent implements OnInit {
     //Tells the broaker that the competition has been started
     this.socket.emit("action", model);
 
-    //On every Touch on wall sensor, get the result from callback
-    this.socket.on("WallSensor", (result:OneTimeResult) => {
-     console.log(result);
-     this.DivideResultsTouchTime(result);
-   });
+  //   //On every Touch on wall sensor, get the result from callback
+  //   this.socket.on("WallSensor", (result:OneTimeResult) => {
+  //    console.log(result);
+  //    this.DivideResultsTouchTime(result);
+  //  });
 
-   //On every jump time get the result from callback
-   this.socket.on("jumpTime", (result: OneJumpTimeResult) => {
-     console.log(result);
-     this.DivideResultsJumpTime(result);
-   });
+  //  //On every jump time get the result from callback
+  //  this.socket.on("jumpTime", (result: OneJumpTimeResult) => {
+  //    console.log(result);
+  //    this.DivideResultsJumpTime(result);
+  // });
   }
 
    /**
@@ -113,14 +115,16 @@ export class TvModeComponent implements OnInit {
    this.socket.emit("action",model)
    this.socket.on("stop-swim", (result: FinalResultModel) => {
      //send to db the result 
-     console.log(result);
-     this.finalCounter +=1;
-     if(this.finalCounter == 1){
-       console.log("save")
-       this.finalResultModel = result;
-       this.DivideResultsFinalTime(result); 
-     }
-   });
+     setTimeout(()=>{
+         console.log(result);
+         this.finalCounter +=1;
+         if(this.finalCounter == 1){
+           console.log("save")
+           this.finalResultModel = result;
+           this.DivideResultsFinalTime(result); 
+         }
+       },5000);
+     })
  }
 
 
@@ -238,61 +242,6 @@ export class TvModeComponent implements OnInit {
     }
   }
 
-    /**
-   * Repartition of results
-   * @param trainning 
-   */
-  public DivideResultsFinalTime2(result: any):void{
-    if(result !== undefined && result !== null){
-      for(var i = 0; i<this.exercise.routes.routes.length;i++){
-        if($("#final"+(i+1))){
-          if(i == 0){
-            $("#final"+(i+1)).text($("#touch0"+ (this.swimmers.length - 1).toString()).text());
-            var resultToDb = new OneRouteFinalResultModel();
-            resultToDb.date = this.exercise.date;
-            resultToDb.jump_time = result.routes.route1.jump_time;
-            resultToDb.results = result.routes.route1.results;
-            resultToDb.swimmer = new RouteModel();
-            resultToDb.swimmer.swimmer_ref = this.exercise.routes.routes[i].swimmer_ref;
-            resultToDb.swimmer.swimmer_id =  this.exercise.routes.routes[i].swimmer_id;
-            resultToDb.exercise_id = this.exercise.id;
-            console.log("data 1st" +  resultToDb)
-            this.finalArrayResults.push(resultToDb);
-
-          }else if(i == 1){
-            $("#final"+(i+1)).text($("#touch1"+ (this.swimmers.length - 1).toString()).text());
-            var resultToDb = new OneRouteFinalResultModel();
-            resultToDb.date = this.exercise.date;
-            resultToDb.jump_time = result.routes.route2.jump_time;
-            resultToDb.results = result.routes.route2.results;
-            resultToDb.swimmer = new RouteModel();
-            resultToDb.swimmer.swimmer_ref = this.exercise.routes.routes[i].swimmer_ref;
-            resultToDb.swimmer.swimmer_id =  this.exercise.routes.routes[i].swimmer_id;
-            resultToDb.exercise_id = this.exercise.id;
-            console.log("data 2nd" + resultToDb);
-            this.finalArrayResults.push(resultToDb);
-
-          }else if(i == 2){
-            $("#final"+(i+1)).text($("#touch2"+ (this.swimmers.length - 1).toString()).text());
-            var resultToDb = new OneRouteFinalResultModel();
-            resultToDb.date = this.exercise.date;
-            resultToDb.jump_time = result.routes.route3.jump_time;
-            resultToDb.results = result.routes.route3.results;
-            resultToDb.swimmer = new RouteModel();
-            resultToDb.swimmer.swimmer_ref = this.exercise.routes.routes[i].swimmer_ref;
-            resultToDb.swimmer.swimmer_id =  this.exercise.routes.routes[i].swimmer_id;
-            resultToDb.exercise_id = this.exercise.id;
-            console.log("data 3rd" + resultToDb);
-            this.finalArrayResults.push(resultToDb);
-
-          }
-        }
-      }
-      console.log("final result ===> " + JSON.stringify(this.finalArrayResults))
-      //this.SaverecordInDB();
-    }
-  }
-
   /**
     * Error dialog Box Opening
     * @param email 
@@ -340,6 +289,7 @@ export class TvModeComponent implements OnInit {
   public SaverecordInDB():void{
     this.finalArrayResults.forEach(rec =>{
       if(rec !== undefined && rec !== null){
+
         this.httpservice.httpPost('records/setrecords',rec).subscribe(
           res =>{
             console.log(rec);
@@ -350,6 +300,7 @@ export class TvModeComponent implements OnInit {
               training_id: this.trainning._id
 
             }
+            //TODO: Check if record exist already in db
             this.httpservice.httpPost('exercise/update',model).subscribe(
               res=>{
                 console.log(res);
