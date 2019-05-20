@@ -81,6 +81,7 @@
 
     #box-section2{
         margin-top: 5%;
+        height: 35vh;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: 1fr 1fr;
@@ -121,9 +122,59 @@
         .div-1,.div-2,.div-3,.div-4{
             width: unset!important;
         }
+
+        //main box 
         #box-section{
             display: flex;
             flex-direction: column;
+            align-items: flex-end;
+
+            //main page box
+            .mainBox{
+                width: 80%!important;
+                margin: 2%;
+            }
+
+            //main page box icon
+            .div-1{
+                background-size: 10%;
+                background-position-x: 12%;
+            }
+            .div-2{
+                background-size: 10%;
+                background-position-x: 12%;
+            }
+            .div-3{
+                background-size: 10%;
+                background-position-x: 12%;
+            }
+            .div-4{
+                background-size: 10%;
+                background-position-x: 12%;
+            }
+        }
+    }
+
+    //todo box
+    #box-section2{
+        grid-template-columns: 1fr!important;
+        grid-template-areas: "todo"  !important;
+        justify-items: right;
+        
+        app-swimmer-box{
+           display: none;
+        }
+
+        app-schedule-box{
+            display: none;
+        }
+
+        app-last-training-box{
+            display: none;
+        }
+        app-todo-box{
+            width: 80%;
+            margin: 2%;
         }
     }
 }

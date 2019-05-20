@@ -78,3 +78,25 @@
         
     }
 }
+
+
+@media only screen and (max-width: 600px) {
+    //box title
+    .box-title{
+        h3{
+            font-size: 2vw!important;
+        }
+    }
+
+    //add new task
+    .box-herf{
+        label{
+            input{
+                width: 45%!important;
+            }
+            button{
+                font-size: 2vw!important;
+            }
+        }
+    }
+}
