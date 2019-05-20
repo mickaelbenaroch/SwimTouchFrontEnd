@@ -31,6 +31,13 @@
 }
 
 @media only screen and (max-width: 600px) {
+    //grid display
+    .envelop{
+        grid-template-columns: 1fr;
+        grid-template-rows: 7% 1fr;
+        grid-template-areas: "div2" "div1";
+    }
+
     .div-1{
         width: 100% !important;
     }

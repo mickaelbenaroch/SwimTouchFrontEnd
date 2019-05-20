@@ -131,8 +131,8 @@
 
             //main page box
             .mainBox{
-                width: 80%!important;
-                margin: 2%;
+                width: 100%!important;
+                margin-bottom: 2%;
             }
 
             //main page box icon
@@ -173,8 +173,21 @@
             display: none;
         }
         app-todo-box{
-            width: 80%;
-            margin: 2%;
+            width: 100%;
         }
+    }
+
+    //title
+    .title{
+        grid-template-areas: "title title";
+       h1{
+            font-size: 8vw; 
+            display: block;
+            text-align: center;
+        }
+
+       span{
+           display: none;
+       }
     }
 }
