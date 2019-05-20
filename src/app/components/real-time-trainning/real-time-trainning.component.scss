@@ -271,7 +271,7 @@ section{
         }
     }
     .tv{
-        background: #01a89e;
+        background: #2D353C;
         border-radius: 15px;
         padding: 1rem;
         color: white;
@@ -524,6 +524,7 @@ section{
     }
     
     //training box
+    //warm up
     .wu{
         
         div:nth-last-of-type(1){
@@ -544,6 +545,7 @@ section{
             }    
         }
     }
+    //Build-Up
     .bu{
         
         div:nth-last-of-type(1){
@@ -565,6 +567,7 @@ section{
             }    
         }
     }
+    //Core-Main
     .co{
         
         div:nth-last-of-type(1){
@@ -586,6 +589,7 @@ section{
             }    
         }
     }
+    //Warm-Down
     .wd{
         
         div:nth-last-of-type(1){
@@ -606,5 +610,10 @@ section{
                 
             }    
         }
+    }
+
+    //tv button
+    .tv{
+        
     }
 }
