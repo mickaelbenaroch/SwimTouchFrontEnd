@@ -1,11 +1,35 @@
- <div class="mainTitle">
+ <div class="mainTitle" *ngIf="state == stateHelper.TrainningView && trainnings !== undefined && trainnings.length > 0">
           <h1>אימון זמן אמת</h1>
   </div>
   
  <section>
+    <form id="filter" *ngIf="state == stateHelper.TrainningView && trainnings !== undefined && trainnings.length > 0">
+        <h1>סינון תוצאות</h1>
+        <label>שם האימון: 
+          <input type="text">
+          <span>&#9830;</span>
+        </label>
+        <label>תאריך האימון: 
+          <input type="date">
+          <span>&#9830;</span>
+        </label>
+        <label>מרחק: 
+          <input type="number">
+        </label><br><br>
+        <label>קבוצת שחייה: 
+          <input type="radio" name="type" value="A" > A 
+          <input type="radio" name="type" value="B" > B 
+          <input type="radio" name="type" value="C" > C 
+          <input type="radio" name="type" value="D" > D
+        </label>
+    </form>
+
     <div *ngIf="trainnings == undefined || trainnings.length == 0" class="no-trainnings"> לא נמצאו אימונים בבסיס הנתונים. באשרותך ליצור קבוצה חדשה <span class="back" (click)="GoBack()">בתפריט הראשי</span></div>
     <div *ngIf="state == stateHelper.TrainningView && trainnings !== undefined && trainnings.length > 0">
+      <!--
       <div class="title">
+        
+        
         <div style="align-self: center;">
           <span>נא לבחור אימון מתוך הרשימה:</span>
         </div> 
@@ -15,7 +39,9 @@
           <div id="datefilter" style="font-size:normal;cursor:pointer;padding:0.5rem;margin-left:0.5rem;margin-right:0.5rem;" (click)="Filter('date')">תאריך</div>
           <div id="distancefilter" style="font-size:normal;cursor:pointer;padding:0.5rem" (click)="Filter('distance')">מרחק</div>
         </div>
+        
       </div>
+      -->
       <div class="panel" *ngFor="let trainning of trainnings" (click)="ChooseTrainning(trainning)">
            שם האימון: {{trainning.name + ', '}} תאריך: {{' ' + trainning.date + ' '}} מרחק: {{' ' + trainning.distance +' '}} meters
       </div>
