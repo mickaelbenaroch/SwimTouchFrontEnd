@@ -249,20 +249,49 @@
     height: 95%;
 }
 
-@media only screen and (max-width: 600px) {
-    .div-1{
-        width: 100% !important;
-        .form-div{
-            margin-top: 3rem;
-        }
+@media only screen and (min-width: 300px) and (max-width: 600px) {
+    //form 
+    .form-div{
         .form{
-            width: 100% !important;
-            .input-1,.input-2{
-                width: 90% !important;
-            }
+            width: 70% !important;
         }
     }
-    .div-2{
-        display: none !important;
+    
+  
+    //email text
+    .form-1{
+        font-size: 3vw;
+
     }
-  }
+
+    //password text
+    .form-4{
+        font-size: 3vw;
+    }
+
+    //signup text
+    .form-9{
+        font-size: 2vw !important;
+    }
+ 
+    //input
+    .input-1, .input-2{
+        width: 60%;
+    }    
+
+    //logo
+    .logo{
+        width: 75% !important;
+    }
+
+    //signup page
+    .su-form{
+        width: 70%!important;
+        .d7{ 
+            font-size: 1rem;
+        }
+        .su-group-5{
+            margin-bottom: 3%;
+        }
+    }
+}
