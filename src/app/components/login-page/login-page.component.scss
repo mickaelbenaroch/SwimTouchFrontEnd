@@ -253,20 +253,22 @@
     //form 
     .form-div{
         .form{
-            width: 70% !important;
+            width: 90% !important;
         }
     }
     
-  
     //email text
     .form-1{
         font-size: 3vw;
-
     }
 
     //password text
     .form-4{
         font-size: 3vw;
+    }
+
+    .form-8{
+        text-align: center;
     }
 
     //signup text
@@ -276,12 +278,14 @@
  
     //input
     .input-1, .input-2{
-        width: 60%;
+        width: 90%!important;
     }    
 
     //logo
-    .logo{
-        width: 75% !important;
+    .logo-div{
+        .logo{
+            width: 85% !important;
+        }
     }
 
     //signup page
