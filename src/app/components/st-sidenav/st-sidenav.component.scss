@@ -14,6 +14,7 @@
     width: 14%;
     height: 100vh;
     font-family: 'Alef', sans-serif;
+    font-size: 1vw;
     .menu{
         display: none;
         width: 2rem;   
@@ -210,5 +211,18 @@
     }
     .envelop{
         width: 50%;
+        font-size: 4vw;
     }
+
+    //יעדים של שחיינים
+    .div-4-2{
+        span{
+            display: none;
+        }
+    }
+    .div-4-2:after{
+        content: "ייעדי שחיינים";
+        margin-right: 1rem!important;           
+    }
+    
 }
