@@ -31,15 +31,14 @@ export class MatalotsComponent implements OnInit {
   public recorsNotBetterThanTarget: any[] = [];
   public recorsBetterThanTargetForTeam: any[] = [];
   public recorsNotBetterThanTargetForTeam: any[] = [];
+  public FreestyleArray: any[] = [];
+  public BackstrokeArray: any[] = [];
+  public BreaststrokeArray: any[] = [];
+  public ButterflyArray: any[] = [];
+  public IndividualMedleyArray: any[] = [];
 
   //chart
-  public lineChartData: any[] = [
-    { data: [], label: 'הישיגים' },
-    { data: [], label: 'הישיגים' },
-    { data: [], label: 'הישיגים' },
-    { data: [], label: 'הישיגים' },
-    { data: [], label: 'הישיגים' },
-  ];
+  public lineChartData: any[] = [];
   public lineChartLabels: Label[] = [];
   public lineChartOptions: ChartOptions = {
     responsive: true,
@@ -143,6 +142,12 @@ public AllTheTeamChoosen():void{
   this.currentTeam.swimmers.forEach((swimmer: any) =>{
     this.httpservice.httpPost('statistic/full_records',{swimmer_id: swimmer._id}).subscribe(
       res =>{
+        var temp1 = { data: [], label: 'Freestyle' };
+        var temp2 = { data: [], label: 'Backstroke' };
+        var temp3 = { data: [], label: 'Breaststroke' };
+        var temp4 = { data: [], label: 'Butterfly' };
+        var temp5 = { data: [], label: 'Individual Medley' };
+
         //'Freestyle','Backstroke','Breaststroke','Butterfly','Individual Medley'
         if(res !== undefined && res.records !== undefined){
           res.records.forEach(rec => {
@@ -150,33 +155,43 @@ public AllTheTeamChoosen():void{
             if(rec.results !== undefined && rec.results !== null){
               switch(rec.exercise_id.style){
                 case 'Freestyle':
-                this.lineChartData[0].data.push(rec.results[rec.results.length -1]);
-                if(!this.lineChartLabels.includes(rec.date))
-                  this.lineChartLabels.push(rec.date);
+                temp1.data.push(rec.results[rec.results.length -1]);
+                if(!this.lineChartLabels.includes(rec.date.substring(0,10)))
+                  this.lineChartLabels.push(rec.date.substring(0,10));
+                this.FreestyleArray.push(rec);
                 break;
                 case 'Backstroke':
-                this.lineChartData[1].data.push(rec.results[rec.results.length -1]);
-                if(!this.lineChartLabels.includes(rec.date))
-                  this.lineChartLabels.push(rec.date);
+                temp2.data.push(rec.results[rec.results.length -1]);
+                if(!this.lineChartLabels.includes(rec.date.substring(0,10)))
+                  this.lineChartLabels.push(rec.date.substring(0,10));
+                this.BackstrokeArray.push(rec);
                 break;
                 case 'Breaststroke':
-                this.lineChartData[2].data.push(rec.results[rec.results.length -1]);
-                if(!this.lineChartLabels.includes(rec.date))
-                  this.lineChartLabels.push(rec.date);
+                temp3.data.push(rec.results[rec.results.length -1]);
+                if(!this.lineChartLabels.includes(rec.date.substring(0,10)))
+                  this.lineChartLabels.push(rec.date.substring(0,10));
+                this.BreaststrokeArray.push(rec);
                 break;
                 case 'Butterfly':
-                this.lineChartData[3].data.push(rec.results[rec.results.length -1]);
-                if(!this.lineChartLabels.includes(rec.date))
-                  this.lineChartLabels.push(rec.date);
+                temp4.data.push(rec.results[rec.results.length -1]);
+                if(!this.lineChartLabels.includes(rec.date.substring(0,10)))
+                  this.lineChartLabels.push(rec.date.substring(0,10));
+                this.ButterflyArray.push(rec);
                 break;
                 case 'Individual Medley':
-                this.lineChartData[4].data.push(rec.results[rec.results.length -1]);
-                if(!this.lineChartLabels.includes(rec.date))
-                  this.lineChartLabels.push(rec.date);
+                temp5.data.push(rec.results[rec.results.length -1]);
+                if(!this.lineChartLabels.includes(rec.date.substring(0,10)))
+                  this.lineChartLabels.push(rec.date.substring(0,10));
+                this.IndividualMedleyArray.push(rec);
                 break;
               }
             }
           });
+          this.lineChartData.push(temp1);
+          this.lineChartData.push(temp2);
+          this.lineChartData.push(temp3);
+          this.lineChartData.push(temp4);
+          this.lineChartData.push(temp5);
           console.log(this.teamRecords)
           this.graphReady = true;
         }
@@ -188,7 +203,93 @@ public AllTheTeamChoosen():void{
   })
 }
 
-    /**
+  /**
+  * Cleans graph data and labels
+  */
+  public CleanGraph():void{
+    this.lineChartData = [];
+    this.lineChartLabels = [];
+  }
+
+  /**
+   * Display All styles records
+   */
+  public DisplayAll():void{
+    this.CleanGraph();
+    this.AllTheTeamChoosen();
+  }
+
+  /**
+   * Displays only freestyle records
+   */
+  public DisplayFreestyle():void{
+    this.CleanGraph();
+    var temp = { data: [], label: 'Freestyle' };
+    this.FreestyleArray.forEach(rec =>{
+    temp.data.push(rec.results[rec.results.length -1]);
+      if(!this.lineChartLabels.includes(rec.date.substring(0,10)))
+        this.lineChartLabels.push(rec.date.substring(0,10));
+    })
+    this.lineChartData.push(temp);
+  }
+  
+  /**
+   * Displays only Backstroke record
+   */
+  public DisplayBackstroke():void{
+    this.CleanGraph();
+    var temp = { data: [], label: 'Backstroke' };
+    this.BackstrokeArray.forEach(rec =>{
+    temp.data.push(rec.results[rec.results.length -1]);
+      if(!this.lineChartLabels.includes(rec.date.substring(0,10)))
+        this.lineChartLabels.push(rec.date.substring(0,10));
+    })
+    this.lineChartData.push(temp);
+  }
+  
+  /**
+   * Displays only Breaststroke record 
+   */
+  public DisplayBreaststroke():void{
+    this.CleanGraph();
+    var temp = { data: [], label: 'Breaststroke' };
+    this.BreaststrokeArray.forEach(rec =>{
+    temp.data.push(rec.results[rec.results.length -1]);
+      if(!this.lineChartLabels.includes(rec.date.substring(0,10)))
+        this.lineChartLabels.push(rec.date.substring(0,10));
+    })
+    this.lineChartData.push(temp);
+  }
+  
+  /**
+   * Displays only Butterfly record 
+   */
+  public DisplayButterfly():void{
+    this.CleanGraph();
+    var temp = { data: [], label: 'Butterfly' };
+    this.ButterflyArray.forEach(rec =>{
+    temp.data.push(rec.results[rec.results.length -1]);
+      if(!this.lineChartLabels.includes(rec.date.substring(0,10)))
+        this.lineChartLabels.push(rec.date.substring(0,10));
+    })
+  }
+  
+  /**
+   * Displays only Individual Medley record 
+   */
+  public DisplayIndividualMedley():void{
+    this.CleanGraph();
+    var temp = { data: [], label: 'Individual Medley' };
+    this.IndividualMedleyArray.forEach(rec =>{
+    temp.data.push(rec.results[rec.results.length -1]);
+      if(!this.lineChartLabels.includes(rec.date.substring(0,10)))
+        this.lineChartLabels.push(rec.date.substring(0,10));
+    })
+    this.lineChartData.push(temp);
+  }
+
+
+  /**
    * Open Dialog error box
    */
   public OpenErrorDialogBox():void{

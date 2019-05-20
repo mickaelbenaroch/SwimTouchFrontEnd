@@ -80,5 +80,14 @@
       </canvas>
     </div>
     <div *ngIf="graphReady" style="text-align:center;">תאריך ההישג</div>
+
+    <div *ngIf="graphReady" class="choice">
+      <div (click)="DisplayFreestyle()">Freestyle</div>
+      <div (click)="DisplayBackstroke()">Backstroke</div>
+      <div (click)="DisplayBreaststroke()">Breaststroke</div>
+      <div (click)="DisplayButterfly()">Butterfly</div>
+      <div (click)="DisplayIndividualMedley()">Individual Medley</div>
+      <div (click)="DisplayAll()">All Styles</div>
+    </div>
     
 </div>
