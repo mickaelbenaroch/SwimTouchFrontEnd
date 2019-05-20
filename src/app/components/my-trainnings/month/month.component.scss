@@ -8,7 +8,7 @@
 
 .month{
     font-size: 2rem;
-    font-family: Assistant;
+    font-family: 'Alef', sans-serif;
     font-weight: bold;
     text-align: center;
     padding: 1rem;
@@ -38,7 +38,7 @@
     width: 100%;
     padding: 3% 0 3% 0;
     //background: linear-gradient(rgba(197, 194, 194, 0.5), rgba(177, 176, 176, 0.5)), url('../../../../assets/calander.jpg');
-    background-image:  url("../../../../assets/calander.png");
+    //background-image:  url("../../../../assets/calander.png");
     background-repeat: no-repeat;
     background-position-x: center;
    
@@ -59,5 +59,18 @@
             cursor: pointer;
             text-decoration: underline;
         }
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+    //title
+    .title{
+        text-align: center !important; 
+    }
+    .envelop{
+        
+        background-image:  none;
+
     }
 }

@@ -42,7 +42,7 @@ export class MainPageComponent implements OnInit {
     temp.style.right = "0px";
     temp.style.top = "0px";
     temp.style.width = "unset";
-    
+    temp.style.zIndex = "2";
   }
 
   /**

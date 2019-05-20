@@ -81,8 +81,14 @@
 
 
 @media only screen and (max-width: 600px) {
+    //box content
+    .box-content{
+        height: 18vh!important;
+    }
+
     //box title
     .box-title{
+        height: 3vh!important;
         h3{
             font-size: 2vw!important;
         }
@@ -90,12 +96,17 @@
 
     //add new task
     .box-herf{
+        height: 5vh!important;
         label{
+            font-size: 3vw;
             input{
                 width: 45%!important;
+                font-size: 3vw!important;
+                height: 2vh!important;
             }
             button{
-                font-size: 2vw!important;
+                font-size: 3vw!important;
+                margin-right: 3%!important;
             }
         }
     }

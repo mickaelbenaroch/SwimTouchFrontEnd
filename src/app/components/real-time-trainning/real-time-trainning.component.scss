@@ -1,4 +1,4 @@
-.title{
+.mainTitle{
     color: #A8ACB1;
     direction: rtl; 
     font-size: 1rem;
@@ -436,4 +436,27 @@ section{
 .buttons{
     align-self: flex-end;
     padding-top: 1rem;
+}
+
+
+
+
+@media only screen and (max-width: 600px) {
+    //real time title
+    .mainTitle{
+        text-align: center;
+        margin-bottom: 4%;
+    }
+
+    //sub title
+    .title{
+        display: none !important;
+    }
+
+    //inside training titles
+    .resume{
+        font-size: 3vw!important;
+    }
+    
+
 }

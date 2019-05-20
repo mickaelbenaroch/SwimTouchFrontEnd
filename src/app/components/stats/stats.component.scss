@@ -308,6 +308,13 @@
     }
 }
 
-    .div-3-3:hover, .all-team:hover, .button-1:hover, .button-2:hover, .line:hover, .button-3:hover, .button-4:hover{
-        background-color: aliceblue !important;
+.div-3-3:hover, .all-team:hover, .button-1:hover, .button-2:hover, .line:hover, .button-3:hover, .button-4:hover{
+    background-color: aliceblue !important;
+}
+
+@media only screen and (max-width: 600px) {
+    .title{
+        text-align: center !important;
     }
+
+}
