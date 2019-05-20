@@ -29,27 +29,49 @@
         grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-gap: 2%;
         grid-auto-flow: dense;
-        
+            
+    
             .mainBox{
                 width: 100%;
+                height: 14vh;
                 background-size: 100% 100%;
                 border-radius: 3px;
-                
+                display: grid;
+                align-items: center;
+                justify-items: center;
+                text-align: center;
+                background-color: #2D353C;
             }
             .div-1{
-                background-image: url('../../../assets/addTraining.png');
+                background-image: url('../../../assets/create.png');
+                background-size: 15%;
+                background-repeat: no-repeat;
+                background-position-y: center;
+                background-position-x: 5%;
             }
         
             .div-2{
-                background-image: url('../../../assets/addTeam.png');
+                background-image: url('../../../assets/team.png');
+                background-size: 15%;
+                background-repeat: no-repeat;
+                background-position-y: center;
+                background-position-x: 7%;
             }
             
             .div-3{
-                background-image: url('../../../assets/editTraining.png');
+                background-image: url('../../../assets/edit.png');
+                background-size: 15%;
+                background-repeat: no-repeat;
+                background-position-y: center;
+                background-position-x: 7%;
             }
             
             .div-4{
-                background-image: url('../../../assets/editTeam.png');
+                background-image: url('../../../assets/edit-team.png');
+                background-size: 18%;
+                background-repeat: no-repeat;
+                background-position-y: center;
+                background-position-x: 7%;
             }
 
             .div-1:hover, .div-2:hover, .div-3:hover, .div-4:hover{
@@ -59,6 +81,7 @@
 
     #box-section2{
         margin-top: 5%;
+        height: 35vh;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: 1fr 1fr;
@@ -99,9 +122,59 @@
         .div-1,.div-2,.div-3,.div-4{
             width: unset!important;
         }
+
+        //main box 
         #box-section{
             display: flex;
             flex-direction: column;
+            align-items: flex-end;
+
+            //main page box
+            .mainBox{
+                width: 80%!important;
+                margin: 2%;
+            }
+
+            //main page box icon
+            .div-1{
+                background-size: 10%;
+                background-position-x: 12%;
+            }
+            .div-2{
+                background-size: 10%;
+                background-position-x: 12%;
+            }
+            .div-3{
+                background-size: 10%;
+                background-position-x: 12%;
+            }
+            .div-4{
+                background-size: 10%;
+                background-position-x: 12%;
+            }
+        }
+    }
+
+    //todo box
+    #box-section2{
+        grid-template-columns: 1fr!important;
+        grid-template-areas: "todo"  !important;
+        justify-items: right;
+        
+        app-swimmer-box{
+           display: none;
+        }
+
+        app-schedule-box{
+            display: none;
+        }
+
+        app-last-training-box{
+            display: none;
+        }
+        app-todo-box{
+            width: 80%;
+            margin: 2%;
         }
     }
 }

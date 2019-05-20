@@ -5,8 +5,6 @@
     direction: rtl;
     cursor: pointer;
 
-
-    
     .group-div-1{
         width: 100%;
         display: flex;
@@ -30,17 +28,29 @@
             }
         }
         .div-3{
-            padding: 2rem;  
             .main{
-                font-size: 1.5rem;
+                font-size: 1.5vw;
                 color: #E7E8E9;
                 font-weight: bolder;
             }
             .sub{
-                font-size: 1rem;
+                font-size: 1vw;
                 color: #B1B4B8;
                 font-weight: 500;
             }
+        }
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+    //main box font size
+    .div-3{
+        .main{
+            font-size: 2.8vw!important;
+        }
+        .sub{
+            font-size: 2.2vw!important;
         }
     }
 }
