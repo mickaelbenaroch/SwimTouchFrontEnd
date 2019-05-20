@@ -523,7 +523,88 @@ section{
         }
     }
     
+    //training box
     .wu{
-        border: 1px solid red;
+        
+        div:nth-last-of-type(1){
+            position: relative;
+            img{
+               position: absolute;
+               right: 0; 
+               margin-right: 0rem !important;
+            }
+            span{
+                display: none;
+            }
+        }
+        div:nth-last-of-type(1){
+            img{
+               
+                
+            }    
+        }
+    }
+    .bu{
+        
+        div:nth-last-of-type(1){
+            position: relative;
+            img{
+               position: absolute;
+               right: 0; 
+               margin-right: 0rem !important;
+
+            }
+            span{
+                display: none;
+            }
+        }
+        div:nth-last-of-type(1){
+            img{
+               
+                
+            }    
+        }
+    }
+    .co{
+        
+        div:nth-last-of-type(1){
+            position: relative;
+            img{
+               position: absolute;
+               right: 0; 
+               margin-right: 0rem !important;
+
+            }
+            span{
+                display: none;
+            }
+        }
+        div:nth-last-of-type(1){
+            img{
+               
+                
+            }    
+        }
+    }
+    .wd{
+        
+        div:nth-last-of-type(1){
+            position: relative;
+            img{
+               position: absolute;
+               right: 0; 
+               margin-right: 0rem !important;
+
+            }
+            span{
+                display: none;
+            }
+        }
+        div:nth-last-of-type(1){
+            img{
+               
+                
+            }    
+        }
     }
 }
