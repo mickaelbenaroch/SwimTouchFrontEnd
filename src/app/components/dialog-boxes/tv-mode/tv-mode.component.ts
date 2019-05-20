@@ -289,29 +289,39 @@ export class TvModeComponent implements OnInit {
   public SaverecordInDB():void{
     this.finalArrayResults.forEach(rec =>{
       if(rec !== undefined && rec !== null){
-
-        this.httpservice.httpPost('records/setrecords',rec).subscribe(
+        //First check if the record is already in db
+        this.httpservice.httpPost('records/chackRecords', { exercise_id: rec.exercise_id, swimmer_id: rec.swimmer.swimmer_id }).subscribe(
           res =>{
-            console.log(rec);
-            //update exercise to done
-            let model = {
-              hasBeenStarted: true,
-              exercise_id: rec.exercise_id,
-              training_id: this.trainning._id
-
+            console.log(res);
+            //If the record is not already in db, creates it
+            if(res.isTrue){
+              this.httpservice.httpPost('records/setrecords',rec).subscribe(
+                res =>{
+                  console.log(rec);
+                  //update exercise to done
+                  let model = {
+                    hasBeenStarted: true,
+                    exercise_id: rec.exercise_id,
+                    training_id: this.trainning._id
+                  }
+                  //Then update the exercise to done
+                  this.httpservice.httpPost('exercise/update',model).subscribe(
+                    res=>{
+                      console.log(res);
+                    },
+                    err =>{
+                      this.OpenDialog();
+                    }
+                  )
+                },
+                err =>{
+                  console.log(err);
+                  this.OpenDialog();
+                }
+              )
             }
-            //TODO: Check if record exist already in db
-            this.httpservice.httpPost('exercise/update',model).subscribe(
-              res=>{
-                console.log(res);
-              },
-              err =>{
-                this.OpenDialog();
-              }
-            )
           },
           err =>{
-            console.log(err);
             this.OpenDialog();
           }
         )
