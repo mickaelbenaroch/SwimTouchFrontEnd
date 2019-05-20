@@ -65,5 +65,20 @@
         <button (click)="BackToSwimmerChoose()">אחורה</button>
       </div>
     </div>
+
+    <div *ngIf="graphReady" style="margin-top: 1rem;color:#800000;display:flex;justify-content:space-between;">
+      <span style="color:black;">הישג (בשניות)</span>
+    </div>
+    <div *ngIf="graphReady" style="display: block;margin-top: 1rem;margin: auto;">
+      <canvas baseChart width="90" height="25"
+        [datasets]="lineChartData"
+        [labels]="lineChartLabels"
+        [options]="lineChartOptions"
+        [colors]="lineChartColors"
+        [chartType]="lineChartType"
+        [plugins]="lineChartPlugins">
+      </canvas>
+    </div>
+    <div *ngIf="graphReady" style="text-align:center;">תאריך ההישג</div>
     
 </div>

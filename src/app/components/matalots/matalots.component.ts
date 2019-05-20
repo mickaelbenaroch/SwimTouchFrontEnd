@@ -1,3 +1,5 @@
+import { ChartOptions } from 'chart.js';
+import { Label, Color } from 'ng2-charts';
 import { RoleEnum } from '../../enums/roleenum';
 import { Component, OnInit } from '@angular/core';
 import { TeamModel } from '../../models/TeamModel';
@@ -24,11 +26,33 @@ export class MatalotsComponent implements OnInit {
   public currentSwimmer: SwimmerModel;
   public teamRecords:any[] = [];
   public targ: boolean;
+  public graphReady: boolean;
   public recorsBetterThanTarget: any[] = [];
   public recorsNotBetterThanTarget: any[] = [];
   public recorsBetterThanTargetForTeam: any[] = [];
   public recorsNotBetterThanTargetForTeam: any[] = [];
 
+  //chart
+  public lineChartData: any[] = [
+    { data: [], label: 'הישיגים' },
+    { data: [], label: 'הישיגים' },
+    { data: [], label: 'הישיגים' },
+    { data: [], label: 'הישיגים' },
+    { data: [], label: 'הישיגים' },
+  ];
+  public lineChartLabels: Label[] = [];
+  public lineChartOptions: ChartOptions = {
+    responsive: true,
+  };
+  public lineChartColors: Color[] = [
+    {
+      borderColor: 'black', 
+      backgroundColor: 'rgba(255,0,0,0.3)',
+    },
+  ];
+  public lineChartLegend = true;
+  public lineChartType = 'line';
+  public lineChartPlugins = [];
   //#endregion
 
   //#region Constructor & Lifecycle Hooks
@@ -119,11 +143,42 @@ public AllTheTeamChoosen():void{
   this.currentTeam.swimmers.forEach((swimmer: any) =>{
     this.httpservice.httpPost('statistic/full_records',{swimmer_id: swimmer._id}).subscribe(
       res =>{
+        //'Freestyle','Backstroke','Breaststroke','Butterfly','Individual Medley'
         if(res !== undefined && res.records !== undefined){
           res.records.forEach(rec => {
             this.teamRecords.push(rec);
+            if(rec.results !== undefined && rec.results !== null){
+              switch(rec.exercise_id.style){
+                case 'Freestyle':
+                this.lineChartData[0].data.push(rec.results[rec.results.length -1]);
+                if(!this.lineChartLabels.includes(rec.date))
+                  this.lineChartLabels.push(rec.date);
+                break;
+                case 'Backstroke':
+                this.lineChartData[1].data.push(rec.results[rec.results.length -1]);
+                if(!this.lineChartLabels.includes(rec.date))
+                  this.lineChartLabels.push(rec.date);
+                break;
+                case 'Breaststroke':
+                this.lineChartData[2].data.push(rec.results[rec.results.length -1]);
+                if(!this.lineChartLabels.includes(rec.date))
+                  this.lineChartLabels.push(rec.date);
+                break;
+                case 'Butterfly':
+                this.lineChartData[3].data.push(rec.results[rec.results.length -1]);
+                if(!this.lineChartLabels.includes(rec.date))
+                  this.lineChartLabels.push(rec.date);
+                break;
+                case 'Individual Medley':
+                this.lineChartData[4].data.push(rec.results[rec.results.length -1]);
+                if(!this.lineChartLabels.includes(rec.date))
+                  this.lineChartLabels.push(rec.date);
+                break;
+              }
+            }
           });
           console.log(this.teamRecords)
+          this.graphReady = true;
         }
       },
       err =>{

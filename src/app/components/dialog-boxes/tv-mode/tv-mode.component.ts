@@ -301,6 +301,14 @@ export class TvModeComponent implements OnInit {
 
             }
             //TODO: Check if record exist already in db
+            this.httpservice.httpPost('records/chackRecords', { exercise_id: rec.exercise_id, swimmer_id: rec.swimmer.swimmer_id }).subscribe(
+              res =>{
+                console.log(res);
+              },
+              err =>{
+                this.OpenDialog();
+              }
+            )
             this.httpservice.httpPost('exercise/update',model).subscribe(
               res=>{
                 console.log(res);
