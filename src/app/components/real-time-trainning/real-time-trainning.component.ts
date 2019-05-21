@@ -191,8 +191,8 @@ export class RealTimeTrainningComponent implements OnInit {
         swimmers: this.temp,
         trainning: this.choosenTrainning
       };
-      dialogConfig.width = screen.width + 'px';
-      dialogConfig.height = screen.height + 'px';
+      dialogConfig.width = "100%";
+      dialogConfig.height = "100%";
       dialogConfig.panelClass = "tv-dialog";
       var dialogRef = this.dialog.open(TvModeComponent, dialogConfig);
       dialogRef.afterClosed().subscribe(
