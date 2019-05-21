@@ -39,7 +39,7 @@ export class MatalotsComponent implements OnInit {
 
   //chart
   public lineChartData: any[] = [];
-  public lineChartLabels: Label[] = [];
+  public lineChartLabels: any[] = [];
   public lineChartOptions: ChartOptions = {
     responsive: true,
   };
@@ -139,16 +139,14 @@ export class MatalotsComponent implements OnInit {
 public AllTheTeamChoosen():void{
   this.teamChoosen = true;
   this.choosenSwimmer = true;
+  var temp1 = { data: [], label: 'Freestyle' };
+  var temp2 = { data: [], label: 'Backstroke' };
+  var temp3 = { data: [], label: 'Breaststroke' };
+  var temp4 = { data: [], label: 'Butterfly' };
+  var temp5 = { data: [], label: 'Individual Medley' };
   this.currentTeam.swimmers.forEach((swimmer: any) =>{
     this.httpservice.httpPost('statistic/full_records',{swimmer_id: swimmer._id}).subscribe(
       res =>{
-        var temp1 = { data: [], label: 'Freestyle' };
-        var temp2 = { data: [], label: 'Backstroke' };
-        var temp3 = { data: [], label: 'Breaststroke' };
-        var temp4 = { data: [], label: 'Butterfly' };
-        var temp5 = { data: [], label: 'Individual Medley' };
-
-        //'Freestyle','Backstroke','Breaststroke','Butterfly','Individual Medley'
         if(res !== undefined && res.records !== undefined){
           res.records.forEach(rec => {
             this.teamRecords.push(rec);
@@ -156,51 +154,63 @@ public AllTheTeamChoosen():void{
               switch(rec.exercise_id.style){
                 case 'Freestyle':
                 temp1.data.push(rec.results[rec.results.length -1]);
-                if(!this.lineChartLabels.includes(rec.date.substring(0,10)))
+                if(!this.lineChartLabels.includes(rec.date.substring(0,10))){
                   this.lineChartLabels.push(rec.date.substring(0,10));
+                }
                 this.FreestyleArray.push(rec);
                 break;
                 case 'Backstroke':
                 temp2.data.push(rec.results[rec.results.length -1]);
-                if(!this.lineChartLabels.includes(rec.date.substring(0,10)))
+                if(!this.lineChartLabels.includes(rec.date.substring(0,10))){
                   this.lineChartLabels.push(rec.date.substring(0,10));
+                }
                 this.BackstrokeArray.push(rec);
                 break;
                 case 'Breaststroke':
                 temp3.data.push(rec.results[rec.results.length -1]);
-                if(!this.lineChartLabels.includes(rec.date.substring(0,10)))
+                if(!this.lineChartLabels.includes(rec.date.substring(0,10))){
                   this.lineChartLabels.push(rec.date.substring(0,10));
+                }
                 this.BreaststrokeArray.push(rec);
                 break;
                 case 'Butterfly':
                 temp4.data.push(rec.results[rec.results.length -1]);
-                if(!this.lineChartLabels.includes(rec.date.substring(0,10)))
+                if(!this.lineChartLabels.includes(rec.date.substring(0,10))){
                   this.lineChartLabels.push(rec.date.substring(0,10));
+                }
                 this.ButterflyArray.push(rec);
                 break;
                 case 'Individual Medley':
                 temp5.data.push(rec.results[rec.results.length -1]);
-                if(!this.lineChartLabels.includes(rec.date.substring(0,10)))
+                if(!this.lineChartLabels.includes(rec.date.substring(0,10))){
                   this.lineChartLabels.push(rec.date.substring(0,10));
+                }
                 this.IndividualMedleyArray.push(rec);
                 break;
               }
             }
           });
-          this.lineChartData.push(temp1);
-          this.lineChartData.push(temp2);
-          this.lineChartData.push(temp3);
-          this.lineChartData.push(temp4);
-          this.lineChartData.push(temp5);
-          console.log(this.teamRecords)
-          this.graphReady = true;
+          console.log("freestyle array : " + JSON.stringify(this.FreestyleArray))
+          console.log("Breaststroke array : " + this.BreaststrokeArray)
+          console.log("Backstroke array : " + this.BackstrokeArray)
+          console.log("Butterfly array : " + this.ButterflyArray)
+          console.log("IndividualMedley array : " + this.IndividualMedleyArray)
+          this.lineChartLabels.sort ( (a, b) => {
+            return new Date(a).getTime() - new Date(b).getTime();
+        });
         }
       },
       err =>{
         this.OpenErrorDialogBox();
       }
-    )
-  })
+    )})
+    console.log(this.teamRecords)
+    this.graphReady = true;
+    this.lineChartData.push(temp1);
+    this.lineChartData.push(temp2);
+    this.lineChartData.push(temp3);
+    this.lineChartData.push(temp4);
+    this.lineChartData.push(temp5);
 }
 
   /**
@@ -217,6 +227,9 @@ public AllTheTeamChoosen():void{
   public DisplayAll():void{
     this.CleanGraph();
     this.AllTheTeamChoosen();
+    this.lineChartLabels.sort ( (a, b) => {
+      return new Date(a).getTime() - new Date(b).getTime();
+  });
   }
 
   /**
@@ -231,6 +244,9 @@ public AllTheTeamChoosen():void{
         this.lineChartLabels.push(rec.date.substring(0,10));
     })
     this.lineChartData.push(temp);
+    this.lineChartLabels.sort ( (a, b) => {
+      return new Date(a).getTime() - new Date(b).getTime();
+  });
   }
   
   /**
@@ -245,6 +261,9 @@ public AllTheTeamChoosen():void{
         this.lineChartLabels.push(rec.date.substring(0,10));
     })
     this.lineChartData.push(temp);
+    this.lineChartLabels.sort ( (a, b) => {
+      return new Date(a).getTime() - new Date(b).getTime();
+  });
   }
   
   /**
@@ -259,6 +278,9 @@ public AllTheTeamChoosen():void{
         this.lineChartLabels.push(rec.date.substring(0,10));
     })
     this.lineChartData.push(temp);
+    this.lineChartLabels.sort ( (a, b) => {
+      return new Date(a).getTime() - new Date(b).getTime();
+  });
   }
   
   /**
@@ -272,6 +294,9 @@ public AllTheTeamChoosen():void{
       if(!this.lineChartLabels.includes(rec.date.substring(0,10)))
         this.lineChartLabels.push(rec.date.substring(0,10));
     })
+    this.lineChartLabels.sort ( (a, b) => {
+      return new Date(a).getTime() - new Date(b).getTime();
+  });
   }
   
   /**
@@ -286,6 +311,9 @@ public AllTheTeamChoosen():void{
         this.lineChartLabels.push(rec.date.substring(0,10));
     })
     this.lineChartData.push(temp);
+    this.lineChartLabels.sort ( (a, b) => {
+      return new Date(a).getTime() - new Date(b).getTime();
+  });
   }
 
 
