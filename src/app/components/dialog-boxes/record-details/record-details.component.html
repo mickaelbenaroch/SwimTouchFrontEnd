@@ -1,0 +1,37 @@
+<div class="envelop">
+  <div class="close"><img src="/assets/close.svg" (click)="close()"></div>
+  <div class="div-1">
+    <div> הישג של  {{record.swimmer.name}}</div>
+    <div>
+      <img *ngIf="record.swimmer.picture == ''" src="/assets/user.svg" style="width:2rem;height:2rem;border-radius:50%">
+      <img *ngIf="record.swimmer.picture !== ''" [src]=record.swimmer.picture style="width:2rem;height:2rem;border-radius:50%">
+    </div>
+  </div>
+
+  <div class="div-2">
+      <div class="div-2-item">
+        <div>תאריך :</div>
+        <div>{{record.date | datepipe}}</div>
+      </div>
+      <div class="div-2-item">
+        <div>סגנון : </div>
+        <div>{{record.exercise_id.style}}</div>
+      </div>
+      <div class="div-2-item">
+        <div>מרחק :</div>
+        <div>{{record.exercise_id.distance}}</div>
+      </div>
+      <div class="div-2-item"> 
+        <div>זמן קפיצה :</div>
+        <div>{{record.jump_time}}</div>
+      </div>
+      <div class="touch">זמני נגיעות:</div>
+      <div class="div-2-item" *ngFor="let rec of record.results; let i = index">
+        <div>נגיעה {{i + 1}} :</div>
+        <div> {{record.date | datepipe}}</div>
+      </div>
+  </div>
+  <div class="div-3">
+    <button (click)="Close()" class="but">סגור</button>
+  </div>
+</div>

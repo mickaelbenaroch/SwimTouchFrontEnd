@@ -7,6 +7,7 @@ import { SwimmerModel } from '../../models/SwimmerModel';
 import { MatDialogConfig, MatDialog } from '@angular/material';
 import { HttpService } from '../../services/http-service/http-service.service';
 import { ProfileServiceService } from '../../services/profile-service/profile-service.service';
+import { RecordDetailsComponent } from '../dialog-boxes/record-details/record-details.component';
 import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
 
 @Component({
@@ -39,6 +40,11 @@ export class MatalotsComponent implements OnInit {
   public columnView: boolean = false;
   public distances: number[] = [];
   public currentDistance: number;
+  public swimmerGraphReady: boolean;
+  public index: any;
+  public value: any;
+  public label: any;
+  public style: any;
 
   //chart
   public lineChartDataFreestyle: any[] = [{ data: [], label: 'Freestyle' }];
@@ -141,7 +147,10 @@ export class MatalotsComponent implements OnInit {
    * Get swimmer details
    */
   public SwimmerDetails(swimmer: SwimmerModel):void{
+    this.CleanArrays();
     console.log(swimmer);
+    this.graphReady = false;
+    this.swimmerGraphReady = true;
     this.choosenSwimmer = true;
     this.teamChoosen = false;
     this.currentSwimmer = swimmer;
@@ -153,6 +162,57 @@ export class MatalotsComponent implements OnInit {
         res=>{
             if(res !== undefined && res.records !== undefined){
               this.records = res.records;
+              if(res !== undefined && res.records !== undefined){
+                res.records.forEach(rec => {
+                  this.teamRecords.push(rec);
+                  if(rec.results !== undefined && rec.results !== null){
+                    switch(rec.exercise_id.style){
+                      case 'Freestyle':
+                      this.lineChartDataFreestyle[0].data.push(rec.results[rec.results.length -1]);
+                      this.lineChartLabelsFreestyle.push(rec.date.substring(0,10));
+                      if(!this.distances.includes(rec.exercise_id.distance)){
+                        this.distances.push(rec.exercise_id.distance);
+                      }
+                      this.FreestyleArray.push(rec);
+                      break;
+                      case 'Backstroke':
+                      this.lineChartDataBackstroke[0].data.push(rec.results[rec.results.length -1]);
+                      this.lineChartLabelsBackstroke.push(rec.date.substring(0,10));
+                      if(!this.distances.includes(rec.exercise_id.distance)){
+                        this.distances.push(rec.exercise_id.distance);
+                      }
+                      this.BackstrokeArray.push(rec);
+                      break;
+                      case 'Breaststroke':
+                      this.lineChartDataBreaststroke[0].data.push(rec.results[rec.results.length -1]);
+                      this.lineChartLabelsBreaststroke.push(rec.date.substring(0,10));
+                      if(!this.distances.includes(rec.exercise_id.distance)){
+                        this.distances.push(rec.exercise_id.distance);
+                      }
+                      this.BreaststrokeArray.push(rec);
+                      break;
+                      case 'Butterfly':
+                      this.lineChartDataButterfly[0].data.push(rec.results[rec.results.length -1]);
+                      this.lineChartLabelsButterfly.push(rec.date.substring(0,10));
+                      if(!this.distances.includes(rec.exercise_id.distance)){
+                        this.distances.push(rec.exercise_id.distance);
+                      }
+                      this.ButterflyArray.push(rec);
+                      break;
+                      case 'Individual Medley':
+                      this.lineChartDataIndividualMedley[0].data.push(rec.results[rec.results.length -1]);
+                      this.lineChartLabelsIndividualMedley.push(rec.date.substring(0,10));
+                      if(!this.distances.includes(rec.exercise_id.distance)){
+                        this.distances.push(rec.exercise_id.distance);
+                      }
+                      this.IndividualMedleyArray.push(rec);
+                      break;
+                    }
+                  }
+                });
+                this.SortLabelsArrays();
+                //TODO: FIX SORT ARRAY BUG
+      }
             }
         },
         err =>{
@@ -181,6 +241,7 @@ export class MatalotsComponent implements OnInit {
  * @param target 
  */
 public AllTheTeamChoosen():void{
+  this.swimmerGraphReady = false;
   this.teamChoosen = true;
   this.choosenSwimmer = true;
   this.currentTeam.swimmers.forEach((swimmer: any) =>{
@@ -230,7 +291,7 @@ public AllTheTeamChoosen():void{
                           this.distances.push(rec.exercise_id.distance);
                         }
                         this.IndividualMedleyArray.push(rec);
-                        break;
+                        break; 
                       }
                     }
                   });
@@ -250,7 +311,7 @@ public AllTheTeamChoosen():void{
   /**
    * Refill Graphs
    */
-   public RefillGraphs():void{
+   public RefillGraphsForTeam():void{
     this.currentTeam.swimmers.forEach((swimmer: any) =>{
       this.httpservice.httpPost('statistic/full_records',{swimmer_id: swimmer._id}).subscribe(
         res =>{
@@ -322,6 +383,79 @@ public AllTheTeamChoosen():void{
     })
    }
 
+     /**
+   * Refill Graphs
+   */
+  public RefillGraphsForSwimmer():void{
+      this.httpservice.httpPost('statistic/full_records',{swimmer_id: this.currentSwimmer._id}).subscribe(
+        res =>{
+          if(res !== undefined && res.records !== undefined){
+                    res.records.forEach(rec => {
+                      this.records.push(rec);
+                      if(rec.results !== undefined && rec.results !== null){
+                        switch(rec.exercise_id.style){
+                          case 'Freestyle':
+                          if(rec.exercise_id.distance == this.currentDistance){
+                            this.lineChartDataFreestyle[0].data.push(rec.results[rec.results.length -1]);
+                            this.lineChartLabelsFreestyle.push(rec.date.substring(0,10));
+                            if(!this.distances.includes(rec.exercise_id.distance)){
+                              this.distances.push(rec.exercise_id.distance);
+                            }
+                            this.FreestyleArray.push(rec);
+                          }
+                          break;
+                          case 'Backstroke':
+                          if(rec.exercise_id.distance == this.currentDistance){
+                            this.lineChartDataBackstroke[0].data.push(rec.results[rec.results.length -1]);
+                            this.lineChartLabelsBackstroke.push(rec.date.substring(0,10));
+                            if(!this.distances.includes(rec.exercise_id.distance)){
+                              this.distances.push(rec.exercise_id.distance);
+                            }
+                            this.BackstrokeArray.push(rec);
+                          }
+                          break;
+                          case 'Breaststroke':
+                          if(rec.exercise_id.distance == this.currentDistance){
+                            this.lineChartDataBreaststroke[0].data.push(rec.results[rec.results.length -1]);
+                            this.lineChartLabelsBreaststroke.push(rec.date.substring(0,10));
+                            if(!this.distances.includes(rec.exercise_id.distance)){
+                              this.distances.push(rec.exercise_id.distance);
+                            }
+                            this.BreaststrokeArray.push(rec);
+                          }
+                          break;
+                          case 'Butterfly':
+                          if(rec.exercise_id.distance == this.currentDistance){
+                            this.lineChartDataButterfly[0].data.push(rec.results[rec.results.length -1]);
+                            this.lineChartLabelsButterfly.push(rec.date.substring(0,10));
+                            if(!this.distances.includes(rec.exercise_id.distance)){
+                              this.distances.push(rec.exercise_id.distance);
+                            }
+                            this.ButterflyArray.push(rec);
+                          }
+                          break;
+                          case 'Individual Medley':
+                          if(rec.exercise_id.distance == this.currentDistance){
+                            this.lineChartDataIndividualMedley[0].data.push(rec.results[rec.results.length -1]);
+                            this.lineChartLabelsIndividualMedley.push(rec.date.substring(0,10));
+                            if(!this.distances.includes(rec.exercise_id.distance)){
+                              this.distances.push(rec.exercise_id.distance);
+                            }
+                            this.IndividualMedleyArray.push(rec);
+                          }
+                          break;
+                        }
+                      }
+                    });
+                    this.SortLabelsArrays();
+          }
+        },
+        err =>{
+          this.OpenErrorDialogBox();
+        }
+      )
+   }
+
   /**
    * Sorts five labels arrays 
    */
@@ -346,11 +480,80 @@ public AllTheTeamChoosen():void{
   /**
    * On distance Select change
    */
-  public SelectDistance(event: any):void{
+  public SelectDistanceForTeam(event: any):void{
     if(event.value !== 0 && event.value !== undefined){
       this.currentDistance = event.value;
       this.CleanArrays();
-      this.RefillGraphs();
+      this.RefillGraphsForTeam();
+    }
+  }
+
+  /**
+   * On distance Select change
+   */
+  public SelectDistanceForSwimmer(event: any):void{
+    if(event.value !== 0 && event.value !== undefined){
+      this.currentDistance = event.value;
+      this.CleanArrays();
+      this.RefillGraphsForSwimmer();
+    }
+  }
+
+  /**
+   * Chart clicked event callback
+   */
+  public ChartClickedForTeam(event):void{debugger
+    if (event.active.length > 0) {
+      const chart = event.active[0]._chart;
+      this.style = event.active[0]._chart.tooltip._data.datasets[0].label;
+      const activePoints = chart.getElementAtEvent(event.event);
+      if ( activePoints.length > 0) {
+        // get the internal index of slice in pie chart
+        this.index = activePoints[0]._index;
+        this.label = chart.data.labels[this.index];
+        // get value by index
+        this.value = chart.data.datasets[0].data[this.index];
+        console.log(this.index, this.label, this.value, this.style);
+        var result;
+        this.teamRecords.forEach(rec =>{
+          if(rec.date.includes(this.label) && rec.results[rec.results.length -1] == this.value && rec.exercise_id.style == this.style){
+            result = rec;
+          }
+        })
+         
+        if(result !== null && result !== undefined){
+          this.OpenRecordDetailsBox(result);
+        }
+      }
+    }
+  }
+
+   /**
+   * Chart clicked event callback
+   */
+  public ChartClickedForSwimmer(event):void{debugger
+    if (event.active.length > 0) {
+      const chart = event.active[0]._chart;
+      this.style = event.active[0]._chart.tooltip._data.datasets[0].label;
+      const activePoints = chart.getElementAtEvent(event.event);
+      if ( activePoints.length > 0) {
+        // get the internal index of slice in pie chart
+        this.index = activePoints[0]._index;
+        this.label = chart.data.labels[this.index];
+        // get value by index
+        this.value = chart.data.datasets[0].data[this.index];
+        console.log(this.index, this.label, this.value, this.style);
+        var result;
+        this.records.forEach(rec =>{
+          if(rec.date.includes(this.label) && rec.results[rec.results.length -1] == this.value && rec.exercise_id.style == this.style){
+            result = rec;
+          }
+        })
+         
+        if(result !== null && result !== undefined){
+          this.OpenRecordDetailsBox(result);
+        }
+      }
     }
   }
 
@@ -388,6 +591,22 @@ public AllTheTeamChoosen():void{
     dialogConfig.width = "420px";
     dialogConfig.height = "250px";
     this.dialog.open(GenericDialogBoxComponent, dialogConfig);
+  }
+
+    /**
+   * Open Dialog error box
+   */
+  public OpenRecordDetailsBox(rec: any):void{
+    const dialogConfig = new MatDialogConfig();
+    
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      record: rec,
+    };
+    dialogConfig.width = "653px";
+    dialogConfig.height = "550px";
+    this.dialog.open(RecordDetailsComponent, dialogConfig);
   }
   //#endregion
 

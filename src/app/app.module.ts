@@ -45,6 +45,7 @@ import { SwimmerMainPageComponent } from './components/swimmer-main-page/swimmer
 import { DetailsBoxComponent } from './components/swimmer-main-page/details-box/details-box.component';
 import { PictureUpdateComponent } from './components/dialog-boxes/picture-update/picture-update.component';
 import { TargetDetailsComponent } from './components/dialog-boxes/target-details/target-details.component';
+import { RecordDetailsComponent } from './components/dialog-boxes/record-details/record-details.component';
 import { CreateTrainingComponent } from './components/st-content/create-training/create-training.component';
 import { RealTimeTrainningComponent } from './components/real-time-trainning/real-time-trainning.component';
 import { AddTeamTargetComponent } from './components/dialog-boxes/add-team-target/add-team-target.component';
@@ -92,6 +93,7 @@ const config: SocketIoConfig = { url: 'https://record-system-server-1.herokuapp.
     PictureUpdateComponent,
     TargetDetailsComponent,
     AddTeamTargetComponent,
+    RecordDetailsComponent,
     BestRecordsBoxComponent,
     CreateTrainingComponent,
     CreateTrainningComponent,
@@ -135,6 +137,7 @@ const config: SocketIoConfig = { url: 'https://record-system-server-1.herokuapp.
     PictureUpdateComponent,
     TargetDetailsComponent,
     AddTeamTargetComponent,
+    RecordDetailsComponent,
     CreateTrainningComponent,
     GenericDialogBoxComponent,
     AddSwimmerTargetComponent,
