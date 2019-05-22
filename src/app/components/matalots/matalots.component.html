@@ -96,7 +96,7 @@
       <div style="text-align:center;">תאריך ההישג</div>
     </div>
 
-    <div class="graph" *ngIf="graphReady && lineChartDataBackstroke.data !== undefined && lineChartDataBackstroke.data.length > 0">
+    <div class="graph" *ngIf="graphReady && lineChartDataBackstroke[0].data !== undefined && lineChartDataBackstroke[0].data.length > 0">
       <div style="margin-top: 1rem;color:#800000;text-align:left;">
         <span style="color:black;">הישג (בשניות)</span>
       </div>
