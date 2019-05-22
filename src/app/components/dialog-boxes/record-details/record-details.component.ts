@@ -9,7 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class RecordDetailsComponent implements OnInit {
 
   //#region Public Members
-  @Input() record: string;
+  @Input() record: any;
   
   //#endregion
 
