@@ -36,12 +36,39 @@ export class MatalotsComponent implements OnInit {
   public BreaststrokeArray: any[] = [];
   public ButterflyArray: any[] = [];
   public IndividualMedleyArray: any[] = [];
+  public columnView: boolean = false;
+  public distances: number[] = [];
+  public currentDistance: number;
 
   //chart
-  public lineChartData: any[] = [];
-  public lineChartLabels: any[] = [];
+  public lineChartDataFreestyle: any[] = [{ data: [], label: 'Freestyle' }];
+  public lineChartLabelsFreestyle: any[] = [];
+
+  public lineChartDataBackstroke: any[] = [ { data: [], label: 'Backstroke' }];
+  public lineChartLabelsBackstroke: any[] = [];
+
+  public lineChartDataBreaststroke: any[] = [{ data: [], label: 'Breaststroke' }];
+  public lineChartLabelsBreaststroke: any[] = [];
+
+  public lineChartDataButterfly: any[] = [{ data: [], label: 'Butterfly' }];
+  public lineChartLabelsButterfly: any[] = [];
+
+  public lineChartDataIndividualMedley: any[] = [{ data: [], label: 'Individual Medley' }];
+  public lineChartLabelsIndividualMedley: any[] = [];
+
   public lineChartOptions: ChartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      xAxes: [
+       {
+           display: true,
+           ticks: {
+             fontSize: 10
+           }
+       }
+     ]
+   }
   };
   public lineChartColors: Color[] = [
     {
@@ -78,12 +105,29 @@ export class MatalotsComponent implements OnInit {
       err =>{
         this.OpenErrorDialogBox();      
       }
-    )
+    ) 
   }
-  }
-  //#endregion
+  } 
+  //#endregion 
 
   //#region Public Methods
+  /**
+   * ChangeView of graph presentation 
+   */
+  public ChangeView():void{
+    if(!this.columnView){
+      this.lineChartOptions.maintainAspectRatio = true;
+      $(".canvas").removeClass("canvas");
+      $(".canvaselement").addClass("canvas2");
+      this.columnView  = true;
+    }else{
+      this.lineChartOptions.maintainAspectRatio = false;
+      $(".canvas2").removeClass("canvas2");
+      $(".canvaselement").addClass("canvas");
+      this.columnView  = false;
+    }
+  }
+
     /**
    * On selection change callback
    */
@@ -139,193 +183,193 @@ export class MatalotsComponent implements OnInit {
 public AllTheTeamChoosen():void{
   this.teamChoosen = true;
   this.choosenSwimmer = true;
-  var temp1 = { data: [], label: 'Freestyle' };
-  var temp2 = { data: [], label: 'Backstroke' };
-  var temp3 = { data: [], label: 'Breaststroke' };
-  var temp4 = { data: [], label: 'Butterfly' };
-  var temp5 = { data: [], label: 'Individual Medley' };
-  var label1 = [];
-  var label2 = [];
-  var label3 = [];
-  var label4 = [];
-  var label5 = [];
   this.currentTeam.swimmers.forEach((swimmer: any) =>{
     this.httpservice.httpPost('statistic/full_records',{swimmer_id: swimmer._id}).subscribe(
       res =>{
         if(res !== undefined && res.records !== undefined){
-          res.records.forEach(rec => {
-            this.teamRecords.push(rec);
-            if(rec.results !== undefined && rec.results !== null){
-              switch(rec.exercise_id.style){
-                case 'Freestyle':
-                temp1.data.push(rec.results[rec.results.length -1]);
-                //if(!this.lineChartLabels.includes(rec.date.substring(0,10))){
-                  label1.push(rec.date.substring(0,10));
-                //}
-                this.FreestyleArray.push(rec);
-                break;
-                case 'Backstroke':
-                temp2.data.push(rec.results[rec.results.length -1]);
-                //if(!this.lineChartLabels.includes(rec.date.substring(0,10))){
-                  label2.push(rec.date.substring(0,10));
-                //}
-                this.BackstrokeArray.push(rec);
-                break;
-                case 'Breaststroke':
-                temp3.data.push(rec.results[rec.results.length -1]);
-                //if(!this.lineChartLabels.includes(rec.date.substring(0,10))){
-                  label3.push(rec.date.substring(0,10));
-                //}
-                this.BreaststrokeArray.push(rec);
-                break;
-                case 'Butterfly':
-                temp4.data.push(rec.results[rec.results.length -1]);
-                //f(!this.lineChartLabels.includes(rec.date.substring(0,10))){
-                  label4.push(rec.date.substring(0,10));
-                //}
-                this.ButterflyArray.push(rec);
-                break;
-                case 'Individual Medley':
-                temp5.data.push(rec.results[rec.results.length -1]);
-                //if(!this.lineChartLabels.includes(rec.date.substring(0,10))){
-                  label5.push(rec.date.substring(0,10));
-                //}
-                this.IndividualMedleyArray.push(rec);
-                break;
-              }
-            }
-          });
-          console.log("freestyle array : " + JSON.stringify(this.FreestyleArray))
-          console.log("Breaststroke array : " + this.BreaststrokeArray)
-          console.log("Backstroke array : " + this.BackstrokeArray)
-          console.log("Butterfly array : " + this.ButterflyArray)
-          console.log("IndividualMedley array : " + this.IndividualMedleyArray)
-          this.lineChartLabels.sort ( (a, b) => {
-            return new Date(a).getTime() - new Date(b).getTime();
-        });
+                  res.records.forEach(rec => {
+                    this.teamRecords.push(rec);
+                    if(rec.results !== undefined && rec.results !== null){
+                      switch(rec.exercise_id.style){
+                        case 'Freestyle':
+                        this.lineChartDataFreestyle[0].data.push(rec.results[rec.results.length -1]);
+                        this.lineChartLabelsFreestyle.push(rec.date.substring(0,10));
+                        if(!this.distances.includes(rec.exercise_id.distance)){
+                          this.distances.push(rec.exercise_id.distance);
+                        }
+                        this.FreestyleArray.push(rec);
+                        break;
+                        case 'Backstroke':
+                        this.lineChartDataBackstroke[0].data.push(rec.results[rec.results.length -1]);
+                        this.lineChartLabelsBackstroke.push(rec.date.substring(0,10));
+                        if(!this.distances.includes(rec.exercise_id.distance)){
+                          this.distances.push(rec.exercise_id.distance);
+                        }
+                        this.BackstrokeArray.push(rec);
+                        break;
+                        case 'Breaststroke':
+                        this.lineChartDataBreaststroke[0].data.push(rec.results[rec.results.length -1]);
+                        this.lineChartLabelsBreaststroke.push(rec.date.substring(0,10));
+                        if(!this.distances.includes(rec.exercise_id.distance)){
+                          this.distances.push(rec.exercise_id.distance);
+                        }
+                        this.BreaststrokeArray.push(rec);
+                        break;
+                        case 'Butterfly':
+                        this.lineChartDataButterfly[0].data.push(rec.results[rec.results.length -1]);
+                        this.lineChartLabelsButterfly.push(rec.date.substring(0,10));
+                        if(!this.distances.includes(rec.exercise_id.distance)){
+                          this.distances.push(rec.exercise_id.distance);
+                        }
+                        this.ButterflyArray.push(rec);
+                        break;
+                        case 'Individual Medley':
+                        this.lineChartDataIndividualMedley[0].data.push(rec.results[rec.results.length -1]);
+                        this.lineChartLabelsIndividualMedley.push(rec.date.substring(0,10));
+                        if(!this.distances.includes(rec.exercise_id.distance)){
+                          this.distances.push(rec.exercise_id.distance);
+                        }
+                        this.IndividualMedleyArray.push(rec);
+                        break;
+                      }
+                    }
+                  });
+                  this.SortLabelsArrays();
         }
       },
       err =>{
         this.OpenErrorDialogBox();
       }
-    )})
+    )
+  })
     console.log(this.teamRecords)
     this.graphReady = true;
-    this.lineChartData.push(temp1);
-    this.lineChartData.push(temp2);
-    this.lineChartData.push(temp3);
-    this.lineChartData.push(temp4);
-    this.lineChartData.push(temp5);
-    this.lineChartLabels.push(label1);
-    this.lineChartLabels.push(label2);
-    this.lineChartLabels.push(label3);
-    this.lineChartLabels.push(label4);
-    this.lineChartLabels.push(label5);
+    
 }
 
   /**
-  * Cleans graph data and labels
-  */
-  public CleanGraph():void{
-    this.lineChartData = [];
-    this.lineChartLabels = [];
+   * Refill Graphs
+   */
+   public RefillGraphs():void{
+    this.currentTeam.swimmers.forEach((swimmer: any) =>{
+      this.httpservice.httpPost('statistic/full_records',{swimmer_id: swimmer._id}).subscribe(
+        res =>{
+          if(res !== undefined && res.records !== undefined){
+                    res.records.forEach(rec => {
+                      this.teamRecords.push(rec);
+                      if(rec.results !== undefined && rec.results !== null){
+                        switch(rec.exercise_id.style){
+                          case 'Freestyle':
+                          if(rec.exercise_id.distance == this.currentDistance){
+                            this.lineChartDataFreestyle[0].data.push(rec.results[rec.results.length -1]);
+                            this.lineChartLabelsFreestyle.push(rec.date.substring(0,10));
+                            if(!this.distances.includes(rec.exercise_id.distance)){
+                              this.distances.push(rec.exercise_id.distance);
+                            }
+                            this.FreestyleArray.push(rec);
+                          }
+                          break;
+                          case 'Backstroke':
+                          if(rec.exercise_id.distance == this.currentDistance){
+                            this.lineChartDataBackstroke[0].data.push(rec.results[rec.results.length -1]);
+                            this.lineChartLabelsBackstroke.push(rec.date.substring(0,10));
+                            if(!this.distances.includes(rec.exercise_id.distance)){
+                              this.distances.push(rec.exercise_id.distance);
+                            }
+                            this.BackstrokeArray.push(rec);
+                          }
+                          break;
+                          case 'Breaststroke':
+                          if(rec.exercise_id.distance == this.currentDistance){
+                            this.lineChartDataBreaststroke[0].data.push(rec.results[rec.results.length -1]);
+                            this.lineChartLabelsBreaststroke.push(rec.date.substring(0,10));
+                            if(!this.distances.includes(rec.exercise_id.distance)){
+                              this.distances.push(rec.exercise_id.distance);
+                            }
+                            this.BreaststrokeArray.push(rec);
+                          }
+                          break;
+                          case 'Butterfly':
+                          if(rec.exercise_id.distance == this.currentDistance){
+                            this.lineChartDataButterfly[0].data.push(rec.results[rec.results.length -1]);
+                            this.lineChartLabelsButterfly.push(rec.date.substring(0,10));
+                            if(!this.distances.includes(rec.exercise_id.distance)){
+                              this.distances.push(rec.exercise_id.distance);
+                            }
+                            this.ButterflyArray.push(rec);
+                          }
+                          break;
+                          case 'Individual Medley':
+                          if(rec.exercise_id.distance == this.currentDistance){
+                            this.lineChartDataIndividualMedley[0].data.push(rec.results[rec.results.length -1]);
+                            this.lineChartLabelsIndividualMedley.push(rec.date.substring(0,10));
+                            if(!this.distances.includes(rec.exercise_id.distance)){
+                              this.distances.push(rec.exercise_id.distance);
+                            }
+                            this.IndividualMedleyArray.push(rec);
+                          }
+                          break;
+                        }
+                      }
+                    });
+                    this.SortLabelsArrays();
+          }
+        },
+        err =>{
+          this.OpenErrorDialogBox();
+        }
+      )
+    })
+   }
+
+  /**
+   * Sorts five labels arrays 
+   */
+  public SortLabelsArrays():void{
+      this.lineChartLabelsFreestyle.sort ( (a, b) => {
+        return new Date(a).getTime() - new Date(b).getTime();
+    });
+      this.lineChartLabelsBackstroke.sort ( (a, b) => {
+        return new Date(a).getTime() - new Date(b).getTime();
+    });
+    this.lineChartLabelsBreaststroke.sort ( (a, b) => {
+      return new Date(a).getTime() - new Date(b).getTime();
+    });
+    this.lineChartLabelsButterfly.sort ( (a, b) => {
+      return new Date(a).getTime() - new Date(b).getTime();
+    });
+    this.lineChartLabelsIndividualMedley.sort ( (a, b) => {
+      return new Date(a).getTime() - new Date(b).getTime();
+    });
+  }
+  
+  /**
+   * On distance Select change
+   */
+  public SelectDistance(event: any):void{
+    if(event.value !== 0 && event.value !== undefined){
+      this.currentDistance = event.value;
+      this.CleanArrays();
+      this.RefillGraphs();
+    }
   }
 
   /**
-   * Display All styles records
+   * Clean all arrays
    */
-  public DisplayAll():void{
-    this.CleanGraph();
-    this.AllTheTeamChoosen();
-    this.lineChartLabels.sort ( (a, b) => {
-      return new Date(a).getTime() - new Date(b).getTime();
-  });
-  }
+  public CleanArrays():void{
+    this.lineChartDataFreestyle[0].data = [];
+    this.lineChartDataBackstroke[0].data = [];
+    this.lineChartDataBreaststroke[0].data = [];
+    this.lineChartDataButterfly[0].data = [];
+    this.lineChartDataIndividualMedley[0].data = [];
 
-  /**
-   * Displays only freestyle records
-   */
-  public DisplayFreestyle():void{
-    this.CleanGraph();
-    var temp = { data: [], label: 'Freestyle' };
-    this.FreestyleArray.forEach(rec =>{
-    temp.data.push(rec.results[rec.results.length -1]);
-      if(!this.lineChartLabels.includes(rec.date.substring(0,10)))
-        this.lineChartLabels.push(rec.date.substring(0,10));
-    })
-    this.lineChartData.push(temp);
-    this.lineChartLabels.sort ( (a, b) => {
-      return new Date(a).getTime() - new Date(b).getTime();
-  });
+    this.lineChartLabelsFreestyle = [];
+    this.lineChartLabelsBackstroke = [];
+    this.lineChartLabelsBreaststroke = [];
+    this.lineChartLabelsButterfly = [];
+    this.lineChartLabelsIndividualMedley = [];
   }
-  
-  /**
-   * Displays only Backstroke record
-   */
-  public DisplayBackstroke():void{
-    this.CleanGraph();
-    var temp = { data: [], label: 'Backstroke' };
-    this.BackstrokeArray.forEach(rec =>{
-    temp.data.push(rec.results[rec.results.length -1]);
-      if(!this.lineChartLabels.includes(rec.date.substring(0,10)))
-        this.lineChartLabels.push(rec.date.substring(0,10));
-    })
-    this.lineChartData.push(temp);
-    this.lineChartLabels.sort ( (a, b) => {
-      return new Date(a).getTime() - new Date(b).getTime();
-  });
-  }
-  
-  /**
-   * Displays only Breaststroke record 
-   */
-  public DisplayBreaststroke():void{
-    this.CleanGraph();
-    var temp = { data: [], label: 'Breaststroke' };
-    this.BreaststrokeArray.forEach(rec =>{
-    temp.data.push(rec.results[rec.results.length -1]);
-      if(!this.lineChartLabels.includes(rec.date.substring(0,10)))
-        this.lineChartLabels.push(rec.date.substring(0,10));
-    })
-    this.lineChartData.push(temp);
-    this.lineChartLabels.sort ( (a, b) => {
-      return new Date(a).getTime() - new Date(b).getTime();
-  });
-  }
-  
-  /**
-   * Displays only Butterfly record 
-   */
-  public DisplayButterfly():void{
-    this.CleanGraph();
-    var temp = { data: [], label: 'Butterfly' };
-    this.ButterflyArray.forEach(rec =>{
-    temp.data.push(rec.results[rec.results.length -1]);
-      if(!this.lineChartLabels.includes(rec.date.substring(0,10)))
-        this.lineChartLabels.push(rec.date.substring(0,10));
-    })
-    this.lineChartLabels.sort ( (a, b) => {
-      return new Date(a).getTime() - new Date(b).getTime();
-  });
-  }
-  
-  /**
-   * Displays only Individual Medley record 
-   */
-  public DisplayIndividualMedley():void{
-    this.CleanGraph();
-    var temp = { data: [], label: 'Individual Medley' };
-    this.IndividualMedleyArray.forEach(rec =>{
-    temp.data.push(rec.results[rec.results.length -1]);
-      if(!this.lineChartLabels.includes(rec.date.substring(0,10)))
-        this.lineChartLabels.push(rec.date.substring(0,10));
-    })
-    this.lineChartData.push(temp);
-    this.lineChartLabels.sort ( (a, b) => {
-      return new Date(a).getTime() - new Date(b).getTime();
-  });
-  }
-
 
   /**
    * Open Dialog error box

@@ -63,31 +63,115 @@
       </div>
       <div class="back-div">
         <button (click)="BackToSwimmerChoose()">אחורה</button>
+        <button (click)="ChangeView()">שינוי תצוגה</button>
       </div>
     </div>
 
-    <div *ngIf="graphReady" style="margin-top: 1rem;color:#800000;text-align:left;">
-      <span style="color:black;">הישג (בשניות)</span>
+  <div class="filter" *ngIf="graphReady">
+    <div class="div-1">הישגים של קבוצת <span>{{currentTeam.name}}</span> לכל סוגי המחחים</div>
+    <div class="div-filter">סינון הישגים לפי מרחקים</div>
+    <div class="drop-down">
+      <mat-select placeholder="בחר מרחק" (selectionChange)="SelectDistance($event)" name="distance">
+        <mat-option *ngFor="let dist of distances" [value]="dist">
+          {{dist}}
+        </mat-option>
+      </mat-select>
     </div>
-    <div *ngIf="graphReady" style="display: block;margin-top: 1rem;margin: auto;">
-      <canvas baseChart width="90" height="25"
-        [datasets]="lineChartData"
-        [labels]="lineChartLabels"
-        [options]="lineChartOptions"
-        [colors]="lineChartColors"
-        [chartType]="lineChartType"
-        [plugins]="lineChartPlugins">
-      </canvas>
+  </div>
+  <section class="graph-section"> 
+    <div class="graph" *ngIf="graphReady && lineChartDataFreestyle[0].data !== undefined && lineChartDataFreestyle[0].data.length > 0">
+      <div style="margin-top: 1rem;color:#800000;text-align:left;">
+        <span style="color:black;">הישג (בשניות)</span>
+      </div>
+      <div style="display: block;margin-top: 1rem;margin: auto;">
+        <canvas class="canvas canvaselement" baseChart 
+          [datasets]="lineChartDataFreestyle"
+          [labels]="lineChartLabelsFreestyle"
+          [options]="lineChartOptions"
+          [colors]="lineChartColors"
+          [chartType]="lineChartType"
+          [plugins]="lineChartPlugins">
+        </canvas>
+      </div>
+      <div style="text-align:center;">תאריך ההישג</div>
     </div>
-    <div *ngIf="graphReady" style="text-align:center;">תאריך ההישג</div>
 
-    <div *ngIf="graphReady" class="choice">
+    <div class="graph" *ngIf="graphReady && lineChartDataBackstroke.data !== undefined && lineChartDataBackstroke.data.length > 0">
+      <div style="margin-top: 1rem;color:#800000;text-align:left;">
+        <span style="color:black;">הישג (בשניות)</span>
+      </div>
+      <div style="display: block;margin-top: 1rem;margin: auto;">
+        <canvas class="canvas canvaselement" baseChart 
+          [datasets]="lineChartDataBackstroke"
+          [labels]="lineChartLabelsBackstroke"
+          [options]="lineChartOptions"
+          [colors]="lineChartColors"
+          [chartType]="lineChartType"
+          [plugins]="lineChartPlugins">
+        </canvas>
+      </div>
+      <div style="text-align:center;">תאריך ההישג</div>
+    </div>
+
+    <div class="graph" *ngIf="graphReady && lineChartDataBreaststroke[0].data !== undefined && lineChartDataBreaststroke[0].data.length > 0">
+      <div style="margin-top: 1rem;color:#800000;text-align:left;">
+        <span style="color:black;">הישג (בשניות)</span>
+      </div>
+      <div style="display: block;margin-top: 1rem;margin: auto;">
+        <canvas class="canvas canvaselement" baseChart 
+          [datasets]="lineChartDataBreaststroke"
+          [labels]="lineChartLabelsBreaststroke"
+          [options]="lineChartOptions"
+          [colors]="lineChartColors"
+          [chartType]="lineChartType"
+          [plugins]="lineChartPlugins">
+        </canvas>
+      </div>
+      <div style="text-align:center;">תאריך ההישג</div>
+    </div>
+
+    <div class="graph" *ngIf="graphReady && lineChartDataButterfly[0].data !== undefined && lineChartDataButterfly[0].data.length > 0">
+      <div style="margin-top: 1rem;color:#800000;text-align:left;">
+        <span style="color:black;">הישג (בשניות)</span>
+      </div>
+      <div style="display: block;margin-top: 1rem;margin: auto;">
+        <canvas class="canvas canvaselement" baseChart 
+          [datasets]="lineChartDataButterfly"
+          [labels]="lineChartLabelsButterfly"
+          [options]="lineChartOptions"
+          [colors]="lineChartColors"
+          [chartType]="lineChartType"
+          [plugins]="lineChartPlugins">
+        </canvas>
+      </div>
+      <div style="text-align:center;">תאריך ההישג</div>
+    </div>
+
+    <div class="graph" *ngIf="graphReady && lineChartDataIndividualMedley[0].data !== undefined && lineChartDataIndividualMedley[0].data.length > 0">
+      <div style="margin-top: 1rem;color:#800000;text-align:left;">
+        <span style="color:black;">הישג (בשניות)</span>
+      </div>
+      <div style="display: block;margin-top: 1rem;margin: auto;">
+        <canvas class="canvas canvaselement" baseChart 
+          [datasets]="lineChartDataIndividualMedley"
+          [labels]="lineChartLabelsIndividualMedley"
+          [options]="lineChartOptions"
+          [colors]="lineChartColors"
+          [chartType]="lineChartType"
+          [plugins]="lineChartPlugins">
+        </canvas>
+      </div>
+      <div style="text-align:center;">תאריך ההישג</div>
+    </div>
+  </section>
+
+    <!---- <div *ngIf="graphReady" class="choice">
       <div (click)="DisplayFreestyle()">Freestyle</div>
       <div (click)="DisplayBackstroke()">Backstroke</div>
       <div (click)="DisplayBreaststroke()">Breaststroke</div>
       <div (click)="DisplayButterfly()">Butterfly</div>
       <div (click)="DisplayIndividualMedley()">Individual Medley</div>
       <div (click)="DisplayAll()">All Styles</div>
-    </div>
+    </div> -->
     
 </div>

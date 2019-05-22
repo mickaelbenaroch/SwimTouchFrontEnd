@@ -388,7 +388,7 @@ public EnterTeamTarget(target: SwimmerTargetModel):void{
  * sendNotificationForTeamTarget
  * @param tar 
  */
-public sendNotificationForTeamTarget(tar: TeamTargetModel):void{debugger
+public sendNotificationForTeamTarget(tar: TeamTargetModel):void{
   let model = {
     team_id: tar.team_id
   }

@@ -2,6 +2,7 @@ import { Socket } from 'ngx-socket-io';
 import { PageEnum } from '../../enums/componentview';
 import { ExerciseModel } from '../../models/ExerciseModel';
 import { FinalResultModel } from '../../models/FinalResult';
+import {ExerciseTypeEnum} from '../../enums/exercisetypeenum'
 import { TrainningModel } from 'src/app/models/TrainningModel';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { RealTrainningEnum } from '../../enums/realtrainningenum';
@@ -10,7 +11,6 @@ import { TvModeComponent } from '../dialog-boxes/tv-mode/tv-mode.component';
 import { HttpService } from '../../services/http-service/http-service.service';
 import { OneRouteFinalResultModel } from '../../models/FinalOneRouteResultModel';
 import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
-import {ExerciseTypeEnum} from '../../enums/exercisetypeenum'
 
 @Component({
   selector: 'app-real-time-trainning',
@@ -81,7 +81,7 @@ export class RealTimeTrainningComponent implements OnInit {
     * Choose a specific Exercise
     * @param trainning 
     */
-   public ChooseExercise(exercise: ExerciseModel):void{debugger;
+   public ChooseExercise(exercise: ExerciseModel):void{
       if(exercise.hasBeenStarted !== undefined && (exercise.hasBeenStarted == true || exercise.hasBeenStarted == "true")){
         this.OpenDialogForExerciseAlreadyDone();
         return;

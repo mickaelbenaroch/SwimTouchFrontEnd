@@ -199,7 +199,7 @@ public GetCurrentTrainning(event: TrainningModel):void{
                 exer.singleSwimDistance == ex.singleSwimDistance && 
                 exer.repeat == ex.repeat){
                   this.wurepeat += 1;
-              }else{debugger
+              }else{
                 this.warmuparray.push(ex);
               }
             })

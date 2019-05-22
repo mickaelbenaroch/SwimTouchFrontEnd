@@ -291,7 +291,7 @@ export class TvModeComponent implements OnInit {
       if(rec !== undefined && rec !== null){
         //First check if the record is already in db
         this.httpservice.httpPost('records/chackRecords', { exercise_id: rec.exercise_id, swimmer_id: rec.swimmer.swimmer_id }).subscribe(
-          res =>{debugger
+          res =>{
             console.log(res);
             //If the record is not already in db, creates it
             if(!res.isTrue){
