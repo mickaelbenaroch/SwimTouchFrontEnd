@@ -413,7 +413,7 @@ public sendNotificationForTeamTarget(tar: TeamTargetModel):void{
     let notification = new NotificationModel();
     notification.coachmail = localStorage.getItem("email");
     notification.date = new Date();
-    notification.message = "נא לשים לב שהיעד הבא לא הושג" + tar.style + ' ' + tar.distance + ',זמן' + tar.targetTime;
+    notification.message = "  נא לשים לב שהיעד הבא לא הושג " + tar.style + ' ' + tar.distance + ' ,זמן ' + tar.targetTime;
     notification.title = "הזהרה עקב אי עמידה ביעד שנקבע  לך על ידי המאמן!";
     notification.priority = "didnt_get_target_message";
     if(swimmer_ref == null){
