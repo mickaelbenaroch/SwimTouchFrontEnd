@@ -144,11 +144,11 @@ export class MatalotsComponent implements OnInit {
     }
     this.currentTeam.swimmers.forEach((swimmer: any) =>{
       this.httpservice.httpPost('statistic/full_records',{swimmer_id: swimmer._id}).subscribe(
-        res =>{debugger
+        res =>{
           if(res !== undefined && res.records !== undefined){
             res.records.forEach(res =>{
               this.teamRecords.push(res);
-              this.teamRecords.sort((a, b) => {debugger
+              this.teamRecords.sort((a, b) => {
                 return new Date(a.date).getTime() - new Date(b.date).getTime();
               });
             })
@@ -256,8 +256,8 @@ export class MatalotsComponent implements OnInit {
  * AllTheTeamChoosen, gets from backend all the swimmers of team record
  * @param target 
  */
-public AllTheTeamChoosen():void{debugger
-  this.teamRecords.sort((a, b) => {debugger
+public AllTheTeamChoosen():void{
+  this.teamRecords.sort((a, b) => {
     return new Date(a.date).getTime() - new Date(b.date).getTime();
   });
   this.swimmerGraphReady = false;
@@ -496,7 +496,7 @@ public AllTheTeamChoosen():void{debugger
   /**
    * Chart clicked event callback
    */
-  public ChartClickedForTeam(event):void{debugger
+  public ChartClickedForTeam(event):void{
     if (event.active.length > 0) {
       const chart = event.active[0]._chart;
       this.style = event.active[0]._chart.tooltip._data.datasets[0].label;
@@ -525,7 +525,7 @@ public AllTheTeamChoosen():void{debugger
    /**
    * Chart clicked event callback
    */
-  public ChartClickedForSwimmer(event):void{debugger
+  public ChartClickedForSwimmer(event):void{
     if (event.active.length > 0) {
       const chart = event.active[0]._chart;
       this.style = event.active[0]._chart.tooltip._data.datasets[0].label;
