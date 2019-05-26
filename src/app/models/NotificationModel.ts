@@ -16,6 +16,8 @@ export class NotificationModel{
 
     public priority: string;
 
+    public _id: string;
+
     public NotificationModel(){}
 }
 

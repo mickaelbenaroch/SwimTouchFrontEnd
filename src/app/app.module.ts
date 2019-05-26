@@ -56,6 +56,7 @@ import { GenericDialogBoxComponent } from './components/dialog-boxes/generic-dia
 import { AddSwimmerTargetComponent } from './components/dialog-boxes/add-swimmer-target/add-swimmer-target.component';
 import { TeamTargetDetailsComponent } from './components/dialog-boxes/team-target-details/team-target-details.component';
 import { AddTeamToTrainningComponent } from './components/dialog-boxes/add-team-to-trainning/add-team-to-trainning.component';
+import { NotificationComponent } from './components/notification/notification.component';
 
 const appRoutes: Routes = [
   { path: '' , component: LoginPageComponent},
@@ -104,6 +105,7 @@ const config: SocketIoConfig = { url: 'https://record-system-server-1.herokuapp.
     TeamTargetDetailsComponent,
     RealTimeTrainningComponent,
     AddTeamToTrainningComponent,
+    NotificationComponent,
   ],
   imports: [
     FormsModule,

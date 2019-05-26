@@ -85,6 +85,7 @@ export class MatalotsComponent implements OnInit {
   public lineChartLegend = true;
   public lineChartType = 'line';
   public lineChartPlugins = [];
+  
   //#endregion
 
   //#region Constructor & Lifecycle Hooks
@@ -141,6 +142,22 @@ export class MatalotsComponent implements OnInit {
     if(event !== null && event !== undefined){
       this.currentTeam = event.value;
     }
+    this.currentTeam.swimmers.forEach((swimmer: any) =>{
+      this.httpservice.httpPost('statistic/full_records',{swimmer_id: swimmer._id}).subscribe(
+        res =>{debugger
+          if(res !== undefined && res.records !== undefined){
+            res.records.forEach(res =>{
+              this.teamRecords.push(res);
+              this.teamRecords.sort((a, b) => {debugger
+                return new Date(a.date).getTime() - new Date(b.date).getTime();
+              });
+            })
+          }
+        },
+        err =>{
+          this.OpenErrorDialogBox();
+        }
+      )})
   }
 
     /**
@@ -161,10 +178,11 @@ export class MatalotsComponent implements OnInit {
     this.httpservice.httpPost('statistic/full_records', model).subscribe(
         res=>{
             if(res !== undefined && res.records !== undefined){
-              this.records = res.records;
+              this.records = res.records.sort ( (a, b) => {
+                return new Date(a).getTime() - new Date(b).getTime();
+            })
               if(res !== undefined && res.records !== undefined){
                 res.records.forEach(rec => {
-                  this.teamRecords.push(rec);
                   if(rec.results !== undefined && rec.results !== null){
                     switch(rec.exercise_id.style){
                       case 'Freestyle':
@@ -210,8 +228,6 @@ export class MatalotsComponent implements OnInit {
                     }
                   }
                 });
-                this.SortLabelsArrays();
-                //TODO: FIX SORT ARRAY BUG
       }
             }
         },
@@ -240,147 +256,123 @@ export class MatalotsComponent implements OnInit {
  * AllTheTeamChoosen, gets from backend all the swimmers of team record
  * @param target 
  */
-public AllTheTeamChoosen():void{
+public AllTheTeamChoosen():void{debugger
+  this.teamRecords.sort((a, b) => {debugger
+    return new Date(a.date).getTime() - new Date(b.date).getTime();
+  });
   this.swimmerGraphReady = false;
   this.teamChoosen = true;
   this.choosenSwimmer = true;
-  this.currentTeam.swimmers.forEach((swimmer: any) =>{
-    this.httpservice.httpPost('statistic/full_records',{swimmer_id: swimmer._id}).subscribe(
-      res =>{
-        if(res !== undefined && res.records !== undefined){
-                  res.records.forEach(rec => {
-                    this.teamRecords.push(rec);
-                    if(rec.results !== undefined && rec.results !== null){
-                      switch(rec.exercise_id.style){
-                        case 'Freestyle':
-                        this.lineChartDataFreestyle[0].data.push(rec.results[rec.results.length -1]);
-                        this.lineChartLabelsFreestyle.push(rec.date.substring(0,10));
-                        if(!this.distances.includes(rec.exercise_id.distance)){
-                          this.distances.push(rec.exercise_id.distance);
-                        }
-                        this.FreestyleArray.push(rec);
-                        break;
-                        case 'Backstroke':
-                        this.lineChartDataBackstroke[0].data.push(rec.results[rec.results.length -1]);
-                        this.lineChartLabelsBackstroke.push(rec.date.substring(0,10));
-                        if(!this.distances.includes(rec.exercise_id.distance)){
-                          this.distances.push(rec.exercise_id.distance);
-                        }
-                        this.BackstrokeArray.push(rec);
-                        break;
-                        case 'Breaststroke':
-                        this.lineChartDataBreaststroke[0].data.push(rec.results[rec.results.length -1]);
-                        this.lineChartLabelsBreaststroke.push(rec.date.substring(0,10));
-                        if(!this.distances.includes(rec.exercise_id.distance)){
-                          this.distances.push(rec.exercise_id.distance);
-                        }
-                        this.BreaststrokeArray.push(rec);
-                        break;
-                        case 'Butterfly':
-                        this.lineChartDataButterfly[0].data.push(rec.results[rec.results.length -1]);
-                        this.lineChartLabelsButterfly.push(rec.date.substring(0,10));
-                        if(!this.distances.includes(rec.exercise_id.distance)){
-                          this.distances.push(rec.exercise_id.distance);
-                        }
-                        this.ButterflyArray.push(rec);
-                        break;
-                        case 'Individual Medley':
-                        this.lineChartDataIndividualMedley[0].data.push(rec.results[rec.results.length -1]);
-                        this.lineChartLabelsIndividualMedley.push(rec.date.substring(0,10));
-                        if(!this.distances.includes(rec.exercise_id.distance)){
-                          this.distances.push(rec.exercise_id.distance);
-                        }
-                        this.IndividualMedleyArray.push(rec);
-                        break; 
-                      }
-                    }
-                  });
-                  this.SortLabelsArrays();
+  this.teamRecords.forEach(rec => {
+    if(rec.results !== undefined && rec.results !== null){
+      switch(rec.exercise_id.style){
+        case 'Freestyle':
+        this.lineChartDataFreestyle[0].data.push(rec.results[rec.results.length -1]);
+        this.lineChartLabelsFreestyle.push(rec.date.substring(0,10));
+        if(!this.distances.includes(rec.exercise_id.distance)){
+          this.distances.push(rec.exercise_id.distance);
         }
-      },
-      err =>{
-        this.OpenErrorDialogBox();
+        this.FreestyleArray.push(rec);
+        break;
+        case 'Backstroke':
+        this.lineChartDataBackstroke[0].data.push(rec.results[rec.results.length -1]);
+        this.lineChartLabelsBackstroke.push(rec.date.substring(0,10));
+        if(!this.distances.includes(rec.exercise_id.distance)){
+          this.distances.push(rec.exercise_id.distance);
+        }
+        this.BackstrokeArray.push(rec);
+        break;
+        case 'Breaststroke':
+        this.lineChartDataBreaststroke[0].data.push(rec.results[rec.results.length -1]);
+        this.lineChartLabelsBreaststroke.push(rec.date.substring(0,10));
+        if(!this.distances.includes(rec.exercise_id.distance)){
+          this.distances.push(rec.exercise_id.distance);
+        }
+        this.BreaststrokeArray.push(rec);
+        break;
+        case 'Butterfly':
+        this.lineChartDataButterfly[0].data.push(rec.results[rec.results.length -1]);
+        this.lineChartLabelsButterfly.push(rec.date.substring(0,10));
+        if(!this.distances.includes(rec.exercise_id.distance)){
+          this.distances.push(rec.exercise_id.distance);
+        }
+        this.ButterflyArray.push(rec);
+        break;
+        case 'Individual Medley':
+        this.lineChartDataIndividualMedley[0].data.push(rec.results[rec.results.length -1]);
+        this.lineChartLabelsIndividualMedley.push(rec.date.substring(0,10));
+        if(!this.distances.includes(rec.exercise_id.distance)){
+          this.distances.push(rec.exercise_id.distance);
+        }
+        this.IndividualMedleyArray.push(rec);
+        break; 
+        }
       }
-    )
-  })
+    })
     console.log(this.teamRecords)
-    this.graphReady = true;
-    
+    this.graphReady = true;   
 }
 
   /**
    * Refill Graphs
    */
    public RefillGraphsForTeam():void{
-    this.currentTeam.swimmers.forEach((swimmer: any) =>{
-      this.httpservice.httpPost('statistic/full_records',{swimmer_id: swimmer._id}).subscribe(
-        res =>{
-          if(res !== undefined && res.records !== undefined){
-                    res.records.forEach(rec => {
-                      this.teamRecords.push(rec);
-                      if(rec.results !== undefined && rec.results !== null){
-                        switch(rec.exercise_id.style){
-                          case 'Freestyle':
-                          if(rec.exercise_id.distance == this.currentDistance){
-                            this.lineChartDataFreestyle[0].data.push(rec.results[rec.results.length -1]);
-                            this.lineChartLabelsFreestyle.push(rec.date.substring(0,10));
-                            if(!this.distances.includes(rec.exercise_id.distance)){
-                              this.distances.push(rec.exercise_id.distance);
-                            }
-                            this.FreestyleArray.push(rec);
-                          }
-                          break;
-                          case 'Backstroke':
-                          if(rec.exercise_id.distance == this.currentDistance){
-                            this.lineChartDataBackstroke[0].data.push(rec.results[rec.results.length -1]);
-                            this.lineChartLabelsBackstroke.push(rec.date.substring(0,10));
-                            if(!this.distances.includes(rec.exercise_id.distance)){
-                              this.distances.push(rec.exercise_id.distance);
-                            }
-                            this.BackstrokeArray.push(rec);
-                          }
-                          break;
-                          case 'Breaststroke':
-                          if(rec.exercise_id.distance == this.currentDistance){
-                            this.lineChartDataBreaststroke[0].data.push(rec.results[rec.results.length -1]);
-                            this.lineChartLabelsBreaststroke.push(rec.date.substring(0,10));
-                            if(!this.distances.includes(rec.exercise_id.distance)){
-                              this.distances.push(rec.exercise_id.distance);
-                            }
-                            this.BreaststrokeArray.push(rec);
-                          }
-                          break;
-                          case 'Butterfly':
-                          if(rec.exercise_id.distance == this.currentDistance){
-                            this.lineChartDataButterfly[0].data.push(rec.results[rec.results.length -1]);
-                            this.lineChartLabelsButterfly.push(rec.date.substring(0,10));
-                            if(!this.distances.includes(rec.exercise_id.distance)){
-                              this.distances.push(rec.exercise_id.distance);
-                            }
-                            this.ButterflyArray.push(rec);
-                          }
-                          break;
-                          case 'Individual Medley':
-                          if(rec.exercise_id.distance == this.currentDistance){
-                            this.lineChartDataIndividualMedley[0].data.push(rec.results[rec.results.length -1]);
-                            this.lineChartLabelsIndividualMedley.push(rec.date.substring(0,10));
-                            if(!this.distances.includes(rec.exercise_id.distance)){
-                              this.distances.push(rec.exercise_id.distance);
-                            }
-                            this.IndividualMedleyArray.push(rec);
-                          }
-                          break;
-                        }
+    this.teamRecords.forEach(rec => {
+          if(rec.results !== undefined && rec.results !== null){
+            switch(rec.exercise_id.style){
+                case 'Freestyle':
+                if(rec.exercise_id.distance == this.currentDistance){
+                  this.lineChartDataFreestyle[0].data.push(rec.results[rec.results.length -1]);
+                  this.lineChartLabelsFreestyle.push(rec.date.substring(0,10));
+                  if(!this.distances.includes(rec.exercise_id.distance)){
+                    this.distances.push(rec.exercise_id.distance);
+                  }
+                  this.FreestyleArray.push(rec);
                       }
-                    });
-                    this.SortLabelsArrays();
+                break;
+                case 'Backstroke':
+                if(rec.exercise_id.distance == this.currentDistance){
+                  this.lineChartDataBackstroke[0].data.push(rec.results[rec.results.length -1]);
+                  this.lineChartLabelsBackstroke.push(rec.date.substring(0,10));
+                if(!this.distances.includes(rec.exercise_id.distance)){
+                  this.distances.push(rec.exercise_id.distance);
+                }
+                this.BackstrokeArray.push(rec);
+              }
+              break;
+              case 'Breaststroke':
+              if(rec.exercise_id.distance == this.currentDistance){
+                this.lineChartDataBreaststroke[0].data.push(rec.results[rec.results.length -1]);
+                this.lineChartLabelsBreaststroke.push(rec.date.substring(0,10));
+                if(!this.distances.includes(rec.exercise_id.distance)){
+                  this.distances.push(rec.exercise_id.distance);
+              }
+                this.BreaststrokeArray.push(rec);
+              }
+              break;
+              case 'Butterfly':
+              if(rec.exercise_id.distance == this.currentDistance){
+                this.lineChartDataButterfly[0].data.push(rec.results[rec.results.length -1]);
+                this.lineChartLabelsButterfly.push(rec.date.substring(0,10));
+              if(!this.distances.includes(rec.exercise_id.distance)){
+                this.distances.push(rec.exercise_id.distance);
+              }
+              this.ButterflyArray.push(rec);
+            }
+            break;
+            case 'Individual Medley':
+            if(rec.exercise_id.distance == this.currentDistance){
+              this.lineChartDataIndividualMedley[0].data.push(rec.results[rec.results.length -1]);
+              this.lineChartLabelsIndividualMedley.push(rec.date.substring(0,10));
+            if(!this.distances.includes(rec.exercise_id.distance)){
+              this.distances.push(rec.exercise_id.distance);
+            }
+            this.IndividualMedleyArray.push(rec);
           }
-        },
-        err =>{
-          this.OpenErrorDialogBox();
+          break;
         }
-      )
-    })
+      }
+    });
    }
 
      /**
@@ -389,6 +381,9 @@ public AllTheTeamChoosen():void{
   public RefillGraphsForSwimmer():void{
       this.httpservice.httpPost('statistic/full_records',{swimmer_id: this.currentSwimmer._id}).subscribe(
         res =>{
+            this.records = res.records.sort((a, b) => {
+              return new Date(a).getTime() - new Date(b).getTime();
+          });
           if(res !== undefined && res.records !== undefined){
                     res.records.forEach(rec => {
                       this.records.push(rec);
@@ -447,7 +442,6 @@ public AllTheTeamChoosen():void{
                         }
                       }
                     });
-                    this.SortLabelsArrays();
           }
         },
         err =>{

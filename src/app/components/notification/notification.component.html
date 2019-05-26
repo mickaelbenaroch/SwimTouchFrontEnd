@@ -1,0 +1,11 @@
+<div class="envelop animated bounceInDown">
+  <div class="div-1">
+    <img src="/assets/notification.png"/>
+  </div>
+  <div class="div-2">
+    <div *ngFor="let noti of notificationsToPresent">{{noti.message}}</div>
+  </div>
+  <div class="div-3">
+    <button (click)="Close()">הבנתי!</button>
+  </div>
+</div>

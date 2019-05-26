@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { RoleEnum } from './enums/roleenum';
+import { ProfileServiceService } from './services/profile-service/profile-service.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'SwimTouch';
+  public role = RoleEnum;
+
+  constructor(public profileservice: ProfileServiceService){ }
 }
