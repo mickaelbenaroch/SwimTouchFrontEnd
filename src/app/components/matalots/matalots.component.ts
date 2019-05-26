@@ -45,6 +45,8 @@ export class MatalotsComponent implements OnInit {
   public value: any;
   public label: any;
   public style: any;
+  public showIndicator: boolean;
+  public jumpGraph: boolean;
 
   //chart
   public lineChartDataFreestyle: any[] = [{ data: [], label: 'Freestyle' }];
@@ -61,6 +63,21 @@ export class MatalotsComponent implements OnInit {
 
   public lineChartDataIndividualMedley: any[] = [{ data: [], label: 'Individual Medley' }];
   public lineChartLabelsIndividualMedley: any[] = [];
+
+  public lineChartDataFreestyleJump: any[] = [{ data: [], label: 'Freestyle' }];
+  public lineChartLabelsFreestyleJump: any[] = [];
+
+  public lineChartDataBackstrokeJump: any[] = [ { data: [], label: 'Backstroke' }];
+  public lineChartLabelsBackstrokeJump: any[] = [];
+
+  public lineChartDataBreaststrokeJump: any[] = [{ data: [], label: 'Breaststroke' }];
+  public lineChartLabelsBreaststrokeJump: any[] = [];
+
+  public lineChartDataButterflyJump: any[] = [{ data: [], label: 'Butterfly' }];
+  public lineChartLabelsButterflyJump: any[] = [];
+
+  public lineChartDataIndividualMedleyJump: any[] = [{ data: [], label: 'Individual Medley' }];
+  public lineChartLabelsIndividualMedleyJump: any[] = [];
 
   public lineChartOptions: ChartOptions = {
     responsive: true,
@@ -80,6 +97,13 @@ export class MatalotsComponent implements OnInit {
     {
       borderColor: 'black', 
       backgroundColor: 'rgba(255,0,0,0.3)',
+    },
+  ];
+
+  public lineChartColors2: Color[] = [
+    {
+      borderColor: 'black', 
+      backgroundColor: 'rgba(255,1,2,0.3)',
     },
   ];
   public lineChartLegend = true;
@@ -119,6 +143,22 @@ export class MatalotsComponent implements OnInit {
 
   //#region Public Methods
   /**
+   * Toggle view between jump time and results
+   */
+  public Switch(subject: string):void{
+    if(subject == 'swim'){
+      this.jumpGraph = false;
+    }else{
+      this.jumpGraph = true;
+      if(this.teamChoosen){
+        this.JumpTimeGraphTeam();
+      }else{
+        this.jumpTimeGraphSwimmer();
+      }
+    }
+  }
+
+  /**
    * ChangeView of graph presentation 
    */
   public ChangeView():void{
@@ -141,6 +181,7 @@ export class MatalotsComponent implements OnInit {
   public Select(event):void{
     if(event !== null && event !== undefined){
       this.currentTeam = event.value;
+      this.showIndicator = true;
     }
     this.currentTeam.swimmers.forEach((swimmer: any) =>{
       this.httpservice.httpPost('statistic/full_records',{swimmer_id: swimmer._id}).subscribe(
@@ -159,6 +200,117 @@ export class MatalotsComponent implements OnInit {
         }
       )})
   }
+
+  /**
+   * Fill jump time graph for swimmers
+   */
+  public jumpTimeGraphSwimmer():void{
+    let model = {
+      swimmer_id: this.currentSwimmer._id
+    }
+    this.httpservice.httpPost('statistic/full_records', model).subscribe(
+      res=>{
+          if(res !== undefined && res.records !== undefined){
+            this.records = res.records.sort ( (a, b) => {
+              return new Date(a).getTime() - new Date(b).getTime();
+          })
+            if(res !== undefined && res.records !== undefined){
+              res.records.forEach(rec => {
+                if(rec.results !== undefined && rec.results !== null){
+                  switch(rec.exercise_id.style){
+                    case 'Freestyle':
+                    this.lineChartDataFreestyleJump[0].data.push(rec.jump_time);
+                    this.lineChartLabelsFreestyleJump.push(rec.date.substring(0,10));
+                    if(!this.distances.includes(rec.exercise_id.distance)){
+                      this.distances.push(rec.exercise_id.distance);
+                    }
+                    break;
+                    case 'Backstroke':
+                    this.lineChartDataBackstrokeJump[0].data.push(rec.jump_time);
+                    this.lineChartLabelsBackstrokeJump.push(rec.date.substring(0,10));
+                    if(!this.distances.includes(rec.exercise_id.distance)){
+                      this.distances.push(rec.exercise_id.distance);
+                    }
+                    break;
+                    case 'Breaststroke':
+                    this.lineChartDataBreaststrokeJump[0].data.push(rec.jump_time);
+                    this.lineChartLabelsBreaststrokeJump.push(rec.date.substring(0,10));
+                    if(!this.distances.includes(rec.exercise_id.distance)){
+                      this.distances.push(rec.exercise_id.distance);
+                    }
+                    break;
+                    case 'Butterfly':
+                    this.lineChartDataButterflyJump[0].data.push(rec.jump_time);
+                    this.lineChartLabelsButterflyJump.push(rec.date.substring(0,10));
+                    if(!this.distances.includes(rec.exercise_id.distance)){
+                      this.distances.push(rec.exercise_id.distance);
+                    }
+                    break;
+                    case 'Individual Medley':
+                    this.lineChartDataIndividualMedleyJump[0].data.push(rec.jump_time);
+                    this.lineChartLabelsIndividualMedleyJump.push(rec.date.substring(0,10));
+                    if(!this.distances.includes(rec.exercise_id.distance)){
+                      this.distances.push(rec.exercise_id.distance);
+                    }
+                    break;
+                  }
+                }
+              });
+    }
+          }
+      },
+      err =>{
+        this.OpenErrorDialogBox();
+      }
+  );
+  }
+
+  /**
+   * Fill jump time graph for team
+   * @param swimmer 
+   */
+  public JumpTimeGraphTeam():void{
+    this.teamRecords.forEach(rec =>{
+      switch(rec.exercise_id.style){
+        case 'Freestyle':
+          this.lineChartDataFreestyleJump[0].data.push(rec.jump_time);
+          this.lineChartLabelsFreestyleJump.push(rec.date.substring(0,10));
+          if(!this.distances.includes(rec.exercise_id.distance)){
+            this.distances.push(rec.exercise_id.distance);
+          }
+          break;
+          case 'Backstroke':
+          this.lineChartDataBackstrokeJump[0].data.push(rec.jump_time);
+          this.lineChartLabelsBackstrokeJump.push(rec.date.substring(0,10));
+          if(!this.distances.includes(rec.exercise_id.distance)){
+            this.distances.push(rec.exercise_id.distance);
+          }
+          break;
+          case 'Breaststroke':
+          this.lineChartDataBreaststrokeJump[0].data.push(rec.jump_time);
+          this.lineChartLabelsBreaststrokeJump.push(rec.date.substring(0,10));
+          if(!this.distances.includes(rec.exercise_id.distance)){
+            this.distances.push(rec.exercise_id.distance);
+          }
+          break;
+          case 'Butterfly':
+          this.lineChartDataButterflyJump[0].data.push(rec.jump_time);
+          this.lineChartLabelsButterflyJump.push(rec.date.substring(0,10));
+          if(!this.distances.includes(rec.exercise_id.distance)){
+            this.distances.push(rec.exercise_id.distance);
+          }
+          break;
+          case 'Individual Medley':
+          this.lineChartDataIndividualMedleyJump[0].data.push(rec.jump_time);
+          this.lineChartLabelsIndividualMedleyJump.push(rec.date.substring(0,10));
+          if(!this.distances.includes(rec.exercise_id.distance)){
+            this.distances.push(rec.exercise_id.distance);
+          }
+          break;
+      }
+    })
+  }
+
 
     /**
    * Get swimmer details
@@ -311,6 +463,9 @@ public AllTheTeamChoosen():void{
     })
     console.log(this.teamRecords)
     this.graphReady = true;   
+    setTimeout(()=>{
+      this.MakeAnalysis();
+    })
 }
 
   /**
@@ -587,10 +742,31 @@ public AllTheTeamChoosen():void{
     this.dialog.open(GenericDialogBoxComponent, dialogConfig);
   }
 
+
+  /**
+   * Open Dialog error box
+   */
+  public OpenSimpleMessageBox(message: string):void{
+    const dialogConfig = new MatDialogConfig();
+    
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      title: 'הודעה חשובה',
+      body: message,
+      button: true,
+      buttonText: "הבנתי!"
+    };
+    dialogConfig.width = "420px";
+    dialogConfig.height = "250px";
+    this.dialog.open(GenericDialogBoxComponent, dialogConfig);
+  }
+
     /**
    * Open Dialog error box
    */
   public OpenRecordDetailsBox(rec: any):void{
+    debugger
     const dialogConfig = new MatDialogConfig();
     
     dialogConfig.disableClose = true;
@@ -601,6 +777,140 @@ public AllTheTeamChoosen():void{
     dialogConfig.width = "653px";
     dialogConfig.height = "550px";
     this.dialog.open(RecordDetailsComponent, dialogConfig);
+  }
+
+  /**
+   * Make Analysis of records
+   */
+  public MakeAnalysis():void{
+    if(this.teamChoosen){
+      var freestyleAvaerage = 0;
+      for(var i = 0; i < this.FreestyleArray.length; i++){
+          freestyleAvaerage += this.FreestyleArray[i].results[this.FreestyleArray[i].results.length - 1];
+          if(i == this.FreestyleArray.length -1){
+            freestyleAvaerage = freestyleAvaerage / this.FreestyleArray.length;
+            console.log("Freestyle Records Average :" + freestyleAvaerage);
+            //Check if the last record is under or over the average
+            if(this.FreestyleArray[i].results[this.FreestyleArray[i].results.length - 1] > freestyleAvaerage){
+              if(i > 2){
+                if(this.FreestyleArray[i-1].results[this.FreestyleArray[i].results.length - 1] > freestyleAvaerage)
+                console.log(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין  האחרונים בסגנון ");
+              }else{
+                console.log(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון השחיין בסגנון " );
+              }
+            }else if(this.FreestyleArray[i].results[this.FreestyleArray[i].results.length - 1] < freestyleAvaerage){
+              if(i > 2){
+                if(this.FreestyleArray[i-1].results[this.FreestyleArray[i].results.length - 1] < freestyleAvaerage)
+                console.log(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי השחיין  האחרונים בסגנון " );
+              }else{
+                console.log(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון השחיין בסגנון ");
+              }
+            }
+          }
+      }
+
+
+      var backstrokeAvaerage = 0;
+      for(var i = 0; i < this.BackstrokeArray.length; i++){
+        backstrokeAvaerage += this.BackstrokeArray[i].results[this.BackstrokeArray[i].results.length - 1];
+          if(i == this.BackstrokeArray.length -1){
+            backstrokeAvaerage = backstrokeAvaerage / this.BackstrokeArray.length;
+            console.log("Backstroke Records Average :" + backstrokeAvaerage);
+            //Check if the last record is under or over the average
+            if(this.BackstrokeArray[i].results[this.BackstrokeArray[i].results.length - 1] > backstrokeAvaerage){
+              if(i > 2){
+                if(this.BackstrokeArray[i-1].results[this.BackstrokeArray[i].results.length - 1] > backstrokeAvaerage)
+                console.log(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין  האחרונים בסגנון ");
+              }else{
+                console.log(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון השחיין בסגנון " );
+              }
+            }else if(this.BackstrokeArray[i].results[this.BackstrokeArray[i].results.length - 1] < backstrokeAvaerage){
+              if(i > 2){
+                if(this.BackstrokeArray[i-1].results[this.BackstrokeArray[i].results.length - 1] < backstrokeAvaerage)
+                console.log(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי השחיין  האחרונים בסגנון " );
+              }else{
+                console.log(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון השחיין בסגנון ");
+              }
+            }
+          }
+      }
+
+      var breatstrokeAvaerage = 0;
+      for(var i = 0; i < this.BreaststrokeArray.length; i++){
+        breatstrokeAvaerage += this.BreaststrokeArray[i].results[this.BreaststrokeArray[i].results.length - 1];
+          if(i == this.BreaststrokeArray.length -1){
+            breatstrokeAvaerage = breatstrokeAvaerage / this.BreaststrokeArray.length;
+            console.log("Breastroke Average :" + breatstrokeAvaerage);
+            //Check if the last record is under or over the average
+            if(this.BreaststrokeArray[i].results[this.BreaststrokeArray[i].results.length - 1] > breatstrokeAvaerage){
+              if(i > 2){
+                if(this.BreaststrokeArray[i-1].results[this.BreaststrokeArray[i].results.length - 1] > breatstrokeAvaerage)
+                console.log(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין  האחרונים בסגנון ");
+              }else{
+                console.log(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון השחיין בסגנון " );
+              }
+            }else if(this.BreaststrokeArray[i].results[this.BreaststrokeArray[i].results.length - 1] < breatstrokeAvaerage){
+              if(i > 2){
+                if(this.BreaststrokeArray[i-1].results[this.BreaststrokeArray[i].results.length - 1] < breatstrokeAvaerage)
+                console.log(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי השחיין  האחרונים בסגנון " );
+              }else{
+                console.log(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון השחיין בסגנון ");
+              }
+            }
+          }
+      }
+
+      var butterflyAvaerage = 0;
+      for(var i = 0; i < this.ButterflyArray.length; i++){
+        butterflyAvaerage += this.ButterflyArray[i].results[this.ButterflyArray[i].results.length - 1];
+          if(i == this.ButterflyArray.length -1){
+            butterflyAvaerage = butterflyAvaerage / this.ButterflyArray.length;
+            console.log("Butterfly Records Average :" + butterflyAvaerage);
+            //Check if the last record is under or over the average
+            if(this.ButterflyArray[i].results[this.ButterflyArray[i].results.length - 1] > butterflyAvaerage){
+              if(i > 2){
+                if(this.ButterflyArray[i-1].results[this.ButterflyArray[i].results.length - 1] > butterflyAvaerage)
+                console.log(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין  האחרונים בסגנון ");
+              }else{
+                console.log(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון השחיין בסגנון " );
+              }
+            }else if(this.ButterflyArray[i].results[this.ButterflyArray[i].results.length - 1] < butterflyAvaerage){
+              if(i > 2){
+                if(this.ButterflyArray[i-1].results[this.ButterflyArray[i].results.length - 1] < butterflyAvaerage)
+                console.log(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי השחיין  האחרונים בסגנון " );
+              }else{
+                console.log(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון השחיין בסגנון ");
+              }
+            }
+          }
+      }
+
+      var individualMedleyAvaerage = 0;
+      for(var i = 0; i < this.IndividualMedleyArray.length; i++){
+        individualMedleyAvaerage += this.IndividualMedleyArray[i].results[this.IndividualMedleyArray[i].results.length - 1];
+          if(i == this.IndividualMedleyArray.length -1){
+            individualMedleyAvaerage = individualMedleyAvaerage / this.IndividualMedleyArray.length;
+            console.log("Individual Medley Records Average :" + individualMedleyAvaerage);
+            //Check if the last record is under or over the average
+            if(this.IndividualMedleyArray[i].results[this.IndividualMedleyArray[i].results.length - 1] > individualMedleyAvaerage){
+              if(i > 2){
+                if(this.IndividualMedleyArray[i-1].results[this.IndividualMedleyArray[i].results.length - 1] > individualMedleyAvaerage)
+                console.log(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין  האחרונים בסגנון ");
+              }else{
+                console.log(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון השחיין בסגנון " );
+              }
+            }else if(this.IndividualMedleyArray[i].results[this.IndividualMedleyArray[i].results.length - 1] < individualMedleyAvaerage){
+              if(i > 2){
+                if(this.IndividualMedleyArray[i-1].results[this.IndividualMedleyArray[i].results.length - 1] < individualMedleyAvaerage)
+                console.log(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי השחיין  האחרונים בסגנון " );
+              }else{
+                console.log(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון השחיין בסגנון ");
+              }
+            }
+          }
+      }
+
+    }
   }
   //#endregion
 

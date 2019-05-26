@@ -28,6 +28,7 @@
       <div class="touch">זמני נגיעות:</div>
       <div class="div-2-item" *ngFor="let rec of record.results; let i = index">
         <div>נגיעה {{i + 1}} :</div>
+        <div>{{rec}}</div>
         <div> {{record.date | datepipe}}</div>
       </div>
   </div>

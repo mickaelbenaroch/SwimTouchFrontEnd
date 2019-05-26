@@ -350,12 +350,31 @@
         }
     }
 
+    .indication{
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        div{
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin: 0.5rem;
+            cursor: pointer;
+        }
+    }
 }
 
 .div-3-3:hover, .all-team:hover, .button-1:hover, .button-2:hover, .line:hover, .button-3:hover, .button-4:hover{
     background-color: aliceblue !important;
 }
 
+.blue{
+    background: lightblue;
+}
+
+.grey{
+    background: lightgray;
+}
 
 @media only screen and (max-width: 600px) {
     .title{
