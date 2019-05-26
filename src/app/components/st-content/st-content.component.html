@@ -41,9 +41,9 @@
     </div>
 
     <div id="box-section2" *ngIf="pageenum === state.Landing && profileservice.profile !== undefined && profileservice.profile.type == role.Trainner">
-        <app-swimmer-box></app-swimmer-box>
-        <app-schedule-box></app-schedule-box>
-        <app-last-training-box></app-last-training-box>
+        <app-swimmer-box (SwimmersEvent)="GoToSwimmers($event)"></app-swimmer-box>
+        <app-schedule-box (CalenderEvent)="GoToCalender($event)"></app-schedule-box>
+        <app-last-training-box (GoToStatsEvent)="GoToStats($event)"></app-last-training-box>
         <app-todo-box></app-todo-box>
     </div>
 

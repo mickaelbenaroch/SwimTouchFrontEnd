@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ChartOptions, ChartType } from 'chart.js';
 import { MatDialogConfig, MatDialog } from '@angular/material';
 import { TrainningModel } from '../../../models/TrainningModel';
@@ -14,6 +14,7 @@ import { GenericDialogBoxComponent } from '../../dialog-boxes/generic-dialog-box
 export class LastTrainingBoxComponent implements OnInit {
 
   //#region Public Members
+  @Output() GoToStatsEvent: EventEmitter<boolean> = new EventEmitter();
   public trainnings: TrainningModel[] = [];
    // Pie
    public pieChartOptions: ChartOptions = {
@@ -58,10 +59,8 @@ export class LastTrainingBoxComponent implements OnInit {
         var newest = this.trainnings[0];
           this.httpservice.httpPost('records/getrecord',{exercise_id: newest.exercises[0].id}).subscribe(
             res=>{
-              debugger
               res.isTrue.forEach(rec =>{
                 var tt = rec.swimmer.swimmer_ref.split(' ');
-                debugger;
                 let lab = [];
                 lab.push(tt[0]);
                 lab.push(tt[1]);
@@ -101,6 +100,13 @@ export class LastTrainingBoxComponent implements OnInit {
   dialogConfig.width = "420px";
   dialogConfig.height = "250px";
   this.dialog.open(GenericDialogBoxComponent, dialogConfig);
+}
+
+/**
+ * GoToStats
+ */
+public GoToStats():void{
+  this.GoToStatsEvent.emit(true);
 }
   //#endregion
 

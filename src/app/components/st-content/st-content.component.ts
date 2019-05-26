@@ -76,6 +76,29 @@ export class StContentComponent implements OnInit, OnChanges {
       this.pageenum = PageEnum.Landing;
     }
   }
+  
+  /**
+   * GoToCalender
+   * @param event 
+   */
+  public GoToCalender(event):void{
+    this.pageenum = PageEnum.MyTrainnings;
+  }
+
+  /* GoToSwimmers
+  * @param event 
+  */
+ public GoToSwimmers(event):void{
+   this.pageenum = PageEnum.MySwimmers;
+ }
+
+   /* GoToSwimmers
+  * @param event 
+  */
+ public GoToStats(event):void{
+  this.pageenum = PageEnum.MyMatalots;
+}
+
 
   //#region Public Methods
   /**

@@ -15,6 +15,7 @@ export class SwimmerBoxComponent implements OnInit {
 
    //#region Public Members
    @Output() GoBackEvent: EventEmitter<PageEnum> = new EventEmitter();
+   @Output() SwimmersEvent: EventEmitter<boolean> = new EventEmitter();
    public swimmers: SwimmerModel[] = [];
    //#endregion
 
@@ -39,6 +40,9 @@ export class SwimmerBoxComponent implements OnInit {
       this.GoBackEvent.emit(PageEnum.Landing);
     }
 
+    public GoToSwimmers():void{
+      this.SwimmersEvent.emit(true);
+    }
 
      /**
    * Error dialog Box Opening
