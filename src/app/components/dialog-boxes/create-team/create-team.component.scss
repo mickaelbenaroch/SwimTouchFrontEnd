@@ -1,5 +1,5 @@
 .envelop{
-    font-family: Assistant;
+    font-family: 'Alef', sans-serif;
     direction: rtl;
     .header{
         display: flex;
@@ -16,69 +16,32 @@
     .body{
         .form{
             padding: 1rem;
+            input:not(.picture){
+                width: 100%;
+                font-size: 1rem;
+                border: none;
+                border-bottom: 1px solid black;
+            }
             .form-div-1{
                 padding: 1rem;
-                span{
-                    
-                }
-                input{
-                    width: 100%;
-                    padding: 0.5rem;
-                    border-radius: 10px;
-                    font-size: 1rem;
-                    border-width: 1px;
-                }
+            
             }
             .form-div-2{
                 padding: 1rem;
-                span{
-
-                }
-                input{
-                    width: 100%;
-                    padding: 0.5rem;
-                    border-radius: 10px;
-                    font-size: 1rem;
-                    border-width: 1px;
-                }
+                
             }
             .form-div-3{
                 padding: 1rem;
-                span{
-
-                }
-                input{
-                    width: 100%;
-                    padding: 0.5rem;
-                    border-radius: 10px;
-                    font-size: 1rem;
-                    border-width: 1px;
-                }
+                
+                
             }
             .form-div-4{
                 padding: 1rem;
-                span{
-
-                }
-                input{
-                    width: 100%;
-                    padding: 0.5rem;
-                    border-radius: 10px;
-                    font-size: 1rem;
-                    border-width: 1px;
-                }
             }
             .form-div-5{
                 padding: 1rem;
-                span{
-
-                }
                 input{
                     width: 100%;
-                    padding: 0.5rem;
-                    border-radius: 10px;
-                    font-size: 1rem;
-                    border-width: 1px;
                 }
             }
             
@@ -97,7 +60,6 @@
             font-size: 1.5rem;
             text-align: center;
             font-weight: bold;
-            margin-top: 1rem;
             margin-right: 1rem;
             cursor: pointer;
             .plus{
@@ -111,7 +73,7 @@
 input:focus
 {
     border: none;
-    border: 1px solid #01a89e;
+    border: 1px solid #1F2429;
     outline: 0;
 }
 

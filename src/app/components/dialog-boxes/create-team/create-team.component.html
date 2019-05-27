@@ -18,7 +18,6 @@
           <input type="text" [(ngModel)]="swimmer.height" name="height" (change)="DisableError()">
         </div>
         <div class="form-div-4">
-          <span>קבוצת השחיין:</span>
           <!---<input type="text" [(ngModel)]="swimmer.group" name="group" (change)="DisableError()"> -->
           <mat-select placeholder="קבוצת השחיין:" (selectionChange)="Select($event)" name="group">
             <mat-option *ngFor="let group of groups" [value]="group">
@@ -28,13 +27,12 @@
         </div>
         <div class="form-div-5">
           <span>תמונת השחיין:</span>
-          <input type="file"  name="picture" (change)="handleFileSelect($event)"> 
+          <input class="picture" type="file"  name="picture" (change)="handleFileSelect($event)"> 
         </div>
         <div [ngClass]="{'visible':error}" class="error">אחד או יותר מהפרטים שהוזנו אינם נכונים!</div>
       </form>
       <form class="form" *ngIf="this.edit == 'edit'">
          <div class="form-div-4">
-          <span>קבוצת השחיין:</span>
           <!---<input type="text" [(ngModel)]="swimmer.group" name="group" (change)="DisableError()"> -->
           <mat-select placeholder="אוסף שחיין:" (selectionChange)="Select2($event)" name="swimmers">
             <mat-option *ngFor="let swimmer of existingSwimmers" [value]="swimmer._id">
