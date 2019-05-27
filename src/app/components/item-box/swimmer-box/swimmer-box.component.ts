@@ -19,10 +19,11 @@ export class SwimmerBoxComponent implements OnInit {
    public swimmers: SwimmerModel[] = [];
    //#endregion
 
+   //#region Constructor & Lifecycle Hooks
   constructor(private httpservice: HttpService,
     private dialog: MatDialog) { }
 
-    public ngOnInit(): void {
+  public ngOnInit(): void {
       var model = {
         coachmail: localStorage.getItem("email")
       }
@@ -34,17 +35,24 @@ export class SwimmerBoxComponent implements OnInit {
           console.log(err);      }
       )
     }
+    //#endregion
 
-
+    //#region Public Methods
+    /**
+     * Send go back event
+     */
     public GoBack(): void{
       this.GoBackEvent.emit(PageEnum.Landing);
     }
 
+    /**
+     * Send go to swimmers evnt
+     */
     public GoToSwimmers():void{
       this.SwimmersEvent.emit(true);
     }
 
-     /**
+  /**
    * Error dialog Box Opening
    * @param email 
    */
