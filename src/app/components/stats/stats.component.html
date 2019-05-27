@@ -15,23 +15,40 @@
     <div *ngIf="!choosenSwimmer" style="display:flex;margin-top:0.8rem;justify-content:space-between">
       <div style="display: flex;">
         <div class="div-3-2">בחר שחיין ספציפי או את כל הקבוצה:</div>
-        <div class="div-3-3">
-            <mat-select placeholder="בחר שחיין" (selectionChange)="SwimmerDetails($event)" name="swimmer">
+          <!--  
+            <div class="div-3-3">
+          <mat-select placeholder="בחר שחיין" (selectionChange)="SwimmerDetails($event)" name="swimmer">
               <mat-option *ngFor="let swimmer of currentTeam.swimmers" [value]="swimmer">
                 {{swimmer.name}}
               </mat-option>
+              <mat-option class="all-team" (click)="AllTheTeamChoosen()">
+                כל הקבוצה
+              </mat-option>
             </mat-select>
-        </div>
+          </div>
+          -->
+            <mat-form-field>
+                <mat-select (selectionChange)="SwimmerDetails($event)" name="swimmer">
+                  <mat-option class="all-team" (click)="AllTheTeamChoosen()">
+                        כל הקבוצה
+                  </mat-option>
+                  <mat-option *ngFor="let swimmer of currentTeam.swimmers" [value]="swimmer">
+                      {{swimmer.name}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+            
       </div>
-      <div class="all-team" (click)="AllTheTeamChoosen()">כל הקבוצה</div>
     </div>
   </div>
 
     <div class="swimmer-details" *ngIf="choosenSwimmer && !teamChoosen">
     <div class="swimmer-details-father">
+        <div class="group-div-2">
+            <button (click)="BackToSwimmerChoose()">אחורה</button>
+         </div>
         <div class="group-div-1">
           <div class="name-div">
-            <span class="first">שם:</span> 
             <span class="second">{{currentSwimmer.name}}</span>
           </div>
           <div class="picture-div">
@@ -51,27 +68,26 @@
           <span class="first">גיל:</span>
           <span class="second">{{currentSwimmer.age}}</span>
         </div> 
-        <div class="group-div-2">
-          <button (click)="BackToSwimmerChoose()">אחורה</button>
-        </div>
       </div>
     </div>
 
     <div class="team-choosen" *ngIf="teamChoosen">
+     <!--
       <div class="swimmers-div">
         <div class="title">שחייני הקבוצה:</div>
         <div class="swimmer" *ngFor="let swimmer of currentTeam.swimmers">{{swimmer.name}}</div>
       </div>
+      -->
       <div class="back-div">
         <button (click)="BackToSwimmerChoose()">אחורה</button>
       </div>
     </div>
 
     <div class="buttons-div">
-      <div class="button-1" *ngIf="choosenSwimmer && currentSwimmer !== undefined && !teamChoosen" (click)="GetSwimmerTargets()">צפייה ביעדים של <span style="color:#ff6666">{{currentSwimmer.name}}</span></div>
-      <div class="button-2" *ngIf="choosenSwimmer && currentSwimmer !== undefined && !teamChoosen" (click)="OpenAddSwimmerTarget()">קביעת יעד חדש <span style="color:#ff6666">{{currentSwimmer.name}}</span></div>
-      <div class="button-3" *ngIf="teamChoosen" (click)="GetTeamTargets()">צפייה ביעדי הקבוצה</div>
-      <div class="button-4" *ngIf="teamChoosen" (click)="OpenAddTeamTarget()">קביעת יעד חדש לקבוצה </div>
+      <div class="button-1 buttons" *ngIf="choosenSwimmer && currentSwimmer !== undefined && !teamChoosen" (click)="GetSwimmerTargets()">צפייה ביעדים של <span style="color:#ff6666">{{currentSwimmer.name}}</span></div>
+      <div class="button-2 buttons" *ngIf="choosenSwimmer && currentSwimmer !== undefined && !teamChoosen" (click)="OpenAddSwimmerTarget()">קביעת יעד חדש <span style="color:#ff6666">{{currentSwimmer.name}}</span></div>
+      <div class="button-3 buttons" *ngIf="teamChoosen" (click)="GetTeamTargets()">צפייה ביעדי הקבוצה</div>
+      <div class="button-4 buttons" *ngIf="teamChoosen" (click)="OpenAddTeamTarget()">קביעת יעד חדש לקבוצה </div>
     </div>
 
     <div style="margin-top: 1rem;" *ngIf="currentSwimmer !== undefined && currentSwimmer !== null && targ && currentSwimmerTargets == undefined">לא נמצאו יעדים עבור {{currentSwimmer.name}}. לחץ על ׳קביעת יעד חדש׳ כדי להוסיף יעד</div>
@@ -93,7 +109,7 @@
             <span>נוצר ב-</span>
           </div>
           <div class="div">
-            <span>יעד הושג?</span>
+            <span>הושלם?</span>
           </div>
         </div>
         <div class="targets line" (click)="EnterTarget(target)" [ngClass]="{'more-margin': target.selected}" *ngFor="let target of currentSwimmerTargets">
@@ -129,7 +145,7 @@
             <span>נוצר ב-</span>
           </div>
           <div class="div">
-            <span>יעד הושג?</span>
+            <span>הושלם?</span>
           </div>
         </div>
         <div class="targets line" (click)="EnterTeamTarget(target)" [ngClass]="{'more-margin': target.selected}" *ngFor="let target of currentTeamTargets">
