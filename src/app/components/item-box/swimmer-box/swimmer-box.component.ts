@@ -20,10 +20,10 @@ export class SwimmerBoxComponent implements OnInit {
    //#endregion
 
    //#region Constructor & Lifecycle Hooks
-  constructor(private httpservice: HttpService,
-    private dialog: MatDialog) { }
+   constructor( private dialog: MatDialog,
+                 private httpservice: HttpService) { }
 
-  public ngOnInit(): void {
+   public ngOnInit(): void {
       var model = {
         coachmail: localStorage.getItem("email")
       }
