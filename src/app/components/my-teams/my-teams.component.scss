@@ -81,8 +81,19 @@ section{
         text-align: center;
     }
 
+    //filter training
     #filter{
-        display: none;
+        label{
+            font-size: 3vw!important;
+            display: block;
+
+            span{
+                display: none;
+            }
+        }
+        br{
+            display: none;
+        }
     }
 
 }
