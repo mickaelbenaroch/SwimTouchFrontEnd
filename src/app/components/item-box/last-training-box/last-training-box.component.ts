@@ -45,8 +45,7 @@ export class LastTrainingBoxComponent implements OnInit {
     monkeyPatchChartJsTooltip();
     monkeyPatchChartJsLegend();
   }
-  //#endregion
-
+  
   public ngOnInit():void {
     var model = {
       coachmail: localStorage.getItem("email")
@@ -57,30 +56,31 @@ export class LastTrainingBoxComponent implements OnInit {
           return new Date(a.date).getTime() - new Date(b.date).getTime();
         });
         var newest = this.trainnings[0];
-          this.httpservice.httpPost('records/getrecord',{exercise_id: newest.exercises[0].id}).subscribe(
-            res=>{
-              res.isTrue.forEach(rec =>{
-                var tt = rec.swimmer.swimmer_ref.split(' ');
-                let lab = [];
-                lab.push(tt[0]);
-                lab.push(tt[1]);
-                this.pieChartData.push(rec.results[rec.results.length -1]);
-                this.pieChartLabels.push(lab);
-              })
-            },
-            err =>{
-              console.log(err);
-              this.OpenDialog();
-            }
+        this.httpservice.httpPost('records/getrecord',{exercise_id: newest.exercises[0].id}).subscribe(
+          res=>{
+            res.isTrue.forEach(rec =>{
+              var tt = rec.swimmer.swimmer_ref.split(' ');
+              let lab = [];
+              lab.push(tt[0]);
+              lab.push(tt[1]);
+              this.pieChartData.push(rec.results[rec.results.length -1]);
+              this.pieChartLabels.push(lab);
+            })
+          },
+          err =>{
+            console.log(err);
+            this.OpenDialog();
+          }
           )
-      },
-      err =>{
-        this.OpenDialog();
-        console.log(err);      
+        },
+        err =>{
+          this.OpenDialog();
+          console.log(err);      
+        }
+        )
       }
-    )
-  }
-
+  //#endregion
+      
   //#region Public Methods
     /**
   * Error dialog Box Opening

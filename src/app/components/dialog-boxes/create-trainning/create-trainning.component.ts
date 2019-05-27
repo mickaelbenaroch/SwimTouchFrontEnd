@@ -63,7 +63,6 @@ export class CreateTrainningComponent implements OnInit {
   //#endregion
 
   //#region Public Methods
-
   /**
    * Fix number of touches in the exercise
    */

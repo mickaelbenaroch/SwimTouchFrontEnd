@@ -9,7 +9,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class TeamTargetDetailsComponent implements OnInit {
 
-   
   //#region Public Members
   @Input() title: string;
   @Input() records: any[] = [];
