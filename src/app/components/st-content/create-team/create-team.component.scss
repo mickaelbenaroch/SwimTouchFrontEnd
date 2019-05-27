@@ -1,17 +1,15 @@
+
+.title{
+    color: #A8ACB1;
+    direction: rtl; 
+    font-size: 1rem;
+    margin-bottom: 2%;
+    font-family: 'Alef', sans-serif;
+}
+
 .envelop{
     direction: rtl;
     font-family: 'Alef', sans-serif;
-    .div-1{
-        padding: 2rem;
-        font-size: 2rem;
-        font-weight: bold;
-        color: #A8ACB1;
-        font-family: 'Alef', sans-serif;
-
-        span{
-            
-        }
-    }
     .form{
         .form-div-1{
             padding: 1rem;
@@ -109,4 +107,13 @@ input:focus
     .plus{
         width: 1rem;
     }
+}
+
+
+@media only screen and (max-width: 600px) {
+    //title
+    .title{
+        text-align: center;
+    }
+
 }

@@ -1,19 +1,15 @@
+.title{
+    color: #A8ACB1;
+    direction: rtl; 
+    font-size: 1rem;
+    margin-bottom: 2%;
+    font-family: 'Alef', sans-serif;
+}
+
 .envelop{
     direction: rtl;
     font-family: 'Alef', sans-serif;
 
-    
-    .div-1{
-        /*padding: 2rem;*/
-        font-size: 2rem;
-        font-weight: bold;
-        font-family: 'Secular One', sans-serif;
-        padding: 2%;
-        color: #A8ACB1;
-        span{
-
-        } 
-    } 
     .info{
         font-family: 'Alef', sans-serif;
         color: lightgray;
@@ -236,13 +232,8 @@
 
 @media only screen and (max-width: 600px) {
     //title
-    .div-1{
+    .title{
         text-align: center;
-        color: #A8ACB1;
-        direction: rtl; 
-        font-size: 1rem;
-        margin-bottom: 2%;
-        font-family: 'Alef', sans-serif;
     }
 
     //input 
