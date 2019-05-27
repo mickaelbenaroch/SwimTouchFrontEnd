@@ -371,8 +371,18 @@
   </div>
 
   <div class="indication" *ngIf="showIndicator && (swimmerGraphReady || graphReady)">
-    <div [ngClass]="{'blue': jumpGraph, 'grey': !jumpGraph}" (click)="Switch('jump')"></div>
-    <div [ngClass]="{'blue':!jumpGraph, 'grey': jumpGraph}" (click)="Switch('swim')"></div>
+    <div class="arrow" (click)="Switch('jump')">
+      <img class="img1" src="/assets/right-arrow.svg"/>
+      <span>זמני תגובה</span>
+    </div>
+    <div class="indi">
+      <div [ngClass]="{'blue': jumpGraph, 'grey': !jumpGraph}" (click)="Switch('jump')"></div>
+      <div [ngClass]="{'blue':!jumpGraph, 'grey': jumpGraph}" (click)="Switch('swim')"></div>
+    </div>
+    <div class="arrow" (click)="Switch('swim')">
+      <span>הישיגי המשחים</span>
+      <img class="img2" src="/assets/left-arrow.svg"/>
+    </div>
   </div>
     
 </div>

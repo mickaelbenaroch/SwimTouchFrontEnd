@@ -353,13 +353,32 @@
     .indication{
         margin: auto;
         display: flex;
-        justify-content: center;
-        div{
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            margin: 0.5rem;
+        justify-content: space-between;
+        padding: 1rem;
+        .indi{
+            display: flex;
+            div{
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                margin: 0.5rem;
+                cursor: pointer;
+            }
+        }
+        .arrow{
             cursor: pointer;
+            display: flex;
+            .img1{
+                width: 1rem;
+                height: 1rem;
+                align-self: center;
+            }
+            .img2{
+                width: 11px;
+                height: 11px;
+                align-self: center;
+                margin-right: 3px;
+            }
         }
     }
 }

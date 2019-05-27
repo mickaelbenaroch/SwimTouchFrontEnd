@@ -103,7 +103,7 @@ export class MatalotsComponent implements OnInit {
   public lineChartColors2: Color[] = [
     {
       borderColor: 'black', 
-      backgroundColor: 'rgba(255,1,2,0.3)',
+      backgroundColor: '#99e6ff',
     },
   ];
   public lineChartLegend = true;
