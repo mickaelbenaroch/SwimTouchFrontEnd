@@ -5,6 +5,8 @@ import { Component, OnInit } from '@angular/core';
 import { TeamModel } from '../../models/TeamModel';
 import { SwimmerModel } from '../../models/SwimmerModel';
 import { MatDialogConfig, MatDialog } from '@angular/material';
+import { TeamTargetModel } from '../../models/TeamTargetModel';
+import { NotificationModel } from '../../models/NotificationModel';
 import { HttpService } from '../../services/http-service/http-service.service';
 import { ProfileServiceService } from '../../services/profile-service/profile-service.service';
 import { RecordDetailsComponent } from '../dialog-boxes/record-details/record-details.component';
@@ -1041,6 +1043,55 @@ public AllTheTeamChoosen():void{
       }
 
     }
+  }
+
+/**
+ * sendNotificationForTeamTarget
+ * @param tar 
+ */
+public sendNotificationForTeamTarget(tar: TeamTargetModel):void{
+  let model = {
+    team_id: tar.team_id
+  }
+  this.httpservice.httpPost('team/getteamById',model).subscribe(
+    res =>{
+      res.team[0].swimmers.forEach(swimmer => {
+        this.sendNotificationForSwimmerTarget(tar, swimmer);
+      });
+    },
+    err =>{
+      this.OpenErrorDialogBox();
+    }
+  )
+}
+
+  /**
+   * sendNotification to swimmer about bad performances
+   * @param target 
+   */
+  public sendNotificationForSwimmerTarget(tar: any, swimmer_ref: string = null):void{
+    //First create send notification to swimmer
+    let notification = new NotificationModel();
+    notification.coachmail = localStorage.getItem("email");
+    notification.date = new Date();
+    notification.message = "  נא לשים לב שהיעד הבא לא הושג " + tar.style + ' ' + tar.distance + ' ,זמן ' + tar.targetTime;
+    notification.title = "הזהרה עקב אי עמידה ביעד שנקבע  לך על ידי המאמן!";
+    notification.priority = "didnt_get_target_message";
+    if(swimmer_ref == null){
+      notification.swimmer_id = tar.swimmer_ref;
+    }else{
+      notification.swimmer_id = swimmer_ref;
+    }
+    notification.coachId = this.profileservice.profile._id;
+
+    this.httpservice.httpPost('notification/setNotification', notification).subscribe(
+      res =>{
+        console.log(res);
+      },
+      err =>{
+        this.OpenErrorDialogBox();
+      }
+    )
   }
   //#endregion
 
