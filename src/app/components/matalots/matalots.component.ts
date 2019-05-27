@@ -911,7 +911,132 @@ public AllTheTeamChoosen():void{
       }
 
     }else{
-      
+      var freestyleAvaerage = 0;
+      for(var i = 0; i < this.FreestyleArray.length; i++){
+          freestyleAvaerage += this.FreestyleArray[i].results[this.FreestyleArray[i].results.length - 1];
+          if(i == this.FreestyleArray.length -1){
+            freestyleAvaerage = freestyleAvaerage / this.FreestyleArray.length;
+            console.log("Freestyle Records Average :" + freestyleAvaerage);
+            //Check if the last record is under or over the average
+            if(this.FreestyleArray[i].results[this.FreestyleArray[i].results.length - 1] > freestyleAvaerage){
+              if(i > 2){
+                if(this.FreestyleArray[i-1].results[this.FreestyleArray[i].results.length - 1] > freestyleAvaerage)
+                console.log(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין האחרונים בסגנון ");
+              }else{
+                console.log(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של השחיין בסגנון " );
+              }
+            }else if(this.FreestyleArray[i].results[this.FreestyleArray[i].results.length - 1] < freestyleAvaerage){
+              if(i > 2){
+                if(this.FreestyleArray[i-1].results[this.FreestyleArray[i].results.length - 1] < freestyleAvaerage)
+                console.log(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי השחיין האחרונים בסגנון " );
+              }else{
+                console.log(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של השחיין בסגנון ");
+              }
+            }
+          }
+      }
+
+
+      var backstrokeAvaerage = 0;
+      for(var i = 0; i < this.BackstrokeArray.length; i++){
+        backstrokeAvaerage += this.BackstrokeArray[i].results[this.BackstrokeArray[i].results.length - 1];
+          if(i == this.BackstrokeArray.length -1){
+            backstrokeAvaerage = backstrokeAvaerage / this.BackstrokeArray.length;
+            console.log("Backstroke Records Average :" + backstrokeAvaerage);
+            //Check if the last record is under or over the average
+            if(this.BackstrokeArray[i].results[this.BackstrokeArray[i].results.length - 1] > backstrokeAvaerage){
+              if(i > 2){
+                if(this.BackstrokeArray[i-1].results[this.BackstrokeArray[i].results.length - 1] > backstrokeAvaerage)
+                console.log(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין האחרונים בסגנון ");
+              }else{
+                console.log(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של השחיין בסגנון " );
+              }
+            }else if(this.BackstrokeArray[i].results[this.BackstrokeArray[i].results.length - 1] < backstrokeAvaerage){
+              if(i > 2){
+                if(this.BackstrokeArray[i-1].results[this.BackstrokeArray[i].results.length - 1] < backstrokeAvaerage)
+                console.log(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי השחיין האחרונים בסגנון " );
+              }else{
+                console.log(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של השחיין בסגנון ");
+              }
+            }
+          }
+      }
+
+      var breatstrokeAvaerage = 0;
+      for(var i = 0; i < this.BreaststrokeArray.length; i++){
+        breatstrokeAvaerage += this.BreaststrokeArray[i].results[this.BreaststrokeArray[i].results.length - 1];
+          if(i == this.BreaststrokeArray.length -1){
+            breatstrokeAvaerage = breatstrokeAvaerage / this.BreaststrokeArray.length;
+            console.log("Breastroke Average :" + breatstrokeAvaerage);
+            //Check if the last record is under or over the average
+            if(this.BreaststrokeArray[i].results[this.BreaststrokeArray[i].results.length - 1] > breatstrokeAvaerage){
+              if(i > 2){
+                if(this.BreaststrokeArray[i-1].results[this.BreaststrokeArray[i].results.length - 1] > breatstrokeAvaerage)
+                console.log(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין האחרונים בסגנון ");
+              }else{
+                console.log(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של השחיין בסגנון " );
+              }
+            }else if(this.BreaststrokeArray[i].results[this.BreaststrokeArray[i].results.length - 1] < breatstrokeAvaerage){
+              if(i > 2){
+                if(this.BreaststrokeArray[i-1].results[this.BreaststrokeArray[i].results.length - 1] < breatstrokeAvaerage)
+                console.log(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי השחיין האחרונים בסגנון " );
+              }else{
+                console.log(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של השחיין בסגנון ");
+              }
+            }
+          }
+      }
+
+      var butterflyAvaerage = 0;
+      for(var i = 0; i < this.ButterflyArray.length; i++){
+        butterflyAvaerage += this.ButterflyArray[i].results[this.ButterflyArray[i].results.length - 1];
+          if(i == this.ButterflyArray.length -1){
+            butterflyAvaerage = butterflyAvaerage / this.ButterflyArray.length;
+            console.log("Butterfly Records Average :" + butterflyAvaerage);
+            //Check if the last record is under or over the average
+            if(this.ButterflyArray[i].results[this.ButterflyArray[i].results.length - 1] > butterflyAvaerage){
+              if(i > 2){
+                if(this.ButterflyArray[i-1].results[this.ButterflyArray[i].results.length - 1] > butterflyAvaerage)
+                console.log(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין האחרונים בסגנון ");
+              }else{
+                console.log(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של השחיין בסגנון " );
+              }
+            }else if(this.ButterflyArray[i].results[this.ButterflyArray[i].results.length - 1] < butterflyAvaerage){
+              if(i > 2){
+                if(this.ButterflyArray[i-1].results[this.ButterflyArray[i].results.length - 1] < butterflyAvaerage)
+                console.log(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי השחיין  האחרונים בסגנון " );
+              }else{
+                console.log(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של השחיין בסגנון ");
+              }
+            }
+          }
+      }
+
+      var individualMedleyAvaerage = 0;
+      for(var i = 0; i < this.IndividualMedleyArray.length; i++){
+        individualMedleyAvaerage += this.IndividualMedleyArray[i].results[this.IndividualMedleyArray[i].results.length - 1];
+          if(i == this.IndividualMedleyArray.length -1){
+            individualMedleyAvaerage = individualMedleyAvaerage / this.IndividualMedleyArray.length;
+            console.log("Individual Medley Records Average :" + individualMedleyAvaerage);
+            //Check if the last record is under or over the average
+            if(this.IndividualMedleyArray[i].results[this.IndividualMedleyArray[i].results.length - 1] > individualMedleyAvaerage){
+              if(i > 2){
+                if(this.IndividualMedleyArray[i-1].results[this.IndividualMedleyArray[i].results.length - 1] > individualMedleyAvaerage)
+                console.log(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין  האחרונים בסגנון ");
+              }else{
+                console.log(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של השחיין בסגנון " );
+              }
+            }else if(this.IndividualMedleyArray[i].results[this.IndividualMedleyArray[i].results.length - 1] < individualMedleyAvaerage){
+              if(i > 2){
+                if(this.IndividualMedleyArray[i-1].results[this.IndividualMedleyArray[i].results.length - 1] < individualMedleyAvaerage)
+                console.log(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי השחיין האחרונים בסגנון " );
+              }else{
+                console.log(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של השחיין בסגנון ");
+              }
+            }
+          }
+      }
+
     }
   }
   //#endregion
