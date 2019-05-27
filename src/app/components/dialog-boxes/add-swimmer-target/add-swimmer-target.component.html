@@ -7,7 +7,6 @@
   <div class="body">
       <form class="form">
         <div class="form-div-4">
-          <span>סגנון:</span>
           <mat-select placeholder="בחר סגנון לקביעת היעד" (selectionChange)="Select($event)" name="style">
             <mat-option *ngFor="let style of styles" [value]="style">
               {{style}}
