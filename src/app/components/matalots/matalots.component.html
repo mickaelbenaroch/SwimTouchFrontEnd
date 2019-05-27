@@ -3,9 +3,6 @@
 </div>
 
 <div class="envelop">
-  <div class="div-1">
-    <span>בחר קבוצה:</span>
-  </div>
   <div class="div-2">
     <mat-select placeholder="בחר קבוצה" (selectionChange)="Select($event)" name="team">
       <mat-option *ngFor="let team of teams" [value]="team">

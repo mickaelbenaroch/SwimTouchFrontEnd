@@ -13,7 +13,7 @@
             </mat-option>
           </mat-select>
         </div>
-         <div class="form-div-3" style="font-size: 1.2rem;font-weight: bold;">
+         <div class="form-div-3" style="font-size: 1rem;font-weight: bold;">
           <div>קטגוריית התרגיל:</div>
           <mat-select style="background: lightgoldenrodyellow;" placeholder="בחר קטגוריה" (selectionChange)="SelectCategory($event)" name="category">
             <mat-option *ngFor="let cat of categories" [value]="cat">
