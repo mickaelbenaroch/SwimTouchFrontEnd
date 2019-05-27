@@ -6,12 +6,19 @@ import {HttpRequest,HttpHandler,HttpEvent,HttpInterceptor,HttpResponse,HttpError
 
 @Injectable()
 export class MyInterceptor implements HttpInterceptor {
+
+  //#region Public Members
+  //#endregion
+
+  //#region Constructor & Lifecycle Hooks
   constructor(private spinnerservice: NgxUiLoaderService) { }
-  //function which will be called for all http calls
-  intercept(
-    request: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+  //#endregion
+
+  //#region Public Methods
+  /**
+   * function which will be called for all http calls
+   */
+  public intercept( request: HttpRequest<any>, next: HttpHandler ): Observable<HttpEvent<any>> {
     //how to update the request Parameters
     const updatedRequest = request.clone({
       headers: request.headers.set("Authorization", "Some-dummyCode")
@@ -38,4 +45,5 @@ export class MyInterceptor implements HttpInterceptor {
       )
     );
   }
+  //#endregion
 }
