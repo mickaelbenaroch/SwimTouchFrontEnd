@@ -15,8 +15,12 @@
     <div *ngIf="!choosenSwimmer" style="display:flex;margin-top:0.8rem;justify-content:space-between">
       <div style="display: flex;">
         <div class="div-3-2">בחר שחיין ספציפי או את כל הקבוצה:</div>
-        <div class="div-3-3" *ngFor="let swimmer of currentTeam.swimmers">            
-            <span class="li" (click)="SwimmerDetails(swimmer)">{{swimmer.name}}</span>
+        <div class="div-3-3">
+            <mat-select placeholder="בחר שחיין" (selectionChange)="SwimmerDetails($event)" name="swimmer">
+              <mat-option *ngFor="let swimmer of currentTeam.swimmers" [value]="swimmer">
+                {{swimmer.name}}
+              </mat-option>
+            </mat-select>
         </div>
       </div>
       <div class="all-team" (click)="AllTheTeamChoosen()">כל הקבוצה</div>
