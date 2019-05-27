@@ -7,7 +7,7 @@ import { NotificationModel } from '../../models/NotificationModel';
   providedIn: 'root'
 })
 export class ProfileServiceService {
-
+ 
   //#region Public Members
   public profile: ProfileModel;
   public showNotificationPopup: boolean;
