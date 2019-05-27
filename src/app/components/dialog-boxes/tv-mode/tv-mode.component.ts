@@ -6,6 +6,8 @@ import { FinalResultModel } from '../../../models/FinalResult';
 import { TrainningModel } from '../../../models/TrainningModel';
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { OneJumpTimeResult } from '../../../models/OneJumpTimeResult';
+import { NotificationModel } from '../../../models/NotificationModel';
+import { NotificationTypeEnum } from '../../../enums/notificationtypeenum'
 import { HttpService } from '../../../services/http-service/http-service.service';
 import { OneRouteFinalResultModel } from '../../../models/FinalOneRouteResultModel';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig, MatDialog } from '@angular/material';
@@ -320,6 +322,19 @@ export class TvModeComponent implements OnInit {
                 }
               )
             }
+              //Then send Notification to swimmer that the exercise is ready to been seen
+              var notification = new NotificationModel();
+              notification.type = NotificationTypeEnum.Message;
+              notification.coachmail = localStorage.getItem("email");
+              notification.swimmer_id = rec.swimmer.swimmer_id;
+              notification.date = new Date();
+              notification.priority = "low";
+              notification.title = "תוצאות אימון אחרון זמינות לצפיה!";
+              notification.message = "כדי לצפות בתוצאות של האימון האחרון, היכנס להישגים בטפריט הצדדי";
+              this.httpservice.httpPost('notification/setNotification', notification).subscribe(
+                  res => { console.log(res)},
+                  err => { console.log(err)}
+              )
           },
           err =>{
             this.OpenDialog();

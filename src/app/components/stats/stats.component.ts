@@ -10,6 +10,7 @@ import { MatDialogConfig, MatDialog } from '@angular/material';
 import { TeamTargetModel } from '../../models/TeamTargetModel';
 import { NotificationModel } from '../../models/NotificationModel';
 import { SwimmerTargetModel } from '../../models/SwimmerTargetModel';
+import { NotificationTypeEnum } from '../../enums/notificationtypeenum';
 import { HttpService } from '../../services/http-service/http-service.service';
 import { ProfileServiceService } from '../../services/profile-service/profile-service.service';
 import { TargetDetailsComponent } from '../dialog-boxes/target-details/target-details.component';
@@ -412,6 +413,7 @@ export class StatsComponent implements OnInit {
     public sendNotificationForSwimmerTarget(tar: any, swimmer_ref: string = null):void{
       //First create send notification to swimmer
       let notification = new NotificationModel();
+      notification.type = NotificationTypeEnum.Warning;
       notification.coachmail = localStorage.getItem("email");
       notification.date = new Date();
       notification.message = "  נא לשים לב שהיעד הבא לא הושג " + tar.style + ' ' + tar.distance + ' ,זמן ' + tar.targetTime;

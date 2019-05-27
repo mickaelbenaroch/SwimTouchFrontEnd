@@ -23,7 +23,7 @@
             </mat-select>
         </div>
       </div>
-      <!---<div class="all-team" (click)="AllTheTeamChoosen()">כל הקבוצה</div>-->
+      <div class="all-team" (click)="AllTheTeamChoosen()">כל הקבוצה</div>
     </div>
   </div>
 
@@ -52,7 +52,7 @@
           <span class="second">{{currentSwimmer.age}}</span>
         </div> 
         <div class="group-div-2">
-          <button (click)="BackToSwimmerChoose()">אחורה</button>
+          <!---<button (click)="BackToSwimmerChoose()">אחורה</button>-->
         </div>
       </div>
     </div>
@@ -63,7 +63,7 @@
         <div class="swimmer" *ngFor="let swimmer of currentTeam.swimmers">{{swimmer.name}}</div>
       </div>
       <div class="back-div">
-        <button (click)="BackToSwimmerChoose()">אחורה</button>
+        <!----<button (click)="BackToSwimmerChoose()">אחורה</button>-->
         <button (click)="ChangeView()">שינוי תצוגה</button>
       </div>
     </div>

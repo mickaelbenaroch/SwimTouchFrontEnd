@@ -1,3 +1,5 @@
+import { NotificationTypeEnum } from '../enums/notificationtypeenum';
+
 export class NotificationModel{
 
     public HasBeenreaded: boolean = false;
@@ -17,6 +19,8 @@ export class NotificationModel{
     public priority: string;
 
     public _id: string;
+
+    public type: NotificationTypeEnum;
 
     public NotificationModel(){}
 }
