@@ -67,10 +67,14 @@ input:focus
 @media only screen and (max-width: 600px) {
     .but-div{
         button{
-            font-size: 1.5rem !important;
+            font-size: 1rem !important;
             margin: auto !important;
             display: block;
         }
+    }
+
+    mat-select{
+        font-size: 0.8rem !important;
     }
 
 }

@@ -1,5 +1,5 @@
 .envelop{
-    font-family: Assistant;
+    font-family: 'Alef', sans-serif;
     direction: rtl;
     .header{
         display: flex;
@@ -15,7 +15,7 @@
     }
     .body{
         .form{
-            padding: 1rem;
+            //padding: 1rem;
             .form-div-1{
                 padding: 1rem;
                 span{
@@ -31,12 +31,16 @@
             }
             .form-div-2{
                 padding: 1rem;
+                display: grid;
+                grid-template-columns: 40% 1fr;
                 span{
 
                 }
+                mat-select{
+                    font-weight: bold;
+                }
                 input{
                     width: 100%;
-                    padding: 0.5rem;
                     border-radius: 10px;
                     font-size: 1rem;
                     border-width: 1px;
@@ -44,43 +48,25 @@
             }
             .form-div-3{
                 padding: 1rem;
+                display: grid;
+                grid-template-columns: 40% 1fr;
                 span{
 
                 }
                 input{
                     width: 100%;
-                    padding: 0.5rem;
                     border-radius: 10px;
                     font-size: 1rem;
                     border-width: 1px;
                 }
             }
-            .form-div-4{
-                padding: 1rem;
-                span{
-
-                }
-                input{
-                    width: 100%;
-                    padding: 0.5rem;
-                    border-radius: 10px;
-                    font-size: 1rem;
-                    border-width: 1px;
-                }
-            }
+            
             .form-div-5{
-                padding: 1rem;
-                span{
-
-                }
                 input{
-                    width: 100%;
-                    padding: 0.5rem;
-                    border-radius: 10px;
-                    font-size: 1rem;
-                    border-width: 1px;
+                    width: 85%;    
                 }
             }
+
             .error{
                 color: red;
                 opacity: 0;
@@ -120,4 +106,85 @@ input:focus
 
 ::ng-deep .mat-select-value{
     text-align: center !important;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+    //close popup
+    .close{
+        width: 0.6rem !important; 
+    }
+
+    //main form
+    .form{
+        padding: 0rem !important;
+        margin-bottom: 5%;
+        margin-top: 10% !important;
+    }
+
+    //ex team
+    .form-div-2{
+        padding: 0rem !important;
+        margin-bottom: 2%;
+        span{
+          font-size: 3.5vw !important;  
+        }
+        mat-select{
+            font-size: 3.5vw !important; 
+        }
+    }
+
+    //ex category
+    .form-div-3{
+        padding: 0rem !important;
+        div{
+            font-size: 3.5vw !important; 
+        }
+        mat-select{
+            font-size: 3.5vw !important; 
+        }
+    }
+
+    //build ex title
+    .form-div-4{
+        padding: 0rem !important;
+        margin-top: 5% !important;
+        span{
+            font-size: 3.5vw !important; 
+        }
+    }
+
+
+    .form-div-6{
+        font-size: 2.5vw !important;
+        .form-div-5{
+            display: none !important;
+        } 
+
+        div:nth-of-type(4){
+            mat-select{
+                font-size: 4vw !important;
+            }
+        }
+    }
+
+    .routetitle{
+        font-size: 3.5vw !important; 
+        margin-top: 5% !important;
+    }
+
+    .route{
+        font-size: 3.5vw !important; 
+    }
+
+    .but-div{
+        button{
+            font-size: 4.5vw !important; 
+            margin-top: 0rem !important;
+            margin-right: 0rem !important;
+        }
+    }
+
+    
 }
