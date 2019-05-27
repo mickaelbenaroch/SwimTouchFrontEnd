@@ -3,13 +3,17 @@
     <img src="/assets/menu.svg" class="menu" (click)="Menu()">
   </div>
   <div class="div-group-0">
-
+      <img *ngIf="profileservice.profile !== undefined && profileservice.profile.picture == ''" src="/assets/user.svg" style="width:7rem;height:7rem;border-radius:50%">
+      <img *ngIf="profileservice.profile !== undefined && profileservice.profile.picture !== ''" [src]=profileservice.profile.picture style="width:7rem;height:7rem;border-radius:50%">
+      <div class="name" *ngIf="profileservice.profile !== undefined">
+        <span>{{profileservice.profile.first_name + ' ' }} {{profileservice.profile.last_name}}</span>
+      </div>
   </div>
   <div class="div-group-1">
     <div class="div-0" (click)="SideNiveClick('landing')">
       <div class="div-0-1">
         <img src="/assets/mainmenu.svg" class="stats"> 
-      </div>
+      </div> 
       <div class="div-0-2">
         <span class="center">דף ראשי</span>
       </div>

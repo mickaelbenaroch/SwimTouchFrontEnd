@@ -330,7 +330,7 @@ export class TvModeComponent implements OnInit {
               notification.date = new Date();
               notification.priority = "low";
               notification.title = "תוצאות אימון אחרון זמינות לצפיה!";
-              notification.message = "כדי לצפות בתוצאות של האימון האחרון, היכנס להישגים בטפריט הצדדי";
+              notification.message = "כדי לצפות בתוצאות של האימון האחרון, היכנס להישגים בתפריט הצדדי";
               this.httpservice.httpPost('notification/setNotification', notification).subscribe(
                   res => { console.log(res)},
                   err => { console.log(err)}

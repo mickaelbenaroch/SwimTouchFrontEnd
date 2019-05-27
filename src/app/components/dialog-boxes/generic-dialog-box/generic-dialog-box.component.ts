@@ -16,6 +16,7 @@ export class GenericDialogBoxComponent implements OnInit {
   @Input() cancel: boolean;
   @Input() button: boolean;
   @Input() buttonText: string;
+  public funct: boolean;
   //#endregion
 
   //#region Constructor & Lifecycle Hooks
