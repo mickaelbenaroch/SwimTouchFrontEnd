@@ -380,8 +380,11 @@ export class MatalotsComponent implements OnInit {
                     }
                   }
                 });
-      }
+              }
             }
+            setTimeout(()=>{
+              this.MakeAnalysis();
+            })
         },
         err =>{
           this.OpenErrorDialogBox();
