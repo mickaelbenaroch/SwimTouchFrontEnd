@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { ExerciseModel } from '../../../models/ExerciseModel';
 import { TrainningModel } from 'src/app/models/TrainningModel';
 import { MatDialog, MatDialogConfig } from '@angular/material';
+import { ExerciseTypeEnum } from '../../../enums/exercisetypeenum';
 import { NotificationModel } from '../../../models/NotificationModel';
+import { NotificationTypeEnum } from '../../../enums/notificationtypeenum';
 import { HttpService } from '../../../services/http-service/http-service.service';
 import { CreateTrainningComponent } from '../../dialog-boxes/create-trainning/create-trainning.component';
 import { GenericDialogBoxComponent } from '../../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
 import { AddTeamToTrainningComponent } from '../../dialog-boxes/add-team-to-trainning/add-team-to-trainning.component';
-import { ExerciseTypeEnum } from 'src/app/enums/exercisetypeenum';
 
 @Component({
   selector: 'app-create-training',
@@ -311,11 +312,19 @@ public SendNotificationToSwimmers():void{
     uniqueNames.forEach(swimmer =>{
       //send notification to each swimmer in the trainning;
       let notification = new NotificationModel();
+      notification.type = NotificationTypeEnum.Message;
       notification.coachmail = this.trainnningModel.coachmail;
       notification.date = new Date();
       notification.swimmer_id = swimmer;
       notification.message = "הוזמנת להשתתף באימון " + this.trainnningModel.name + "בתאריך " + this.trainnningModel.date + "תוכל לראות את פרטי האימון בלוח המחוונים שלך. בהצלחה!";
-
+      this.httpservice.httpPost('notification/setNotification', notification).subscribe(
+        res =>{
+          console.log(res);
+        },
+        err =>{
+          this.OpenDialog();
+        }
+      )
     })
 }
   //#endregion
