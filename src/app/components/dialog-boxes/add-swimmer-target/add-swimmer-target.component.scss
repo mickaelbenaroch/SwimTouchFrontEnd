@@ -1,11 +1,11 @@
 .envelop{
-    font-family: Assistant;
+    font-family: 'Alef', sans-serif;
     direction: rtl;
     .header{
         display: flex;
         justify-content: space-between;
         h1{
-    
+            color: #A8ACB1;
         }
         .close{
             width: 1rem;
@@ -27,6 +27,7 @@
                     border-radius: 10px;
                     font-size: 1rem;
                     border-width: 1px;
+                    color: #8a8264;
                 }
             }
             .form-div-5{
@@ -37,9 +38,10 @@
                 input{
                     width: 100%;
                     padding: 0.5rem;
-                    border-radius: 10px;
                     font-size: 1rem;
-                    border-width: 1px;
+                    border: none;
+                    border-bottom: 1px solid #8a8264;
+                    color: #8a8264;
                 }
             }
             .form-div-6{
@@ -50,9 +52,10 @@
                 input{
                     width: 100%;
                     padding: 0.5rem;
-                    border-radius: 10px;
                     font-size: 1rem;
-                    border-width: 1px;
+                    border: none;
+                    border-bottom: 1px solid #8a8264;
+                    color: #8a8264;
                 }
             }
             .form-div-7{
@@ -66,6 +69,7 @@
                     border-radius: 10px;
                     font-size: 1rem;
                     border-width: 1px;
+                    color: #8a8264;
                 }
             }
         }
@@ -103,4 +107,21 @@ input:focus
 
 .mat-select-panel .mat-optgroup-label, .mat-select-panel .mat-option {
     text-align: right;
+}
+
+
+@media only screen and (max-width: 600px) {
+
+    .form-div-4{
+        input{
+            font-size: 3.5vw !important;
+        }
+    }
+
+    .but-div{
+        button{
+            font-size: 1rem !important;
+            
+        }
+    }
 }

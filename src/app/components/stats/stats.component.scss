@@ -38,9 +38,12 @@
             font-weight: bold;
             color: grey;
             font-size: 1.3rem;
-
+            
         }
-        .div-3-3{
+        mat-select{
+            color: #8a8264;
+        }
+        /*.div-3-3{
             align-items: center;
             display: flex;
             margin-left: 0.5rem;
@@ -51,15 +54,15 @@
                 font-style: italic;
                 color: lightblue;
             }
-        }
+        }*/
     }
 
 
     .swimmer-details{
         padding: 1rem;
         .swimmer-details-father{
-            display: flex;
-            justify-content: space-between;
+            //display: flex;
+            //justify-content: space-between;
             .group-div-1{
                 display: flex;
                 flex-direction: row;
@@ -85,18 +88,19 @@
                     }
                 }
             }
-            .group-div-2{
+            .group-div-2{                
                 button{
                     padding: 1rem;
-                    border-radius: 10px;
-                    background-color: #01a89e;
+                    background-color: #2D353C;
                     color: white;
                     font-weight: bold;
-                    font-family: Assistant;
+                    font-family: 'Alef', sans-serif;
                     cursor: pointer;
                     font-size: 1rem;
                     padding-bottom: 0.3rem;
                     padding-top: 0.3rem;
+                    border: none;
+                    float: left;
                 }
             }
 
@@ -138,7 +142,7 @@
             width: 50%;
             padding: 1rem;
             font-weight: bold;
-            font-family: Assistant;
+            font-family: 'Alef', sans-serif;
             cursor: pointer;
             font-size: 1rem;
             text-align: center;
@@ -148,7 +152,7 @@
             width: 50%;
             padding: 1rem;
             font-weight: bold;
-            font-family: Assistant;
+            font-family: 'Alef', sans-serif;
             cursor: pointer;
             font-size: 1rem;
             text-align: center;
@@ -158,7 +162,7 @@
             width: 50%;
             padding: 1rem;
             font-weight: bold;
-            font-family: Assistant;
+            font-family: 'Alef', sans-serif;
             cursor: pointer;
             font-size: 1rem;
             text-align: center;
@@ -168,7 +172,7 @@
             width: 50%;
             padding: 1rem;
             font-weight: bold;
-            font-family: Assistant;
+            font-family: 'Alef', sans-serif;
             cursor: pointer;
             font-size: 1rem;
             text-align: center;
@@ -247,7 +251,7 @@
         margin-bottom: 1rem;
         font-weight: bold;
         color:#800000;
-        font-family: Assistant;
+        font-family: 'Alef', sans-serif;
     }
     .specific-div{
         display: flex;
@@ -259,7 +263,7 @@
             border: 1px grey solid;
             border-radius: 10px;
             background-color: lightgray;
-            font-family: Assistant;
+            font-family: 'Alef', sans-serif;
             .part{
                 display: flex;
                 justify-content: space-between;
@@ -275,15 +279,10 @@
     }
 
     .team-choosen{
-        display: flex;
-        justify-content: space-between;
         margin-top: 1rem;
-        margin-bottom: 1rem;
         .swimmers-div{
-            display: flex;
             .title{
                 font-weight: bold;
-                text-decoration: underline;
             }
             .swimmer{
                 margin-left: 0.7rem;
@@ -291,17 +290,20 @@
             }
         }
         .back-div{
+            display: grid;
+            justify-items: left;
+            margin-bottom: 2%;
             button{
                 padding: 1rem;
-                border-radius: 10px;
-                background-color: #01a89e;
+                background-color: #2D353C;
                 color: white;
                 font-weight: bold;
-                font-family: Assistant;
+                font-family: 'Alef', sans-serif;
                 cursor: pointer;
                 font-size: 1rem;
                 padding-bottom: 0.3rem;
                 padding-top: 0.3rem;
+                border: none;
             }
         }
     }
@@ -315,5 +317,104 @@
     .title{
         text-align: center !important;
     }
+
+    //pick swimmer title
+    .div-3-2{
+        font-size: 3.5vw !important;
+    
+        mat-form-field{
+            font-size: 3.5vw !important;
+        }
+    }
+
+    //swimmer name
+    .swimmers-div{
+        display: block !important;
+        .title{
+            font-size: 3.5vw !important;
+        }
+        .swimmer{
+            margin-right: 1rem !important;
+            margin-left: 0rem !important;
+           
+        }
+    }
+
+    //back button
+    .back-div{
+        button{
+            font-size: 3.5vw !important;
+        }
+    }
+
+    .buttons-div{
+        .button-3{
+            font-size: 3.5vw !important;
+        }
+        .button-4{
+            font-size: 3.5vw !important;
+        }
+    }
+
+    // target table
+    .table-header{
+        .div{
+            font-size: 3.5vw !important;
+        }
+    }
+
+    .targets{
+        div{
+            font-size: 2.6vw !important;
+        }
+    }
+
+
+    /*swimer target*/
+    .swimmer-details-father{
+        display: block !important;
+        
+        .group-div-1{
+            .name-div{
+                font-size: 3.5vw !important;
+            }
+            .picture-div{
+                float: right;
+            }
+        }
+
+        .group-div{
+            span{
+                font-size: 3.5vw !important;
+            }
+        }
+
+        .height-div{
+            span{
+                font-size: 3.5vw !important;
+            }
+        }
+
+        .age-div{
+            span{
+                font-size: 3.5vw !important;
+            }
+        }
+
+        .group-div-2{
+            button{
+                float: left;
+                font-size: 3.5vw !important;
+            }
+        }
+    }
+
+    .buttons-div{
+        .buttons{
+            font-size: 3.5vw !important;
+        }
+       
+    }
+
 
 }
