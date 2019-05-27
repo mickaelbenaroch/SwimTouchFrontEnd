@@ -263,7 +263,7 @@ public OpenAddTeamBox():void{
           team: this.trainnningModel.team_id
         };
         dialogConfig.width = "600px";
-        dialogConfig.height = "600px";
+        dialogConfig.height = "50%";
         var dialogRef = this.dialog.open(AddTeamToTrainningComponent, dialogConfig);
         dialogRef.afterClosed().subscribe(
           res => {

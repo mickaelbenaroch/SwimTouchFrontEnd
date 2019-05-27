@@ -7,8 +7,7 @@
   <div class="body">
       <form class="form">
         <div class="form-div-4">
-          <span>הקבוצות שלך:</span>
-          <mat-select placeholder=" " (selectionChange)="Select($event)" name="team">
+          <mat-select placeholder="הקבוצות שלך" (selectionChange)="Select($event)" name="team">
             <mat-option *ngFor="let team of teams" [value]="team">
               {{team.name}}
             </mat-option>

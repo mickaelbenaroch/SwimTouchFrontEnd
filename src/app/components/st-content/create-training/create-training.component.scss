@@ -39,7 +39,7 @@
             display: inline;
         }
         .buttons{
-            display: flex;
+            
            
             .but{
                 padding:1rem;
@@ -74,8 +74,12 @@
         .repeat{
             cursor: pointer;
             background-color: orange;
+            color: white;
             font-size: 1rem;
             font-family: 'Secular One', sans-serif;
+            border: none;
+            margin-top: 1rem;
+            padding: 0 0.8rem 0 0.8rem;
         }
         .save{
             cursor: pointer;
@@ -211,13 +215,6 @@
     justify-content: space-between;
 }
 
-.buttons{
-    align-self: flex-end;
-    padding-bottom: 0.5rem;
-   
-    
-}
-
 .accept{
     padding:1rem;
     border-radius: 15px;
@@ -227,10 +224,95 @@
     text-align: center;
     font-weight: bold;
     margin-top:2%;
-    
+    margin-right: 1rem;
 
     cursor: pointer;
     .plus{
         width: 1rem;
     }
+}
+
+
+
+@media only screen and (max-width: 600px) {
+    //title
+    .div-1{
+        text-align: center;
+        color: #A8ACB1;
+        direction: rtl; 
+        font-size: 1rem;
+        margin-bottom: 2%;
+        font-family: 'Alef', sans-serif;
+    }
+
+    //input 
+    .form{
+        .form-div-1{
+            
+            span{
+                font-size: 3.5vw;
+            }
+            input{
+                font-size: 3.5vw;
+                width: 100%;
+                margin-bottom: 3%;
+            }
+        }
+    }
+
+    //add buttons
+    .buttons{
+        display: flex;
+        .but{
+            font-size: 4vw !important;
+        }
+        img{
+            display: none;
+        }
+    }
+
+    //accept button
+    .accept{
+        font-size: 4vw !important;
+        display: block;
+        margin: 0 auto;
+        margin-top: 3%;
+    }
+
+    .error{
+        display: none;
+    }
+
+    //training titles
+    section{
+        .resume{
+            text-align: center;
+            div:nth-child(1){
+                font-size: 1.5rem;
+            }  
+        }
+    }
+
+    //training title
+    .wu-div{
+        margin-bottom: 2%;
+        .title{
+            font-size: 3.5vw !important;
+        }
+        .repeat{
+            font-size: 3.5vw !important;
+        }
+    }
+
+    //training
+    .bu{
+        img{
+            width: 1rem;
+        }
+        span{
+            font-size: 3.5vw !important;
+        }
+    }
+
+
 }
