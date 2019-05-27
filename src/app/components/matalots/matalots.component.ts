@@ -317,7 +317,8 @@ export class MatalotsComponent implements OnInit {
     /**
    * Get swimmer details
    */
-  public SwimmerDetails(swimmer: SwimmerModel):void{
+  public SwimmerDetails(event: any):void{
+    var swimmer = event.value;
     this.CleanArrays();
     console.log(swimmer);
     this.graphReady = false;
