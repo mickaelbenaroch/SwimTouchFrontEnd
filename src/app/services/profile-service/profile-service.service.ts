@@ -8,18 +8,22 @@ import { NotificationModel } from '../../models/NotificationModel';
 })
 export class ProfileServiceService {
 
+  //#region Public Members
   public profile: ProfileModel;
   public showNotificationPopup: boolean;
   public notifications: NotificationModel[] = [];
-  
-  constructor(public httpservice: HttpService) { }
+  //#endregion
 
+  //#region Constructor & Lifecycle Hooks
+  constructor(public httpservice: HttpService) { }
+  //#endregion
+
+  //#region Public methods
   public GetProfile():void{
     var temp = localStorage.getItem("email");
     let model = {
       "user": temp
     }
-    //this.spinerservice.start();
     this.httpservice.httpPost("profile/getProfile", model).subscribe(
       (res: any)=>{
         this.profile = res.data[0];
@@ -29,4 +33,5 @@ export class ProfileServiceService {
       }
     )
   }
+  //#endregion
 }
