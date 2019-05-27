@@ -20,7 +20,7 @@ export class MonthComponent implements OnInit, AfterViewChecked,OnChanges{
   public done: boolean;
   //#endregion
 
-  //region Constructor & Lifecycle Hooks
+  //#region Constructor & Lifecycle Hooks
   public constructor() { 
     this.Init();
     this.FillMonthDays(this.CurrentMonth.lenght);

@@ -9,7 +9,6 @@ import { SwimmerTargetModel } from '../../../models/SwimmerTargetModel';
 })
 export class TargetDetailsComponent implements OnInit {
 
-  
   //#region Public Members
   @Input() title: string;
   @Input() records: any[] = [];

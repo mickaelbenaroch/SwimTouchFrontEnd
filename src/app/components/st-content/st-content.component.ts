@@ -65,9 +65,10 @@ export class StContentComponent implements OnInit, OnChanges {
       this.pageenum = this.stateChange;
     }
   } 
-
   //#endregion
-  /**
+
+  //#region Public Methods
+    /**
    * Goes to main page
    * @param event 
    */
@@ -99,8 +100,6 @@ export class StContentComponent implements OnInit, OnChanges {
   this.pageenum = PageEnum.MyMatalots;
 }
 
-
-  //#region Public Methods
   /**
    * Create New Event
    */

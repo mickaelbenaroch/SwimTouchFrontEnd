@@ -32,7 +32,6 @@ export class NotificationComponent implements OnInit {
   //#endregion
 
   //#region Public Methods
-
   /**
    * Close the notification box
    */
