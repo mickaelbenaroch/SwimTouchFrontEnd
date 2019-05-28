@@ -104,6 +104,15 @@
     //box content
     .box-content{
         height: 18vh!important;
+
+        table td{
+            font-size: 3.5vw !important;
+        }
+
+        table td img{
+            width: 2% !important;
+            margin-top: 1.5%;
+        }
     }
 
     //box title
