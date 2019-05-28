@@ -1,8 +1,31 @@
+.title{
+    font-family: 'Alef', sans-serif;
+    padding: 2%; 
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "brad title";
+    position: relative;
+
+
+    h1{
+        grid-area: title;   
+        direction: rtl; 
+        color: #A8ACB1;
+    }
+    span{
+        grid-area: brad;
+        position: absolute;
+        bottom: 0;
+        color: #A8ACB1;
+    }
+}
+
 .envelop{
     display: grid;
-    grid-template-rows: 50% 1fr;
+    grid-template-rows: 1fr 1fr;
     grid-template-areas: "details" "todo";
-    grid-gap: 3%;
+    grid-gap: 2%;
+    height: 100vh;
 
     app-todo-box{
         grid-area: todo;
@@ -22,13 +45,17 @@
         app-best-records-box{
             grid-area: records;
         }
+    } 
+}
+
+
+@media only screen and (max-width: 600px) {
+    app-details-box{
+        display: none;
     }
 
+    app-best-records-box{
+        display: none;
+    }
 
-
-    
-
-
-    
-    
 }

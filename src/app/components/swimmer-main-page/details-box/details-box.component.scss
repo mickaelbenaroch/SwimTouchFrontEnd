@@ -17,32 +17,64 @@
 
     .box-content{
         background-color: #D9E0E7;
-        padding: 1rem; 
-        height: 35vh;
-
+        height: 39vh;
+        
         .details{
             display: flex;
             flex-direction: column;
             font-family: 'Alef', sans-serif;
-            .group-1{
-                display: flex;
-                div{
-                    padding: 0.5rem; 
-                }
-                .fl{
-                    display: flex;
-                }
-            } 
-            .group-2{
-                display: flex;
-                div{
-                    padding: 0.5rem;
-                }
-                .fl{
-                    display: flex;
-                }
-            }
 
+            .group-1{
+                display: grid;
+                grid-template-rows: 1fr 30%;; 
+                grid-template-areas: "A" "B";
+
+                div:nth-of-type(1){
+                    grid-area: A;
+                    display: grid;
+                    align-items: center;
+                    justify-items: center;
+                    img{
+                        border-radius:50%;
+                        width: 13%;
+                        margin-top: 1%;
+                    }
+                    span{
+                        font-size: 1.5vw;
+                        color: #7D8381;
+                        margin-bottom: 1%;
+                    }
+                }
+                div:nth-of-type(2){
+                    grid-area: B;
+                    border-top: 2px ridge;
+                    display: grid;
+                    grid-column: 1fr 1fr 1fr 1fr;
+                    grid-template-areas: "names last age type";
+                    align-items: center;
+                    justify-items: center;
+
+                    span{
+                        color: #7D8381;
+                        opacity: 0.7;
+                    }
+                    
+                    span:nth-of-type(1){
+                        grid-area: names;
+                    }
+                    span:nth-of-type(2){
+                        grid-area: last;
+                    }
+                    span:nth-of-type(3){
+                        grid-area: age;
+                    }
+                    span:nth-of-type(4){
+                        grid-area: type;
+                    }
+                }
+                
+                
+            } 
         }
 
         .image-box{
