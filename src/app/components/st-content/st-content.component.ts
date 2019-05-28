@@ -1,9 +1,10 @@
 import { RoleEnum } from '../../enums/roleenum';
+import { TaskModel } from '../../models/TaskModel';
 import { PageEnum } from '../../enums/componentview';
+import { MatDialogConfig, MatDialog } from '@angular/material';
 import { HttpService } from '../../services/http-service/http-service.service';
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ProfileServiceService } from '../../services/profile-service/profile-service.service';
-import { MatDialogConfig, MatDialog } from '@angular/material';
 import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
 
 @Component({
@@ -20,6 +21,7 @@ export class StContentComponent implements OnInit, OnChanges {
   @Input() stateFromFather: boolean;
   @Input() eventFromSideNav: PageEnum;
   @Input() stateChange: PageEnum;
+  public tasks: TaskModel[] = [];
   
   //#endregion
 
@@ -52,6 +54,10 @@ export class StContentComponent implements OnInit, OnChanges {
         }
       )
     }
+    this.httpservice.httpPost('todo/getTask', {email: localStorage.getItem("email")}).subscribe(
+      res => { this.tasks  = res.isTrue.todo},
+      err => { console.log(err)}
+    )
   }
 
   public ngOnChanges(changes: SimpleChanges): void {

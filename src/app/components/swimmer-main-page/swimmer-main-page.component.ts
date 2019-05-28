@@ -49,7 +49,7 @@ export class SwimmerMainPageComponent implements OnInit {
                               }
                             })
                           },
-                          err =>{
+                          err =>{ 
                             console.log(res);
                           }
                         )

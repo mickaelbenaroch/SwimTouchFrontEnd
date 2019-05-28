@@ -2,6 +2,9 @@ import { RoleEnum } from '../../enums/roleenum';
 import { PageEnum } from 'src/app/enums/componentview';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ProfileServiceService } from '../../services/profile-service/profile-service.service';
+import { MatDialogConfig, MatDialog } from '@angular/material';
+import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
+import { PictureUpdateComponent } from '../dialog-boxes/picture-update/picture-update.component';
 
 @Component({
   selector: 'app-st-sidenav',
@@ -16,7 +19,8 @@ export class StSidenavComponent implements OnInit {
   //#endregion
 
   //#region Constructor & Lifecycle Hooks
-  constructor(public profileservice: ProfileServiceService) { }
+  constructor(public dialog: MatDialog,
+              public profileservice: ProfileServiceService) { }
 
   public ngOnInit(): void {
   }
@@ -67,6 +71,26 @@ export class StSidenavComponent implements OnInit {
       this.eventFromSideNav.emit(PageEnum.Help);
       break;
     }
+  }
+
+  /**
+   * Update picture profile
+   */
+  public AddPictureProfile():void{
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {};
+    dialogConfig.width = "420px";
+    dialogConfig.height = "250px";
+    var ref = this.dialog.open(PictureUpdateComponent, dialogConfig);
+    ref.afterClosed().subscribe(
+      res =>{ 
+        console.log(res); 
+        this.profileservice.GetProfile()
+      }
+    )
   }
   //#endregion
 

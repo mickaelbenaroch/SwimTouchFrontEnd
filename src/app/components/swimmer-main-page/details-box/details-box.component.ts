@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamModel } from '../../../models/TeamModel';
+import { ProfileServiceService } from '../../../services/profile-service/profile-service.service';
 
 @Component({
   selector: 'app-details-box',
@@ -13,7 +14,7 @@ export class DetailsBoxComponent implements OnInit {
   //#endregion
 
   //#region Constructor & Lyfecycle Hooks
-  constructor() { }
+  constructor(public profileservice: ProfileServiceService) { }
 
   public ngOnInit(): void {
   }
