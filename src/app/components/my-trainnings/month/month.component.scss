@@ -46,7 +46,7 @@
     .calendar{
         padding: 1rem;
         border: 1px solid lightgray;
-        flex-basis: 21%;
+        flex-basis: 11.28%;
         height: 100px;
         background-color: transparent;
         
@@ -72,5 +72,26 @@
         
         background-image:  none;
 
+    }
+}
+
+/* ----------- Non-Retina Screens ----------- */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+    .calendar{
+        flex-basis: 10.28% !important;
+    }
+}
+
+/* ----------- Retina Screens ----------- */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (min-resolution: 192dpi) { 
+    .calendar{
+        flex-basis: 10.28% !important;
     }
 }

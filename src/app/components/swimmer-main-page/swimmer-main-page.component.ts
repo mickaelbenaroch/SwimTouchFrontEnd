@@ -40,6 +40,7 @@ export class SwimmerMainPageComponent implements OnInit {
             let idOfSwimmer = {
               swimmer_id: res.swimmer[0]._id
             }
+            localStorage.setItem("swimmer_id",idOfSwimmer.swimmer_id)
       this.httpservice.httpPost('notification/getNotification', idOfSwimmer).subscribe(
         res =>{
           res.data.forEach(noti =>{

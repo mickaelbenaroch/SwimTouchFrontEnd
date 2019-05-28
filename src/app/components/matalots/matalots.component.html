@@ -1,9 +1,10 @@
 <div class="title">
-    <h1>הישגי שחיינים</h1>
+    <h1 *ngIf="profileservice.profile.type == role.Trainner">הישגי שחיינים</h1>
+    <h1 *ngIf="profileservice.profile.type == role.Swimmer">השיגים שלי</h1>
 </div>
 
 <div class="envelop">
-  <div class="div-2">
+  <div class="div-2" *ngIf="profileservice.profile.type == role.Trainner">
     <mat-select placeholder="בחר קבוצה" (selectionChange)="Select($event)" name="team">
       <mat-option *ngFor="let team of teams" [value]="team">
           {{team.name}}
@@ -11,7 +12,7 @@
     </mat-select>
   </div>
 
-    <div class="div-3" *ngIf="currentTeam !== undefined">
+    <div class="div-3" *ngIf="currentTeam !== undefined && profileservice.profile.type == role.Trainner">
     <div *ngIf="!choosenSwimmer" style="display:flex;margin-top:0.8rem;justify-content:space-between">
       <div style="display: flex;">
         <div class="div-3-2">בחר שחיין ספציפי או את כל הקבוצה:</div>
@@ -27,7 +28,7 @@
     </div>
   </div>
 
-    <div class="swimmer-details" *ngIf="choosenSwimmer && !teamChoosen">
+    <div class="swimmer-details" *ngIf="(choosenSwimmer && !teamChoosen) || swimmerAlone">
     <div class="swimmer-details-father">
         <div class="group-div-1">
           <div class="name-div">
@@ -174,7 +175,8 @@
     </section>
 
     <div class="filter" *ngIf="swimmerGraphReady && !jumpGraph">
-      <div class="div-1">הישגים של קבוצת <span>{{currentTeam.name}}</span> לכל סוגי המשחים</div>
+      <div *ngIf="profileservice.profile.type == role.Trainner" class="div-1">הישגים של קבוצת <span>{{currentTeam.name}}</span> לכל סוגי המשחים</div>
+      <div *ngIf="profileservice.profile.type !== role.Trainner" class="div-1">הישגים של קבוצת <span>{{currentSwimmer.name}}</span> לכל סוגי המשחים</div>
       <div class="div-filter">סינון הישגים לפי מרחקים</div>
       <div class="drop-down">
         <mat-select placeholder="בחר מרחק" (selectionChange)="SelectDistanceForSwimmer($event)" name="distance">
@@ -371,7 +373,7 @@
       </div>
   </div>
 
-  <div class="indication" *ngIf="showIndicator && (swimmerGraphReady || graphReady)">
+  <div class="indication" *ngIf="showIndicator && (swimmerGraphReady || graphReady) || swimmerAlone">
     <div class="arrow" (click)="Switch('jump')">
       <img class="img1" src="/assets/right-arrow.svg"/>
       <span>זמני תגובה</span>

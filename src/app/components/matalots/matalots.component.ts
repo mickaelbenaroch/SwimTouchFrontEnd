@@ -1,7 +1,7 @@
 import { ChartOptions } from 'chart.js';
 import { Label, Color } from 'ng2-charts';
 import { RoleEnum } from '../../enums/roleenum';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TeamModel } from '../../models/TeamModel';
 import { SwimmerModel } from '../../models/SwimmerModel';
 import { MatDialogConfig, MatDialog } from '@angular/material';
@@ -30,6 +30,8 @@ export class MatalotsComponent implements OnInit {
   public currentSwimmer: SwimmerModel;
   public teamRecords:any[] = [];
   public targ: boolean;
+  public swimmerAlone: boolean = false;
+  public role = RoleEnum;
   public graphReady: boolean;
   public recorsBetterThanTarget: any[] = [];
   public recorsNotBetterThanTarget: any[] = [];
@@ -140,6 +142,17 @@ export class MatalotsComponent implements OnInit {
         this.OpenErrorDialogBox();      
       }
     ) 
+  }else{
+    this.httpservice.httpPost('swimmer/getswimmers', {_id: localStorage.getItem("swimmer_id")}).subscribe(
+      res =>{
+        this.swimmerAlone = true;
+        this.currentSwimmer = res.swimmer[0];
+        var evt = {
+          value: this.currentSwimmer
+        }
+        this.SwimmerDetails(evt);
+      }
+    )
   }
   } 
   //#endregion 
