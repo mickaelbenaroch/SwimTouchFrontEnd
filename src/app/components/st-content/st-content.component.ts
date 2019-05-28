@@ -55,7 +55,9 @@ export class StContentComponent implements OnInit, OnChanges {
       )
     }
     this.httpservice.httpPost('todo/getTask', {email: localStorage.getItem("email")}).subscribe(
-      res => { this.tasks  = res.isTrue.todo},
+      res => {debugger
+        this.tasks  = res.isTrue.todo
+      },
       err => { console.log(err)}
     )
   }

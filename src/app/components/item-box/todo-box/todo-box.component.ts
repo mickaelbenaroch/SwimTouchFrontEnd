@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
 import { TaskModel } from '../../../models/TaskModel';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { HttpService } from '../../../services/http-service/http-service.service';
 
 @Component({
@@ -7,10 +7,10 @@ import { HttpService } from '../../../services/http-service/http-service.service
   templateUrl: './todo-box.component.html',
   styleUrls: ['./todo-box.component.scss']
 })
-export class TodoBoxComponent implements OnInit {
+export class TodoBoxComponent implements OnInit, OnChanges{
 
   //#region Public Members
-  @Input() tasks: any[] = [];
+  @Input() misssions: any;
   public mod: TaskModel = new TaskModel();
   public localTask: string[] =[];
   //#endregion
@@ -18,9 +18,18 @@ export class TodoBoxComponent implements OnInit {
   //#region Constructor & Lifecycle Hooks
   constructor(public httpservice: HttpService) { }
 
-  public ngOnInit(): void {
-    console.log(this.tasks)
-    this.tasks.forEach(t =>{ this.localTask.push(t.message)})
+  public ngOnInit(): void {debugger
+    console.log(this.misssions)
+    this.misssions.forEach(t =>{ debugger
+      this.localTask.push(t.message)
+    })
+  }
+
+  public ngOnChanges():void{
+    console.log(this.misssions)
+    this.misssions.forEach(t =>{ debugger
+      this.localTask.push(t.message)
+    })
   }
   //#endregion
 
