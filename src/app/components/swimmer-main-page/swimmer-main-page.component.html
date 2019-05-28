@@ -1,7 +1,7 @@
 <div class="envelop">
-    <app-todo-box ></app-todo-box>
+    <app-todo-box [misssions]=tasks></app-todo-box>
     <div class="details" >
         <app-details-box></app-details-box>
-        <app-best-records-box></app-best-records-box>
+        <app-best-records-box (GoToStatsEvent)="GoToStats($event)"></app-best-records-box>
     </div>
 </div>

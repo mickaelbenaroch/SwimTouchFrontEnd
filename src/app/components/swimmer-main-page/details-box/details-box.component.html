@@ -1,6 +1,6 @@
 <div class="myDetails">
       <div class="box-title"><h3>פרטי השחיין</h3></div>
-      <div class="box-content">
+      <div class="box-content" id="detailsBoxContent">
           <div class="details" *ngIf="profileservice.profile !== undefined">
             <div class="group-1">
                 <div style="width:10%;">
@@ -8,22 +8,22 @@
                     <img style="width: 2rem;border-radius:50%" *ngIf="profileservice.profile.picture == '' || profileservice.profile.picture == null || profileservice.profile.picture == undefined" src="/assets/user.svg">
                 </div>
                 <div style="width: 40%;" class="fl">
-                    <div style="text-decoration: underline;">שם פרטי:</div>
+                    <div style="text-decoration: underline;color: darkslategrey;">שם פרטי:</div>
                     <div>{{profileservice.profile.first_name}}</div>
                 </div>
                 <div style="width: 40%;" class="fl">
-                    <div style="text-decoration: underline;">שם משפחה:</div>
+                    <div style="text-decoration: underline;color: darkslategrey;">שם משפחה:</div>
                     <div>{{profileservice.profile.last_name}}</div>
                 </div>
             </div>
             <div class="group-2">
                 <div style="width:10%;height:10px;"></div>
                 <div style="width: 40%;" class="fl">
-                    <div style="text-decoration: underline;">גיל:</div>
+                    <div style="text-decoration: underline;color: darkslategrey;">גיל:</div>
                     <div>{{profileservice.profile.age}}</div>
                 </div>
                 <div style="width: 40%;" class="fl">
-                    <div style="text-decoration: underline;">קבוצת אימון:</div>
+                    <div style="text-decoration: underline;color: darkslategrey;">קבוצת אימון:</div>
                     <div>{{profileservice.profile.group}}</div>
                 </div>
             </div>

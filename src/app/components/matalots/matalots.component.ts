@@ -773,7 +773,6 @@ public AllTheTeamChoosen():void{
    * Open Dialog error box
    */
   public OpenRecordDetailsBox(rec: any):void{
-    debugger
     const dialogConfig = new MatDialogConfig();
     
     dialogConfig.disableClose = true;

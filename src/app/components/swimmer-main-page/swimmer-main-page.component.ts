@@ -1,6 +1,7 @@
 import { RoleEnum} from '../../enums/roleenum'
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { TeamModel } from '../../models/TeamModel';
+import { TaskModel } from '../../models/TaskModel';
 import { MatDialogConfig, MatDialog } from '@angular/material';
 import { NotificationModel } from '../../models/NotificationModel';
 import { NotificationTypeEnum } from '../../enums/notificationtypeenum'; 
@@ -17,7 +18,9 @@ export class SwimmerMainPageComponent implements OnInit {
 
   //#region Public Members
   public teams: TeamModel[] = [];
+  public tasks: TaskModel[] = [];
   public notifications: NotificationModel[] = [];
+  public GoToStatsEventFather: EventEmitter<boolean> = new EventEmitter();
   //#endregion
 
   //#region Constructor & Lifecycle Hooks
@@ -25,53 +28,56 @@ export class SwimmerMainPageComponent implements OnInit {
               public httpservice: HttpService,
               public dialog: MatDialog) { }
 
-              public ngOnInit():void {
-                var temp = localStorage.getItem("email");
-                let model = {
-                  "user": temp
-                }
-                this.httpservice.httpPost("profile/getProfile", model).subscribe(
-                  (res: any)=>{
-                    this.httpservice.httpPost('swimmer/getswimmers',{name: res.data[0].first_name + ' ' + res.data[0].last_name}).subscribe(
-                      res=>{
-                        let idOfSwimmer = {
-                          swimmer_id: res.swimmer[0]._id
-                        }
-                        this.httpservice.httpPost('notification/getNotification', idOfSwimmer).subscribe(
-                          res =>{
-                            res.data.forEach(noti =>{
-                              if(this.profileservice.profile.type == RoleEnum.Swimmer && !noti.HasBeenreaded && noti.type == NotificationTypeEnum.Warning){
-                                this.notifications.push(noti);
-                                this.profileservice.showNotificationPopup = true;
-                                this.profileservice.notifications = this.notifications;
-                              }else if(this.profileservice.profile.type == RoleEnum.Swimmer && !noti.HasBeenreaded && noti.type == NotificationTypeEnum.Message){
-                                this.OpenMessageBox(noti);
-                              }
-                            })
-                          },
-                          err =>{ 
-                            console.log(res);
-                          }
-                        )
-                       this.httpservice.httpPost('team/getSwimmerTeams',{swimmer_id: res.swimmer[0]._id}).subscribe(
-                         res =>{
-                           this.teams = res.teams;
-                         }
-                       )
-                      },
-                      err =>{
-                        console.log(err);
-                      }
-                    )
-                  },
-                  err =>{
-                    console.log(err);
-                  }
-                )
-              }
+  public ngOnInit():void {
+      var temp = localStorage.getItem("email");
+      let model = {
+        "user": temp
+      }
+      this.httpservice.httpPost("profile/getProfile", model).subscribe(
+        (res: any)=>{
+          this.httpservice.httpPost('swimmer/getswimmers',{name: res.data[0].first_name + ' ' + res.data[0].last_name}).subscribe(
+          res=>{
+            let idOfSwimmer = {
+              swimmer_id: res.swimmer[0]._id
+            }
+      this.httpservice.httpPost('notification/getNotification', idOfSwimmer).subscribe(
+        res =>{
+          res.data.forEach(noti =>{
+          if(this.profileservice.profile.type == RoleEnum.Swimmer && !noti.HasBeenreaded && noti.type == NotificationTypeEnum.Warning){
+            this.notifications.push(noti);
+            this.profileservice.showNotificationPopup = true;
+            this.profileservice.notifications = this.notifications;
+            }else if(this.profileservice.profile.type == RoleEnum.Swimmer && !noti.HasBeenreaded && noti.type == NotificationTypeEnum.Message){
+              this.OpenMessageBox(noti);
+            }
+          })
+        },
+        err =>{ 
+          console.log(res);
+      })
+        this.httpservice.httpPost('team/getSwimmerTeams',{swimmer_id: res.swimmer[0]._id}).subscribe(
+          res =>{
+            this.teams = res.teams;
+              })
+          },err =>{console.log(err);})},
+        err =>{ console.log(err);})
+      this.httpservice.httpPost('todo/getTask', {email: localStorage.getItem("email")}).subscribe(
+        res => {
+          this.tasks  = res.isTrue.todo
+        },
+       err => { console.log(err)})
+  }
   //#endregion
 
   //#region Public Methods
+  /**
+   * GoToStats event callback
+   * @param notification 
+   */
+  public GoToStats(event): void{
+    this.GoToStatsEventFather.emit(true);
+  }
+
   /**
    * Open message box
    */

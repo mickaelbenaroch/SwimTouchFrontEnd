@@ -48,8 +48,8 @@
     </div>
 
     <!--Main Screen Of the Swimmer-->
-    <div *ngIf="profileservice.profile !== undefined && profileservice.profile.type == role.Swimmer">
-      <app-swimmer-main-page></app-swimmer-main-page>
+    <div *ngIf="profileservice.profile !== undefined && profileservice.profile.type == role.Swimmer && pageenum !== state.MyMatalots">
+      <app-swimmer-main-page (click)="GoToStatsEventFather($event)"></app-swimmer-main-page>
     </div>
 
     <div class="add-trainning" *ngIf="pageenum === state.CreateTraining">
