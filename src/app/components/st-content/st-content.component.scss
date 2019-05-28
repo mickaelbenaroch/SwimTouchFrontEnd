@@ -80,7 +80,7 @@
     }
 
     #box-section2{
-        margin-top: 5%;
+        margin-top: 3%;
         height: 35vh;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
@@ -101,6 +101,7 @@
         }
 
         app-todo-box{
+            margin-top: 2%;
             grid-area: todo;
         }
     }

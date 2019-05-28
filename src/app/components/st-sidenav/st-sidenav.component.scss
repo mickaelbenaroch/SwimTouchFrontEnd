@@ -15,6 +15,7 @@
     height: 100vh;
     font-family: 'Alef', sans-serif;
     font-size: 1vw;
+
     .menu{
         display: none;
         width: 2rem;   
@@ -235,6 +236,10 @@
     .div-4-2:after{
         content: "ייעדי שחיינים";
         margin-right: 1rem!important;           
+    }
+
+    .div-group-0{
+        display: none !important;
     }
     
 }
