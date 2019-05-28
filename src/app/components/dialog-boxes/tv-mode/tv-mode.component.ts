@@ -193,7 +193,7 @@ export class TvModeComponent implements OnInit {
    * Repartition of results
    * @param trainning 
    */
-  public DivideResultsFinalTime(result: any):void{
+  public DivideResultsFinalTime(result: any):void{debugger
     if(result !== undefined && result !== null){
       for(var i = 0; i<this.exercise.routes.routes.length;i++){
         if($("#final"+(i+1))){

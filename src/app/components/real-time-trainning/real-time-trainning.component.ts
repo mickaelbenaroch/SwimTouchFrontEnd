@@ -201,7 +201,7 @@ export class RealTimeTrainningComponent implements OnInit {
             var oneResult1 = new OneRouteFinalResultModel();
             var oneResult2 = new OneRouteFinalResultModel();
             var oneResult3 = new OneRouteFinalResultModel();
-            if(res.routes !== undefined && res.routes.route3 !== undefined){
+            if(res.routes !== undefined && res.routes.route1 !== undefined){
               for(let i = 0; i<res.routes.route1.results.length; i++){
                 oneResult1.results.push(res.routes.route1.results[i]);
                 oneResult1.total = res.routes.route1.results[res.routes.route1.results.length -1];
