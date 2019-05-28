@@ -1,7 +1,20 @@
 <div class="records">
       <div class="box-title"><h3>הישגים בולטים</h3></div>
-      <div class="box-content">
-          <div *ngFor="let team of teams">{{team.name}}</div>
+      <div class="box-content" id="bestRecordBoxContent">
+          <div class="header">
+            <div>תאריך:</div>
+            <div>סגנון:</div>
+            <div>מרחק:</div>
+            <div>זמן תגובה:</div>
+            <div>זמן סופי:</div>
+          </div>
+          <div class="record" *ngFor="let rec of records">
+            <div>{{rec.date | datepipe}}</div>
+            <div>{{rec.exercise_id.style}}</div>
+            <div>{{rec.exercise_id.distance}}</div>
+            <div>{{rec.jump_time}}</div>
+            <div>{{rec.results[rec.results.length -1]}}</div>
+          </div>
       </div>
-      <div class="box-herf"><a>חפש הישג</a></div>
+      <div class="box-herf" (click)="GoToStats()">צפייה בכל ההשיגים</div>
   </div>

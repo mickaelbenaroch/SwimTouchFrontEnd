@@ -17,17 +17,16 @@
 
     .box-content{
         //width: 100%;
-        min-height: 35vh;
+        min-height: 194px;
         //display: grid;
         //grid-template-columns: 1fr 1fr 1fr 1fr;
         background-color: #D9E0E7;
         //align-items: center;
         //justify-items: center;
-        padding: 1rem;
-        
+        padding: 1rem; 
+
         .details{
             display: flex;
-            color: white;
             flex-direction: column;
             font-family: 'Alef', sans-serif;
             .group-1{

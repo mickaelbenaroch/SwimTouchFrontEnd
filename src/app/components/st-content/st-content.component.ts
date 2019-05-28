@@ -55,7 +55,7 @@ export class StContentComponent implements OnInit, OnChanges {
       )
     }
     this.httpservice.httpPost('todo/getTask', {email: localStorage.getItem("email")}).subscribe(
-      res => {debugger
+      res => {
         this.tasks  = res.isTrue.todo
       },
       err => { console.log(err)}
@@ -76,7 +76,15 @@ export class StContentComponent implements OnInit, OnChanges {
   //#endregion
 
   //#region Public Methods
-    /**
+  /**
+   * GoToStatsEventFather event callback
+   * @param event 
+   */
+  public GoToStatsEventFather():void{
+    this.pageenum = PageEnum.MyMatalots;
+  }
+
+  /**
    * Goes to main page
    * @param event 
    */

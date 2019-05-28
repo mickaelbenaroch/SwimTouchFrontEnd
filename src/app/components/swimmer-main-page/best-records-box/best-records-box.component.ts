@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { TeamModel } from '../../../models/TeamModel';
+import { HttpService } from '../../../services/http-service/http-service.service';
+import { ProfileServiceService } from '../../../services/profile-service/profile-service.service';
 
 @Component({
   selector: 'app-best-records-box',
@@ -10,15 +12,37 @@ export class BestRecordsBoxComponent implements OnInit {
 
    //#region Public Members
    public teams: TeamModel[] = [];
+   public records: any[] = []   
+   public GoToStatsEvent: EventEmitter<boolean> = new EventEmitter();
    //#endregion
  
    //#region Constructor & Lyfecycle Hooks
-   constructor() { }
+   constructor(public httpservice: HttpService,
+               public profileservice: ProfileServiceService) { }
  
    public ngOnInit(): void {
+    this.httpservice.httpPost('swimmer/getswimmers',{name: this.profileservice.profile.first_name + ' ' + this.profileservice.profile.last_name}).subscribe(
+        res =>{
+          let idOfSwimmer = {
+            swimmer_id: res.swimmer[0]._id
+          }
+          this.httpservice.httpPost('statistic/full_records', idOfSwimmer).subscribe(
+            res => {
+              this.records = res.records;
+            }
+          )
+        },
+        err =>{ console.log(err)}
+    )
    }
    //#endregion
  
    //#region Public Methods
+   /**
+    * GoToStats event sending
+    */
+   public GoToStats():void{
+      this.GoToStatsEvent.emit(true);
+   }
    //#endregion
 }

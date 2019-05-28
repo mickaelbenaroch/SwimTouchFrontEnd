@@ -18,16 +18,16 @@ export class TodoBoxComponent implements OnInit, OnChanges{
   //#region Constructor & Lifecycle Hooks
   constructor(public httpservice: HttpService) { }
 
-  public ngOnInit(): void {debugger
+  public ngOnInit(): void {
     console.log(this.misssions)
-    this.misssions.forEach(t =>{ debugger
+    this.misssions.forEach(t =>{ 
       this.localTask.push(t.message)
     })
   }
 
   public ngOnChanges():void{
     console.log(this.misssions)
-    this.misssions.forEach(t =>{ debugger
+    this.misssions.forEach(t =>{ 
       this.localTask.push(t.message)
     })
   }
