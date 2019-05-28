@@ -16,14 +16,9 @@
     }
 
     .box-content{
-        //width: 100%;
-        min-height: 194px;
-        //display: grid;
-        //grid-template-columns: 1fr 1fr 1fr 1fr;
         background-color: #D9E0E7;
-        //align-items: center;
-        //justify-items: center;
         padding: 1rem; 
+        height: 35vh;
 
         .details{
             display: flex;

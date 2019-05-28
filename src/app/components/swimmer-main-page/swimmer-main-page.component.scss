@@ -1,7 +1,7 @@
 .envelop{
     display: grid;
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas: "todo" "details";
+    grid-template-rows: 50% 1fr;
+    grid-template-areas: "details" "todo";
     grid-gap: 3%;
 
     app-todo-box{
