@@ -17,14 +17,26 @@
       <div style="display: flex;">
         <div class="div-3-2">בחר שחיין ספציפי או את כל הקבוצה:</div>
         <div class="div-3-3">
-            <mat-select placeholder="בחר שחיין" (selectionChange)="SwimmerDetails($event)" name="swimmer">
+           
+          <!--          <mat-select placeholder="בחר שחיין" (selectionChange)="SwimmerDetails($event)" name="swimmer">
               <mat-option *ngFor="let swimmer of currentTeam.swimmers" [value]="swimmer">
                 {{swimmer.name}}
               </mat-option>
             </mat-select>
+        -->
+
+            <mat-form-field>
+                <mat-select (selectionChange)="SwimmerDetails($event)" name="swimmer">
+                  <mat-option class="all-team" (click)="AllTheTeamChoosen()">
+                        כל הקבוצה
+                  </mat-option>
+                  <mat-option *ngFor="let swimmer of currentTeam.swimmers" [value]="swimmer">
+                      {{swimmer.name}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
       </div>
-      <div class="all-team" (click)="AllTheTeamChoosen()">כל הקבוצה</div>
     </div>
   </div>
 
