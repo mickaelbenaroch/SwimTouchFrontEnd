@@ -40,36 +40,61 @@ export class StSidenavComponent implements OnInit {
    * Handle click on sidenav item and redirect the user
    */
   public SideNiveClick(str: string):void{
+    let innerWidth = window.innerWidth;
+    var temp  = document.getElementById("menu");
+
+
     switch(str){
       case "landing":
       this.eventFromSideNav.emit(PageEnum.Landing);
+      if(innerWidth < 600)
+        temp.style.display = "none";   
+
       break;
       case "mytrainnings":
       this.eventFromSideNav.emit(PageEnum.MyTrainnings);
+      if(innerWidth < 600)
+        temp.style.display = "none";   
       break;
       case "myteams":
       this.eventFromSideNav.emit(PageEnum.MyTeams);
+      if(innerWidth < 600)
+        temp.style.display = "none";   
       break;
       case "myswimmers":
       this.eventFromSideNav.emit(PageEnum.MySwimmers);
+      if(innerWidth < 600)
+        temp.style.display = "none";   
       break;
       case "realtimetrainning":
       this.eventFromSideNav.emit(PageEnum.RealTimeTrainning);
+      var temp  = document.getElementById("menu");
+
       break;
       case "statistics":
       this.eventFromSideNav.emit(PageEnum.Statistics);
+      var temp  = document.getElementById("menu");
+
       break;
       case "matalots":
       this.eventFromSideNav.emit(PageEnum.MyMatalots);
+      var temp  = document.getElementById("menu");
+
       break;
       case "messages":
       this.eventFromSideNav.emit(PageEnum.Messages);
+      var temp  = document.getElementById("menu");
+
       break;
       case "settings":
       this.eventFromSideNav.emit(PageEnum.Settings);
+      var temp  = document.getElementById("menu");
+
       break;
       case "help":
       this.eventFromSideNav.emit(PageEnum.Help);
+      var temp  = document.getElementById("menu");
+
       break;
     }
   }

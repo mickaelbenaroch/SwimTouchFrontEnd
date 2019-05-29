@@ -231,6 +231,7 @@
     .menu{
         display: block !important;
         padding: 0.5rem 0.5rem 0 0!important; 
+        filter: invert(0.5) !important;
     }
     .envelop{
         width: 50%;
