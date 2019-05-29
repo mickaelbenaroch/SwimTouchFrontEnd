@@ -6,22 +6,26 @@
     <form id="filter" *ngIf="state == stateHelper.TrainningView && trainnings !== undefined && trainnings.length > 0">
         <h1>סינון תוצאות</h1>
         <label>שם האימון: 
-          <input type="text">
+          <input type="text" [(ngModel)]="nameFactor" name="nameFactor">
           <span>&#9830;</span>
+          <button (click)="NameSort()">בצע</button>  
         </label>
         <label>תאריך האימון: 
-          <input type="date">
+          <input type="date" [(ngModel)]="dateFactor" name="dateFactor">
           <span>&#9830;</span>
+          <button (click)="DateSort()">בצע</button>
         </label>
         <label>מרחק: 
-          <input type="number">
+          <input type="number" [(ngModel)]="distanceFactor" name="distanceFactor">
+          <button (click)="DistanceSort()">בצע</button>
         </label><br><br>
         <label>קבוצת שחייה: 
-          <input type="radio" name="type" value="A" > A 
-          <input type="radio" name="type" value="B" > B 
-          <input type="radio" name="type" value="C" > C 
-          <input type="radio" name="type" value="D" > D
+          <input type="radio" name="type" value="A" [(ngModel)]="groupFactor" name="nameFactor1"> A 
+          <input type="radio" name="type" value="B" [(ngModel)]="groupFactor" name="nameFactor2"> B 
+          <input type="radio" name="type" value="C" [(ngModel)]="groupFactor" name="nameFactor3"> C 
+          <input type="radio" name="type" value="D" [(ngModel)]="groupFactor" name="nameFactor4"> D
         </label>
+        <button (click)="GroupSort()">בצע</button>
     </form>
 
     <div *ngIf="trainnings == undefined || trainnings.length == 0" class="no-trainnings"> לא נמצאו אימונים בבסיס הנתונים. באשרותך ליצור קבוצה חדשה <span class="back" (click)="GoBack()">בתפריט הראשי</span></div>

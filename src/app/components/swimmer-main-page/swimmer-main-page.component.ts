@@ -75,7 +75,7 @@ export class SwimmerMainPageComponent implements OnInit{
    * GoToStats event callback
    * @param notification 
    */
-  public GoToStatsCallBack(ev): void{debugger
+  public GoToStatsCallBack(ev): void{
     this.GoToStatsEventFather.emit(true);
   }
 

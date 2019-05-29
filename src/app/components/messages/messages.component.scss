@@ -1,0 +1,33 @@
+.envelop{
+    direction: rtl;
+    .menu{
+        padding: 1rem;
+        div{
+            cursor: pointer;
+            
+        }
+    }
+    mat-select{
+        padding: 1rem;
+        padding-bottom: 2rem !important;
+    }
+    .area{
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+    }
+    .mail{
+        padding: 1rem;
+        .header{
+            display: flex;
+            padding: 0.5rem;
+            background: darkgrey;
+            justify-content: space-between;
+        }
+        .body{
+            margin-bottom: 0.2rem;
+            padding: 0.5rem;
+            border: 1px solid darkgrey;
+        }
+    }
+}

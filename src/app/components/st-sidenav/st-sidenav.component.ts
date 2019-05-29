@@ -1,6 +1,6 @@
 import { RoleEnum } from '../../enums/roleenum';
 import { PageEnum } from 'src/app/enums/componentview';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { ProfileServiceService } from '../../services/profile-service/profile-service.service';
 import { MatDialogConfig, MatDialog } from '@angular/material';
 import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
@@ -14,6 +14,7 @@ import { PictureUpdateComponent } from '../dialog-boxes/picture-update/picture-u
 export class StSidenavComponent implements OnInit {
 
   //#region Public Members
+  @Input() messages: number;
   @Output() eventFromSideNav: EventEmitter<PageEnum> = new EventEmitter();
   public role = RoleEnum;
   //#endregion

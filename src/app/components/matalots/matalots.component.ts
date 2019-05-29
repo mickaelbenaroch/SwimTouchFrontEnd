@@ -12,6 +12,7 @@ import { HttpService } from '../../services/http-service/http-service.service';
 import { ProfileServiceService } from '../../services/profile-service/profile-service.service';
 import { RecordDetailsComponent } from '../dialog-boxes/record-details/record-details.component';
 import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
+import { ReturnStatement } from '@angular/compiler';
 
 @Component({
   selector: 'app-matalots',
@@ -30,6 +31,7 @@ export class MatalotsComponent implements OnInit {
   public currentSwimmer: SwimmerModel;
   public teamRecords:any[] = [];
   public targ: boolean;
+  public counter: number = 0;
   public swimmerAlone: boolean = false;
   public role = RoleEnum;
   public graphReady: boolean;
@@ -162,13 +164,14 @@ export class MatalotsComponent implements OnInit {
    * Toggle view between jump time and results
    */
   public Switch(subject: string):void{
+    this.counter += 1;
     if(subject == 'swim'){
       this.jumpGraph = false;
     }else{
       this.jumpGraph = true;
-      if(this.teamChoosen){
+      if(this.teamChoosen && this.counter == 1){
         this.JumpTimeGraphTeam();
-      }else{
+      }else if(!this.teamChoosen && this.counter == 1){
         this.jumpTimeGraphSwimmer();
       }
     }
@@ -814,15 +817,19 @@ public AllTheTeamChoosen():void{
               if(i > 2){
                 if(this.FreestyleArray[i-1].results[this.FreestyleArray[i].results.length - 1] > freestyleAvaerage)
                 console.log(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי הקבוצה האחרונים בסגנון ");
+                this.sendNotificationForTeamTarget(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי הקבוצה האחרונים בסגנון ");
               }else{
                 console.log(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של הקבוצה בסגנון " );
+                this.sendNotificationForTeamTarget(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של הקבוצה בסגנון " );
               }
             }else if(this.FreestyleArray[i].results[this.FreestyleArray[i].results.length - 1] < freestyleAvaerage){
               if(i > 2){
                 if(this.FreestyleArray[i-1].results[this.FreestyleArray[i].results.length - 1] < freestyleAvaerage)
                 console.log(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי הקבוצה האחרונים בסגנון " );
+                this.sendNotificationForTeamTarget(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי הקבוצה האחרונים בסגנון ");
               }else{
                 console.log(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של הקבוצה בסגנון ");
+                this.sendNotificationForTeamTarget(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של הקבוצה בסגנון ");
               }
             }
           }
@@ -840,15 +847,19 @@ public AllTheTeamChoosen():void{
               if(i > 2){
                 if(this.BackstrokeArray[i-1].results[this.BackstrokeArray[i].results.length - 1] > backstrokeAvaerage)
                 console.log(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי הקבוצה האחרונים בסגנון ");
+                this.sendNotificationForTeamTarget(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי הקבוצה האחרונים בסגנון ");
               }else{
                 console.log(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של הקבוצה בסגנון " );
+                this.sendNotificationForTeamTarget(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של הקבוצה בסגנון ");
               }
             }else if(this.BackstrokeArray[i].results[this.BackstrokeArray[i].results.length - 1] < backstrokeAvaerage){
               if(i > 2){
                 if(this.BackstrokeArray[i-1].results[this.BackstrokeArray[i].results.length - 1] < backstrokeAvaerage)
                 console.log(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי הקבוצה האחרונים בסגנון " );
+                this.sendNotificationForTeamTarget(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי הקבוצה האחרונים בסגנון ");
               }else{
                 console.log(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של הקבוצה בסגנון ");
+                this.sendNotificationForTeamTarget(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של הקבוצה בסגנון ");
               }
             }
           }
@@ -865,15 +876,19 @@ public AllTheTeamChoosen():void{
               if(i > 2){
                 if(this.BreaststrokeArray[i-1].results[this.BreaststrokeArray[i].results.length - 1] > breatstrokeAvaerage)
                 console.log(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי הקבוצה האחרונים בסגנון ");
+                this.sendNotificationForTeamTarget(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי הקבוצה האחרונים בסגנון ");
               }else{
                 console.log(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של הקבוצה בסגנון " );
+                this.sendNotificationForTeamTarget(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של הקבוצה בסגנון ");
               }
             }else if(this.BreaststrokeArray[i].results[this.BreaststrokeArray[i].results.length - 1] < breatstrokeAvaerage){
               if(i > 2){
                 if(this.BreaststrokeArray[i-1].results[this.BreaststrokeArray[i].results.length - 1] < breatstrokeAvaerage)
                 console.log(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי הקבוצה האחרונים בסגנון " );
+                this.sendNotificationForTeamTarget(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי הקבוצה האחרונים בסגנון ");
               }else{
                 console.log(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של הקבוצה בסגנון ");
+                this.sendNotificationForTeamTarget(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של הקבוצה בסגנון ");
               }
             }
           }
@@ -890,15 +905,19 @@ public AllTheTeamChoosen():void{
               if(i > 2){
                 if(this.ButterflyArray[i-1].results[this.ButterflyArray[i].results.length - 1] > butterflyAvaerage)
                 console.log(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי הקבוצה האחרונים בסגנון ");
+                this.sendNotificationForTeamTarget(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי הקבוצה האחרונים בסגנון ");
               }else{
                 console.log(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של הקבוצה בסגנון " );
+                this.sendNotificationForTeamTarget(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של הקבוצה בסגנון " );
               }
             }else if(this.ButterflyArray[i].results[this.ButterflyArray[i].results.length - 1] < butterflyAvaerage){
               if(i > 2){
                 if(this.ButterflyArray[i-1].results[this.ButterflyArray[i].results.length - 1] < butterflyAvaerage)
                 console.log(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי הקבוצה  האחרונים בסגנון " );
+                this.sendNotificationForTeamTarget(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי הקבוצה  האחרונים בסגנון ");
               }else{
                 console.log(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של הקבוצה בסגנון ");
+                this.sendNotificationForTeamTarget(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של הקבוצה בסגנון ");
               }
             }
           }
@@ -915,15 +934,19 @@ public AllTheTeamChoosen():void{
               if(i > 2){
                 if(this.IndividualMedleyArray[i-1].results[this.IndividualMedleyArray[i].results.length - 1] > individualMedleyAvaerage)
                 console.log(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי הקבוצה  האחרונים בסגנון ");
+                this.sendNotificationForTeamTarget(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי הקבוצה  האחרונים בסגנון ");
               }else{
                 console.log(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של הקבוצה בסגנון " );
+                this.sendNotificationForTeamTarget(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של הקבוצה בסגנון " );
               }
             }else if(this.IndividualMedleyArray[i].results[this.IndividualMedleyArray[i].results.length - 1] < individualMedleyAvaerage){
               if(i > 2){
                 if(this.IndividualMedleyArray[i-1].results[this.IndividualMedleyArray[i].results.length - 1] < individualMedleyAvaerage)
                 console.log(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי הקבוצה  האחרונים בסגנון " );
+                this.sendNotificationForTeamTarget(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי הקבוצה  האחרונים בסגנון " );
               }else{
                 console.log(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של הקבוצה בסגנון ");
+                this.sendNotificationForTeamTarget(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של הקבוצה בסגנון ");
               }
             }
           }
@@ -941,15 +964,19 @@ public AllTheTeamChoosen():void{
               if(i > 2){
                 if(this.FreestyleArray[i-1].results[this.FreestyleArray[i].results.length - 1] > freestyleAvaerage)
                 console.log(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין האחרונים בסגנון ");
+                this.sendNotificationForSwimmerTarget(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין האחרונים בסגנון ", this.FreestyleArray[i].swimmer._id)
               }else{
                 console.log(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של השחיין בסגנון " );
+                this.sendNotificationForSwimmerTarget(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של השחיין בסגנון ", this.FreestyleArray[i].swimmer._id)
               }
             }else if(this.FreestyleArray[i].results[this.FreestyleArray[i].results.length - 1] < freestyleAvaerage){
               if(i > 2){
                 if(this.FreestyleArray[i-1].results[this.FreestyleArray[i].results.length - 1] < freestyleAvaerage)
                 console.log(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי השחיין האחרונים בסגנון " );
+                this.sendNotificationForSwimmerTarget(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי השחיין האחרונים בסגנון " , this.FreestyleArray[i].swimmer._id)
               }else{
                 console.log(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של השחיין בסגנון ");
+                this.sendNotificationForSwimmerTarget(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של השחיין בסגנון " , this.FreestyleArray[i].swimmer._id)
               }
             }
           }
@@ -967,15 +994,19 @@ public AllTheTeamChoosen():void{
               if(i > 2){
                 if(this.BackstrokeArray[i-1].results[this.BackstrokeArray[i].results.length - 1] > backstrokeAvaerage)
                 console.log(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין האחרונים בסגנון ");
+                this.sendNotificationForSwimmerTarget(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין האחרונים בסגנון " , this.BackstrokeArray[i].swimmer._id)
               }else{
                 console.log(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של השחיין בסגנון " );
+                this.sendNotificationForSwimmerTarget(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של השחיין בסגנון "  , this.BackstrokeArray[i].swimmer._id)
               }
             }else if(this.BackstrokeArray[i].results[this.BackstrokeArray[i].results.length - 1] < backstrokeAvaerage){
               if(i > 2){
                 if(this.BackstrokeArray[i-1].results[this.BackstrokeArray[i].results.length - 1] < backstrokeAvaerage)
                 console.log(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי השחיין האחרונים בסגנון " );
+                this.sendNotificationForSwimmerTarget(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי השחיין האחרונים בסגנון "  , this.BackstrokeArray[i].swimmer._id)
               }else{
                 console.log(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של השחיין בסגנון ");
+                this.sendNotificationForSwimmerTarget(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של השחיין בסגנון " , this.BackstrokeArray[i].swimmer._id)
               }
             }
           }
@@ -992,15 +1023,19 @@ public AllTheTeamChoosen():void{
               if(i > 2){
                 if(this.BreaststrokeArray[i-1].results[this.BreaststrokeArray[i].results.length - 1] > breatstrokeAvaerage)
                 console.log(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין האחרונים בסגנון ");
+                this.sendNotificationForSwimmerTarget(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין האחרונים בסגנון ", this.BreaststrokeArray[i].swimmer._id)
               }else{
                 console.log(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של השחיין בסגנון " );
+                this.sendNotificationForSwimmerTarget(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של השחיין בסגנון ", this.BreaststrokeArray[i].swimmer._id)
               }
             }else if(this.BreaststrokeArray[i].results[this.BreaststrokeArray[i].results.length - 1] < breatstrokeAvaerage){
               if(i > 2){
                 if(this.BreaststrokeArray[i-1].results[this.BreaststrokeArray[i].results.length - 1] < breatstrokeAvaerage)
                 console.log(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי השחיין האחרונים בסגנון " );
+                this.sendNotificationForSwimmerTarget(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי השחיין האחרונים בסגנון " , this.BreaststrokeArray[i].swimmer._id)
               }else{
                 console.log(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של השחיין בסגנון ");
+                this.sendNotificationForSwimmerTarget(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של השחיין בסגנון ", this.BreaststrokeArray[i].swimmer._id)
               }
             }
           }
@@ -1017,15 +1052,19 @@ public AllTheTeamChoosen():void{
               if(i > 2){
                 if(this.ButterflyArray[i-1].results[this.ButterflyArray[i].results.length - 1] > butterflyAvaerage)
                 console.log(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין האחרונים בסגנון ");
+                this.sendNotificationForSwimmerTarget(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין האחרונים בסגנון ", this.ButterflyArray[i].swimmer._id)
               }else{
                 console.log(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של השחיין בסגנון " );
+                this.sendNotificationForSwimmerTarget(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של השחיין בסגנון ", this.ButterflyArray[i].swimmer._id)
               }
             }else if(this.ButterflyArray[i].results[this.ButterflyArray[i].results.length - 1] < butterflyAvaerage){
               if(i > 2){
                 if(this.ButterflyArray[i-1].results[this.ButterflyArray[i].results.length - 1] < butterflyAvaerage)
                 console.log(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי השחיין  האחרונים בסגנון " );
+                this.sendNotificationForSwimmerTarget(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי השחיין  האחרונים בסגנון " , this.ButterflyArray[i].swimmer._id)
               }else{
                 console.log(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של השחיין בסגנון ");
+                this.sendNotificationForSwimmerTarget(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של השחיין בסגנון ", this.ButterflyArray[i].swimmer._id)
               }
             }
           }
@@ -1042,15 +1081,19 @@ public AllTheTeamChoosen():void{
               if(i > 2){
                 if(this.IndividualMedleyArray[i-1].results[this.IndividualMedleyArray[i].results.length - 1] > individualMedleyAvaerage)
                 console.log(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין  האחרונים בסגנון ");
+                this.sendNotificationForSwimmerTarget(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין  האחרונים בסגנון ", this.IndividualMedleyArray[i].swimmer._id)
               }else{
                 console.log(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של השחיין בסגנון " );
+                this.sendNotificationForSwimmerTarget(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של השחיין בסגנון ", this.IndividualMedleyArray[i].swimmer._id)
               }
             }else if(this.IndividualMedleyArray[i].results[this.IndividualMedleyArray[i].results.length - 1] < individualMedleyAvaerage){
               if(i > 2){
                 if(this.IndividualMedleyArray[i-1].results[this.IndividualMedleyArray[i].results.length - 1] < individualMedleyAvaerage)
                 console.log(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי השחיין האחרונים בסגנון " );
+                this.sendNotificationForSwimmerTarget(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי השחיין האחרונים בסגנון ", this.IndividualMedleyArray[i].swimmer._id)
               }else{
                 console.log(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של השחיין בסגנון ");
+                this.sendNotificationForSwimmerTarget(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של השחיין בסגנון ", this.IndividualMedleyArray[i].swimmer._id)
               }
             }
           }
@@ -1063,40 +1106,30 @@ public AllTheTeamChoosen():void{
  * sendNotificationForTeamTarget
  * @param tar 
  */
-public sendNotificationForTeamTarget(tar: TeamTargetModel):void{
-  let model = {
-    team_id: tar.team_id
+public sendNotificationForTeamTarget(body: string):void{
+  if(body !== "" && body !== undefined){
+    this.currentTeam.swimmers.forEach(swimmer =>{
+      this.sendNotificationForSwimmerTarget(body, swimmer);
+    })
+  }else{
+    return;
   }
-  this.httpservice.httpPost('team/getteamById',model).subscribe(
-    res =>{
-      res.team[0].swimmers.forEach(swimmer => {
-        this.sendNotificationForSwimmerTarget(tar, swimmer);
-      });
-    },
-    err =>{
-      this.OpenErrorDialogBox();
-    }
-  )
 }
 
   /**
    * sendNotification to swimmer about bad performances
    * @param target 
    */
-  public sendNotificationForSwimmerTarget(tar: any, swimmer_ref: string = null):void{
+  public sendNotificationForSwimmerTarget(body: any, swimmer_ref: string):void{
     //First create send notification to swimmer
     let notification = new NotificationModel();
     notification.type = NotificationTypeEnum.Warning;
     notification.coachmail = localStorage.getItem("email");
     notification.date = new Date();
-    notification.message = "  נא לשים לב שהיעד הבא לא הושג " + tar.style + ' ' + tar.distance + ' ,זמן ' + tar.targetTime;
-    notification.title = "הזהרה עקב אי עמידה ביעד שנקבע  לך על ידי המאמן!";
-    notification.priority = "didnt_get_target_message";
-    if(swimmer_ref == null){
-      notification.swimmer_id = tar.swimmer_ref;
-    }else{
-      notification.swimmer_id = swimmer_ref;
-    }
+    notification.message = body;
+    notification.title = "תוצאות זיהוי השיגים אוטומטי על ידי המערכת"
+    notification.priority = "analysis";
+    notification.swimmer_id = swimmer_ref;
     notification.coachId = this.profileservice.profile._id;
 
     this.httpservice.httpPost('notification/setNotification', notification).subscribe(

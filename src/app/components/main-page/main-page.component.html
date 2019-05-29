@@ -10,7 +10,9 @@
       </div>-->
       <div class="div-1-2">
         <app-st-content [stateFromFather]="homeEvent"
-                        [stateChange]="eventPassFromSideNave"></app-st-content>
+                        [stateChange]="eventPassFromSideNave"
+                        [profiles]=profiles
+                        [mails]=mails></app-st-content>
           <!--<div style="text-align:center;">
             <button style="padding:1rem;background:green;cursor:pointer" (click)="Start()">START</button>
           </div>-->
@@ -18,7 +20,9 @@
   </div>
 
   <div class="div-2" id="menu">
-        <app-st-sidenav (eventFromSideNav)="ClickFromSideNav($event)"></app-st-sidenav>
+        <app-st-sidenav (eventFromSideNav)="ClickFromSideNav($event)"
+                        [messages]=mails.length>
+        </app-st-sidenav>
   </div>
 
 </div>
