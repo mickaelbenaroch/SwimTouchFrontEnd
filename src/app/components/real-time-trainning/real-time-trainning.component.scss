@@ -23,7 +23,9 @@ section{
         }
 
         button{
-            padding: 0.5rem;
+            border: none;
+            background-color: transparent;
+            color: #8a8264;
             cursor: pointer;
         }
 
@@ -505,6 +507,13 @@ section{
         }
         br{
             display: none;
+        }
+
+        button{
+            border: none;
+            background-color: transparent;
+            color: #8a8264;
+            display: block !important;
         }
     }
 
