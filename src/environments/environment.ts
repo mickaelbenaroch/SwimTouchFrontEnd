@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: "http://localhost:3030/"
+  baseUrl: "https://swimtouch.herokuapp.com/" 
 };
 
 /** dev: "http://localhost:3030/" */ 

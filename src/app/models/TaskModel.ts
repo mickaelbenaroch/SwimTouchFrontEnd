@@ -5,5 +5,7 @@ export class TaskModel{
 
    public message: string;
 
+   public id: string;
+
    public TaskModel(){}
 } 

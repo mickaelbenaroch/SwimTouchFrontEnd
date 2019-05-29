@@ -21,14 +21,18 @@ export class TodoBoxComponent implements OnInit, OnChanges{
   public ngOnInit(): void {
     console.log(this.misssions)
     this.misssions.forEach(t =>{ 
-      this.localTask.push(t.message)
+      if(!this.localTask.includes(t.message)){
+          this.localTask.push(t.message)
+      }
     })
   }
 
   public ngOnChanges():void{
     console.log(this.misssions)
     this.misssions.forEach(t =>{ 
-      this.localTask.push(t.message)
+      if(!this.localTask.includes(t.message)){
+        this.localTask.push(t.message)
+    }
     })
   }
   //#endregion
@@ -44,6 +48,27 @@ export class TodoBoxComponent implements OnInit, OnChanges{
       res => { console.log(res)},
       err => { console.log(err)}
     )  
+  }
+
+  /**
+   * Delete Task
+   */
+  public DeleteTask(task: string):void{
+    this.misssions.forEach(mission => {
+      if(mission.message == task){
+        var taskToDelete = mission;
+        var index = this.localTask.indexOf(task);
+        this.httpservice.httpPost('todo/deleteTask', { email: localStorage.getItem("email"), task_id: taskToDelete.id}).subscribe(
+          res =>{ 
+            console.log(res);
+            this.localTask.splice(index,1);
+          },
+          err =>{
+            console.log(err);
+          }
+        )
+      }
+    });    
   }
   //#endregion
 

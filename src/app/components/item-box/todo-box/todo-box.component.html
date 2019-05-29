@@ -7,7 +7,7 @@
       </div> 
       -->
       <table>
-        <td *ngFor="let task of localTask; let i = index"  class="image-box" >{{i + 1}}. {{task}}<img src="../../../../assets/close.svg" alt="delete task"></td>
+        <td *ngFor="let task of localTask; let i = index"  class="image-box" >{{i + 1}}. {{task}}<img src="../../../../assets/close.svg" alt="delete task" (click)="DeleteTask(task)"></td>
       </table>
 
   </div>
