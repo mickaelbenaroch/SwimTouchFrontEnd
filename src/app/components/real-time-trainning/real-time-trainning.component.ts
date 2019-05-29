@@ -48,6 +48,10 @@ export class RealTimeTrainningComponent implements OnInit {
    public burepeat: number = 1;
    public corepeat: number = 1;
    public wdrepeat: number = 1;
+   public nameFactor: string = "";
+   public dateFactor: string = "";
+   public distanceFactor: number = 50;
+   public groupFactor: string = "";
    //#endregion
   
    //#region Constructor & Lifecycle Hooks
@@ -133,6 +137,50 @@ export class RealTimeTrainningComponent implements OnInit {
         return 0; //default return value (no sorting)
       })
       break;
+    }
+  }
+
+  /**
+   * NameSort filter
+   */
+  public NameSort():void{
+    if(this.nameFactor == undefined){
+      return;
+    }else{
+      this.trainnings = this.trainnings.filter(tr => tr.name == this.nameFactor || tr.name.includes(this.nameFactor));
+    }
+  }
+
+    /**
+   * NameSort filter
+   */
+  public DateSort():void{
+    if(this.dateFactor == undefined){
+      return;
+    }else{
+      this.trainnings = this.trainnings.filter(tr => (new Date(tr.date)).getTime() == (new Date(this.dateFactor)).getTime());
+    }
+  }
+
+    /**
+   * NameSort filter
+   */
+  public DistanceSort():void{
+    if(this.distanceFactor == undefined){
+      return;
+    }else{
+      this.trainnings = this.trainnings.filter(tr => tr.distance == this.distanceFactor);
+    }
+  }
+
+    /**
+   * NameSort filter
+   */
+  public GroupSort():void{
+    if(this.groupFactor == undefined){
+      return;
+    }else{
+      this.trainnings = this.trainnings.filter(tr => tr.exercises[0].group == this.groupFactor);
     }
   }
 

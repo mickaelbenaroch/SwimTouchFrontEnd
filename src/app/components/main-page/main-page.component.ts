@@ -1,5 +1,6 @@
 import { $ } from 'protractor';
 import { Component, OnInit } from '@angular/core';
+import { MailModel } from '../../models/MailModel';
 import { PageEnum } from '../../enums/componentview';
 import { ProfileModel } from '../../models/ProfileModel';
 import { HttpService } from '../../services/http-service/http-service.service';
@@ -17,6 +18,8 @@ export class MainPageComponent implements OnInit {
   public homeEvent: boolean;
   public eventPassFromSideNave: PageEnum;
   public title: string;
+  public profiles: ProfileModel[] = [];
+  public mails: MailModel[] = [];
   //#endregion
 
   //#region Constructor & Lifecycle Hooks
@@ -27,6 +30,22 @@ export class MainPageComponent implements OnInit {
     this.title = "תפריט ראשי";
     //this.GetProfile();
     this.profileservice.GetProfile();
+    this.httpservice.httpPost('profile/getAllProfiles', {}).subscribe(
+      res => { 
+        this.profiles = res.data;
+      },
+      err =>{
+        console.log(err);
+      }
+    )
+    this.httpservice.httpPost('mails/getMails',{receiver: localStorage.getItem("email")}).subscribe(
+      res =>{
+        this.mails = res.data;
+      },
+      err =>{
+        console.log(err);
+      }
+    )
     
   }
   //#endregion

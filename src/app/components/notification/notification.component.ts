@@ -23,9 +23,9 @@ export class NotificationComponent implements OnInit {
                       public profileservice: ProfileServiceService) { }
 
   public ngOnInit():void {
-    this.notifications.forEach(not =>{
-      if(not.HasBeenreaded){
-        this.notificationsToPresent.push(not);
+    this.notifications.forEach(noti =>{
+      if(!noti.HasBeenreaded){
+        this.notificationsToPresent.push(noti);
       }
     })
   }

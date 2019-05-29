@@ -1,6 +1,8 @@
 import { RoleEnum } from '../../enums/roleenum';
 import { TaskModel } from '../../models/TaskModel';
+import { MailModel } from '../../models/MailModel';
 import { PageEnum } from '../../enums/componentview';
+import { ProfileModel } from '../../models/ProfileModel';
 import { MatDialogConfig, MatDialog } from '@angular/material';
 import { HttpService } from '../../services/http-service/http-service.service';
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
@@ -22,7 +24,8 @@ export class StContentComponent implements OnInit, OnChanges {
   @Input() eventFromSideNav: PageEnum;
   @Input() stateChange: PageEnum;
   public tasks: TaskModel[] = [];
-  
+  @Input() profiles: ProfileModel[] = [];
+  @Input() mails: MailModel[] = [];
   //#endregion
 
   //#region Constructor & Lifecycle Hooks
@@ -80,7 +83,7 @@ export class StContentComponent implements OnInit, OnChanges {
    * GoToStatsEventFather event callback
    * @param event 
    */
-  public GoToStatsEventFatherFunc():void{debugger
+  public GoToStatsEventFatherFunc():void{
     this.pageenum = PageEnum.MyMatalots;
   }
 

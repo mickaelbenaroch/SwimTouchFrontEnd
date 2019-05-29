@@ -41,7 +41,7 @@ export class BestRecordsBoxComponent implements OnInit {
    /**
     * GoToStats event sending
     */
-   public GoToStats():void{debugger
+   public GoToStats():void{
       this.GoToStatsEventFromSon.emit(true);
    }
    //#endregion

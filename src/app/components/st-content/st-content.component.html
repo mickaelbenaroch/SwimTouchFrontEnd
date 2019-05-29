@@ -77,7 +77,7 @@
       <app-matalots></app-matalots>
     </div>
     <div class="my-trainnings" *ngIf="pageenum === state.Messages">
-      <app-messages></app-messages>
+      <app-messages [mails]=mails [profiles]=profiles ></app-messages>
     </div>
     <div class="my-trainnings" *ngIf="pageenum === state.Settings">
       <app-settings></app-settings>

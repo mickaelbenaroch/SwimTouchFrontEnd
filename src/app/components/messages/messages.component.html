@@ -1,3 +1,32 @@
-<p>
-  messages works!
-</p>
+<div class="envelop">
+    <h1>הודעות</h1>
+    <div class="menu">
+      <div (click)="newMail()">כתוב הודעה חדשה</div>
+    </div>
+
+    <div *ngIf="newMailPressed">
+      <div>
+        <mat-select placeholder="בחר יעד להודעה" (selectionChange)="Select($event)" name="receiver">
+          <mat-option *ngFor="let profile of profiles" [value]="profile">
+              {{profile.first_name + ' ' + profile.last_name + ' '}} {{' ' + profile.user}}
+          </mat-option>
+        </mat-select>
+        <div class="area">
+          <textarea [(ngModel)]="mailToSend.title" name="title" rows="2" cols="50" placeholder="כותרת ההודעה..."></textarea>
+          <textarea [(ngModel)]="mailToSend.body" name="body" rows="4" cols="50" placeholder="תוכן ההודעה..."></textarea>
+        </div>
+      </div>
+      <div style="padding:1rem; cursor:pointer" (click)="SendMail()">שלח</div>
+    </div>
+
+    <div *ngIf="!newMailPressed">
+      <div class="mail" *ngFor="let mail of mails">
+        <div class="header">
+          <div>{{mail.date | datepipe}}</div>
+          <div>{{mail.title}}</div>
+        </div>
+        <div class="body">{{mail.body}}</div>
+      </div>
+    </div>
+
+</div>
