@@ -489,7 +489,8 @@ section{
 
     //sub title
     .title{
-        display: none !important;
+        font-size: 3.5vw !important;
+        padding: 0rem !important;
     }
 
     //filter training
@@ -532,7 +533,7 @@ section{
     //training box
     //warm up
     .wu{
-        
+        font-size: 3.5vw !important;
         div:nth-last-of-type(1){
             position: relative;
             img{
@@ -543,17 +544,11 @@ section{
             span{
                 display: none;
             }
-        }
-        div:nth-last-of-type(1){
-            img{
-               
-                
-            }    
         }
     }
     //Build-Up
     .bu{
-        
+        font-size: 3.5vw !important;
         div:nth-last-of-type(1){
             position: relative;
             img{
@@ -566,16 +561,11 @@ section{
                 display: none;
             }
         }
-        div:nth-last-of-type(1){
-            img{
-               
-                
-            }    
-        }
+       
     }
     //Core-Main
     .co{
-        
+        font-size: 3.5vw !important;
         div:nth-last-of-type(1){
             position: relative;
             img{
@@ -588,16 +578,11 @@ section{
                 display: none;
             }
         }
-        div:nth-last-of-type(1){
-            img{
-               
-                
-            }    
-        }
+        
     }
     //Warm-Down
     .wd{
-        
+        font-size: 3.5vw !important;
         div:nth-last-of-type(1){
             position: relative;
             img{
@@ -610,12 +595,7 @@ section{
                 display: none;
             }
         }
-        div:nth-last-of-type(1){
-            img{
-               
-                
-            }    
-        }
+       
     }
 
     //tv button
