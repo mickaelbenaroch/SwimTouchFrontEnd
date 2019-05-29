@@ -68,7 +68,6 @@
     }
 }
 
-$day: (1: "א", 2: "ב", 3: "ג", 4: "ד", 5: "ה", 6: "ו", 7: "ש");
 
 @media only screen and (max-width: 600px) {
     //title
@@ -77,6 +76,11 @@ $day: (1: "א", 2: "ב", 3: "ג", 4: "ד", 5: "ה", 6: "ו", 7: "ש");
     }
     .envelop{
         background-image:  none;
+        width: 100% !important;
+    }
+
+    .month{
+        font-size: 7vw !important;;
     }
     
     .days_calendar{
@@ -85,11 +89,9 @@ $day: (1: "א", 2: "ב", 3: "ג", 4: "ד", 5: "ה", 6: "ו", 7: "ש");
 
     .calendar-div{
         grid-template-columns: repeat(1, 1fr) !important;  
-    }
 
-    @each $i in $day {
-        .calendar-div:after {
-            content: $i;
+        .day{
+            font-size: 7vw !important;
         }
     }
 }
