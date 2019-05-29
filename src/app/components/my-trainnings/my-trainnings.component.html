@@ -1,15 +1,12 @@
- <div class="back-div">
-  <button *ngIf="details" class="back" (click)="Back()">חזרה</button>
- </div>
+ 
+<button *ngIf="details" class="back" (click)="Back()"><img src="/assets/back.svg"/>חזרה</button>
+
 <section *ngIf="details">
-  <div class="resume" *ngIf="trainning.name !== undefined">
-    <div style="display:flex;">
-      <div>Trainning:</div>
-      <div>{{trainning.name}},</div>
-      <div>{{warmupcount + buildupcount + corecount + warmdowncount}} meters</div>
+    <div class="resume" *ngIf="trainning.name !== undefined">
+      <div>{{trainning.name}}</div>
+      <div>מרחק כולל: {{warmupcount + buildupcount + corecount + warmdowncount}} מטר</div>
+      <div>תאריך האימון: {{trainning.date}}</div>
     </div>
-    <div>Date: {{trainning.date}}</div>
-  </div>
     <div class="wu-div" *ngIf="warmuparray !== undefined && warmuparray.length > 0">
       <div class="title">
         Warm-Up {{warmupcount }} meters 
