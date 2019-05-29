@@ -68,32 +68,38 @@ export class StSidenavComponent implements OnInit {
       break;
       case "realtimetrainning":
       this.eventFromSideNav.emit(PageEnum.RealTimeTrainning);
-      var temp  = document.getElementById("menu");
+      if(innerWidth < 600)
+        temp.style.display = "none"; 
 
       break;
       case "statistics":
       this.eventFromSideNav.emit(PageEnum.Statistics);
-      var temp  = document.getElementById("menu");
+      if(innerWidth < 600)
+        temp.style.display = "none"; 
 
       break;
       case "matalots":
       this.eventFromSideNav.emit(PageEnum.MyMatalots);
-      var temp  = document.getElementById("menu");
+      if(innerWidth < 600)
+        temp.style.display = "none"; 
 
       break;
       case "messages":
       this.eventFromSideNav.emit(PageEnum.Messages);
-      var temp  = document.getElementById("menu");
+      if(innerWidth < 600)
+        temp.style.display = "none"; 
 
       break;
       case "settings":
       this.eventFromSideNav.emit(PageEnum.Settings);
-      var temp  = document.getElementById("menu");
+      if(innerWidth < 600)
+        temp.style.display = "none"; 
 
       break;
       case "help":
       this.eventFromSideNav.emit(PageEnum.Help);
-      var temp  = document.getElementById("menu");
+      if(innerWidth < 600)
+        temp.style.display = "none"; 
 
       break;
     }

@@ -7,14 +7,16 @@
 }
 
 .envelop{
-    direction: rtl;
     text-align: right;
     font-family: 'Alef', sans-serif;
     .div-2{
         padding: 1rem;
         background: lightgray;
+        direction: rtl;
     }
     .div-3{
+        float: right;
+        direction: rtl;
         .all-team{
             cursor: pointer; 
             cursor: pointer;
@@ -36,12 +38,14 @@
             font-weight: bold;
             color: grey;
             font-size: 1.3rem;
+            direction: rtl;
         }
         .div-3-3{
             align-items: center;
             display: flex;
             margin-left: 0.5rem;
             margin-right: 0.5rem;
+            direction: ltr;
             cursor: pointer;
             .li{
                 cursor: pointer;
@@ -54,9 +58,10 @@
 
     .swimmer-details{
         padding: 1rem;
+        direction: rtl;
         .swimmer-details-father{
-            display: flex;
-            justify-content: space-between;
+            //display: flex;
+            //justify-content: space-between;
             .group-div-1{
                 display: flex;
                 flex-direction: row;
@@ -82,11 +87,10 @@
                     }
                 }
             }
-            .group-div-2{
+            .group-div-2{                
                 button{
                     padding: 1rem;
-                    border-radius: 10px;
-                    background-color: #01a89e;
+                    background-color: #2D353C;
                     color: white;
                     font-weight: bold;
                     font-family: 'Alef', sans-serif;
@@ -94,12 +98,15 @@
                     font-size: 1rem;
                     padding-bottom: 0.3rem;
                     padding-top: 0.3rem;
+                    border: none;
+                    float: left;
                 }
             }
 
         }
         .group-div{
             padding: 0.5rem;
+            direction: rtl;
             .first{
                 font-weight: bold;
                 color: grey;
@@ -109,6 +116,7 @@
             }
         }
         .age-div{
+            direction: rtl;
             padding: 0.5rem;
             .first{
                 font-weight: bold;
@@ -119,6 +127,7 @@
             }
         }
         .height-div{
+            direction: rtl;
             padding: 0.5rem;
             .first{
                 font-weight: bold;
@@ -131,6 +140,7 @@
     }
     .buttons-div{
         display: flex;
+        direction: rtl;
         .button-1{
             width: 50%;
             padding: 1rem;
@@ -177,6 +187,7 @@
         display: flex; 
         flex-direction: column;
         margin-top: 1rem;
+        direction: rtl;
         .table-header{
             display: flex;
             .div{
@@ -191,6 +202,7 @@
         .targets{
             cursor: pointer;
             background-color: whitesmoke;
+            direction: rtl;
             div{ 
                 width: 25%;
                 align-self: center;
@@ -223,6 +235,7 @@
     .targets{
         display: flex;
         cursor: pointer;
+        direction: rtl;
         .div{
             padding: 1rem;
             display: flex;
@@ -245,17 +258,13 @@
         font-weight: bold;
         color:#800000;
         font-family: 'Alef', sans-serif;
+        direction: rtl;
     }
     .specific-div{
         display: flex;
         flex-wrap: wrap;
+        direction: rtl;
         .div-1{
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            border: 1px grey solid;
-            border-radius: 10px;
-            background-color: lightgray;
             font-family: 'Alef', sans-serif;
             .part{
                 display: flex;
@@ -272,10 +281,8 @@
     }
 
     .team-choosen{
-        display: flex;
-        justify-content: space-between;
         margin-top: 1rem;
-        margin-bottom: 1rem;
+        
         .swimmers-div{
             display: flex;
             .title{
@@ -288,17 +295,18 @@
             }
         }
         .back-div{
+            direction: rtl;
             button{
                 padding: 1rem;
-                border-radius: 10px;
-                background-color: #01a89e;
+                background-color: #2D353C;
                 color: white;
                 font-weight: bold;
                 font-family: 'Alef', sans-serif;
                 cursor: pointer;
                 font-size: 1rem;
-                padding-bottom: 0.3rem;
-                padding-top: 0.3rem;
+                float: left;
+                border: none;
+
             }
         } 
     }
@@ -308,6 +316,7 @@
         flex-direction: row;
         justify-content: space-around; 
         margin-top: 1.5rem;
+        direction: rtl;
         div{ 
             padding: 0.7rem;
             background: lightgray;
@@ -319,18 +328,19 @@
     }
  
     .filter{
-        display:flex;
-        justify-content: space-between;
+        
         padding: 1rem;
-        .div-1{
 
+        .div-1{
+            font-size: 1vw;
+            text-align: center;
         }
         .div-filter{
             cursor:pointer;
             align-self: center;
         }
         .drop-down{
-            align-self: center;
+            
         }
     }
 
@@ -338,6 +348,7 @@
         display:flex; 
         flex-wrap:wrap;
         justify-content: space-around;
+        direction: rtl;
         .graph{
             margin: 1rem;
             background: lightgray;
@@ -351,6 +362,7 @@
         display: flex;
         justify-content: space-between;
         padding: 1rem;
+        direction: rtl;
         .indi{
             display: flex;
             div{
@@ -364,6 +376,7 @@
         .arrow{
             cursor: pointer;
             display: flex;
+            direction: rtl;
             .img1{
                 width: 1rem;
                 height: 1rem;
@@ -377,18 +390,23 @@
             }
         }
     }
+
+    
 }
 
 .div-3-3:hover, .all-team:hover, .button-1:hover, .button-2:hover, .line:hover, .button-3:hover, .button-4:hover{
     background-color: aliceblue !important;
+    direction: rtl;
 }
 
 .blue{
     background: lightblue;
+    direction: rtl;
 }
 
 .grey{
     background: lightgray;
+    direction: rtl;
 }
 
 @media only screen and (max-width: 600px) {
@@ -396,12 +414,23 @@
         text-align: center !important;
     }
 
+    .div-3-2{
+        font-size: 3.5vw !important;
+    }
+
+    .canvas{
+
+    }
+    .canvas2{
+
+    }
+
 }
 
 
 .canvas{
-    width: 400px !important;
-    height: 130px !important;
+    width: 25em !important;
+    height: 18vh !important;
 }
 
 .canvas2{
