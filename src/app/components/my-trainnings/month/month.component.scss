@@ -14,18 +14,15 @@
     padding: 1rem;
     display: flex;
     justify-content: center;
-    background-color: #2D353C;
-    color: white;
+
     .left{
         width: 2rem;
         cursor: pointer;
-        color: white;
     }
     .right{
         width: 2rem;
         cursor: pointer;
         transform: rotate(180deg);
-        color: white;
     }
 }
 
@@ -36,31 +33,41 @@
     font-family: 'Alef', sans-serif; 
     justify-content: flex-start;
     width: 100%;
-    padding: 3% 0 3% 0;
-    //background: linear-gradient(rgba(197, 194, 194, 0.5), rgba(177, 176, 176, 0.5)), url('../../../../assets/calander.jpg');
-    //background-image:  url("../../../../assets/calander.png");
+    padding: 1% 0 3% 0;
     background-repeat: no-repeat;
     background-position-x: center;
-   
-    .sub-envelop{
-        background: yellow;
+    
+    .days_calendar{
+        width: 100%;
+        height: 5vh;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        justify-items: center;
+        font-size: 2vw;
+        margin-bottom: 1%;
     }
-
-    .calendar{
-        padding: 1rem;
-        border: 1px solid lightgray;
-        flex-basis: 11.28%;
-        height: 100px;
-        background-color: transparent;
+    .calendar-div{
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);   
         
-        .day{
-            font-size: 2rem;
-            font-weight: bold;
-        }
-        .dailyTrain{
-            color: lightblue;
-            cursor: pointer;
-            text-decoration: underline;
+        .calendar{
+            border: 1px solid lightgray;
+            height: 18vh;
+            background-color: transparent;
+        
+            .day{
+                font-size: 3rem;
+                font-weight: bold;
+                color: #2D353C;
+                margin: 1rem;
+            }
+            .dailyTrain{
+                color: white;
+                cursor: pointer;
+                background-color: #27A9E2;
+                text-align: center;
+            }
         }
     }
 }
