@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { TeamModel } from '../../../models/TeamModel';
 import { HttpService } from '../../../services/http-service/http-service.service';
 import { ProfileServiceService } from '../../../services/profile-service/profile-service.service';
@@ -13,7 +13,7 @@ export class BestRecordsBoxComponent implements OnInit {
    //#region Public Members
    public teams: TeamModel[] = [];
    public records: any[] = []   
-   public GoToStatsEvent: EventEmitter<boolean> = new EventEmitter();
+   @Output() GoToStatsEventFromSon: EventEmitter<boolean> = new EventEmitter();
    //#endregion
  
    //#region Constructor & Lyfecycle Hooks
@@ -41,8 +41,8 @@ export class BestRecordsBoxComponent implements OnInit {
    /**
     * GoToStats event sending
     */
-   public GoToStats():void{
-      this.GoToStatsEvent.emit(true);
+   public GoToStats():void{debugger
+      this.GoToStatsEventFromSon.emit(true);
    }
    //#endregion
 }

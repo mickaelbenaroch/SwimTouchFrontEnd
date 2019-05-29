@@ -49,13 +49,13 @@
 
     <!--Main Screen Of the Swimmer-->
     <div *ngIf="profileservice.profile !== undefined && profileservice.profile.type == role.Swimmer && pageenum !== state.MyMatalots && pageenum !== state.MyTrainnings && pageenum !== state.Statistics && pageenum !== state.Messages">
-      <app-swimmer-main-page (GoToStatsEventFather)="GoToStatsEventFather($event)"></app-swimmer-main-page>
+      <app-swimmer-main-page (GoToStatsEventFather)="GoToStatsEventFatherFunc($event)"></app-swimmer-main-page>
     </div>
 
     <div class="add-trainning" *ngIf="pageenum === state.CreateTraining">
       <app-create-training></app-create-training>
     </div>
-    <div class="add-trainning" *ngIf="pageenum === state.CreateSwimmer">
+    <div class="add-trainning" *ngIf="pageenum === state.CreateSwimmer"> 
       <app-create-team></app-create-team>
     </div>
     <div class="my-trainnings" *ngIf="pageenum === state.MyTrainnings">

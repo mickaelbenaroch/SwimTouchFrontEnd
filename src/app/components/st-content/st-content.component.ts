@@ -80,7 +80,7 @@ export class StContentComponent implements OnInit, OnChanges {
    * GoToStatsEventFather event callback
    * @param event 
    */
-  public GoToStatsEventFather():void{
+  public GoToStatsEventFatherFunc():void{debugger
     this.pageenum = PageEnum.MyMatalots;
   }
 

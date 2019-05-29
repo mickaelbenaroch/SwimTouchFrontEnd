@@ -6,7 +6,7 @@
 <div class="envelop">
     <div class="details" >
         <app-details-box></app-details-box>
-        <app-best-records-box (GoToStatsEvent)="GoToStats($event)"></app-best-records-box>
+        <app-best-records-box (GoToStatsEventFromSon)="GoToStatsCallBack($event)"></app-best-records-box>
     </div>
     <app-todo-box [misssions]=tasks></app-todo-box>
-</div>
+</div> 

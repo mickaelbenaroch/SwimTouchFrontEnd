@@ -1,5 +1,5 @@
 import { RoleEnum} from '../../enums/roleenum'
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, OnChanges, Output } from '@angular/core';
 import { TeamModel } from '../../models/TeamModel';
 import { TaskModel } from '../../models/TaskModel';
 import { MatDialogConfig, MatDialog } from '@angular/material';
@@ -14,13 +14,13 @@ import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/ge
   templateUrl: './swimmer-main-page.component.html',
   styleUrls: ['./swimmer-main-page.component.scss']
 })
-export class SwimmerMainPageComponent implements OnInit {
+export class SwimmerMainPageComponent implements OnInit{
 
   //#region Public Members
   public teams: TeamModel[] = [];
   public tasks: TaskModel[] = [];
   public notifications: NotificationModel[] = [];
-  public GoToStatsEventFather: EventEmitter<boolean> = new EventEmitter();
+  @Output() GoToStatsEventFather: EventEmitter<boolean> = new EventEmitter();
   //#endregion
 
   //#region Constructor & Lifecycle Hooks
@@ -75,7 +75,7 @@ export class SwimmerMainPageComponent implements OnInit {
    * GoToStats event callback
    * @param notification 
    */
-  public GoToStats(event): void{
+  public GoToStatsCallBack(ev): void{debugger
     this.GoToStatsEventFather.emit(true);
   }
 
