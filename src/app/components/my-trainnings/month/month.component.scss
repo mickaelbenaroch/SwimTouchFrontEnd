@@ -27,15 +27,11 @@
 }
 
 .envelop{ 
-    display: flex;
-    flex-wrap: wrap;
     direction: rtl;  
     font-family: 'Alef', sans-serif; 
-    justify-content: flex-start;
-    width: 100%;
-    padding: 1% 0 3% 0;
-    background-repeat: no-repeat;
-    background-position-x: center;
+    width: 90%;
+    display: block;
+    margin: auto;
     
     .days_calendar{
         width: 100%;
@@ -60,7 +56,7 @@
                 font-size: 3rem;
                 font-weight: bold;
                 color: #2D353C;
-                margin: 1rem;
+                margin-right: 0.5%;
             }
             .dailyTrain{
                 color: white;
@@ -72,6 +68,7 @@
     }
 }
 
+$day: (1: "א", 2: "ב", 3: "ג", 4: "ד", 5: "ה", 6: "ו", 7: "ש");
 
 @media only screen and (max-width: 600px) {
     //title
@@ -79,9 +76,21 @@
         text-align: center !important; 
     }
     .envelop{
-        
         background-image:  none;
+    }
+    
+    .days_calendar{
+        display: none !important;
+    }
 
+    .calendar-div{
+        grid-template-columns: repeat(1, 1fr) !important;  
+    }
+
+    @each $i in $day {
+        .calendar-div:after {
+            content: $i;
+        }
     }
 }
 
