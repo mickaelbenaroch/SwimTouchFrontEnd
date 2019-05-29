@@ -40,36 +40,47 @@ export class StSidenavComponent implements OnInit {
    * Handle click on sidenav item and redirect the user
    */
   public SideNiveClick(str: string):void{
+    var temp  = document.getElementById("menu");
     switch(str){
       case "landing":
       this.eventFromSideNav.emit(PageEnum.Landing);
+      temp.style.display = "none";
       break;
       case "mytrainnings":
       this.eventFromSideNav.emit(PageEnum.MyTrainnings);
+      temp.style.display = "none";
       break;
       case "myteams":
       this.eventFromSideNav.emit(PageEnum.MyTeams);
+      temp.style.display = "none";
       break;
       case "myswimmers":
       this.eventFromSideNav.emit(PageEnum.MySwimmers);
+      temp.style.display = "none";
       break;
       case "realtimetrainning":
       this.eventFromSideNav.emit(PageEnum.RealTimeTrainning);
+      temp.style.display = "none";
       break;
       case "statistics":
       this.eventFromSideNav.emit(PageEnum.Statistics);
+      temp.style.display = "none";
       break;
       case "matalots":
       this.eventFromSideNav.emit(PageEnum.MyMatalots);
+      temp.style.display = "none";
       break;
       case "messages":
       this.eventFromSideNav.emit(PageEnum.Messages);
+      temp.style.display = "none";
       break;
       case "settings":
       this.eventFromSideNav.emit(PageEnum.Settings);
+      temp.style.display = "none";
       break;
       case "help":
       this.eventFromSideNav.emit(PageEnum.Help);
+      temp.style.display = "none";
       break;
     }
   }
