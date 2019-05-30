@@ -4,4 +4,6 @@ export class DayModel{
 
     public description: string[] =[];
 
+    public group: string;
+
 }

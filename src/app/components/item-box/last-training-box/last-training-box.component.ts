@@ -56,7 +56,7 @@ export class LastTrainingBoxComponent implements OnInit {
           return new Date(a.date).getTime() - new Date(b.date).getTime();
         });
         var newest = this.trainnings[0];
-        this.httpservice.httpPost('records/getrecord',{exercise_id: newest.exercises[0].id}).subscribe(
+        this.httpservice.httpPost('records/getrecord',{exercise_id: "f78520a0-a111-4327-89fc-f55995fb6fc9"}).subscribe(
           res=>{
             if(res.isTrue){
               res.isTrue.forEach(rec =>{

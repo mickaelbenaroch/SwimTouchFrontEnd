@@ -49,8 +49,9 @@ export class MonthComponent implements OnInit, AfterViewChecked,OnChanges{
         }
         if(month == this.CurrentMonth.number.toString() || month == '0'+ this.CurrentMonth.number.toString()){
           //check for dupplicates values
-          if(!this.CurrentMonth.DayArray[Number(day) -1].description.includes(trainning.name)){
+          if(!this.CurrentMonth.DayArray[Number(day) -1].description.includes(trainning.name)){debugger
             this.CurrentMonth.DayArray[ Number(day) - 1].description.push(trainning.name);
+            this.CurrentMonth.DayArray[ Number(day) -1 ].group = trainning.exercises[0].group;
           }
         }
       })
