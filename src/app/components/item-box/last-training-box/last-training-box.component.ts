@@ -58,14 +58,16 @@ export class LastTrainingBoxComponent implements OnInit {
         var newest = this.trainnings[0];
         this.httpservice.httpPost('records/getrecord',{exercise_id: newest.exercises[0].id}).subscribe(
           res=>{
-            res.isTrue.forEach(rec =>{
-              var tt = rec.swimmer.swimmer_ref.split(' ');
-              let lab = [];
-              lab.push(tt[0]);
-              lab.push(tt[1]);
-              this.pieChartData.push(rec.results[rec.results.length -1]);
-              this.pieChartLabels.push(lab);
-            })
+            if(res.isTrue){
+              res.isTrue.forEach(rec =>{
+                var tt = rec.swimmer.swimmer_ref.split(' ');
+                let lab = [];
+                lab.push(tt[0]);
+                lab.push(tt[1]);
+                this.pieChartData.push(rec.results[rec.results.length -1]);
+                this.pieChartLabels.push(lab);
+              })
+            }
           },
           err =>{
             console.log(err);
