@@ -40,36 +40,67 @@ export class StSidenavComponent implements OnInit {
    * Handle click on sidenav item and redirect the user
    */
   public SideNiveClick(str: string):void{
+    let innerWidth = window.innerWidth;
+    var temp  = document.getElementById("menu");
+
+
     switch(str){
       case "landing":
       this.eventFromSideNav.emit(PageEnum.Landing);
+      if(innerWidth < 600)
+        temp.style.display = "none";   
+
       break;
       case "mytrainnings":
       this.eventFromSideNav.emit(PageEnum.MyTrainnings);
+      if(innerWidth < 600)
+        temp.style.display = "none";   
       break;
       case "myteams":
       this.eventFromSideNav.emit(PageEnum.MyTeams);
+      if(innerWidth < 600)
+        temp.style.display = "none";   
       break;
       case "myswimmers":
       this.eventFromSideNav.emit(PageEnum.MySwimmers);
+      if(innerWidth < 600)
+        temp.style.display = "none";   
       break;
       case "realtimetrainning":
       this.eventFromSideNav.emit(PageEnum.RealTimeTrainning);
+      if(innerWidth < 600)
+        temp.style.display = "none"; 
+
       break;
       case "statistics":
       this.eventFromSideNav.emit(PageEnum.Statistics);
+      if(innerWidth < 600)
+        temp.style.display = "none"; 
+
       break;
       case "matalots":
       this.eventFromSideNav.emit(PageEnum.MyMatalots);
+      if(innerWidth < 600)
+        temp.style.display = "none"; 
+
       break;
       case "messages":
       this.eventFromSideNav.emit(PageEnum.Messages);
+      if(innerWidth < 600)
+        temp.style.display = "none"; 
+
       break;
       case "settings":
       this.eventFromSideNav.emit(PageEnum.Settings);
+      if(innerWidth < 600)
+        temp.style.display = "none"; 
+
       break;
       case "help":
       this.eventFromSideNav.emit(PageEnum.Help);
+      if(innerWidth < 600)
+        temp.style.display = "none"; 
+
       break;
     }
   }

@@ -27,15 +27,11 @@
 }
 
 .envelop{ 
-    display: flex;
-    flex-wrap: wrap;
     direction: rtl;  
     font-family: 'Alef', sans-serif; 
-    justify-content: flex-start;
-    width: 100%;
-    padding: 1% 0 3% 0;
-    background-repeat: no-repeat;
-    background-position-x: center;
+    width: 90%;
+    display: block;
+    margin: auto;
     
     .days_calendar{
         width: 100%;
@@ -60,7 +56,7 @@
                 font-size: 3rem;
                 font-weight: bold;
                 color: #2D353C;
-                margin: 1rem;
+                margin-right: 0.5%;
             }
             .dailyTrain{
                 color: white;
@@ -79,9 +75,24 @@
         text-align: center !important; 
     }
     .envelop{
-        
         background-image:  none;
+        width: 100% !important;
+    }
 
+    .month{
+        font-size: 7vw !important;;
+    }
+    
+    .days_calendar{
+        display: none !important;
+    }
+
+    .calendar-div{
+        grid-template-columns: repeat(1, 1fr) !important;  
+
+        .day{
+            font-size: 7vw !important;
+        }
     }
 }
 

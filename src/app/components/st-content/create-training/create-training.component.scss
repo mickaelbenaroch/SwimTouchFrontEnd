@@ -40,8 +40,6 @@
             
         }
         .buttons{
-            
-           
             .but{
                 padding:1rem;
                 border-radius: 15px;
@@ -81,6 +79,9 @@
             border: none;
             margin-top: 1rem;
             padding: 0 0.8rem 0 0.8rem;
+        }
+        .repeat:hover{
+            opacity: 0.8;
         }
         .save{
             cursor: pointer;

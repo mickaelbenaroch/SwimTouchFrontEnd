@@ -1,24 +1,30 @@
 
-.back-div{
-    text-align: right;
-    .back{
-        background-color: #01a89e;
-        padding: 1rem;
-        font-size: 1.5rem;
-        text-align: center;
-        cursor: pointer;
-        font-family: Assistant;
-        color: white;
-        border-radius: 15px
+.back{
+    background-color: white;
+    cursor: pointer;
+    color: #2D353C;
+    width: 8%;
+    margin-bottom: 1rem;
+    font-size: 1.2vw;
+    border: none;
+    img{
+        width: 1.2vw;
+        margin-right: 1rem;
+        position: relative;
+        top: 3px;
     }
 }
+.back:hover{
+    opacity: 0.7;
+}
+
 
 section{
     margin-top: 1rem;
     direction: rtl;
     .no-trainnings{
         font-size: 1.5rem;
-        font-family: Assistant;
+        font-family: 'Alef', sans-serif;
         text-align: right;
         .back{
             cursor: pointer;
@@ -30,7 +36,7 @@ section{
         display: flex;
         flex-direction: column;
         border: 1px solid lightgray;
-        font-family: Assistant;
+        font-family: 'Alef', sans-serif;
         font-style: italic;
         background: #f5f5f5; 
         direction: rtl;
@@ -206,7 +212,8 @@ section{
   section{
     direction: ltr;
     text-align: left;
-    font-family: Assistant;
+    font-family: 'Alef', sans-serif;
+
     .repeat{
         cursor: pointer;
         background-color: orange;
@@ -216,9 +223,22 @@ section{
         background-color: #009933;
     }
     .resume{
-        display: flex;
-        justify-content: space-between;
-        font-size: 24px;
+        text-align: right;
+        
+        div:nth-of-type(1){
+            font-size: 2vw;
+            padding: 1%;
+            font-weight: 800;
+            color: #A8ACB1;
+        }
+        div:nth-of-type(2){
+            font-size: 1vw;
+            padding: 1%;
+        }
+        div:nth-of-type(3){
+            font-size: 1vw;
+            padding: 1%;
+        }
     }
     .title{
         font-weight: normal;
@@ -301,12 +321,120 @@ section{
     }
 }
 
+
+
 .wu-div{
     display:flex;
     justify-content: space-between;
 }
 
 .buttons{
-    align-self: flex-end;
-    padding-bottom: 0.5rem;
+    .repeat{
+        cursor: pointer;
+        background-color: orange;
+        color: white;
+        font-size: 1rem;
+        font-family: 'Alef', sans-serif;
+        border: none;
+        margin-top: 1rem;
+        padding: 0 0.8rem 0 0.8rem;
+
+    }
+    .repeat:hover{
+        opacity: 0.8;
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+    //back icon
+    .back{
+        font-size: 4vw !important;
+        font-weight: 500;
+        img{
+            width: 7vw !important;
+        }
+    }
+
+    //inside training title
+    .resume{  
+        margin-bottom: 2%;
+        div:nth-of-type(1){
+            font-size: 8vw !important;
+            text-align: center;
+        }
+        div:not(:first-child){
+            font-size: 4vw !important;
+            text-align: center;
+        }
+    }
+
+    .buttons{
+        .repeat{
+            font-size: 3.5vw !important;
+            margin-bottom: 3%;
+        }
+    }
+    .title{
+        font-size: 3.5vw !important;
+    }
+    //training box
+    //warm up
+    .wu{
+        font-size: 3.5vw !important;
+        div:nth-last-of-type(1){
+            position: relative;
+            img{
+               position: absolute;
+               right: 0; 
+               margin-right: 0rem !important;
+            }
+            
+        }
+    }
+    //Build-Up
+    .bu{
+        font-size: 3.5vw !important;
+        div:nth-last-of-type(1){
+            position: relative;
+            img{
+               position: absolute;
+               right: 0; 
+               margin-right: 0rem !important;
+
+            }
+            
+        }
+    }
+    //Core-Main
+    .co{
+        font-size: 3.5vw !important;
+        div:nth-last-of-type(1){
+            position: relative;
+            img{
+               position: absolute;
+               right: 0; 
+               margin-right: 0rem !important;
+
+            }
+           
+        }
+    }
+    //Warm-Down
+    .wd{
+        font-size: 3.5vw !important;
+        div:nth-last-of-type(1){
+            position: relative;
+            img{
+               position: absolute;
+               right: 0; 
+               margin-right: 0rem !important;
+
+            }
+            
+        }
+    }
+
+
+
 }

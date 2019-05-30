@@ -15,16 +15,29 @@
     <div class="div-3" *ngIf="currentTeam !== undefined && profileservice.profile.type == role.Trainner">
     <div *ngIf="!choosenSwimmer" style="display:flex;margin-top:0.8rem;justify-content:space-between">
       <div style="display: flex;">
-        <div class="div-3-2">בחר שחיין ספציפי או את כל הקבוצה:</div>
-        <div class="div-3-3">
-            <mat-select placeholder="בחר שחיין" (selectionChange)="SwimmerDetails($event)" name="swimmer">
-              <mat-option *ngFor="let swimmer of currentTeam.swimmers" [value]="swimmer">
-                {{swimmer.name}}
-              </mat-option>
-            </mat-select>
-        </div>
+          <div class="div-3-2">בחר שחיין ספציפי או את כל הקבוצה:</div>
+          <div class="div-3-3">
+            
+            <!--          <mat-select placeholder="בחר שחיין" (selectionChange)="SwimmerDetails($event)" name="swimmer">
+                <mat-option *ngFor="let swimmer of currentTeam.swimmers" [value]="swimmer">
+                  {{swimmer.name}}
+                </mat-option>
+              </mat-select>
+          -->
+
+              <mat-form-field>
+                  <mat-label>בחירת שחיין</mat-label>
+                  <mat-select (selectionChange)="SwimmerDetails($event)" name="swimmer">
+                    <mat-option class="all-team" (click)="AllTheTeamChoosen()">
+                          כל הקבוצה
+                    </mat-option>
+                    <mat-option *ngFor="let swimmer of currentTeam.swimmers" [value]="swimmer">
+                        {{swimmer.name}}
+                    </mat-option>
+                  </mat-select>
+              </mat-form-field>
+          </div>
       </div>
-      <div class="all-team" (click)="AllTheTeamChoosen()">כל הקבוצה</div>
     </div>
   </div>
 
@@ -59,10 +72,13 @@
     </div>
 
     <div class="team-choosen" *ngIf="teamChoosen">
+      
+      <!--
       <div class="swimmers-div">
         <div class="title">שחייני הקבוצה:</div>
         <div class="swimmer" *ngFor="let swimmer of currentTeam.swimmers">{{swimmer.name}}</div>
       </div>
+      -->
       <div class="back-div">
         <!----<button (click)="BackToSwimmerChoose()">אחורה</button>-->
         <button (click)="ChangeView()">שינוי תצוגה</button>
@@ -71,13 +87,15 @@
 
   <div class="filter" *ngIf="graphReady && !jumpGraph">
     <div class="div-1">הישגים של קבוצת <span>{{currentTeam.name}}</span> לכל סוגי המשחים</div>
-    <div class="div-filter">סינון הישגים לפי מרחקים</div>
     <div class="drop-down">
-      <mat-select placeholder="בחר מרחק" (selectionChange)="SelectDistanceForTeam($event)" name="distance">
-        <mat-option *ngFor="let dist of distances" [value]="dist">
-          {{dist}}
-        </mat-option>
-      </mat-select>
+      <mat-form-field>
+          <mat-label>בחירת מרחק</mat-label>
+          <mat-select (selectionChange)="SelectDistanceForTeam($event)" name="distance">
+            <mat-option *ngFor="let dist of distances" [value]="dist">
+                {{dist}}
+            </mat-option>
+          </mat-select>
+      </mat-form-field>
     </div>
   </div>
 
@@ -177,13 +195,23 @@
     <div class="filter" *ngIf="swimmerGraphReady && !jumpGraph">
       <div *ngIf="profileservice.profile.type == role.Trainner" class="div-1">הישגים של קבוצת <span>{{currentTeam.name}}</span> לכל סוגי המשחים</div>
       <div *ngIf="profileservice.profile.type !== role.Trainner" class="div-1">הישגים של קבוצת <span>{{currentSwimmer.name}}</span> לכל סוגי המשחים</div>
-      <div class="div-filter">סינון הישגים לפי מרחקים</div>
       <div class="drop-down">
+        <!--
         <mat-select placeholder="בחר מרחק" (selectionChange)="SelectDistanceForSwimmer($event)" name="distance">
           <mat-option *ngFor="let dist of distances" [value]="dist">
             {{dist}}
           </mat-option>
         </mat-select>
+      -->
+        <mat-form-field>
+            <mat-label>בחירת מרחק</mat-label>
+            <mat-select (selectionChange)="SelectDistanceForSwimmer($event)" name="distance">
+              <mat-option *ngFor="let dist of distances" [value]="dist">
+                  {{dist}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+      
       </div>
     </div>
     <section class="graph-section"> 

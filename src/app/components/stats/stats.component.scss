@@ -6,27 +6,32 @@
     font-family: 'Alef', sans-serif;
 }
 .envelop{
-    direction: rtl;
     text-align: right;
     font-family: 'Alef', sans-serif;
     .div-2{
         padding: 1rem;
         background: lightgray;
+        direction: rtl;
+
     }
     .div-2:hover{
         opacity: 0.8;
     }
 
     .div-3{
+        direction: rtl;
         .all-team{
             cursor: pointer; 
             font-style: italic;
             color: cadetblue;
             display: flex;
-            align-items: center
+            align-items: center;
+            direction: rtl;
+
         }
         .div-3-1{
             padding: 0.5rem;
+            direction: rtl;
             .name{
                 font-weight: bold;
                 color: grey;
@@ -38,28 +43,31 @@
             font-weight: bold;
             color: grey;
             font-size: 1.3rem;
-            
+            direction: rtl;
         }
         mat-select{
             color: #8a8264;
         }
-        /*.div-3-3{
+        .div-3-3{
             align-items: center;
             display: flex;
             margin-left: 0.5rem;
             margin-right: 0.5rem;
+            direction: ltr;
             cursor: pointer;
             .li{
                 cursor: pointer;
                 font-style: italic;
                 color: lightblue;
             }
-        }*/
+        }
     }
 
 
     .swimmer-details{
         padding: 1rem;
+        direction: rtl;
+
         .swimmer-details-father{
             //display: flex;
             //justify-content: space-between;
@@ -138,6 +146,8 @@
     }
     .buttons-div{
         display: flex;
+        direction: rtl;
+
         .button-1{
             width: 50%;
             padding: 1rem;
@@ -184,6 +194,8 @@
         display: flex; 
         flex-direction: column;
         margin-top: 1rem;
+        direction: rtl;
+
         .table-header{
             display: flex;
             .div{
@@ -198,6 +210,8 @@
         .targets{
             cursor: pointer;
             background-color: whitesmoke;
+            direction: rtl;
+
             div{ 
                 width: 25%;
                 align-self: center;
@@ -230,6 +244,8 @@
     .targets{
         display: flex;
         cursor: pointer;
+        direction: rtl;
+
         .div{
             padding: 1rem;
             display: flex;
@@ -252,10 +268,14 @@
         font-weight: bold;
         color:#800000;
         font-family: 'Alef', sans-serif;
+        direction: rtl;
+
     }
     .specific-div{
         display: flex;
         flex-wrap: wrap;
+        direction: rtl;
+
         .div-1{
             display: flex;
             flex-direction: column;
@@ -280,6 +300,8 @@
 
     .team-choosen{
         margin-top: 1rem;
+        direction: rtl;
+
         .swimmers-div{
             .title{
                 font-weight: bold;
@@ -311,6 +333,8 @@
 
 .div-3-3:hover, .all-team:hover, .button-1:hover, .button-2:hover, .line:hover, .button-3:hover, .button-4:hover{
     background-color: aliceblue !important;
+    direction: rtl;
+
 }
 
 @media only screen and (max-width: 600px) {
