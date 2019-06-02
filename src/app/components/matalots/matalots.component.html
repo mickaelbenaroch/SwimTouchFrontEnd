@@ -86,7 +86,7 @@
     </div>
 
   <div class="filter" *ngIf="graphReady && !jumpGraph">
-    <div class="div-1">הישגים של קבוצת <span>{{currentTeam.name}}</span> לכל סוגי המשחים</div>
+    <!--<div class="div-1">הישגים של קבוצת <span>{{currentTeam.name}}</span> לכל סוגי המשחים</div>-->
     <div class="drop-down">
       <mat-form-field>
           <mat-label>בחירת מרחק</mat-label>
@@ -102,10 +102,10 @@
   <div *ngIf="!jumpGraph"> 
     <section class="graph-section"> 
       <div class="graph" *ngIf="graphReady && lineChartDataFreestyle[0].data !== undefined && lineChartDataFreestyle[0].data.length > 0">
-        <div style="margin-top: 1rem;color:#800000;text-align:left;">
-          <span style="color:black;">הישג (בשניות)</span>
+        <div>
+          <span>הישג (בשניות)</span>
         </div>
-        <div style="display: block;margin-top: 1rem;margin: auto;">
+        <div>
           <canvas class="canvas canvaselement" baseChart 
             [datasets]="lineChartDataFreestyle"
             [labels]="lineChartLabelsFreestyle"
@@ -116,14 +116,14 @@
             (chartClick)="ChartClickedForTeam($event)">
           </canvas>
         </div>
-        <div style="text-align:center;">תאריך ההישג</div>
+        <div>תאריך ההישג</div>
       </div>
 
       <div class="graph" *ngIf="graphReady && lineChartDataBackstroke[0].data !== undefined && lineChartDataBackstroke[0].data.length > 0">
-        <div style="margin-top: 1rem;color:#800000;text-align:left;">
-          <span style="color:black;">הישג (בשניות)</span>
+        <div>
+          <span>הישג (בשניות)</span>
         </div>
-        <div style="display: block;margin-top: 1rem;margin: auto;">
+        <div>
           <canvas class="canvas canvaselement" baseChart 
             [datasets]="lineChartDataBackstroke"
             [labels]="lineChartLabelsBackstroke"
@@ -134,14 +134,14 @@
             (chartClick)="ChartClickedForTeam($event)">
           </canvas>
         </div>
-        <div style="text-align:center;">תאריך ההישג</div>
+        <div>תאריך ההישג</div>
       </div>
 
       <div class="graph" *ngIf="graphReady && lineChartDataBreaststroke[0].data !== undefined && lineChartDataBreaststroke[0].data.length > 0">
-        <div style="margin-top: 1rem;color:#800000;text-align:left;">
-          <span style="color:black;">הישג (בשניות)</span>
+        <div>
+          <span>הישג (בשניות)</span>
         </div>
-        <div style="display: block;margin-top: 1rem;margin: auto;">
+        <div>
           <canvas class="canvas canvaselement" baseChart 
             [datasets]="lineChartDataBreaststroke"
             [labels]="lineChartLabelsBreaststroke"
@@ -152,14 +152,14 @@
             (chartClick)="ChartClickedForTeam($event)">
           </canvas>
         </div>
-        <div style="text-align:center;">תאריך ההישג</div>
+        <div>תאריך ההישג</div>
       </div>
 
       <div class="graph" *ngIf="graphReady && lineChartDataButterfly[0].data !== undefined && lineChartDataButterfly[0].data.length > 0">
-        <div style="margin-top: 1rem;color:#800000;text-align:left;">
-          <span style="color:black;">הישג (בשניות)</span>
+        <div>
+          <span>הישג (בשניות)</span>
         </div>
-        <div style="display: block;margin-top: 1rem;margin: auto;">
+        <div >
           <canvas class="canvas canvaselement" baseChart 
             [datasets]="lineChartDataButterfly"
             [labels]="lineChartLabelsButterfly"
@@ -170,14 +170,14 @@
             (chartClick)="ChartClickedForTeam($event)">
           </canvas>
         </div>
-        <div style="text-align:center;">תאריך ההישג</div>
+        <div>תאריך ההישג</div>
       </div>
 
       <div class="graph" *ngIf="graphReady && lineChartDataIndividualMedley[0].data !== undefined && lineChartDataIndividualMedley[0].data.length > 0">
-        <div style="margin-top: 1rem;color:#800000;text-align:left;">
-          <span style="color:black;">הישג (בשניות)</span>
+        <div >
+          <span >הישג (בשניות)</span>
         </div>
-        <div style="display: block;margin-top: 1rem;margin: auto;">
+        <div >
           <canvas class="canvas canvaselement" baseChart 
             [datasets]="lineChartDataIndividualMedley"
             [labels]="lineChartLabelsIndividualMedley"
@@ -188,13 +188,13 @@
             (chartClick)="ChartClickedForTeam($event)">
           </canvas>
         </div>
-        <div style="text-align:center;">תאריך ההישג</div>
+        <div >תאריך ההישג</div>
       </div>
     </section>
 
     <div class="filter" *ngIf="swimmerGraphReady && !jumpGraph">
-      <div *ngIf="profileservice.profile.type == role.Trainner" class="div-1">הישגים של קבוצת <span>{{currentTeam.name}}</span> לכל סוגי המשחים</div>
-      <div *ngIf="profileservice.profile.type !== role.Trainner" class="div-1">הישגים של קבוצת <span>{{currentSwimmer.name}}</span> לכל סוגי המשחים</div>
+      <!--<div *ngIf="profileservice.profile.type == role.Trainner" class="div-1">הישגים של קבוצת <span>{{currentTeam.name}}</span> לכל סוגי המשחים</div>
+      <div *ngIf="profileservice.profile.type !== role.Trainner" class="div-1">הישגים של קבוצת <span>{{currentSwimmer.name}}</span> לכל סוגי המשחים</div>-->
       <div class="drop-down">
         <!--
         <mat-select placeholder="בחר מרחק" (selectionChange)="SelectDistanceForSwimmer($event)" name="distance">
@@ -216,10 +216,10 @@
     </div>
     <section class="graph-section"> 
       <div class="graph" *ngIf="swimmerGraphReady && lineChartDataFreestyle[0].data !== undefined && lineChartDataFreestyle[0].data.length > 0">
-        <div style="margin-top: 1rem;color:#800000;text-align:left;">
-          <span style="color:black;">הישג (בשניות)</span>
+        <div >
+          <span >הישג (בשניות)</span>
         </div>
-        <div style="display: block;margin-top: 1rem;margin: auto;">
+        <div >
           <canvas class="canvas canvaselement" baseChart 
             [datasets]="lineChartDataFreestyle"
             [labels]="lineChartLabelsFreestyle"
@@ -230,14 +230,14 @@
             (chartClick)="ChartClickedForSwimmer($event)">
           </canvas>
         </div>
-        <div style="text-align:center;">תאריך ההישג</div>
+        <div >תאריך ההישג</div>
       </div>
 
       <div class="graph" *ngIf="swimmerGraphReady && lineChartDataBackstroke[0].data !== undefined && lineChartDataBackstroke[0].data.length > 0">
-        <div style="margin-top: 1rem;color:#800000;text-align:left;">
-          <span style="color:black;">הישג (בשניות)</span>
+        <div >
+          <span >הישג (בשניות)</span>
         </div>
-        <div style="display: block;margin-top: 1rem;margin: auto;">
+        <div >
           <canvas class="canvas canvaselement" baseChart 
             [datasets]="lineChartDataBackstroke"
             [labels]="lineChartLabelsBackstroke"
@@ -248,14 +248,14 @@
             (chartClick)="ChartClickedForSwimmer($event)">
           </canvas>
         </div>
-        <div style="text-align:center;">תאריך ההישג</div>
+        <div >תאריך ההישג</div>
       </div>
 
       <div class="graph" *ngIf="swimmerGraphReady && lineChartDataBreaststroke[0].data !== undefined && lineChartDataBreaststroke[0].data.length > 0">
-        <div style="margin-top: 1rem;color:#800000;text-align:left;">
-          <span style="color:black;">הישג (בשניות)</span>
+        <div >
+          <span >הישג (בשניות)</span>
         </div>
-        <div style="display: block;margin-top: 1rem;margin: auto;">
+        <div >
           <canvas class="canvas canvaselement" baseChart 
             [datasets]="lineChartDataBreaststroke"
             [labels]="lineChartLabelsBreaststroke"
@@ -266,14 +266,14 @@
             (chartClick)="ChartClickedForSwimmer($event)">
           </canvas>
         </div>
-        <div style="text-align:center;">תאריך ההישג</div>
+        <div >תאריך ההישג</div>
       </div>
 
       <div class="graph" *ngIf="swimmerGraphReady && lineChartDataButterfly[0].data !== undefined && lineChartDataButterfly[0].data.length > 0">
-        <div style="margin-top: 1rem;color:#800000;text-align:left;">
-          <span style="color:black;">הישג (בשניות)</span>
+        <div >
+          <span >הישג (בשניות)</span>
         </div>
-        <div style="display: block;margin-top: 1rem;margin: auto;">
+        <div>
           <canvas class="canvas canvaselement" baseChart 
             [datasets]="lineChartDataButterfly"
             [labels]="lineChartLabelsButterfly"
@@ -284,14 +284,14 @@
             (chartClick)="ChartClickedForSwimmer($event)">
           </canvas>
         </div>
-        <div style="text-align:center;">תאריך ההישג</div>
+        <div >תאריך ההישג</div>
       </div>
 
       <div class="graph" *ngIf="swimmerGraphReady && lineChartDataIndividualMedley[0].data !== undefined && lineChartDataIndividualMedley[0].data.length > 0">
-        <div style="margin-top: 1rem;color:#800000;text-align:left;">
-          <span style="color:black;">הישג (בשניות)</span>
+        <div >
+          <span >הישג (בשניות)</span>
         </div>
-        <div style="display: block;margin-top: 1rem;margin: auto;">
+        <div>
           <canvas class="canvas canvaselement" baseChart 
             [datasets]="lineChartDataIndividualMedley"
             [labels]="lineChartLabelsIndividualMedley"
@@ -302,7 +302,7 @@
             (chartClick)="ChartClickedForSwimmer($event)">
           </canvas>
         </div>
-        <div style="text-align:center;">תאריך ההישג</div>
+        <div>תאריך ההישג</div>
       </div>
     </section>
   </div>
@@ -311,8 +311,8 @@
 <!--JumpTimeGraphTeam-->
   <div class="graph-section" *ngIf="jumpGraph">
     <div class="graph" *ngIf="lineChartDataFreestyleJump[0].data !== undefined && lineChartDataFreestyleJump[0].data.length > 0">
-        <div style="margin-top: 1rem;color:#800000;text-align:left;">
-          <span style="color:black;">הישג (בשניות)</span>
+        <div>
+          <span>הישג (בשניות)</span>
         </div>
         <div style="display: block;margin-top: 1rem;margin: auto;">
           <canvas class="canvas canvaselement" baseChart 
@@ -325,14 +325,14 @@
             (chartClick)="ChartClickedForSwimmer($event)">
           </canvas>
         </div>
-        <div style="text-align:center;">תאריך ההישג</div>
+        <div >תאריך ההישג</div>
       </div>
 
       <div class="graph" *ngIf="lineChartDataBackstrokeJump[0].data !== undefined && lineChartDataBackstrokeJump[0].data.length > 0">
-        <div style="margin-top: 1rem;color:#800000;text-align:left;">
-          <span style="color:black;">הישג (בשניות)</span>
+        <div >
+          <span >הישג (בשניות)</span>
         </div>
-        <div style="display: block;margin-top: 1rem;margin: auto;">
+        <div >
           <canvas class="canvas canvaselement" baseChart 
             [datasets]="lineChartDataBackstrokeJump"
             [labels]="lineChartLabelsBackstrokeJump"
@@ -343,14 +343,14 @@
             (chartClick)="ChartClickedForSwimmer($event)">
           </canvas>
         </div>
-        <div style="text-align:center;">תאריך ההישג</div>
+        <div >תאריך ההישג</div>
       </div>
 
       <div class="graph" *ngIf="lineChartDataBreaststrokeJump[0].data !== undefined && lineChartDataBreaststrokeJump[0].data.length > 0">
-        <div style="margin-top: 1rem;color:#800000;text-align:left;">
-          <span style="color:black;">הישג (בשניות)</span>
+        <div >
+          <span >הישג (בשניות)</span>
         </div>
-        <div style="display: block;margin-top: 1rem;margin: auto;">
+        <div>
           <canvas class="canvas canvaselement" baseChart 
             [datasets]="lineChartDataBreaststrokeJump"
             [labels]="lineChartLabelsBreaststrokeJump"
@@ -361,12 +361,12 @@
             (chartClick)="ChartClickedForSwimmer($event)">
           </canvas>
         </div>
-        <div style="text-align:center;">תאריך ההישג</div>
+        <div >תאריך ההישג</div>
       </div>
 
       <div class="graph" *ngIf="lineChartDataButterflyJump[0].data !== undefined && lineChartDataButterflyJump[0].data.length > 0">
-        <div style="margin-top: 1rem;color:#800000;text-align:left;">
-          <span style="color:black;">הישג (בשניות)</span>
+        <div >
+          <span >הישג (בשניות)</span>
         </div>
         <div style="display: block;margin-top: 1rem;margin: auto;">
           <canvas class="canvas canvaselement" baseChart 
@@ -379,14 +379,14 @@
             (chartClick)="ChartClickedForSwimmer($event)">
           </canvas>
         </div>
-        <div style="text-align:center;">תאריך ההישג</div>
+        <div >תאריך ההישג</div>
       </div>
 
       <div class="graph" *ngIf="lineChartDataIndividualMedleyJump[0].data !== undefined && lineChartDataIndividualMedleyJump[0].data.length > 0">
-        <div style="margin-top: 1rem;color:#800000;text-align:left;">
-          <span style="color:black;">הישג (בשניות)</span>
+        <div >
+          <span >הישג (בשניות)</span>
         </div>
-        <div style="display: block;margin-top: 1rem;margin: auto;">
+        <div >
           <canvas class="canvas canvaselement" baseChart 
             [datasets]="lineChartDataIndividualMedleyJump"
             [labels]="lineChartLabelsIndividualMedleyJump"
@@ -397,7 +397,7 @@
             (chartClick)="ChartClickedForSwimmer($event)">
           </canvas>
         </div>
-        <div style="text-align:center;">תאריך ההישג</div>
+        <div >תאריך ההישג</div>
       </div>
   </div>
 

@@ -86,6 +86,7 @@ export class MatalotsComponent implements OnInit {
   public lineChartDataIndividualMedleyJump: any[] = [{ data: [], label: 'Individual Medley' }];
   public lineChartLabelsIndividualMedleyJump: any[] = [];
 
+
   public lineChartOptions: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
@@ -93,8 +94,9 @@ export class MatalotsComponent implements OnInit {
       xAxes: [
        {
            display: true,
+           //date font size
            ticks: {
-             fontSize: 10
+             fontSize: 15
            }
        }
      ]

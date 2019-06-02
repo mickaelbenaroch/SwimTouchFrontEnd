@@ -7,7 +7,6 @@
 }
 
 .envelop{
-    text-align: right;
     font-family: 'Alef', sans-serif;
     .div-2{
         padding: 1rem;
@@ -321,7 +320,7 @@
             background: lightgray;
             border-radius: 7px;
             font-weight: bold;
-            font-family: Assistant;
+            font-family: 'Alef', sans-serif;
             cursor: pointer;
         }
     }
@@ -344,15 +343,29 @@
     }
 
     .graph-section{
-        display:flex; 
-        flex-wrap:wrap;
-        justify-content: space-around;
-        direction: rtl;
         .graph{
             margin: 1rem;
-            background: lightgray;
-            border-radius: 10px;
             padding: 1rem;
+
+            //הישג בשניות
+            div:nth-of-type(1){
+                margin-top: 1rem;
+                color:#3AAAB5;
+                direction: rtl;
+                width: 100%;
+                text-align: end;
+            }
+            //הגרף עצמו
+            div:nth-of-type(2){
+                display: block;
+                margin-top: 1rem;
+                margin: auto;
+            }
+            //תאריך ההישג
+            div:nth-of-type(3){
+                color: #3AAAB5;
+                text-align:center;
+            }
         }
     }
 
@@ -418,7 +431,7 @@
     }
 
     .canvas{
-
+       
     }
     .canvas2{
 
@@ -428,8 +441,8 @@
 
 
 .canvas{
-    width: 25em !important;
-    height: 18vh !important;
+    width: 100% !important;
+    height: 35vh !important;
 }
 
 .canvas2{
