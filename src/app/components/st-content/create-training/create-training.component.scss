@@ -105,8 +105,9 @@
             font-weight: normal;
             color: #000;
             font-size: 1.3em;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.8rem;
             margin-top: 1rem;
+            direction: ltr;
         }
 
         .wu{
@@ -216,6 +217,7 @@
 .wu-div{
     display:flex;
     justify-content: space-between;
+    margin-top: 3%;
 }
 
 .accept{
