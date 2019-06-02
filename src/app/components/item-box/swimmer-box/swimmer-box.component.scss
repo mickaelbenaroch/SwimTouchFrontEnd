@@ -16,13 +16,13 @@
     }
 
     .box-content{
-        width: 100%;
+        width: 99.5%;
         height: 35vh;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
-        background-color: #D9E0E7;
         align-items: center;
         justify-items: center;
+        border: 1px solid #2D353C;
 
         .image-box{
             width: 80%;
