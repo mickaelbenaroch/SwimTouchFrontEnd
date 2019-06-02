@@ -1,6 +1,6 @@
 .title{
     font-family: 'Alef', sans-serif;
-    padding: 2%; 
+    padding: 1%; 
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "brad title";
@@ -22,10 +22,9 @@
 
 .envelop{
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 1.3fr;
     grid-template-areas: "details" "todo";
-    grid-gap: 2%;
-    height: 100vh;
+    grid-gap: 1%;
 
     app-todo-box{
         grid-area: todo;
@@ -36,7 +35,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-areas: "details records";
-        grid-gap: 3%;
+        grid-gap: 1%;
 
         app-details-box{
             grid-area: details;

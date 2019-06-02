@@ -1,21 +1,7 @@
 <div class="myDetails">
-      <div class="box-title"><h3>פרטי השחיין</h3></div>
+      <div class="box-title"><h3>לוח אימונים</h3></div>
       <div class="box-content" id="detailsBoxContent">
-          <div class="details" *ngIf="profileservice.profile !== undefined">
-            <div class="group-1">
-                <div>
-                    <img  *ngIf="profileservice.profile.picture !== '' && profileservice.profile.picture !== null && profileservice.profile.picture !== undefined" [src]=profileservice.profile.picture> 
-                    <img  *ngIf="profileservice.profile.picture == '' || profileservice.profile.picture == null || profileservice.profile.picture == undefined" src="/assets/user.svg">
-                    <span>{{profileservice.profile.user}}</span>
-                </div>
-                <div>
-                    <span >שם: {{profileservice.profile.first_name}}</span>
-                    <span >משפחה: {{profileservice.profile.last_name}}</span>
-                    <span>קבוצה: {{profileservice.profile.group}}</span>
-                    <span>גיל: {{profileservice.profile.age}}</span>
-                </div>
-            </div>
-          </div>
+          להוסיף מהלוח שנה את הקוביה של היום עם האימונים של אותו תאריך
       </div>
-      <div class="box-herf"></div>
+      <div class="box-herf">ללוח המלא</div>
   </div>
