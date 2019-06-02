@@ -31,6 +31,7 @@
                 border: 1px solid lightgray;
                 color: black;
                 font-size: 1.1rem;
+                cursor: pointer;
             }
         }
         .line{
@@ -65,4 +66,9 @@
             cursor: pointer;
         }
     }
+}
+
+
+.header div:hover{
+    background: #01a89e;
 }

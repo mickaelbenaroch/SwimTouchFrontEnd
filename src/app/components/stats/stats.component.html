@@ -31,9 +31,9 @@
             <mat-form-field>
                 <mat-label>בחירת שחיין</mat-label>
                 <mat-select (selectionChange)="SwimmerDetails($event)" name="swimmer">
-                  <mat-option class="all-team" (click)="AllTheTeamChoosen()">
+                  <!---<mat-option class="all-team" (click)="AllTheTeamChoosen()">
                         כל הקבוצה
-                  </mat-option>
+                  </mat-option>-->
                   <mat-option *ngFor="let swimmer of currentTeam.swimmers" [value]="swimmer">
                       {{swimmer.name}}
                   </mat-option>

@@ -226,15 +226,16 @@ export class StatsComponent implements OnInit {
       if(target.done){
         dialogConfig.data = {
           title: 'משחים שבהם היעד הושג על ידי: ' + this.currentSwimmer.name,
-          records: this.recorsBetterThanTarget,
+          records: this.records,
           target: target,
           button: true,
           buttonText: "הבנתי!"
         };
-      }else{
+      }
+      else{
         dialogConfig.data = {
-          title: 'משחים שבהם היעדלא הושג על ידי: ' + this.currentSwimmer.name,
-          records: this.recorsNotBetterThanTarget,
+          title: 'משחים שבהם היעד לא הושג על ידי: ' + this.currentSwimmer.name,
+          records: this.records,
           button: true,
           target:target,
           buttonText: "הבנתי!",
@@ -351,12 +352,12 @@ export class StatsComponent implements OnInit {
               return;
             }
             this.currentSwimmerTargets.forEach(tar =>{
-              if(!tar.done){
+              if(!tar.done || tar.done){
                 this.records.forEach(rec => {
                   if(((new Date(rec.exercise_id.date).getTime()) > (new Date(tar.date).getTime())) &&
                        rec.exercise_id.style == tar.style &&
                        rec.exercise_id.distance == tar.distance &&
-                       rec.exercise_id.hasBeenStarted &&
+                       //rec.exercise_id.hasBeenStarted &&
                        rec.results !== undefined &&
                        rec.results[rec.results.length - 1] <= tar.targetTime){
                               if(!tar.done){
