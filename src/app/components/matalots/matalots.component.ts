@@ -799,7 +799,7 @@ public AllTheTeamChoosen():void{
       record: rec,
     };
     dialogConfig.width = "653px";
-    dialogConfig.height = "550px";
+    dialogConfig.height = "650px";
     this.dialog.open(RecordDetailsComponent, dialogConfig);
   }
 

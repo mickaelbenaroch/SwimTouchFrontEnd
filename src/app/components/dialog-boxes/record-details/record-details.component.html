@@ -25,11 +25,24 @@
         <div>זמן קפיצה :</div>
         <div>{{record.jump_time}}</div>
       </div>
-      <div class="touch">זמני נגיעות:</div>
+      <div style="display:flex;justify-content:space-between;">
+        <div class="touch">זמני נגיעות:</div>
+        <div style="cursor:pointer" (click)="ShowGraph()">הצג בגרף</div>
+      </div>
       <div class="div-2-item" *ngFor="let rec of record.results; let i = index">
         <div>נגיעה {{i + 1}} :</div>
         <div>{{rec}}</div>
         <div> {{record.date | datepipe}}</div>
+      </div>
+      <div *ngIf="graph">
+          <canvas class="canvas canvaselement" baseChart 
+            [datasets]="lineChartData"
+            [labels]="lineChartLabels"
+            [options]="lineChartOptions"
+            [colors]="lineChartColors"
+            [chartType]="lineChartType"
+            [plugins]="lineChartPlugins">
+          </canvas>
       </div>
   </div>
   <div class="div-3">

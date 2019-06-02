@@ -425,7 +425,7 @@ export class StatsComponent implements OnInit {
       notification.type = NotificationTypeEnum.Warning;
       notification.coachmail = localStorage.getItem("email");
       notification.date = new Date();
-      notification.message = "  נא לשים לב שהיעד הבא לא הושג " + tar.style + ' ' + tar.distance + ' ,זמן ' + tar.targetTime;
+      notification.message = "  נא לשים לב שהיעד הבא לא הושג " + tar.style + ' ' + tar.distance + ' מטר' + ' ,עליך לרדת מ: ' + tar.targetTime + 'שניות';
       notification.title = "הזהרה עקב אי עמידה ביעד שנקבע  לך על ידי המאמן!";
       notification.priority = "didnt_get_target_message";
       if(swimmer_ref == null){
