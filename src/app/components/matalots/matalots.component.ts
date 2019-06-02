@@ -965,20 +965,20 @@ public AllTheTeamChoosen():void{
             if(this.FreestyleArray[i].results[this.FreestyleArray[i].results.length - 1] > freestyleAvaerage){
               if(i > 2){
                 if(this.FreestyleArray[i-1].results[this.FreestyleArray[i].results.length - 1] > freestyleAvaerage)
-                console.log(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין האחרונים בסגנון ");
-                this.sendNotificationForSwimmerTarget(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין האחרונים בסגנון ", this.FreestyleArray[i].swimmer._id)
+                console.log( " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין האחרונים בסגנון " + this.FreestyleArray[i-1].exercise_id.style);
+                this.sendNotificationForSwimmerTarget( " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין האחרונים בסגנון " + this.FreestyleArray[i-1].exercise_id.style, this.FreestyleArray[i].swimmer._id)
               }else{
                 console.log(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של השחיין בסגנון " );
-                this.sendNotificationForSwimmerTarget(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של השחיין בסגנון ", this.FreestyleArray[i].swimmer._id)
+                this.sendNotificationForSwimmerTarget( " המערכת זיהתה ירידה בהישיג האחרון של השחיין בסגנון " + this.FreestyleArray[i-1].exercise_id.style , this.FreestyleArray[i].swimmer._id)
               }
             }else if(this.FreestyleArray[i].results[this.FreestyleArray[i].results.length - 1] < freestyleAvaerage){
               if(i > 2){
                 if(this.FreestyleArray[i-1].results[this.FreestyleArray[i].results.length - 1] < freestyleAvaerage)
                 console.log(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי השחיין האחרונים בסגנון " );
-                this.sendNotificationForSwimmerTarget(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי השחיין האחרונים בסגנון " , this.FreestyleArray[i].swimmer._id)
+                this.sendNotificationForSwimmerTarget( " המערכת זיהתה שיפור משמעותי בהשיגי השחיין האחרונים בסגנון " + this.FreestyleArray[i-1].exercise_id.style , this.FreestyleArray[i].swimmer._id)
               }else{
                 console.log(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של השחיין בסגנון ");
-                this.sendNotificationForSwimmerTarget(this.FreestyleArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של השחיין בסגנון " , this.FreestyleArray[i].swimmer._id)
+                this.sendNotificationForSwimmerTarget( " המערכת זיהתה שיפור בהישיג האחרון של השחיין בסגנון " + this.FreestyleArray[i-1].exercise_id.style , this.FreestyleArray[i].swimmer._id)
               }
             }
           }
@@ -996,19 +996,19 @@ public AllTheTeamChoosen():void{
               if(i > 2){
                 if(this.BackstrokeArray[i-1].results[this.BackstrokeArray[i].results.length - 1] > backstrokeAvaerage)
                 console.log(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין האחרונים בסגנון ");
-                this.sendNotificationForSwimmerTarget(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין האחרונים בסגנון " , this.BackstrokeArray[i].swimmer._id)
+                this.sendNotificationForSwimmerTarget( " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין האחרונים בסגנון " + this.BackstrokeArray[i-1].exercise_id.style , this.BackstrokeArray[i].swimmer._id)
               }else{
                 console.log(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של השחיין בסגנון " );
-                this.sendNotificationForSwimmerTarget(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של השחיין בסגנון "  , this.BackstrokeArray[i].swimmer._id)
+                this.sendNotificationForSwimmerTarget( " המערכת זיהתה ירידה בהישיג האחרון של השחיין בסגנון " + this.BackstrokeArray[i-1].exercise_id.style , this.BackstrokeArray[i].swimmer._id)
               }
             }else if(this.BackstrokeArray[i].results[this.BackstrokeArray[i].results.length - 1] < backstrokeAvaerage){
               if(i > 2){
                 if(this.BackstrokeArray[i-1].results[this.BackstrokeArray[i].results.length - 1] < backstrokeAvaerage)
                 console.log(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי השחיין האחרונים בסגנון " );
-                this.sendNotificationForSwimmerTarget(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי השחיין האחרונים בסגנון "  , this.BackstrokeArray[i].swimmer._id)
+                this.sendNotificationForSwimmerTarget(" המערכת זיהתה שיפור משמעותי בהשיגי השחיין האחרונים בסגנון " + this.BackstrokeArray[i-1].exercise_id.style  , this.BackstrokeArray[i].swimmer._id)
               }else{
                 console.log(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של השחיין בסגנון ");
-                this.sendNotificationForSwimmerTarget(this.BackstrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של השחיין בסגנון " , this.BackstrokeArray[i].swimmer._id)
+                this.sendNotificationForSwimmerTarget( " המערכת זיהתה שיפור בהישיג האחרון של השחיין בסגנון " + this.BackstrokeArray[i-1].exercise_id.style , this.BackstrokeArray[i].swimmer._id)
               }
             }
           }
@@ -1025,19 +1025,19 @@ public AllTheTeamChoosen():void{
               if(i > 2){
                 if(this.BreaststrokeArray[i-1].results[this.BreaststrokeArray[i].results.length - 1] > breatstrokeAvaerage)
                 console.log(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין האחרונים בסגנון ");
-                this.sendNotificationForSwimmerTarget(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין האחרונים בסגנון ", this.BreaststrokeArray[i].swimmer._id)
+                this.sendNotificationForSwimmerTarget(" המערכת זיהתה ירידה מדאיגה בהשיגי השחיין האחרונים בסגנון " + this.BreaststrokeArray[i-1].exercise_id.style, this.BreaststrokeArray[i].swimmer._id)
               }else{
                 console.log(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של השחיין בסגנון " );
-                this.sendNotificationForSwimmerTarget(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של השחיין בסגנון ", this.BreaststrokeArray[i].swimmer._id)
+                this.sendNotificationForSwimmerTarget( " המערכת זיהתה ירידה בהישיג האחרון של השחיין בסגנון " + this.BreaststrokeArray[i-1].exercise_id.style, this.BreaststrokeArray[i].swimmer._id)
               }
             }else if(this.BreaststrokeArray[i].results[this.BreaststrokeArray[i].results.length - 1] < breatstrokeAvaerage){
               if(i > 2){
                 if(this.BreaststrokeArray[i-1].results[this.BreaststrokeArray[i].results.length - 1] < breatstrokeAvaerage)
                 console.log(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי השחיין האחרונים בסגנון " );
-                this.sendNotificationForSwimmerTarget(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי השחיין האחרונים בסגנון " , this.BreaststrokeArray[i].swimmer._id)
+                this.sendNotificationForSwimmerTarget(" המערכת זיהתה שיפור משמעותי בהשיגי השחיין האחרונים בסגנון " + this.BreaststrokeArray[i-1].exercise_id.style  , this.BreaststrokeArray[i].swimmer._id)
               }else{
                 console.log(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של השחיין בסגנון ");
-                this.sendNotificationForSwimmerTarget(this.BreaststrokeArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של השחיין בסגנון ", this.BreaststrokeArray[i].swimmer._id)
+                this.sendNotificationForSwimmerTarget(" המערכת זיהתה שיפור בהישיג האחרון של השחיין בסגנון " + this.BreaststrokeArray[i-1].exercise_id.style , this.BreaststrokeArray[i].swimmer._id)
               }
             }
           }
@@ -1054,19 +1054,19 @@ public AllTheTeamChoosen():void{
               if(i > 2){
                 if(this.ButterflyArray[i-1].results[this.ButterflyArray[i].results.length - 1] > butterflyAvaerage)
                 console.log(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין האחרונים בסגנון ");
-                this.sendNotificationForSwimmerTarget(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין האחרונים בסגנון ", this.ButterflyArray[i].swimmer._id)
+                this.sendNotificationForSwimmerTarget( " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין האחרונים בסגנון " + this.ButterflyArray[i-1].exercise_id.style, this.ButterflyArray[i].swimmer._id)
               }else{
                 console.log(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של השחיין בסגנון " );
-                this.sendNotificationForSwimmerTarget(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של השחיין בסגנון ", this.ButterflyArray[i].swimmer._id)
+                this.sendNotificationForSwimmerTarget( " המערכת זיהתה ירידה בהישיג האחרון של השחיין בסגנון " + this.ButterflyArray[i-1].exercise_id.style, this.ButterflyArray[i].swimmer._id)
               }
             }else if(this.ButterflyArray[i].results[this.ButterflyArray[i].results.length - 1] < butterflyAvaerage){
               if(i > 2){
                 if(this.ButterflyArray[i-1].results[this.ButterflyArray[i].results.length - 1] < butterflyAvaerage)
                 console.log(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי השחיין  האחרונים בסגנון " );
-                this.sendNotificationForSwimmerTarget(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי השחיין  האחרונים בסגנון " , this.ButterflyArray[i].swimmer._id)
+                this.sendNotificationForSwimmerTarget( " המערכת זיהתה שיפור משמעותי בהשיגי השחיין  האחרונים בסגנון " + this.ButterflyArray[i-1].exercise_id.style, this.ButterflyArray[i].swimmer._id)
               }else{
                 console.log(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של השחיין בסגנון ");
-                this.sendNotificationForSwimmerTarget(this.ButterflyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של השחיין בסגנון ", this.ButterflyArray[i].swimmer._id)
+                this.sendNotificationForSwimmerTarget( " המערכת זיהתה שיפור בהישיג האחרון של השחיין בסגנון " + this.ButterflyArray[i-1].exercise_id.style, this.ButterflyArray[i].swimmer._id)
               }
             }
           }
@@ -1083,19 +1083,19 @@ public AllTheTeamChoosen():void{
               if(i > 2){
                 if(this.IndividualMedleyArray[i-1].results[this.IndividualMedleyArray[i].results.length - 1] > individualMedleyAvaerage)
                 console.log(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין  האחרונים בסגנון ");
-                this.sendNotificationForSwimmerTarget(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין  האחרונים בסגנון ", this.IndividualMedleyArray[i].swimmer._id)
+                this.sendNotificationForSwimmerTarget( " המערכת זיהתה ירידה מדאיגה בהשיגי השחיין  האחרונים בסגנון " + this.IndividualMedleyArray[i-1].exercise_id.style, this.IndividualMedleyArray[i].swimmer._id)
               }else{
                 console.log(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של השחיין בסגנון " );
-                this.sendNotificationForSwimmerTarget(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה ירידה בהישיג האחרון של השחיין בסגנון ", this.IndividualMedleyArray[i].swimmer._id)
+                this.sendNotificationForSwimmerTarget( " המערכת זיהתה ירידה בהישיג האחרון של השחיין בסגנון " + this.IndividualMedleyArray[i-1].exercise_id.style, this.IndividualMedleyArray[i].swimmer._id)
               }
             }else if(this.IndividualMedleyArray[i].results[this.IndividualMedleyArray[i].results.length - 1] < individualMedleyAvaerage){
               if(i > 2){
                 if(this.IndividualMedleyArray[i-1].results[this.IndividualMedleyArray[i].results.length - 1] < individualMedleyAvaerage)
                 console.log(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי השחיין האחרונים בסגנון " );
-                this.sendNotificationForSwimmerTarget(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור משמעותי בהשיגי השחיין האחרונים בסגנון ", this.IndividualMedleyArray[i].swimmer._id)
+                this.sendNotificationForSwimmerTarget( " המערכת זיהתה שיפור משמעותי בהשיגי השחיין האחרונים בסגנון " + this.IndividualMedleyArray[i-1].exercise_id.style, this.IndividualMedleyArray[i].swimmer._id)
               }else{
                 console.log(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של השחיין בסגנון ");
-                this.sendNotificationForSwimmerTarget(this.IndividualMedleyArray[i-1].exercise_id.style + " המערכת זיהתה שיפור בהישיג האחרון של השחיין בסגנון ", this.IndividualMedleyArray[i].swimmer._id)
+                this.sendNotificationForSwimmerTarget( " המערכת זיהתה שיפור בהישיג האחרון של השחיין בסגנון " + this.IndividualMedleyArray[i-1].exercise_id.style, this.IndividualMedleyArray[i].swimmer._id)
               }
             }
           }

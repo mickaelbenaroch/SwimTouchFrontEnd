@@ -110,6 +110,14 @@ export class StatsComponent implements OnInit {
           this.httpservice.httpPost('team/getSwimmerTeams',idOfSwimmer).subscribe(
             res =>{
               this.teams = res.teams;
+              var tempSwimmers = [];
+              this.teams[0].swimmers.forEach(swimmer =>{
+                  this.httpservice.httpPost('swimmer/getswimmers', {_id: swimmer}).subscribe(
+                    res =>{ tempSwimmers.push(res.swimmer[0])},
+                    err =>{ this.OpenErrorDialogBox();}
+                  )
+              })
+              this.teams[0].swimmers = tempSwimmers;
             },
             err =>{
               this.OpenErrorDialogBox();
@@ -293,7 +301,7 @@ export class StatsComponent implements OnInit {
     /**
      * Get swimmer details
      */
-    public SwimmerDetails(event: any):void{
+    public SwimmerDetails(event: any):void{debugger
       var swimmer = event.value;
       console.log(swimmer);
       this.choosenSwimmer = true;
