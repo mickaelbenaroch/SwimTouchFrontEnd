@@ -4,7 +4,8 @@
 <section *ngIf="details">
     <div class="resume" *ngIf="trainning.name !== undefined">
       <div>{{trainning.name}}</div>
-      <div>מרחק כולל: {{warmupcount + buildupcount + corecount + warmdowncount}} מטר</div>
+        <div>מרחק כולל: {{warmupcount + buildupcount + corecount + warmdowncount}} מטר</div>
+        <div style="direction: rtl;" *ngIf="trainning.exercises !== undefined && trainning.exercises[0] !== undefined">קבוצת האימון: {{trainning.exercises[0].group}}</div>
       <div>תאריך האימון: {{trainning.date}}</div>
     </div>
     <div class="wu-div" *ngIf="warmuparray !== undefined && warmuparray.length > 0">

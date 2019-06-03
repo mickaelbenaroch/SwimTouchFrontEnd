@@ -224,6 +224,10 @@ section{
     }
     .resume{
         text-align: right;
+
+        .group-div{
+            display: flex;
+        }
         
         div:nth-of-type(1){
             font-size: 2vw;

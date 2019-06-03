@@ -63,7 +63,7 @@ export class CreateTrainingComponent implements OnInit {
       date: this.trainnningModel.date
     };
     dialogConfig.width = "600px";
-    dialogConfig.height = "600px";
+    dialogConfig.height = "650px";
     setTimeout(()=>{
       var dialogRef = this.dialog.open(CreateTrainningComponent, dialogConfig);
       dialogRef.afterClosed().subscribe(
@@ -207,7 +207,7 @@ public OpenSureToSaveBox():void{
       cancel: true
     };
     dialogConfig.width = "500px";
-    dialogConfig.height = "250px";
+    dialogConfig.height = "300px";
     var dialogRef = this.dialog.open(GenericDialogBoxComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(
       (res:string)=>{
@@ -290,7 +290,7 @@ public OpenSuccesDialogBox():void{
     };
 
     dialogConfig.width = "560px";
-    dialogConfig.height = "272px";
+    dialogConfig.height = "300px";
     this.dialog.open(GenericDialogBoxComponent, dialogConfig);
 }
 

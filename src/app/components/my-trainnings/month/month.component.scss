@@ -4,6 +4,38 @@
     font-size: 1rem;
     margin-bottom: 2%;
     font-family: 'Alef', sans-serif;
+    display: flex;
+    justify-content: space-between;
+    .legend{
+        display: flex;
+        align-self: center;
+        .box-legend{
+            display: flex;
+            flex-direction: row;
+            margin-left: 1.5rem;
+            margin-right: 1.5rem;
+            div{
+                width: 20px;
+                height: 20px;
+            }
+            span{
+                color: grey; 
+                margin-right: 0.5rem;
+            }
+            .A{
+                background-color: #3BB449;
+            }
+            .B{
+                background-color: #744D25;
+            }
+            .C{
+                background-color: #27A9E2;
+            }
+            .D{
+                background-color: #F6941D;
+            }
+        }
+    }
 }
 
 .month{

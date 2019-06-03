@@ -98,7 +98,7 @@ const dialogConfig = new MatDialogConfig();
     cancel: true
   };
   dialogConfig.width = "500px";
-  dialogConfig.height = "250px";
+  dialogConfig.height = "300px";
   var dialogRef = this.dialog.open(GenericDialogBoxComponent, dialogConfig);
   dialogRef.afterClosed().subscribe(
     (res:string)=>{
