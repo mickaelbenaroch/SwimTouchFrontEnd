@@ -23,7 +23,7 @@
       <span>ש</span>
   </div>
   <div class="calendar-div">
-    <div class="calendar" *ngFor="let day of CurrentMonth.DayArray">
+    <div id="day{{day.string}}" class="calendar" *ngFor="let day of CurrentMonth.DayArray">
       <div class="day">{{day.string}}</div>
       <div class="dailyTrain" *ngFor="let des of day.description" (click)="TrainningDetails(des)" 
       [ngClass]="{'yellow': day.group == 'A', 'red': day.group == 'B', 'blue': day.group == 'C' , 'green': day.group == 'D'}"> {{des}} </div>

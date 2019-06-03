@@ -301,7 +301,7 @@ export class StatsComponent implements OnInit {
     /**
      * Get swimmer details
      */
-    public SwimmerDetails(event: any):void{debugger
+    public SwimmerDetails(event: any):void{
       var swimmer = event.value;
       console.log(swimmer);
       this.choosenSwimmer = true;

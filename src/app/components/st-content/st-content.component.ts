@@ -3,6 +3,7 @@ import { TaskModel } from '../../models/TaskModel';
 import { MailModel } from '../../models/MailModel';
 import { PageEnum } from '../../enums/componentview';
 import { ProfileModel } from '../../models/ProfileModel';
+import { TrainningModel } from '../../models/TrainningModel';
 import { MatDialogConfig, MatDialog } from '@angular/material';
 import { HttpService } from '../../services/http-service/http-service.service';
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
@@ -26,6 +27,7 @@ export class StContentComponent implements OnInit, OnChanges {
   public tasks: TaskModel[] = [];
   @Input() profiles: ProfileModel[] = [];
   @Input() mails: MailModel[] = [];
+  public trainningDetail: TrainningModel;
   //#endregion
 
   //#region Constructor & Lifecycle Hooks
@@ -103,6 +105,17 @@ export class StContentComponent implements OnInit, OnChanges {
    */
   public GoToCalender(event):void{
     this.pageenum = PageEnum.MyTrainnings;
+  }
+
+  /**
+   * ShowTodayTrainningDetailsCallback
+   * @param event 
+   */
+  public ShowTodayTrainningDetailsCallback(ev: TrainningModel):void{
+      if(ev !== undefined && ev !== null){
+        this.pageenum = PageEnum.MyTrainnings;
+        this.trainningDetail = ev;
+      }
   }
 
   /* GoToSwimmers

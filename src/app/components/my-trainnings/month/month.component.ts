@@ -7,7 +7,7 @@ import { Component, OnInit, Input, AfterViewChecked, Output, EventEmitter, OnCha
 @Component({
   selector: 'app-month',
   templateUrl: './month.component.html',
-  styleUrls: ['./month.component.scss']
+  styleUrls: ['./month.component.scss'],
 })
 export class MonthComponent implements OnInit, AfterViewChecked,OnChanges{
 
@@ -15,6 +15,7 @@ export class MonthComponent implements OnInit, AfterViewChecked,OnChanges{
   @Output() trainningDetailEvent: EventEmitter<TrainningModel> = new EventEmitter;
   @Input() trains: TrainningModel[] = [];
   @Input() refill: boolean;
+  @Input() trDetail: TrainningModel;
   public CurrentMonth: MonthModel;
   public monthEnum = MonthEnum;
   public done: boolean;
@@ -36,6 +37,15 @@ export class MonthComponent implements OnInit, AfterViewChecked,OnChanges{
       this.FillMonthDays(this.CurrentMonth.lenght);
       this.ngAfterViewChecked();
     }
+    if(this.trDetail !== undefined){
+      this.TrainningDetails(this.trDetail.name);
+    }
+    var today = new Date();
+    this.CurrentMonth.DayArray.forEach(day =>{
+      if(Number(day.string) == today.getDate()){
+        $("#day" + day.string).css('background', '#82CAFF');
+      }
+    })
   } 
 
   public ngAfterViewChecked(): void {
@@ -49,7 +59,7 @@ export class MonthComponent implements OnInit, AfterViewChecked,OnChanges{
         }
         if(month == this.CurrentMonth.number.toString() || month == '0'+ this.CurrentMonth.number.toString()){
           //check for dupplicates values
-          if(!this.CurrentMonth.DayArray[Number(day) -1].description.includes(trainning.name)){debugger
+          if(!this.CurrentMonth.DayArray[Number(day) -1].description.includes(trainning.name)){
             this.CurrentMonth.DayArray[ Number(day) - 1].description.push(trainning.name);
             this.CurrentMonth.DayArray[ Number(day) -1 ].group = trainning.exercises[0].group;
           }

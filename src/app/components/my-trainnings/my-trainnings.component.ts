@@ -3,7 +3,7 @@ import { RouteModel } from '../../models/RouteModel';
 import { TrainningModel } from '../../models/TrainningModel';
 import { MatDialogConfig, MatDialog } from '@angular/material';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { HttpService } from '../../services/http-service/http-service.service';
 import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
 import { ExerciseModel } from 'src/app/models/ExerciseModel';
@@ -19,6 +19,7 @@ import { ExerciseTypeEnum } from 'src/app/enums/exercisetypeenum';
 export class MyTrainningsComponent implements OnInit {
 
   //#region Public Members
+  @Input() trainingDetail: TrainningModel;
   @Output() GoBackEvent: EventEmitter<PageEnum> = new EventEmitter();
   public trainning: TrainningModel;
   public trainnings: TrainningModel[] = [];

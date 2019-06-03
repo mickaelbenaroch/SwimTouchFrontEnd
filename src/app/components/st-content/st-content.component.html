@@ -42,7 +42,8 @@
 
     <div id="box-section2" *ngIf="pageenum === state.Landing && profileservice.profile !== undefined && profileservice.profile.type == role.Trainner">
         <app-swimmer-box (SwimmersEvent)="GoToSwimmers($event)"></app-swimmer-box>
-        <app-schedule-box (CalenderEvent)="GoToCalender($event)"></app-schedule-box>
+        <app-schedule-box (CalenderEvent)="GoToCalender($event)"
+                          (ShowTodayTrainningDetails)="ShowTodayTrainningDetailsCallback($event)"></app-schedule-box>
         <app-last-training-box (GoToStatsEvent)="GoToStats($event)"></app-last-training-box>
         <app-todo-box [misssions]=tasks></app-todo-box>
     </div>
@@ -59,7 +60,8 @@
       <app-create-team></app-create-team>
     </div>
     <div class="my-trainnings" *ngIf="pageenum === state.MyTrainnings">
-      <app-my-trainnings (GoBackEvent)="LandToMainPage($event)"></app-my-trainnings>
+      <app-my-trainnings (GoBackEvent)="LandToMainPage($event)"
+                         [trainingDetail]="trainningDetail"></app-my-trainnings>
     </div>
     <div class="my-trainnings" *ngIf="pageenum === state.MyTeams">
       <app-my-teams (GoBackEvent)="LandToMainPage($event)"></app-my-teams>

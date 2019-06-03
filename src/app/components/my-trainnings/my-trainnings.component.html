@@ -63,7 +63,7 @@
 
 
   <div *ngIf="!details">
-    <app-month [trains]="trainnings" (trainningDetailEvent)="GetCurrentTrainning($event)" [refill]="refill"></app-month>
+    <app-month [trains]="trainnings" (trainningDetailEvent)="GetCurrentTrainning($event)" [refill]="refill" [trDetail]="trainingDetail"></app-month>
   </div>
 
 
