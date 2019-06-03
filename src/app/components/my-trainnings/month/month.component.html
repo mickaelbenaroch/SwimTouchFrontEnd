@@ -32,13 +32,7 @@
 
 <div class="envelop">
   <div class="days_calendar">
-      <span>א</span>
-      <span>ב</span>
-      <span>ג</span>
-      <span>ד</span>
-      <span>ה</span>
-      <span>ו</span>
-      <span>ש</span>
+      <span *ngFor="let d of months">{{d}}</span>
   </div>
   <div class="calendar-div">
     <div id="day{{day.string}}" class="calendar" *ngFor="let day of CurrentMonth.DayArray">

@@ -315,6 +315,7 @@ export class StatsComponent implements OnInit {
           res=>{
               if(res !== undefined && res.records !== undefined){
                 this.records = res.records;
+                this.GetSwimmerTargets();
               }
           },
           err =>{

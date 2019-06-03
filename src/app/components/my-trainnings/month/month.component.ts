@@ -19,6 +19,7 @@ export class MonthComponent implements OnInit, AfterViewChecked,OnChanges{
   public CurrentMonth: MonthModel;
   public monthEnum = MonthEnum;
   public done: boolean;
+  public months: string[] = [];
   //#endregion
 
   //#region Constructor & Lifecycle Hooks
@@ -28,6 +29,7 @@ export class MonthComponent implements OnInit, AfterViewChecked,OnChanges{
   }
 
   public ngOnInit():void{
+    this.DivideDays();
   }
 
   public ngOnChanges(): void {
@@ -215,6 +217,7 @@ export class MonthComponent implements OnInit, AfterViewChecked,OnChanges{
       break;
     }
     this.CurrentMonth.DayArray = [];
+    this.DivideDays();
   }
 
   /**
@@ -286,6 +289,7 @@ export class MonthComponent implements OnInit, AfterViewChecked,OnChanges{
       break;
     }
     this.CurrentMonth.DayArray = [];
+    this.DivideDays();
   }
 
   /**
@@ -331,8 +335,20 @@ export class MonthComponent implements OnInit, AfterViewChecked,OnChanges{
     this.InitPreviousMonth();
     this.FillMonthDays(this.CurrentMonth.lenght);
     this.ngAfterViewChecked();
+    this.ngOnChanges();
+    var today = new Date();
+    this.CurrentMonth.DayArray.forEach(day =>{
+      if(Number(day.string) == today.getDate()){
+        $("#day" + day.string).css('background', '#82CAFF');
+      }else if(Number(day.string) < today.getDate()){
+        $("#day" + day.string).css('background', '#F08080');
+        $("#day" + day.string).css('opacity', 0.4);
+      }else if(Number(day.string) > today.getDate()){
+        $("#day" + day.string).css('background', '#eafeea');
+      }
+    })
   }
-
+  
   /**
    * Pass to NextMonth
    */
@@ -340,7 +356,80 @@ export class MonthComponent implements OnInit, AfterViewChecked,OnChanges{
     this.InitNextMonth();
     this.FillMonthDays(this.CurrentMonth.lenght);
     this.ngAfterViewChecked();
+    this.ngOnChanges();
+    var today = new Date();
+    this.CurrentMonth.DayArray.forEach(day =>{
+      if(Number(day.string) == today.getDate()){
+        $("#day" + day.string).css('background', '#82CAFF');
+      }else if(Number(day.string) < today.getDate()){
+        $("#day" + day.string).css('background', '#F08080');
+        $("#day" + day.string).css('opacity', 0.4);
+      }else if(Number(day.string) > today.getDate()){
+        $("#day" + day.string).css('background', '#eafeea');
+      }
+    })
   }
+
+  /**
+   * Divide days of the month
+   */
+  public DivideDays():void{
+    this.months = [];
+    if(this.CurrentMonth == undefined){
+      return;
+    }
+    switch(this.CurrentMonth.number - 1){
+      case 0:
+      this.months.push('ג'); this.months.push('ד'); this.months.push('ה'); 
+      this.months.push('ו'); this.months.push('ש'); this.months.push('א'); this.months.push('ב'); 
+      break;
+      case 1:
+      this.months.push('ו'); this.months.push('ש'); this.months.push('א'); 
+      this.months.push('ב'); this.months.push('ג'); this.months.push('ד'); this.months.push('ה'); 
+      break;
+      case 2:
+      this.months.push('ו'); this.months.push('ש'); this.months.push('א'); 
+      this.months.push('ב'); this.months.push('ג'); this.months.push('ד'); this.months.push('ה');      
+      break;
+      case 3:
+      this.months.push('ב'); this.months.push('ג'); this.months.push('ד'); 
+      this.months.push('ה'); this.months.push('ו'); this.months.push('ש'); this.months.push('א'); 
+      break;
+      case 4:
+      this.months.push('ד'); this.months.push('ה'); this.months.push('ו'); 
+      this.months.push('ש'); this.months.push('א'); this.months.push('ב'); this.months.push('ג'); 
+      break;
+      case 5:
+      this.months.push('ש'); this.months.push('א'); this.months.push('ב'); 
+      this.months.push('ג'); this.months.push('ד'); this.months.push('ה'); this.months.push('ו'); 
+      break;
+      case 6:
+      this.months.push('ב'); this.months.push('ג'); this.months.push('ד'); 
+      this.months.push('ה'); this.months.push('ו'); this.months.push('ש'); this.months.push('א'); 
+      break;
+      case 7:
+      this.months.push('ה'); this.months.push('ו'); this.months.push('ש'); 
+      this.months.push('א'); this.months.push('ב'); this.months.push('ג'); this.months.push('ד'); 
+      break;
+      case 8:
+      this.months.push('א'); this.months.push('ב'); this.months.push('ג'); 
+      this.months.push('ד'); this.months.push('ה'); this.months.push('ו'); this.months.push('ש'); 
+      break;
+      case 9:
+      this.months.push('ג'); this.months.push('ד'); this.months.push('ה'); 
+      this.months.push('ו'); this.months.push('ש'); this.months.push('א'); this.months.push('ב'); 
+      break;
+      case 10:
+      this.months.push('ו'); this.months.push('ש'); this.months.push('א'); 
+      this.months.push('ב'); this.months.push('ג'); this.months.push('ד'); this.months.push('ה');    
+      break;
+      case 11:
+      this.months.push('א'); this.months.push('ב'); this.months.push('ג'); 
+      this.months.push('ד'); this.months.push('ה'); this.months.push('ו'); this.months.push('ש'); 
+      break;
+    }
+  }
+
 
   //#endregion
 }
