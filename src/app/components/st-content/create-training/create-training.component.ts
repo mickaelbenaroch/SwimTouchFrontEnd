@@ -318,7 +318,7 @@ public SendNotificationToSwimmers():void{
       notification.swimmer_id = swimmer;
       notification.title = "הוספת לאימון חדש";
       notification.priority = "warning";
-      notification.message = "הוזמנת להשתתף באימון " + this.trainnningModel.name + "בתאריך " + this.trainnningModel.date + "תוכל לראות את פרטי האימון בלוח המחוונים שלך. בהצלחה!";
+      notification.message = " הוזמנת להשתתף באימון " + this.trainnningModel.name + " בתאריך " + this.trainnningModel.date + " תוכל לראות את פרטי האימון בלוח המחוונים שלך. בהצלחה! ";
       this.httpservice.httpPost('notification/setNotification', notification).subscribe(
         res =>{
           console.log(res);

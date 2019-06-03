@@ -1,7 +1,7 @@
 <div class="myDetails">
       <div class="box-title"><h3>לוח אימונים</h3></div>
       <div class="box-content" id="detailsBoxContent">
-          להוסיף מהלוח שנה את הקוביה של היום עם האימונים של אותו תאריך
+          <div *ngFor="let tr of trainnings" (click)="ShowTrainning(tr)">{{tr.name}}</div>
       </div>
       <div class="box-herf">ללוח המלא</div>
   </div>

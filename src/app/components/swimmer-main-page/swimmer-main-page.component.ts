@@ -1,10 +1,11 @@
 import { RoleEnum} from '../../enums/roleenum'
-import { Component, OnInit, EventEmitter, OnChanges, Output } from '@angular/core';
 import { TeamModel } from '../../models/TeamModel';
 import { TaskModel } from '../../models/TaskModel';
+import { TrainningModel } from '../../models/TrainningModel';
 import { MatDialogConfig, MatDialog } from '@angular/material';
 import { NotificationModel } from '../../models/NotificationModel';
 import { NotificationTypeEnum } from '../../enums/notificationtypeenum'; 
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { HttpService } from '../../services/http-service/http-service.service';
 import { ProfileServiceService } from '../../services/profile-service/profile-service.service';
 import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
@@ -21,6 +22,7 @@ export class SwimmerMainPageComponent implements OnInit{
   public tasks: TaskModel[] = [];
   public notifications: NotificationModel[] = [];
   @Output() GoToStatsEventFather: EventEmitter<boolean> = new EventEmitter();
+  @Output() showTodayEvent: EventEmitter<TrainningModel> = new EventEmitter();
   //#endregion
 
   //#region Constructor & Lifecycle Hooks
@@ -71,6 +73,14 @@ export class SwimmerMainPageComponent implements OnInit{
   //#endregion
 
   //#region Public Methods
+  /**
+   * ShowTrainning
+   * @param ev 
+   */
+  public ShowTrainning(tr: TrainningModel):void{
+      this.showTodayEvent.emit(tr);
+  }
+
   /**
    * GoToStats event callback
    * @param notification 
