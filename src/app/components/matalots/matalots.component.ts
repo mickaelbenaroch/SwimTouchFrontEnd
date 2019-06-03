@@ -232,12 +232,12 @@ export class MatalotsComponent implements OnInit {
     this.httpservice.httpPost('statistic/full_records', model).subscribe(
       res=>{
           if(res !== undefined && res.records !== undefined){
-            this.records = res.records.sort ( (a, b) => {
-              return new Date(a).getTime() - new Date(b).getTime();
-          })
+          //   this.records = res.records.sort ( (a, b) => {
+          //     return new Date(a).getTime() - new Date(b).getTime();
+          // })
             if(res !== undefined && res.records !== undefined){
-              res.records.forEach(rec => {
-                if(rec.results !== undefined && rec.results !== null){
+              this.teamRecords.forEach(rec => {
+                if(rec.results !== undefined && rec.results !== null && rec.swimmer._id == this.currentSwimmer._id){
                   switch(rec.exercise_id.style){
                     case 'Freestyle':
                     this.lineChartDataFreestyleJump[0].data.push(rec.jump_time);
@@ -352,12 +352,12 @@ export class MatalotsComponent implements OnInit {
     this.httpservice.httpPost('statistic/full_records', model).subscribe(
         res=>{
             if(res !== undefined && res.records !== undefined){
-              this.records = res.records.sort ( (a, b) => {
-                return new Date(a).getTime() - new Date(b).getTime();
-            })
+            //   this.records = res.records.sort ( (a, b) => {
+            //     return new Date(a).getTime() - new Date(b).getTime();
+            // })
               if(res !== undefined && res.records !== undefined){
-                res.records.forEach(rec => {
-                  if(rec.results !== undefined && rec.results !== null){
+                this.teamRecords.forEach(rec => {
+                  if(rec.results !== undefined && rec.results !== null && rec.swimmer._id == this.currentSwimmer._id){
                     switch(rec.exercise_id.style){
                       case 'Freestyle':
                       this.lineChartDataFreestyle[0].data.push(rec.results[rec.results.length -1]);

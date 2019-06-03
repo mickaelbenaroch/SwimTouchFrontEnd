@@ -4,12 +4,12 @@ import { ExerciseModel } from '../../models/ExerciseModel';
 import { FinalResultModel } from '../../models/FinalResult';
 import {ExerciseTypeEnum} from '../../enums/exercisetypeenum'
 import { TrainningModel } from 'src/app/models/TrainningModel';
-import { MatDialog, MatDialogConfig } from '@angular/material';
 import { RealTrainningEnum } from '../../enums/realtrainningenum';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { TvModeComponent } from '../dialog-boxes/tv-mode/tv-mode.component';
 import { HttpService } from '../../services/http-service/http-service.service';
 import { OneRouteFinalResultModel } from '../../models/FinalOneRouteResultModel';
+import { MatDialog, MatDialogConfig, MatRadioChange, MatRadioButton } from '@angular/material';
 import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
 
 @Component({
@@ -52,6 +52,7 @@ export class RealTimeTrainningComponent implements OnInit {
    public dateFactor: string = "";
    public distanceFactor: number = 50;
    public groupFactor: string = "";
+   public copyTrainning: TrainningModel[] = [];
    //#endregion
   
    //#region Constructor & Lifecycle Hooks
@@ -66,6 +67,7 @@ export class RealTimeTrainningComponent implements OnInit {
      this.httpservice.httpPost('trainning/getTrainnings',model).subscribe(
        res =>{
          this.trainnings = res.trainning;
+         this.copyTrainning = this.trainnings;
        },
        err =>{
          console.log(err);      }
@@ -79,6 +81,14 @@ export class RealTimeTrainningComponent implements OnInit {
    */
   public GoBack(): void{
     this.GoBackEvent.emit(PageEnum.Landing);
+  }
+
+  /**
+   * ResetSort
+   * @param exercise 
+   */
+  public ResetSort():void{
+      this.trainnings = this.copyTrainning;
   }
 
    /**
@@ -147,6 +157,7 @@ export class RealTimeTrainningComponent implements OnInit {
     if(this.nameFactor == undefined){
       return;
     }else{
+      this.trainnings = this.copyTrainning;
       this.trainnings = this.trainnings.filter(tr => tr.name == this.nameFactor || tr.name.includes(this.nameFactor));
     }
   }
@@ -158,6 +169,7 @@ export class RealTimeTrainningComponent implements OnInit {
     if(this.dateFactor == undefined){
       return;
     }else{
+      this.trainnings = this.copyTrainning;
       this.trainnings = this.trainnings.filter(tr => (new Date(tr.date)).getTime() == (new Date(this.dateFactor)).getTime());
     }
   }
@@ -169,6 +181,7 @@ export class RealTimeTrainningComponent implements OnInit {
     if(this.distanceFactor == undefined){
       return;
     }else{
+      this.trainnings = this.copyTrainning;
       this.trainnings = this.trainnings.filter(tr => tr.distance == this.distanceFactor);
     }
   }
@@ -180,8 +193,17 @@ export class RealTimeTrainningComponent implements OnInit {
     if(this.groupFactor == undefined){
       return;
     }else{
-      this.trainnings = this.trainnings.filter(tr => tr.exercises[0].group == this.groupFactor);
+      this.trainnings = this.copyTrainning;
+      this.trainnings = this.trainnings.filter(tr => tr.exercises[0].group == this.groupFactor);    
     }
+  }
+
+
+  /**
+   * onChange group
+   */
+  public OnChange(mrChange: MatRadioChange):void{
+    this.groupFactor = mrChange.value;
   }
 
   /**

@@ -18,14 +18,22 @@
         <label>מרחק: 
           <input type="number" [(ngModel)]="distanceFactor" name="distanceFactor">
           <button (click)="DistanceSort()">בצע</button>
-        </label><br><br>
+        </label>
+        <br><br>
         <label>קבוצת שחייה: 
-          <input type="radio" name="type" value="A" [(ngModel)]="groupFactor" name="nameFactor1"> A 
-          <input type="radio" name="type" value="B" [(ngModel)]="groupFactor" name="nameFactor2"> B 
-          <input type="radio" name="type" value="C" [(ngModel)]="groupFactor" name="nameFactor3"> C 
-          <input type="radio" name="type" value="D" [(ngModel)]="groupFactor" name="nameFactor4"> D
+          <!---<input type="radio" name="groupD" value="D" [(ngModel)]="groupD" (ngModelChange)="onChange($event)" name="nameFactor4"> D
+          <input type="radio" name="groupC" value="C" [(ngModel)]="groupC" (ngModelChange)="onChange($event)" name="nameFactor3"> C 
+          <input type="radio" name="groupB" value="B" [(ngModel)]="groupB" (ngModelChange)="onChange($event)" name="nameFactor2"> B 
+          <input type="radio" name="groupA" value="A" [(ngModel)]="groupA" (ngModelChange)="onChange($event)" name="nameFactor1"> A -->
+          <mat-radio-group aria-label="Select an option" (change)="OnChange($event)" name="group">
+            <mat-radio-button value="D">D</mat-radio-button>
+            <mat-radio-button value="C">C</mat-radio-button>
+            <mat-radio-button value="B">B</mat-radio-button>
+            <mat-radio-button value="A">A</mat-radio-button>
+          </mat-radio-group>
         </label>
         <button (click)="GroupSort()">בצע</button>
+        <button (click)="ResetSort()" class="reset">איפוס</button>
     </form>
 
     <div *ngIf="trainnings == undefined || trainnings.length == 0" class="no-trainnings"> לא נמצאו אימונים בבסיס הנתונים. באשרותך ליצור קבוצה חדשה <span class="back" (click)="GoBack()">בתפריט הראשי</span></div>
@@ -47,7 +55,7 @@
       </div>
       -->
       <div class="panel" *ngFor="let trainning of trainnings" (click)="ChooseTrainning(trainning)">
-           שם האימון: {{trainning.name + ', '}} תאריך: {{' ' + trainning.date + ' '}} מרחק: {{' ' + trainning.distance +' '}} meters
+           שם האימון: {{trainning.name + ', '}} תאריך: {{' ' + trainning.date + ' '}} מרחק: {{' ' + trainning.distance +' '}} meters קבוצה: {{trainning.exercises[0].group}}
       </div>
     </div>
  

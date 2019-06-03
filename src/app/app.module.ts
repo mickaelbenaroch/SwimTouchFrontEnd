@@ -10,12 +10,14 @@ import { MatDialogModule} from "@angular/material";
 import { NgxUiLoaderModule } from  'ngx-ui-loader';
 import { DragDropModule} from '@angular/cdk/drag-drop';
 import { Routes, RouterModule } from '@angular/router';
+import { MatRadioModule} from '@angular/material/radio';
 import { AppRoutingModule } from './app-routing.module';
 import { MatSelectModule} from '@angular/material/select';
 import { BrowserModule } from '@angular/platform-browser';
-import { MatExpansionModule} from '@angular/material/expansion';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { MatExpansionModule} from '@angular/material/expansion';
 import { HelpComponent } from './components/help/help.component';
+import { MatFormFieldModule} from '@angular/material/form-field';
 import { StatsComponent } from './components/stats/stats.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; 
 import { HttpService } from './services/http-service/http-service.service';
@@ -115,12 +117,14 @@ const config: SocketIoConfig = { url: 'https://record-system-server-1.herokuapp.
     BrowserModule,
     DragDropModule,
     NgxPrintModule,
+    MatRadioModule,
     MatSelectModule,
     MatDialogModule,
     HttpClientModule,
     AppRoutingModule,
     NgxUiLoaderModule,
     MatExpansionModule,
+    MatFormFieldModule,
     BrowserAnimationsModule,
     SocketIoModule.forRoot(config),
     RouterModule.forRoot(appRoutes),
