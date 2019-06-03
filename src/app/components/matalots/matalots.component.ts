@@ -718,7 +718,7 @@ public AllTheTeamChoosen():void{
         this.value = chart.data.datasets[0].data[this.index];
         console.log(this.index, this.label, this.value, this.style);
         var result;
-        this.records.forEach(rec =>{
+        this.teamRecords.forEach(rec =>{
           if(rec.date.includes(this.label) && rec.results[rec.results.length -1] == this.value && rec.exercise_id.style == this.style){
             result = rec;
           }
