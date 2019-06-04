@@ -1,7 +1,8 @@
 <div class="myDetails">
       <div class="box-title"><h3>לוח אימונים</h3></div>
       <div class="box-content" id="detailsBoxContent">
-          <div *ngFor="let tr of trainnings" (click)="ShowTrainning(tr)">{{tr.name}}</div>
+          <section><span>{{today_days}}</span> <span>{{ hebrew_days }}</span> </section>
+          <div *ngFor="let tr of trainnings" (click)="ShowTrainning(tr)">{{tr.name}} - קבוצת {{ tr.team_id.name }}</div>
       </div>
       <div class="box-herf">ללוח המלא</div>
   </div>

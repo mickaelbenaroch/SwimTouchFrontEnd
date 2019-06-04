@@ -9,7 +9,7 @@
               <th>זמן תגובה</th>
               <th>זמן סופי</th>
             </tr>
-            <tr *ngFor="let rec of records">
+            <tr *ngFor="let rec of records | slice:0:8">
               <td>{{rec.date | datepipe}}</td>
               <td>{{rec.exercise_id.style}}</td>
               <td>{{rec.exercise_id.distance}}</td>
