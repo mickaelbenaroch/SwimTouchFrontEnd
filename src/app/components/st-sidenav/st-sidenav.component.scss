@@ -3,7 +3,6 @@
     background: #2D353C;
     color: #A8ACB1;
     font-weight: bold;
-    font-family: Assistant;
     direction: rtl;
     display: flex;
     text-align: right; 
@@ -20,22 +19,63 @@
         display: none;
         width: 2rem;   
     }
-    .name{
-        color: white;
-        font-family: 'Alef', sans-serif;
-        font-weight: bold;
-        font-size: 1.2rem;
-        text-align: center;
-        padding: 1rem;
-    }
+    
     .div-group-0{
         display: flex;
         flex-direction: column;
-        align-items: center;
-        padding-top: 2rem;
-        padding-bottom: 1rem;
-        border-bottom: 1px solid lightgray;
+        background: linear-gradient(rgba(20,20,20, .5), rgba(20,20,20, .5)), url('../../../assets/header.jpg');
+        background-size: 100% 100%;
+
+        .profile{
+            display: flex;
+            text-align: right; 
+            margin-top: 5px;
+            margin-right: 5%;
+            flex-direction: column;
+            .profile_pic{
+                text-align: center;
+                margin-right: 1.5%;
+                margin-bottom: 2%;
+                .user{
+                    width: 55% !important;
+                    cursor: pointer;
+                }
+                .user2{
+                    cursor: pointer;
+                    border-radius: 50%;
+                    width: 45% !important;
+                    height: 13vh !important;
+                    float: right;
+                }
+            }
+        }
+
+        .name{
+            font-family: 'Alef', sans-serif;
+            color: grey;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            color: white;
+            padding-bottom: 1rem;
+            margin-right: 1.5%;
+
+            .title{
+                font-size: 1.4rem;
+                font-weight: bold;
+                padding-bottom: 0.1rem;
+                font-family: 'Secular One', sans-serif;
+                text-align: right
+            }
+        }
     }
+
+    .div-group-0:hover{
+        background: linear-gradient(rgba(119, 117, 117, 0.5), rgba(112, 112, 112, 0.5)),url('../../../assets/header.jpg');
+        background-size: 100% 100%;
+        animation: fadein 1s;
+    }
+
     .div-group-1{
         display: flex;
         flex-direction: column;
