@@ -16,7 +16,7 @@
           <button (click)="DateSort()">בצע</button>
         </label>
         <label>מרחק: 
-          <input type="number" [(ngModel)]="distanceFactor" name="distanceFactor">
+          <input class="distanceFactor" type="number" [(ngModel)]="distanceFactor" name="distanceFactor">
           <button (click)="DistanceSort()">בצע</button>
         </label>
         <br><br>
@@ -32,7 +32,7 @@
             <mat-radio-button value="A">A</mat-radio-button>
           </mat-radio-group>
         </label>
-        <button (click)="GroupSort()">בצע</button>
+        <button (click)="GroupSort()">בצע</button><br>
         <button (click)="ResetSort()" class="reset">איפוס</button>
     </form>
 

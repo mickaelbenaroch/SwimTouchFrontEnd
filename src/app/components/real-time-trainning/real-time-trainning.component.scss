@@ -16,7 +16,7 @@ section{
         padding: 1%;
         background-color: #2D353C;
         .reset{
-            margin-right: 100px;
+            margin-top: 2%;
         }
 
         h1{
@@ -52,6 +52,11 @@ section{
 
         input[name="type"]{
             margin-right: 1%;
+        }
+
+        .distanceFactor{
+            margin-left: 2%;
+            width: 9%;
         }
     }
 
@@ -482,7 +487,9 @@ section{
     padding-top: 1rem;
 }
 
-
+.mat-radio-label-content{
+    padding-right: 20% !important;
+}
 
 
 @media only screen and (max-width: 600px) {
