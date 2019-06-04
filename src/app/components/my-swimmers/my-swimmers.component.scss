@@ -72,6 +72,11 @@ section{
     }
 }
 
+img{
+    object-fit: cover;
+    object-position: center center;
+}
+
 
 @media only screen and (max-width: 600px) {
     .title{
