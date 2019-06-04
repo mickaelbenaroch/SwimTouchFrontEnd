@@ -24,8 +24,30 @@
             height: 35vh;
         }
         div{
-            color: aqua;
+            margin-top: 5%;
+            background-color: #3BB449;
             cursor: pointer;
+            color: #FFFFE2; 
+        }
+
+        section{
+            width: 95%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 7fr;
+        }
+
+        section span:nth-of-type(1){
+            font-size: 4vw;
+            font-weight: 900;
+            
+        }
+
+        section span:nth-of-type(2){
+            opacity: 0.5;
+            display: grid;
+            align-items: flex-end;
+            justify-items: right;
         }
     }
 

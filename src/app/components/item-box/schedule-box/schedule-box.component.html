@@ -1,7 +1,8 @@
 <div id="schedule-box">
   <div class="box-title"><h3>לוח אימונים</h3></div>
   <div class="box-content"> 
-      <div *ngFor="let tr of trainnings" (click)="ShowTrainning(tr)">{{tr.name}}</div>
+      <section><span>{{today_days}}</span> <span>{{ hebrew_days }}</span> </section>
+      <div *ngFor="let tr of trainnings" (click)="ShowTrainning(tr)">{{tr.name}} - קבוצת {{ tr.team_id.name }}</div>
       <div *ngIf="trainnings !== undefined && trainnings.length == 0">אין אימונים להיום ביומן</div>
   </div>
   <div class="box-herf" (click)="GoToCalender()"><a>ללוח המלא</a></div>

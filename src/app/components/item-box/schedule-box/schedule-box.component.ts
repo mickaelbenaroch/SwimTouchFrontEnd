@@ -15,6 +15,10 @@ export class ScheduleBoxComponent implements OnInit {
   @Output() CalenderEvent: EventEmitter<boolean> = new EventEmitter();
   @Output() ShowTodayTrainningDetails: EventEmitter<TrainningModel> = new EventEmitter();
   public trainnings: TrainningModel[] = [];
+
+  hebrew_days: string;
+  hebrew_mon: string;
+  today_days: number
   //#endregion
 
   //#region Constructor & Lifecycle Hooks
@@ -25,6 +29,7 @@ export class ScheduleBoxComponent implements OnInit {
     var model = {
       coachmail: localStorage.getItem("email")
     }
+
     this.httpservice.httpPost('trainning/getTrainnings',model).subscribe(
       res =>{
         res.trainning.forEach(tr => {
@@ -37,6 +42,8 @@ export class ScheduleBoxComponent implements OnInit {
         console.log(err);      
       }
     )
+
+    this.hebrewDay();
   }
   //#endregion
 
@@ -54,5 +61,41 @@ export class ScheduleBoxComponent implements OnInit {
   public ShowTrainning(trainning: TrainningModel):void{
     this.ShowTodayTrainningDetails.emit(trainning);
   }
+
+   /**
+   * hebrew day
+   */
+  public hebrewDay():void{
+    var today = new Date ( );
+    
+    var days = new Array ( );
+    days[days.length] = "יום ראשון";
+    days[days.length] = "יום שני";
+    days[days.length] = "יום שלישי";
+    days[days.length] = "יום רביעי";
+    days[days.length] = "יום חמישי";
+    days[days.length] = "יום שישי";
+    days[days.length] = "יום שבת";
+    
+    var months = new Array ( );
+    months[months.length] = "ינואר";
+    months[months.length] = "פברואר";
+    months[months.length] = "מרץ";
+    months[months.length] = "אפריל";
+    months[months.length] = "מאי";
+    months[months.length] = "יוני";
+    months[months.length] = "יולי";
+    months[months.length] = "אוגוסט";
+    months[months.length] = "ספטמבר";
+    months[months.length] = "אוקטובר";
+    months[months.length] = "נובמבר";
+    months[months.length] = "דצמבר";
+
+    this.hebrew_days = days[today.getDay()];
+    this.hebrew_mon  = months[today.getMonth()];
+    this.today_days  = today.getDate();
+  }
+
+
  //#endregion
 }
