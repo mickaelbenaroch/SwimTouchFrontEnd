@@ -120,7 +120,7 @@
 
 @media only screen and (max-width: 600px) {
     //title
-    .title{
+    .title h1{
         text-align: center !important; 
     }
     .envelop{
@@ -143,6 +143,11 @@
             font-size: 7vw !important;
         }
     }
+
+    .legend{ 
+        display: none !important;
+    }
+    
 }
 
 /* ----------- Non-Retina Screens ----------- */
