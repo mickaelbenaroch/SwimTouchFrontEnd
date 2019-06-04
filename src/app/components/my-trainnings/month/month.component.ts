@@ -45,12 +45,12 @@ export class MonthComponent implements OnInit, AfterViewChecked,OnChanges{
     var today = new Date();
     this.CurrentMonth.DayArray.forEach(day =>{
       if(Number(day.string) == today.getDate()){
-        $("#day" + day.string).css('background', '#82CAFF');
+        /*$("#day" + day.string).css('border', '1px solid #2D353C');*/
       }else if(Number(day.string) < today.getDate()){
-        $("#day" + day.string).css('background', '#F08080');
+        $("#day" + day.string).css('background', '#EDEFEE');
         $("#day" + day.string).css('opacity', 0.4);
       }else if(Number(day.string) > today.getDate()){
-        $("#day" + day.string).css('background', '#eafeea');
+        $("#day" + day.string).css('background', '#FFFFFF');
       }
     })
   } 

@@ -6,36 +6,6 @@
     font-family: 'Alef', sans-serif;
     display: flex;
     justify-content: space-between;
-    .legend{
-        display: flex;
-        align-self: center;
-        .box-legend{
-            display: flex;
-            flex-direction: row;
-            margin-left: 1.5rem;
-            margin-right: 1.5rem;
-            div{
-                width: 20px;
-                height: 20px;
-            }
-            span{
-                color: grey; 
-                margin-right: 0.5rem;
-            }
-            .A{
-                background-color: #3BB449;
-            }
-            .B{
-                background-color: #744D25;
-            }
-            .C{
-                background-color: #27A9E2;
-            }
-            .D{
-                background-color: #F6941D;
-            }
-        }
-    }
 }
 
 .month{
@@ -55,6 +25,41 @@
         width: 2rem;
         cursor: pointer;
         transform: rotate(180deg);
+    }
+}
+
+.legend{ 
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
+
+    .box-legend{
+        display: flex;
+        flex-direction: row;
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+    
+        div{
+            width: 50px;
+            height: 15px;
+        }
+        span{
+            color: grey; 
+            width: 100%;
+            font-size: 0.8vw;
+        }
+        .A{
+            background-color: #3BB449;
+        }
+        .B{
+            background-color: #744D25;
+        }
+        .C{
+            background-color: #27A9E2;
+        }
+        .D{
+            background-color: #F6941D;
+        }
     }
 }
 
@@ -85,7 +90,7 @@
             background-color: transparent;
         
             .day{
-                font-size: 3rem;
+                font-size: 3vw;
                 font-weight: bold;
                 color: #2D353C;
                 margin-right: 0.5%;
@@ -94,6 +99,7 @@
                 color: white;
                 cursor: pointer;
                 text-align: center;
+                font-size: 0.9vw;
             }
             .yellow{
                 background-color: #3BB449;
