@@ -25,7 +25,7 @@
         }
         div{
             margin-top: 5%;
-            background-color: #3BB449;
+            //background-color: #3BB449;
             cursor: pointer;
             color: #FFFFE2; 
         }
@@ -58,12 +58,25 @@
     .box-herf{
         width: 100%;
         height: 35px;
-        background-color: #D9E0E7;
+        background-color: #D9E0E7; 
         border-top: 1px solid #EEEEEE;
         display: grid;
         justify-items: center;
         align-items: center;
         font-weight: 700;
         cursor: pointer;
+    }
+
+    .A{
+        background-color: #3BB449;
+    }
+    .B{
+        background-color: #744D25;
+    }
+    .C{
+        background-color: #27A9E2;
+    }
+    .D{
+        background-color: #F6941D;
     }
 }

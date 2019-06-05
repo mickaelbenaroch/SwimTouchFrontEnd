@@ -2,7 +2,7 @@
       <div class="box-title"><h3>לוח אימונים</h3></div>
       <div class="box-content" id="detailsBoxContent">
           <section><span>{{today_days}}</span> <span>{{ hebrew_days }}</span> </section>
-          <div *ngFor="let tr of trainnings" (click)="ShowTrainning(tr)">{{tr.name}} - קבוצת {{ tr.team_id.name }}</div>
+          <div [ngClass]="{'A': tr.exercises[0].group == 'A', 'B': tr.exercises[0].group == 'B', 'C': tr.exercises[0].group == 'C' , 'D': tr.exercises[0].group == 'D'}" *ngFor="let tr of trainnings" (click)="ShowTrainning(tr)">{{tr.name}} - קבוצת {{ tr.team_id.name }}</div>
       </div>
       <div class="box-herf" (click)="ShowTrainning()">ללוח המלא</div>
   </div>

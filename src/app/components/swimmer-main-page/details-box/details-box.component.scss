@@ -20,7 +20,7 @@
         height: 30vh;
         div{
             margin-top: 5%;
-            background-color: #3BB449;
+            //background-color: #3BB449;
             cursor: pointer;
             color: #FFFFE2; 
         }
@@ -60,5 +60,18 @@
         align-items: center;
         font-weight: 700;
         cursor: pointer;
+    }
+
+    .A{
+        background-color: #3BB449;
+    }
+    .B{
+        background-color: #744D25;
+    }
+    .C{
+        background-color: #27A9E2;
+    }
+    .D{
+        background-color: #F6941D;
     }
 }

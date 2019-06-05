@@ -38,8 +38,9 @@
   <div class="calendar-div">
     <div id="day{{day.string}}" class="calendar" *ngFor="let day of CurrentMonth.DayArray">
       <div class="day">{{day.string}}</div>
-      <div class="dailyTrain" *ngFor="let des of day.description" (click)="TrainningDetails(des)" 
-      [ngClass]="{'yellow': day.group == 'A', 'red': day.group == 'B', 'blue': day.group == 'C' , 'green': day.group == 'D'}"> {{des}} </div>
+      <div class="dailyTrain" *ngFor="let des of day.description;let i = index" (click)="TrainningDetails(des)"> 
+        <div style="margin-bottom: 0.2rem;" [ngClass]="{'yellow': day.group[i] == 'A', 'red': day.group[i] == 'B', 'blue': day.group[i] == 'C' , 'green': day.group[i] == 'D'}">{{des}}</div> 
+      </div>
     </div>
   </div>
 </div>  
