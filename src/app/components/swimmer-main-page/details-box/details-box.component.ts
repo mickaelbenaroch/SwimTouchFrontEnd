@@ -59,7 +59,7 @@ export class DetailsBoxComponent implements OnInit {
     /**
    * ShowTrainning
    */
-  public ShowTrainning(trainning: TrainningModel):void{
+  public ShowTrainning(trainning: TrainningModel = null):void{
     this.ShowTodayTrainningDetails.emit(trainning);
   }
 

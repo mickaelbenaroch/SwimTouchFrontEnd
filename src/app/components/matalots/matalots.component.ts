@@ -154,7 +154,22 @@ export class MatalotsComponent implements OnInit {
         var evt = {
           value: this.currentSwimmer
         }
-        this.SwimmerDetails(evt);
+        this.httpservice.httpPost('statistic/full_records',{swimmer_id: this.currentSwimmer._id}).subscribe(
+          res =>{
+            if(res !== undefined && res.records !== undefined){
+              res.records.forEach(res =>{
+                this.teamRecords.push(res);
+                this.teamRecords.sort((a, b) => {
+                  return new Date(a.date).getTime() - new Date(b.date).getTime();
+                });
+              })
+              this.SwimmerDetails(evt);
+            }
+          },
+          err =>{
+            this.OpenErrorDialogBox();
+          }
+        )
       }
     )
   }

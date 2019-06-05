@@ -45,7 +45,7 @@ export class MonthComponent implements OnInit, AfterViewChecked,OnChanges{
     var today = new Date();
     this.CurrentMonth.DayArray.forEach(day =>{
       if(Number(day.string) == today.getDate()){
-        /*$("#day" + day.string).css('border', '1px solid #2D353C');*/
+        $("#day" + day.string).css('background', '#82CAFF');
       }else if(Number(day.string) < today.getDate()){
         $("#day" + day.string).css('background', '#EDEFEE');
         $("#day" + day.string).css('opacity', 0.4);

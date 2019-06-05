@@ -115,6 +115,8 @@ export class StContentComponent implements OnInit, OnChanges {
       if(ev !== undefined && ev !== null){
         this.pageenum = PageEnum.MyTrainnings;
         this.trainningDetail = ev;
+      }else{
+        this.pageenum = PageEnum.MyTrainnings;
       }
   }
 
