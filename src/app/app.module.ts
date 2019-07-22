@@ -19,6 +19,7 @@ import { MatExpansionModule} from '@angular/material/expansion';
 import { HelpComponent } from './components/help/help.component';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { StatsComponent } from './components/stats/stats.component';
+import { HighlightDirective } from './directives/highlight.directive';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; 
 import { HttpService } from './services/http-service/http-service.service';
 import { ItemBoxComponent } from './components/item-box/item-box.component';
@@ -59,7 +60,6 @@ import { GenericDialogBoxComponent } from './components/dialog-boxes/generic-dia
 import { AddSwimmerTargetComponent } from './components/dialog-boxes/add-swimmer-target/add-swimmer-target.component';
 import { TeamTargetDetailsComponent } from './components/dialog-boxes/team-target-details/team-target-details.component';
 import { AddTeamToTrainningComponent } from './components/dialog-boxes/add-team-to-trainning/add-team-to-trainning.component';
-import { HighlightDirective } from './directives/highlight.directive';
 
 const appRoutes: Routes = [
   { path: '' , component: LoginPageComponent},
@@ -85,6 +85,7 @@ const config: SocketIoConfig = { url: 'https://record-system-server-1.herokuapp.
     MessagesComponent,
     SettingsComponent,
     LoginPageComponent,
+    HighlightDirective,
     StSidenavComponent,
     StContentComponent,
     MySwimmersComponent,
@@ -109,7 +110,6 @@ const config: SocketIoConfig = { url: 'https://record-system-server-1.herokuapp.
     TeamTargetDetailsComponent,
     RealTimeTrainningComponent,
     AddTeamToTrainningComponent,
-    HighlightDirective,
   ],
   imports: [
     FormsModule,

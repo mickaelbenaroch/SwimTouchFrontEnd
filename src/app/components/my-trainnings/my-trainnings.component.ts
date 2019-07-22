@@ -1,15 +1,15 @@
+import { RoleEnum } from 'src/app/enums/roleenum';
 import { PageEnum } from '../../enums/componentview';
 import { RouteModel } from '../../models/RouteModel';
+import { ExerciseModel } from 'src/app/models/ExerciseModel';
 import { TrainningModel } from '../../models/TrainningModel';
 import { MatDialogConfig, MatDialog } from '@angular/material';
+import { ExerciseTypeEnum } from '../../enums/exercisetypeenum';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { HttpService } from '../../services/http-service/http-service.service';
-import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
-import { ExerciseModel } from 'src/app/models/ExerciseModel';
 import { ProfileServiceService } from '../../services/profile-service/profile-service.service';
-import { RoleEnum } from 'src/app/enums/roleenum';
-import { ExerciseTypeEnum } from 'src/app/enums/exercisetypeenum';
+import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
 
 @Component({
   selector: 'app-my-trainnings',

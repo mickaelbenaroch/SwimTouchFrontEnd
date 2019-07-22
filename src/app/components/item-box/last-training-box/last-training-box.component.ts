@@ -1,9 +1,9 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ChartOptions, ChartType } from 'chart.js';
 import { MatDialogConfig, MatDialog } from '@angular/material';
 import { TrainningModel } from '../../../models/TrainningModel';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { monkeyPatchChartJsTooltip, monkeyPatchChartJsLegend } from 'ng2-charts';
 import { HttpService } from '../../../services/http-service/http-service.service';
-import { Label, SingleDataSet, monkeyPatchChartJsTooltip, monkeyPatchChartJsLegend } from 'ng2-charts';
 import { GenericDialogBoxComponent } from '../../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
 
 @Component({

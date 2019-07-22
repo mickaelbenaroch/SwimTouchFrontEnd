@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ProfileServiceService } from '../../services/profile-service/profile-service.service';
+import { MatDialogConfig, MatDialog } from '@angular/material';
 import { NotificationModel } from '../../models/NotificationModel';
 import { HttpService } from '../../services/http-service/http-service.service';
-import { MatDialogConfig, MatDialog } from '@angular/material';
+import { ProfileServiceService } from '../../services/profile-service/profile-service.service';
 import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
 
 @Component({

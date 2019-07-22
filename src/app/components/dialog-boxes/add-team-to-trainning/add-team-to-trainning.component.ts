@@ -1,7 +1,7 @@
 import { TeamModel } from '../../../models/TeamModel';
 import { Component, OnInit, Input, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { HttpService } from '../../../services/http-service/http-service.service';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-add-team-to-trainning',
@@ -18,8 +18,7 @@ export class AddTeamToTrainningComponent implements OnInit {
   //#endregion
 
   //#region Constructor & Lifecycle Hoooks
-  constructor( private dialog: MatDialog,
-               private httpservice: HttpService,
+  constructor( private httpservice: HttpService,
                @Inject(MAT_DIALOG_DATA) public data,
                private dialogRef: MatDialogRef<AddTeamToTrainningComponent>) { }
 

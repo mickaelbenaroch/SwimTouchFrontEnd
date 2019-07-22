@@ -91,18 +91,6 @@ export class TvModeComponent implements OnInit {
     }
     //Tells the broaker that the competition has been started
     this.socket.emit("action", model);
-
-  //   //On every Touch on wall sensor, get the result from callback
-  //   this.socket.on("WallSensor", (result:OneTimeResult) => {
-  //    console.log(result);
-  //    this.DivideResultsTouchTime(result);
-  //  });
-
-  //  //On every jump time get the result from callback
-  //  this.socket.on("jumpTime", (result: OneJumpTimeResult) => {
-  //    console.log(result);
-  //    this.DivideResultsJumpTime(result);
-  // });
   }
 
    /**

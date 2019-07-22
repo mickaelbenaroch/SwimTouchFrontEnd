@@ -1,4 +1,4 @@
-import { Component, OnInit, ɵConsole } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ExerciseModel } from '../../../models/ExerciseModel';
 import { TrainningModel } from 'src/app/models/TrainningModel';
 import { MatDialog, MatDialogConfig } from '@angular/material';

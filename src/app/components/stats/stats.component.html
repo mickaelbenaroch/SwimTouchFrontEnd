@@ -14,26 +14,10 @@
     <div *ngIf="!choosenSwimmer" style="display:flex;margin-top:0.8rem;justify-content:space-between">
       <div style="display: flex;" >
           <div class="div-3-2">בחר שחיין ספציפי או את כל הקבוצה:</div>
-
-            <!--  
-            <div class="div-3-3">
-          <mat-select placeholder="בחר שחיין" (selectionChange)="SwimmerDetails($event)" name="swimmer">
-              <mat-option *ngFor="let swimmer of currentTeam.swimmers" [value]="swimmer">
-                {{swimmer.name}}
-              </mat-option>
-              <mat-option class="all-team" (click)="AllTheTeamChoosen()">
-                כל הקבוצה
-              </mat-option>
-            </mat-select>
-          </div>
-          -->
           <div class="div-3-3">
             <mat-form-field>
                 <mat-label>בחירת שחיין</mat-label>
                 <mat-select (selectionChange)="SwimmerDetails($event)" name="swimmer">
-                  <!---<mat-option class="all-team" (click)="AllTheTeamChoosen()">
-                        כל הקבוצה
-                  </mat-option>-->
                   <mat-option *ngFor="let swimmer of currentTeam.swimmers" [value]="swimmer">
                       {{swimmer.name}}
                   </mat-option>
@@ -54,12 +38,6 @@
             <span class="second">{{currentSwimmer.name}}</span>
           </div>
           
-          <!--
-          <div class="picture-div">
-            <img style="width: 2rem;border-radius:50%" *ngIf="currentSwimmer.picture !== '' && currentSwimmer.picture !== null && currentSwimmer.picture !== undefined" [src]=currentSwimmer.picture> 
-            <img style="width: 2rem;border-radius:50%" *ngIf="currentSwimmer.picture == '' || currentSwimmer.picture == null || currentSwimmer.picture == undefined" src="/assets/user.svg">
-          </div>
-          -->
         </div>
         <div class="group-div">
           <span class="first">קבוצה:</span>
@@ -73,23 +51,13 @@
           <span class="first">גיל:</span>
           <span class="second">{{currentSwimmer.age}}</span>
         </div> 
-        <!----<div class="group-div-2">
-          <button (click)="BackToSwimmerChoose()">אחורה</button>
-        </div>-->
       </div>
     </div>
 
     <div class="team-choosen" *ngIf="teamChoosen">
-     <!--
-      <div class="swimmers-div">
-        <div class="title">שחייני הקבוצה:</div>
-        <div class="swimmer" *ngFor="let swimmer of currentTeam.swimmers">{{swimmer.name}}</div>
-      </div>
-     -->
       <div class="back-div">
         <button (click)="BackToSwimmerChoose()">אחורה</button>
-      </div>
-    
+      </div>  
     </div>
 
     <div class="buttons-div">
@@ -108,9 +76,6 @@
           <div class="div"> 
             <span>מרחק</span>
           </div>
-          <!----<div class="div">
-            <span>השגת מטרה תוך</span>
-          </div>--->
           <div class="div">
             <span>יעד</span>
           </div>
@@ -124,7 +89,6 @@
         <div class="targets line" (click)="EnterTarget(target)" [ngClass]="{'more-margin': target.selected}" *ngFor="let target of currentSwimmerTargets">
           <div>{{target.style}}</div>
           <div>{{target.distance + " מטר "}}</div>
-          <!---<div>{{target.triesToImprove + " משחים "}}</div>-->
           <div>{{target.targetTime  + " שניות "}}</div>
           <div>{{target.date | datepipe}}</div>
           <div>
@@ -144,9 +108,6 @@
           <div class="div"> 
             <span>מרחק</span>
           </div>
-          <!----<div class="div">
-            <span>השגת מטרה תוך</span>
-          </div>--->
           <div class="div">
             <span>יעד</span>
           </div>
@@ -160,7 +121,6 @@
         <div class="targets line" (click)="EnterTeamTarget(target)" [ngClass]="{'more-margin': target.selected}" *ngFor="let target of currentTeamTargets">
           <div>{{target.style}}</div>
           <div>{{target.distance + " מטר "}}</div>
-          <!---<div>{{target.triesToImprove + " משחים "}}</div>-->
           <div>{{target.targetTime  + " שניות "}}</div>
           <div>{{target.date | datepipe}}</div>
           <div>
@@ -169,72 +129,6 @@
           </div>
         </div>
     </div>
-
-  <!---<div *ngIf="targetChoosen">
-    <div class="targets">
-          <div class="div">
-            <span>סגנון:</span>
-            <div>{{choosenTarget.style}}</div>
-          </div>
-          <div class="div"> 
-            <span>מרחק:</span>
-            <div>{{choosenTarget.distance + " מטר "}}</div>
-          </div>
-          <div class="div">
-            <span>השגת מטרה תוך:</span>
-            <div>{{choosenTarget.triesToImprove + " משחים "}}</div>
-          </div>
-          <div class="div">
-            <span>יעד:</span>
-            <div>{{choosenTarget.targetTime  + " שניות "}}</div>
-          </div>
-          <div class="div">
-            <span>בתוקף מ-:</span>
-            <div>{{choosenTarget.date |datepipe}}</div>
-          </div>
-        </div> 
-  </div>
-  <div class="results-title" *ngIf="targetChoosen && specificRecords !== undefined && specificRecords !== null && specificRecords.length == 0">אין הישיגים לשחיין ליעד זה</div>
-   -->
-   <!---<div class="specific-div">
-      <div *ngFor="let record of specificRecords">
-        <div class="div-1">
-          <div class="part">
-            <div class="title">סגנון:</div>
-            <div class="content">{{record.exercise_id.style}}</div>
-          </div>
-          <div class="part">
-            <div class="title">מרחק:</div>
-            <div class="content">{{record.exercise_id.distance}}</div>
-          </div>
-          <div class="part">
-            <div class="title">תאריך:</div>
-            <div class="content">{{record.date | datepipe}}</div> 
-          </div>
-          <div class="part">
-            <div class="title">זמן סיום:</div>
-            <div class="content">{{record.results[record.results.length - 1]}}</div>
-          </div>
-        </div>
-    </div>
-  </div>-->
-  <!---<div *ngIf="graphReady" style="margin-top: 1rem;color:#800000;display:flex;justify-content:space-between;">
-    <span>הצגת ההישגים של היעד בגרף של השחיין:</span>
-    <span style="color:black;">הישג (בשניות)</span>
-  </div>
-  <div *ngIf="graphReady" style="display: block;margin-top: 1rem;margin: auto;">
-    <canvas baseChart width="90" height="25"
-      [datasets]="lineChartData"
-      [labels]="lineChartLabels"
-      [options]="lineChartOptions"
-      [colors]="lineChartColors"
-      [chartType]="lineChartType"
-      [plugins]="lineChartPlugins">
-    </canvas>
-  </div>
-  <div *ngIf="graphReady" style="text-align:center;">תאריך ההישג</div>-->
-
-
 </div>
 
 

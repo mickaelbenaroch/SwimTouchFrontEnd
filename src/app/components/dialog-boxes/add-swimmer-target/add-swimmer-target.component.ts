@@ -1,10 +1,8 @@
 import { SwimmerModel } from '../../../models/SwimmerModel';
 import { Component, OnInit, Inject, Input } from '@angular/core';
-import { SwimmingStylesEnum } from '../../../enums/swimmingstylesenum';
 import { SwimmerTargetModel } from '../../../models/SwimmerTargetModel';
-import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig } from '@angular/material';
 import { HttpService } from '../../../services/http-service/http-service.service';
-import { AddTeamToTrainningComponent } from '../add-team-to-trainning/add-team-to-trainning.component';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig } from '@angular/material';
 import { GenericDialogBoxComponent } from '../generic-dialog-box/generic-dialog-box.component';
 
 @Component({

@@ -2,20 +2,11 @@
 <div class="envelop">
   
   <div class="div-1">
-      <!---<div class="div-1-1">
-        <app-st-header [title]="title"
-                        [profile]="profileservice.profile"
-                        (HomeEvent)="GoToMainMenu($event)">
-        </app-st-header>
-      </div>-->
       <div class="div-1-2">
         <app-st-content [stateFromFather]="homeEvent"
                         [stateChange]="eventPassFromSideNave"
                         [profiles]=profiles
                         [mails]=mails></app-st-content>
-          <!--<div style="text-align:center;">
-            <button style="padding:1rem;background:green;cursor:pointer" (click)="Start()">START</button>
-          </div>-->
       </div>
   </div>
 

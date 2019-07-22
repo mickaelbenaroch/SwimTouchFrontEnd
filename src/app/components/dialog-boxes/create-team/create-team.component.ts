@@ -159,6 +159,5 @@ export class CreateTeamBoxComponent implements OnInit {
      reader.readAsDataURL(event.target.files[0]);
   }
  }
-
   //#endregion
 }

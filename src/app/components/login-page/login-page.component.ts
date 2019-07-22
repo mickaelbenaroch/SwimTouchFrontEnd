@@ -1,11 +1,11 @@
 import { Router } from '@angular/router';
+import { RoleEnum } from '../../enums/roleenum';
 import { Component, OnInit } from '@angular/core';
 import { LoginModel } from '../../models/LoginModel';
 import { SignUpModel } from '../../models/SignUpModel';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { HttpService } from '../../services/http-service/http-service.service';
 import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
-import { RoleEnum } from 'src/app/enums/roleenum';
 
 @Component({
   selector: 'app-login-page',

@@ -12,7 +12,6 @@ import { GenericDialogBoxComponent } from '../generic-dialog-box/generic-dialog-
 })
 export class AddTeamTargetComponent implements OnInit {
 
-
   //#region Public Members
   @Input() team: TeamModel;
   public target: TeamTargetModel = new TeamTargetModel();

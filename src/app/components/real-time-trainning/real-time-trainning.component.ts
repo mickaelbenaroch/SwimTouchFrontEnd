@@ -8,8 +8,8 @@ import { RealTrainningEnum } from '../../enums/realtrainningenum';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { TvModeComponent } from '../dialog-boxes/tv-mode/tv-mode.component';
 import { HttpService } from '../../services/http-service/http-service.service';
+import { MatDialog, MatDialogConfig, MatRadioChange } from '@angular/material';
 import { OneRouteFinalResultModel } from '../../models/FinalOneRouteResultModel';
-import { MatDialog, MatDialogConfig, MatRadioChange, MatRadioButton } from '@angular/material';
 import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
 
 @Component({

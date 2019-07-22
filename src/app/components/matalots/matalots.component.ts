@@ -1,18 +1,16 @@
+import { Color } from 'ng2-charts';
 import { ChartOptions } from 'chart.js';
-import { Label, Color } from 'ng2-charts';
 import { RoleEnum } from '../../enums/roleenum';
 import { Component, OnInit, Input } from '@angular/core';
 import { TeamModel } from '../../models/TeamModel';
 import { SwimmerModel } from '../../models/SwimmerModel';
 import { MatDialogConfig, MatDialog } from '@angular/material';
-import { TeamTargetModel } from '../../models/TeamTargetModel';
 import { NotificationModel } from '../../models/NotificationModel';
 import { NotificationTypeEnum } from '../../enums/notificationtypeenum';
 import { HttpService } from '../../services/http-service/http-service.service';
 import { ProfileServiceService } from '../../services/profile-service/profile-service.service';
 import { RecordDetailsComponent } from '../dialog-boxes/record-details/record-details.component';
 import { GenericDialogBoxComponent } from '../dialog-boxes/generic-dialog-box/generic-dialog-box.component';
-import { ReturnStatement } from '@angular/compiler';
 
 @Component({
   selector: 'app-matalots',
@@ -247,9 +245,6 @@ export class MatalotsComponent implements OnInit {
     this.httpservice.httpPost('statistic/full_records', model).subscribe(
       res=>{
           if(res !== undefined && res.records !== undefined){
-          //   this.records = res.records.sort ( (a, b) => {
-          //     return new Date(a).getTime() - new Date(b).getTime();
-          // })
             if(res !== undefined && res.records !== undefined){
               this.teamRecords.forEach(rec => {
                 if(rec.results !== undefined && rec.results !== null && rec.swimmer._id == this.currentSwimmer._id){
@@ -367,9 +362,6 @@ export class MatalotsComponent implements OnInit {
     this.httpservice.httpPost('statistic/full_records', model).subscribe(
         res=>{
             if(res !== undefined && res.records !== undefined){
-            //   this.records = res.records.sort ( (a, b) => {
-            //     return new Date(a).getTime() - new Date(b).getTime();
-            // })
               if(res !== undefined && res.records !== undefined){
                 this.teamRecords.forEach(rec => {
                   if(rec.results !== undefined && rec.results !== null && rec.swimmer._id == this.currentSwimmer._id){

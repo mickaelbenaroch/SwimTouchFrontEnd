@@ -1,6 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { TeamModel } from '../../../models/TeamModel';
 import { TrainningModel } from '../../../models/TrainningModel';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpService } from '../../../services/http-service/http-service.service';
 import { ProfileServiceService } from '../../../services/profile-service/profile-service.service';
 

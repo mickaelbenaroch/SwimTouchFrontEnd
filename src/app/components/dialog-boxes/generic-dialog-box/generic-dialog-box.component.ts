@@ -1,7 +1,5 @@
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Title } from '@angular/platform-browser';
 import { Component, OnInit, Input, Inject } from '@angular/core';
-import { MainPageComponent } from '../../main-page/main-page.component';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-generic-dialog-box',

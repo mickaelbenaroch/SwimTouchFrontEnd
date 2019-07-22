@@ -1,7 +1,7 @@
+import { Color } from 'ng2-charts';
+import { ChartOptions } from 'chart.js';
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { ChartOptions } from 'chart.js';
-import { Color } from 'ng2-charts';
 
 @Component({
   selector: 'app-record-details',
